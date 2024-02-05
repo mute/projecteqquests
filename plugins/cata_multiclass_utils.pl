@@ -1,16 +1,16 @@
 sub CommonCharacterUpdate
 {
-    my $client = plugin::val('$client');
+    my $client = shift;
 
-    CheckSkillAcquisition();
-    CheckSpellAcquisition($client->GetLevel());
+    CheckSkillAcquisition($client);
+    CheckSpellAcquisition($client);
 
 }
 
 # Check if the player is eligible for the first point of a new skill
 sub CheckSkillAcquisition
 {
-    my $client = plugin::val('$client');
+    my $client = shift;
 
     my $max_skill_id = 77;
 
@@ -23,8 +23,8 @@ sub CheckSkillAcquisition
 
 sub CheckSpellAcquisition
 {
-    my $client = plugin::val('$client');
-    my $level  = shift || $client->GetLevel(); 
+    my $client = shift;
+    my $level  = $client->GetLevel(); 
 
     quest::debug("Attempting to learn $level spells");
     $client->ScribeSpells($level, $level);

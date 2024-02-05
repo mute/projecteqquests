@@ -1,14 +1,14 @@
 # items: 67704
 sub EVENT_ENTERZONE { 
-    plugin::CommonCharacterUpdate();
+    plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_CONNECT {
-    plugin::CommonCharacterUpdate();
+    plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_LEVEL_UP {
-    plugin::CommonCharacterUpdate();
+    plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_COMBINE_VALIDATE {

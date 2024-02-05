@@ -1,4 +1,3 @@
-# items: 67704
 sub EVENT_ENTERZONE { 
     plugin::CommonCharacterUpdate($client);
 }
@@ -8,6 +7,7 @@ sub EVENT_CONNECT {
 }
 
 sub EVENT_LEVEL_UP {
+    quest::debug("Level up!");
     plugin::CommonCharacterUpdate($client);
 }
 

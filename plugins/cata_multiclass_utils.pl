@@ -26,5 +26,6 @@ sub CheckSpellAcquisition
     my $client = plugin::val('$client');
     my $level  = shift || $client->GetLevel(); 
 
+    quest::debug("Attempting to learn $level spells");
     $client->ScribeSpells($level, $level);
 }

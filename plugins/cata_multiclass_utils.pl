@@ -32,5 +32,5 @@ sub CheckSpellAcquisition
     my $level  = $client->GetLevel(); 
 
     quest::debug("Attempting to learn $level spells");
-    $client->ScribeSpells($level, $level + 1);
+    $client->ScribeSpells($level, $level);
 }

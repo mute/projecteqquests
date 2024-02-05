@@ -2,8 +2,13 @@ sub CommonCharacterUpdate
 {
     my $client = shift;
 
+    quest::debug("CommonCharacterUpdate 1");
     CheckSkillAcquisition($client);
+
+    quest::debug("CommonCharacterUpdate 2");
     CheckSpellAcquisition($client);
+
+    quest::debug("CommonCharacterUpdate 3");
 
 }
 
@@ -27,5 +32,5 @@ sub CheckSpellAcquisition
     my $level  = $client->GetLevel(); 
 
     quest::debug("Attempting to learn $level spells");
-    $client->ScribeSpells($level - 1, $level);
+    $client->ScribeSpells($level, $level + 1);
 }

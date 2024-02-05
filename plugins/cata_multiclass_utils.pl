@@ -2,17 +2,10 @@ sub CommonCharacterUpdate
 {
     my $client = shift;
 
-    quest::debug("CommonCharacterUpdate 1");
     CheckSkillAcquisition($client);
-
-    quest::debug("CommonCharacterUpdate 2");
     CheckSpellAcquisition($client);
-
-    quest::debug("CommonCharacterUpdate 3");
-
 }
 
-# Check if the player is eligible for the first point of a new skill
 sub CheckSkillAcquisition
 {
     my $client = shift;
@@ -31,6 +24,5 @@ sub CheckSpellAcquisition
     my $client = shift;
     my $level  = $client->GetLevel(); 
 
-    quest::debug("Attempting to learn $level spells");
     $client->ScribeSpells($level, $level);
 }

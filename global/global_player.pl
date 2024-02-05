@@ -7,8 +7,7 @@ sub EVENT_CONNECT {
 }
 
 sub EVENT_LEVEL_UP {
-    quest::debug("levels_gained " . $levels_gained);
-    plugin::CommonCharacterUpdate($client);
+    plugin::CommonCharacterUpdate($client, $levels_gained);
 }
 
 sub EVENT_COMBINE_VALIDATE {

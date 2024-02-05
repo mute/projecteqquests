@@ -1,9 +1,10 @@
 sub CommonCharacterUpdate
 {
     my $client = shift;
+    my $levels_gained = shift;
 
     CheckSkillAcquisition($client);
-    CheckSpellAcquisition($client);
+    CheckSpellAcquisition($client, $levels_gained);
 }
 
 sub CheckSkillAcquisition
@@ -26,7 +27,8 @@ sub CheckSkillAcquisition
 sub CheckSpellAcquisition
 {
     my $client = shift;
+    my $levels_gained = shift;
     my $level  = $client->GetLevel(); 
 
-    $client->ScribeSpells($level, $level);
+    $client->ScribeSpells($level - ($levels_gained - 1), $level);
 }

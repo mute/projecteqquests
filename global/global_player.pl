@@ -4,6 +4,7 @@ sub EVENT_ENTERZONE {
 
 sub EVENT_CONNECT {
     plugin::CommonCharacterUpdate($client);
+    quest::discordsend("cheaters", "Test");
 }
 
 sub EVENT_LEVEL_UP {
@@ -11,7 +12,8 @@ sub EVENT_LEVEL_UP {
 }
 
 sub EVENT_WARP {
-    quest::worldwidemessage(13, "WARP DETECTED FROM $name");
+    my $name = $client->GetCleanName();
+    quest::discordsend("cheaters", "$name was detected warping.");
 }
 
 sub EVENT_COMBINE_VALIDATE {

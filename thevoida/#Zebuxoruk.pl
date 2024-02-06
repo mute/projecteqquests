@@ -11,7 +11,7 @@ sub EVENT_SAY {
         quest::say("Hail, yourself. You find yourself here, again. The cycle continues. This time, present youself before me as a $base_class_name, in this place beyond the concept of both time and 'place' itself. At the end of all. I suppose it is time to once again [start anew]. Shall we begin?");
     }
 
-    else if ($text=~/start anew/i) {
+    elsif ($text=~/start anew/i) {
         my $extra_class_list = GetExtraClassesList();
         quest::say("Yes, yes. I think... yes. Let us try something new. What else would you like to be, $base_class_name of the so-called god, $deity_name, now lost to the ages? Your first choice, shall it be " . $extra_class_list);
     }

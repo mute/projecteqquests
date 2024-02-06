@@ -50,10 +50,11 @@ sub AddClass {
     my $client = shift || plugin::val('$client');
 
     if ($class_id && $class_id > 0 && $class_id < 17 && GetClassesCount($client) < 3) {
-        my $class_name = quest::getclassname($class_id);
-        my $full_class_name = GetPrettyClassString();
-
         $client->AddExtraClass($class_id);
+
+        my $class_name = quest::getclassname($class_id);
+        my $full_class_name = GetPrettyClassString();        
+
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
     }
 }

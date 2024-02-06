@@ -1,7 +1,13 @@
 sub CommonCharacterUpdate
-{
-    my $client = shift;
-    my $levels_gained = shift;
+{    
+    my $client = shift || plugin::val('$client');
+    
+    if (!$instanceid && GetClassesCount($client) < 3) {
+        quest::debug("Not in an instance!");
+        $instance = quest::CreateInstance('thevoida', 0, 360000);
+        $client->AssignToInstance($instance);
+        $client->MovePCInstance($zoneid, $instance, $client->GetX(), $client->GetY(), $client->GetZ(), $client->GetHeading());
+    }
 }
 
 sub GetClassMap {

@@ -1,12 +1,13 @@
 sub CommonCharacterUpdate
 {    
     my $client = shift || plugin::val('$client');
+    my $void_zone = quest::GetZoneID("thevoida");
 
     if (!$instanceid && GetClassesCount($client) < 3) {
         quest::debug("Not in an instance!");
         $instance = quest::CreateInstance('thevoida', 0, 360000);
         $client->AssignToInstance($instance);
-        $client->MovePCInstance(quest::GetZoneID("thevoida"), $instance, $client->GetX(), $client->GetY(), $client->GetZ(), $client->GetHeading());
+        $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetSafeHeading($void_zone));
     }
 }
 

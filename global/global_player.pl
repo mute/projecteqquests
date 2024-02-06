@@ -7,8 +7,19 @@ sub EVENT_CONNECT {
 }
 
 sub EVENT_LEVEL_UP {
-    plugin::CommonCharacterUpdate($client, $levels_gained);
+    plugin::CommonCharacterUpdate($client);  
+
+    # Calculate the client's new level and previous level
+    my $new_level = $client->GetLevel();
+
+    if (($new_level % 10 == 0) || $new_level == 5) {
+        my $name = $client->GetCleanName();
+        my $full_class_name = GetPrettyClassString($client);
+
+        plugin::WorldAnnounce("$name ($full_class_name) has reached Level $new_level.");
+    }
 }
+
 
 sub EVENT_WARP {
     my $name = $client->GetCleanName();

@@ -4,7 +4,6 @@ sub EVENT_ENTERZONE {
 
 sub EVENT_CONNECT {
     plugin::CommonCharacterUpdate($client);
-    quest::discordsend("cheaters", "Test");
 }
 
 sub EVENT_LEVEL_UP {

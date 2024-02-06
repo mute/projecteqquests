@@ -54,6 +54,10 @@ sub EVENT_SAY {
             
             if ($total_classes_now == 3) {
                 $secondary_response = "Your fate is set, immortal. Go [challenge it].";
+                if (!$account_zeb_progress) {
+                    quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
+                }
+                $client->SetBucket("zeb-progress", 1);
             } else {
                 # Assuming you have a method to generate the selection string for the remaining classes
                 my $selection_string = plugin::GetClassesSelectionString();

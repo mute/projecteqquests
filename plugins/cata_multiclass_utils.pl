@@ -25,6 +25,31 @@ sub GetClassMap {
     );
 }
 
+sub AddClass {
+    my $class_id = shift;
+    my $client = shift || plugin::val('$client');
+
+    if ($class_id && $class_id > 0 && $class_id < 17 && GetClassesCount($client) < 3) {
+        my $class_name = quest::getclassname($class_id);
+        my $full_class_name = GetPrettyClassString();
+
+        $client->AddExtraClass($class_id);
+        $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
+    }
+}
+
+sub GetPrettyClassString {
+    my %class_map = GetClassMap();  # Assuming GetClassMap returns a hash of class IDs to names
+    
+    # Sort the class IDs numerically and then map them to their names
+    my @sorted_class_names = map { $class_map{$_} } sort { $a <=> $b } keys %class_map;
+
+    # Join all class names with slashes
+    my $pretty_class_string = join('/', @sorted_class_names);
+
+    return $pretty_class_string;
+}
+
 sub GetClassesCount {
     my $client = shift || plugin::val('$client');
 

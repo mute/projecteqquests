@@ -23,12 +23,12 @@ sub EVENT_SAY {
 
     # Condition 3: This character has interacted with Zeb before, but the most recent time was not this character.
     elsif ($text=~/hail/i && $character_zeb_progress && $last_zeb_charname ne $client->GetCleanName()) {
-        quest::say("Back again, immortal? You shift your face as often as I shift the fates, and both of them futile. What do you [require of me]?");
+        quest::say("Back again, immortal? You shift your face as often as I shift the fates, and both of them futile. What do you [require of me]? If there is nothing, then your fate is set. Go [challenge it].");
     }
 
     # Condition 4: This character has interacted with Zeb before, and the most recent time was this character.
     elsif ($text=~/hail/i) {
-        quest::say("Immortal. Your journey continues, much as mine - eternally. What do you [require of me]?");
+        quest::say("Immortal. Your journey continues, much as mine - eternally. What do you [require of me]? If there is nothing, then your fate is set. Go [challenge it].");
     }
 
     
@@ -71,7 +71,7 @@ sub EVENT_SAY {
     }
 
     elsif ($text=~/challenge it/i) {
-        if (GetClassesCount($client) == 3) {
+        if (plugin::GetClassesCount($client) == 3) {
             quest::say("Farewell, immortal. I'm sure that you'll find your way back here again.");
 
             plugin::ReturnToZone($client);

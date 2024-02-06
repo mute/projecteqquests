@@ -10,6 +10,10 @@ sub EVENT_LEVEL_UP {
     plugin::CommonCharacterUpdate($client, $levels_gained);
 }
 
+sub EVENT_WARP {
+    quest::worldwidemessage(13, "WARP DETECTED FROM $name");
+}
+
 sub EVENT_COMBINE_VALIDATE {
 	# $validate_type values = { "check_zone", "check_tradeskill" }
 	# criteria exports:

@@ -27,15 +27,24 @@ sub EVENT_SAY {
     }
 
     # Condition 4: This character has interacted with Zeb before, and the most recent time was this character.
-    elsif ($text=~/hail/i && $character_zeb_progress) {
+    elsif ($text=~/hail/i) {
         quest::say("Immortal. Your journey continues, much as mine - eternally. What do you [require of me]?");
     }
 
     
     elsif ($text=~/start anew/i) {
-        my $extra_class_list = plugin::GetClassesSelectionString();
-        my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
-        quest::say("Yes, let us explore the multitude of paths before you, lost immortal. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
+        if (plugin::GetClassesCount($client) >= 3) {
+            # TODO - Add respec methods
+            quest::say("Your fate is set, immortal. Go challenge it.");
+        } else {
+            my $extra_class_list = plugin::GetClassesSelectionString();
+            my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
+            quest::say("Yes, let us explore the multitude of paths before you, lost immortal. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
+        }
+    }
+
+    elsif ($text =~ /^select_class_(\d+)$/) {
+        quest::debug("Got: " . quest::getclassname($1));
     }
 
 

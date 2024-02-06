@@ -70,7 +70,7 @@ sub EVENT_SAY {
         }
     }
 
-    elsif ($text=~/start anew/i) {
+    elsif ($text=~/challenge it/i) {
         if (GetClassesCount($client) == 3) {
             quest::say("Farewell, immortal. I'm sure that you'll find your way back here again.");
 

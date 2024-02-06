@@ -35,7 +35,7 @@ sub EVENT_SAY {
     elsif ($text=~/start anew/i) {
         if (plugin::GetClassesCount($client) >= 3) {
             # TODO - Add respec methods
-            quest::say("Your fate is set, immortal. Go challenge it.");
+            quest::say("Your fate is set, immortal. Go [challenge it].");
         } else {
             my $extra_class_list = plugin::GetClassesSelectionString();
             my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
@@ -44,8 +44,28 @@ sub EVENT_SAY {
     }
 
     elsif ($text =~ /^select_class_(\d+)$/) {
-        quest::debug("Got: " . quest::getclassname($1));
+        my $class_to_add = $1;
+        if (plugin::IsValidToAddClass($class_to_add)) {
+            $client->AddExtraClass($class_to_add);
+            
+            # Determine the appropriate $secondary_response based on the new total number of classes
+            my $total_classes_now = plugin::GetClassesCount();
+            my $secondary_response;
+            
+            if ($total_classes_now == 3) {
+                $secondary_response = "Your fate is set, immortal. Go [challenge it].";
+            } else {
+                # Assuming you have a method to generate the selection string for the remaining classes
+                my $selection_string = plugin::GetClassesSelectionString();
+                $secondary_response = "Your second and final choice, immortal. Choose wisely: $selection_string";
+            }
+
+            quest::say("Indeed - it is done. $secondary_response");
+        } else {
+            quest::say("Alas, I am unable to do so. Your fate is set, immortal. Go [challenge it].");
+        }
     }
+
 
 
     # Update interaction records

@@ -77,3 +77,22 @@ sub GetClassesSelectionString {
     return $selection_string;
 }
 
+sub IsValidToAddClass {
+    my $class_id_to_add = shift;
+    my $client = plugin::val('$client'); # Assuming $client is accessible in this context
+
+    # Retrieve the client's current class bits
+    my $class_bits = $client->GetClassesBits();
+
+    # Count the number of classes the client already has
+    my $classes_count = 0;
+    for (my $i = 1; $i <= 16; $i++) {
+        $classes_count += ($class_bits & (1 << ($i - 1))) ? 1 : 0;
+    }
+
+    # Check if the client already has this class
+    my $has_class_already = ($class_bits & (1 << ($class_id_to_add - 1))) ? 1 : 0;
+
+    # Determine if eligible to add: less than 3 classes and doesn't already have this class
+    return ($classes_count < 3 && !$has_class_already);
+}

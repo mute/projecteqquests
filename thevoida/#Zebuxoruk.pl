@@ -46,7 +46,7 @@ sub EVENT_SAY {
     elsif ($text =~ /^select_class_(\d+)$/) {
         my $class_to_add = $1;
         if (plugin::IsValidToAddClass($class_to_add)) {
-            $client->AddExtraClass($class_to_add);
+            plugin::AddClass($class_to_add);
             
             # Determine the appropriate $secondary_response based on the new total number of classes
             my $total_classes_now = plugin::GetClassesCount();

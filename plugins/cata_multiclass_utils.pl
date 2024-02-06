@@ -24,6 +24,29 @@ sub CommonCharacterUpdate {
     }
 }
 
+sub ReturnToZone {
+    my $client = shift || plugin::val('$client');
+
+    # Check if all last position values exist
+    my $last_zone = $client->GetBucket("Last-Position-Zone");
+    my $last_x = $client->GetBucket("Last-Position-X");
+    my $last_y = $client->GetBucket("Last-Position-Y");
+    my $last_z = $client->GetBucket("Last-Position-Z");
+    my $last_heading = $client->GetBucket("Last-Position-Heading");
+
+    # Use bind point if any last position value is missing
+    unless (defined $last_zone && defined $last_x && defined $last_y && defined $last_z && defined $last_heading) {
+        $last_zone = $client->GetBindZoneID();
+        $last_x = $client->GetBindX();
+        $last_y = $client->GetBindY();
+        $last_z = $client->GetBindZ();
+        $last_heading = $client->GetBindHeading();
+    }
+
+    # Move the client to the determined position
+    $client->MovePC($last_zone, $last_x, $last_y, $last_z, $last_heading);
+}
+
 sub GetClassMap {
     return (
         1 => "Warrior",

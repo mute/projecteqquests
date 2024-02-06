@@ -70,6 +70,16 @@ sub EVENT_SAY {
         }
     }
 
+    elsif ($text=~/start anew/i) {
+        if (GetClassesCount($client) == 3) {
+            quest::say("Farewell, immortal. I'm sure that you'll find your way back here again.");
+
+            plugin::ReturnToZone($client);
+        } else {
+            quest::say("You are not yet ready to leave, immortal. There is still time to [start anew].");
+        }
+    }
+
 
 
     # Update interaction records

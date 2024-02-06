@@ -33,11 +33,9 @@ sub EVENT_SAY {
 
     
     elsif ($text=~/start anew/i) {
-        my $extra_class_list = GetExtraClassesList();
+        my $extra_class_list = plugin::GetClassesSelectionString();
         my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
         quest::say("Yes, let us explore the multitude of paths before you, lost immortal. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
-
-        quest::say("Yes, yes. I think... yes. Let us try something new. What else would you like to be, $base_class_name $deity_message? Your first choice, then. Shall it be " . $extra_class_list);
     }
 
 
@@ -45,53 +43,5 @@ sub EVENT_SAY {
     #quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
     
     #$client->SetBucket("zeb-progress", 1);
-}
-
-sub GetExtraClassHash {
-    return (
-        1 => "Warrior",
-        2 => "Cleric",
-        3 => "Paladin",
-        4 => "Ranger",
-        5 => "Shadow Knight",
-        6 => "Druid",
-        7 => "Monk",
-        8 => "Bard",
-        9 => "Rogue",
-        10 => "Shaman",
-        11 => "Necromancer",
-        12 => "Wizard",
-        13 => "Magician",
-        14 => "Enchanter",
-        15 => "Beastlord",
-        16 => "Berserker",
-    );
-}
-
-sub GetExtraClassesList {
-    my $base_class = $client->GetClass();
-    my %extra_classes = GetExtraClassHash();
-    
-    # Remove the player's current class from the list of extra classes
-    delete $extra_classes{$base_class};
-    
-    # Get all remaining class names
-    my @classes = values %extra_classes;
-    
-    # Initialize the extra class list string
-    my $extra_class_list = '';
-    
-    # Check if there are multiple classes to list
-    if (@classes > 1) {
-        # Join all but the last class name with commas
-        $extra_class_list = join(", ", @classes[0 .. $#classes-1]);
-        # Add 'or' before the last class name
-        $extra_class_list .= " or $classes[-1]";
-    } else {
-        # Only one class, so just use it
-        $extra_class_list = $classes[0] // ''; # The // operator is used to handle the case when @classes is empty
-    }
-    
-    return $extra_class_list;
 }
 

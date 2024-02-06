@@ -1,7 +1,7 @@
 sub CommonCharacterUpdate
 {    
     my $client = shift || plugin::val('$client');
-    
+
     if (!$instanceid && GetClassesCount($client) < 3) {
         quest::debug("Not in an instance!");
         $instance = quest::CreateInstance('thevoida', 0, 360000);
@@ -45,13 +45,21 @@ sub AddClass {
 }
 
 sub GetPrettyClassString {
-    my %class_map = GetClassMap();  # Assuming GetClassMap returns a hash of class IDs to names
-    
-    # Sort the class IDs numerically and then map them to their names
-    my @sorted_class_names = map { $class_map{$_} } sort { $a <=> $b } keys %class_map;
+    my $client = shift || plugin::val('$client');  # Ensure $client is available
+    my %class_map = GetClassMap();  # Get the full class map
+    my $class_bits = $client->GetClassesBits();  # Retrieve the class bits for the client
 
-    # Join all class names with slashes
-    my $pretty_class_string = join('/', @sorted_class_names);
+    my @client_classes;
+
+    # Iterate through class IDs to check which classes the client has
+    foreach my $class_id (sort { $a <=> $b } keys %class_map) {
+        if ($class_bits & (1 << ($class_id - 1))) {
+            push @client_classes, $class_map{$class_id};  # Add class name if the client has it
+        }
+    }
+
+    # Join the client's class names with slashes
+    my $pretty_class_string = join('/', @client_classes);
 
     return $pretty_class_string;
 }

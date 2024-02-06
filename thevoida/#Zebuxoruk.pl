@@ -13,7 +13,7 @@ sub EVENT_SAY {
     # Greetings
     # Condition 1: Neither this character nor this account have interacted with this NPC
     if ($text=~/hail/i && !$account_zeb_progress && !$character_zeb_progress) {
-        quest::say("Hail yourself, $base_class_name. Yet another wandering immortal finds this place through the blind eternities, the end of all things. We have met once before, when I challenged the gods, so long ago. In light of that service that you once performed, and will again, I will grant you the ability to [start anew]. Shall we begin?");
+        quest::say("Hail yourself, $base_class_name. Yet another wandering immortal finds this place through the blind abyss, the end of all things. We have met once before, when I challenged the gods, so long ago. In light of that service that you once performed, and will again, I will grant you the ability to [start anew]. Shall we begin?");
     }
 
     # Condition 2: This account has interacted with this NPC, but the character has not

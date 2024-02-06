@@ -43,6 +43,12 @@ sub ReturnToZone {
         $last_heading = $client->GetBindHeading();
     }
 
+    if ($client->GetLevel() == 1) {
+        my $name = $client->GetCleanName();
+        my $full_class_name = GetPrettyClassString($client);
+        plugin::WorldAnnounce("The immortal, $name ($full_class_name), has emerged from the blind abyss.");
+    }
+
     # Move the client to the determined position
     $client->MovePC($last_zone, $last_x, $last_y, $last_z, $last_heading);
 }

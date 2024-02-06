@@ -68,7 +68,7 @@ sub GetClassesSelectionString {
     foreach my $class_id (sort { $a <=> $b } keys %available_classes) {
         my $class_name = $available_classes{$class_id};
         my $signal_string = "select_class_" . $class_id; # Unique signal string based on class ID
-        push @selection_strings, quest::saylink($class_name, 1, $signal_string);
+        push @selection_strings, quest::saylink($signal_string, 1, $class_name);
     }
 
     my $selection_string = join(", ", @selection_strings[0 .. $#selection_strings-1]);

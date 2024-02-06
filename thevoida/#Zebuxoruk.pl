@@ -1,5 +1,4 @@
 sub EVENT_SAY {
-
     my $zeb_progress = quest::get_data(plugin::GetAccountKey() . "zeb-progress") || 0;
 
     my $base_class = $client->GetClass();
@@ -8,12 +7,12 @@ sub EVENT_SAY {
     my $deity_name = quest::getdeityname($deity);
 
     if ($text=~/hail/i && !$zeb_progress) {
-        quest::say("Hail, yourself. You find yourself here, again. The cycle continues. This time, present youself before me as a $base_class_name, in this place beyond the concept of both time and 'place' itself. At the end of all. I suppose it is time to once again [start anew]. Shall we begin?");
+        quest::say("Hail, yourself. You find yourself here, again. The cycle continues. This time, present yourself before me as a $base_class_name, in this place beyond the concept of both time and 'place' itself. At the end of all. I suppose it is time to once again [start anew]. Shall we begin?");
     }
-
     elsif ($text=~/start anew/i) {
         my $extra_class_list = GetExtraClassesList();
-        quest::say("Yes, yes. I think... yes. Let us try something new. What else would you like to be, $base_class_name of the so-called god, $deity_name, now lost to the ages? Your first choice, shall it be " . $extra_class_list);
+        my $deity_message = $deity_name eq "Agnostic" ? "not bound by the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
+        quest::say("Yes, yes. I think... yes. Let us try something new. What else would you like to be, $base_class_name $deity_message? Your first choice, shall it be " . $extra_class_list);
     }
 }
 

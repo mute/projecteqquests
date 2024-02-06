@@ -82,7 +82,7 @@ sub IsValidToAddClass {
     my $client = plugin::val('$client'); # Assuming $client is accessible in this context
 
     # Retrieve the client's current class bits
-    my $class_bits = $client->GetClassesBits();
+    my $class_bits = $client->GetClassesBitmask();
 
     # Count the number of classes the client already has
     my $classes_count = 0;

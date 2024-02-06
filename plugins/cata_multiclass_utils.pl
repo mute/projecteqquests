@@ -61,7 +61,7 @@ sub AddClass {
 sub GetPrettyClassString {
     my $client = shift || plugin::val('$client');  # Ensure $client is available
     my %class_map = GetClassMap();  # Get the full class map
-    my $class_bits = $client->GetClassesBits();  # Retrieve the class bits for the client
+    my $class_bits = $client->GetClassesBitmask();  # Retrieve the class bits for the client
 
     my @client_classes;
 

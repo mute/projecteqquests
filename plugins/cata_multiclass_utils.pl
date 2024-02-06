@@ -7,7 +7,7 @@ sub CommonCharacterUpdate
         quest::debug("Not in an instance!");
         $instance = quest::CreateInstance('thevoida', 0, 360000);
         $client->AssignToInstance($instance);
-        $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetSafeHeading($void_zone));
+        $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
     }
 }
 

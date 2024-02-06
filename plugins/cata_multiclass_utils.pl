@@ -29,7 +29,7 @@ sub GetClassesCount {
     my $client = shift || plugin::val('$client');
 
     if ($client) {
-        my $class_bits = $client->GetClassesBits();
+        my $class_bits = $client->GetClassesBitmask();
         my $count = 0;
         
         while ($class_bits) {
@@ -47,7 +47,7 @@ sub GetClassesCount {
 sub GetExtraClassesList {
     my $client = shift || plugin::val('$client');
     my %class_map = GetClassMap();
-    my $class_bits = $client->GetClassesBits();
+    my $class_bits = $client->GetClassesBitmask();
     my %available_classes;
 
     # Determine which classes the player does NOT have based on class bits

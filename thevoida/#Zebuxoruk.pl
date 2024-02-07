@@ -83,12 +83,5 @@ sub EVENT_SAY {
             quest::say("You are not yet ready to leave, immortal. There is still time to [start anew].");
         }
     }
-
-
-
-    # Update interaction records
-    #quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
-    
-    #$client->SetBucket("zeb-progress", 1);
 }
 

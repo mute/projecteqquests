@@ -25,7 +25,7 @@ sub CommonCharacterUpdate {
 
         if (!$client->GetBucket("newbie-writ") && $zoneid != $void_zone) { # Do not trigger in pocket plane
             $client->SummonItem(18471); # A Faded Writ
-            $client->SetBucket("newbie-writ", 1);            
+            $client->SetBucket("newbie-writ", "1");            
         }
 
         GrantClassesAA();

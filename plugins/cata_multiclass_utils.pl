@@ -186,6 +186,7 @@ sub GrantGeneralAA
 {
     my $client = plugin::val('$client');
 
-    
-    $client->GrantAlternateAdvancementAbility(938, 8);
+
+    $client->GrantAlternateAdvancementAbility(938, 8, 1);
+    $client->GrantAlternateAdvancementAbility(938, 5, 1);
 }

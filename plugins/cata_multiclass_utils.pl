@@ -21,9 +21,11 @@ sub CommonCharacterUpdate {
 
         # Move the client to the instance
         $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
-    }
-
-    GrantGeneralAA();
+    } else {
+        $client->SummonItem(18471) # A Faded Writ
+        GrantGeneralAA();
+        GrantClassesAA();
+    }    
 }
 
 sub ReturnToZone {
@@ -204,5 +206,52 @@ sub GrantGeneralAA {
     # Iterate over the AA IDs and increment each one for the client
     foreach my $aa_id (@general_aa) {
         $client->IncrementAA($aa_id);
+    }
+}
+
+sub GrantClassAA {
+    my ($client, $PCClass) = @_;
+
+    # Define a hash where each class ID maps to an array of its AAs
+    my %class_aa = (
+        1 => [6283, 6607, 4739, 1597], # Warrior
+        2 => [12652, 507, 746], # Cleric
+        3 => [188, 6395], # Paladin
+        4 => [205, 1196, 645, 1345], # Ranger
+        5 => [5085, 13165], # Shadow Knight
+        6 => [548, 14264, 767, 6375], # Druid
+        7 => [810, 1352], # Monk
+        8 => [630, 556, 557, 558, 559, 560, 1110, 225], # Bard
+        9 => [287, 605, 4739], # Rogue
+        10 => [10957, 1327, 8227], # Shaman
+        11 => [767, 6375, 734, 12770, 8227], # Necromancer
+        12 => [155, 516, 5295], # Wizard
+        13 => [8201, 734, 8342, 8227], # Mage
+        14 => [158, 643, 10551, 580, 581, 582, 734, 8227], # Enchanter
+        15 => [11080, 6984, 734, 8227], # Beastlord
+        16 => [4739, 258], # Berserker (Zerker)
+    );
+
+
+    my $classKey = $client->CharacterID() . $PCClass;
+    if (!quest::get_data($classKey)) {
+        quest::set_data($classKey, 1);
+
+        foreach my $aa_id (@{$class_aa{$PCClass}}) {
+            $client->IncrementAA($aa_id);
+        }
+    }
+}
+
+sub GrantClassesAA {
+    my $client = shift || plugin::val('$client');
+    my $class_bitmask = $client->GetClassesBitmask();
+
+    # Iterate through each class ID (bit position)
+    for (my $i = 0; $i < 16; $i++) { 
+        if ($class_bitmask & (1 << $i)) {
+            # Call GrantClassAA for each class found in the bitmask
+            GrantClassAA($client, $i + 1);
+        }
     }
 }

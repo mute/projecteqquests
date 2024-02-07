@@ -184,5 +184,8 @@ sub IsValidToAddClass {
 
 sub GrantGeneralAA
 {
+    my $client = plugin::val('$client');
+
+    
     $client->GrantAlternateAdvancementAbility(938, 8);
 }

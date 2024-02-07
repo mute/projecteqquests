@@ -71,6 +71,10 @@ sub EVENT_SAY {
     }
 
     elsif ($text=~/challenge it/i) {
+        quest::say("Of this, I am sure. Are you prepared to [return] from whence you came?");
+    }
+
+    elsif ($text=~/return/i) {
         if (plugin::GetClassesCount($client) == 3) {
             quest::say("Farewell, immortal. I'm sure that you'll find your way back here again.");
 

@@ -182,11 +182,27 @@ sub IsValidToAddClass {
     return ($classes_count < 3 && !$has_class_already);
 }
 
-sub GrantGeneralAA
-{
-    my $client = plugin::val('$client');
+sub GrantGeneralAA {
+    my $client = shift || plugin::val('$client');
 
-
-    $client->GrantAlternateAdvancementAbility(938, 8, 1);
-    $client->GrantAlternateAdvancementAbility(938, 5, 1);
+    my @general_aa = (
+        12636, # Eyes Wide Open 1
+        12637, # Eyes Wide Open 2
+        8445,  # Eyes Wide Open 3
+        8446,  # Eyes Wide Open 4
+        8447,  # Eyes Wide Open 5
+        16419, # Eyes Wide Open 6
+        16420, # Eyes Wide Open 7
+        16421, # Eyes Wide Open 8
+        1021,  # Mystical Attuning 1
+        1022,  # Mystical Attuning 2
+        1023,  # Mystical Attuning 3
+        1024,  # Mystical Attuning 4
+        1025   # Mystical Attuning 5
+    );
+    
+    # Iterate over the AA IDs and increment each one for the client
+    foreach my $aa_id (@general_aa) {
+        $client->IncrementAA($aa_id);
+    }
 }

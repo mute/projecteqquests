@@ -21,12 +21,12 @@ sub CommonCharacterUpdate {
 
         # Move the client to the instance
         $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
-    } elsif ($zoneid != $void_zone) { # Do not trigger in pocket plane
-        if (!$client->GetBucket("newbie-writ")) {
+    } else {
+
+        if (!$client->GetBucket("newbie-writ") && $zoneid != $void_zone) { # Do not trigger in pocket plane
             $client->SummonItem(18471); # A Faded Writ            
         }
 
-        GrantGeneralAA();
         GrantClassesAA();
     }    
 }
@@ -92,6 +92,7 @@ sub AddClass {
         my $full_class_name = GetPrettyClassString();        
 
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
+        GrantClassesAA();
     }
 }
 
@@ -250,6 +251,8 @@ sub GrantClassAA {
 sub GrantClassesAA {
     my $client = shift || plugin::val('$client');
     my $class_bitmask = $client->GetClassesBitmask();
+
+    GrantGeneralAA(); # Grant the general here too
 
     # Iterate through each class ID (bit position)
     for (my $i = 0; $i < 16; $i++) { 

@@ -22,6 +22,8 @@ sub CommonCharacterUpdate {
         # Move the client to the instance
         $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
     }
+
+    GrantGeneralAA();
 }
 
 sub ReturnToZone {
@@ -178,4 +180,9 @@ sub IsValidToAddClass {
 
     # Determine if eligible to add: less than 3 classes and doesn't already have this class
     return ($classes_count < 3 && !$has_class_already);
+}
+
+sub GrantGeneralAA
+{
+    $client->GrantAlternateAdvancementAbility(938, 8);
 }

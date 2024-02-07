@@ -22,7 +22,7 @@ sub CommonCharacterUpdate {
         # Move the client to the instance
         $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
     } else {
-        $client->SummonItem(18471) # A Faded Writ
+        $client->SummonItem(18471); # A Faded Writ
         GrantGeneralAA();
         GrantClassesAA();
     }    

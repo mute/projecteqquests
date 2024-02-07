@@ -21,8 +21,11 @@ sub CommonCharacterUpdate {
 
         # Move the client to the instance
         $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
-    } else {
-        $client->SummonItem(18471); # A Faded Writ
+    } elsif ($zoneid != $void_zone) { # Do not trigger in pocket plane
+        if (!$client->GetBucket("newbie-writ")) {
+            $client->SummonItem(18471); # A Faded Writ            
+        }
+
         GrantGeneralAA();
         GrantClassesAA();
     }    
@@ -188,6 +191,7 @@ sub GrantGeneralAA {
     my $client = shift || plugin::val('$client');
 
     my @general_aa = (
+        1000,  # Bazaar Gate
         12636, # Eyes Wide Open 1
         12637, # Eyes Wide Open 2
         8445,  # Eyes Wide Open 3

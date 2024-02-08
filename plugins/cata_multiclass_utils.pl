@@ -113,7 +113,7 @@ sub AddClass {
         $client->AddExtraClass($class_id);
 
         if ($class_id = 8) {
-            $client->SetBaseClass(8);
+            quest::permaclass(8);
         }
 
         my $class_name = quest::getclassname($class_id);

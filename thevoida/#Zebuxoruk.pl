@@ -46,7 +46,7 @@ sub EVENT_SAY {
             my $text_red    = plugin::PWColor("Red");
             my $text_green  = plugin::PWColor("Green");
 
-            my $text_website_link = plugin::PWHyperLink("https://heroesjourneyeq.com","visit our website")
+            my $text_website_link = plugin::PWHyperLink("https://heroesjourneyeq.com","visit our website");
 
             my $popup_title   = "$text_yellow Multiclassing on The Heroes' Journey $text_color_end";
             my $popup_message = "$text_red Please Read Completely $text_color_end $text_break $text_break $text_break" .

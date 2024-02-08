@@ -1,17 +1,19 @@
-my $color_end = "</c>";
-my $break = "<br>";
-my $yellow = plugin::PWColor("Yellow");
-my $red    = plugin::PWColor("Red");
-my $green  = plugin::PWColor("Green");
 
-my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
-my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
 
 sub CommonCharacterUpdate {    
     my $client = shift || plugin::val('$client');
     my $void_zone = quest::GetZoneID("thevoida");
     my $zoneid = $client->GetZoneID();
     my $instanceid = $client->GetInstanceID();
+
+    my $color_end = "</c>";
+    my $break = "<br>";
+    my $yellow = plugin::PWColor("Yellow");
+    my $red    = plugin::PWColor("Red");
+    my $green  = plugin::PWColor("Green");
+
+    my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
+    my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
 
     # Check if not in an instance and has less than 3 classes
     if (!$instanceid && GetClassesCount($client) < 3) {

@@ -40,7 +40,7 @@ sub EVENT_SAY {
             my $extra_class_list = plugin::GetClassesSelectionString();
             my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
 
-            my $popup_message = "<span style="color: yellow;">Multiclassing on The Heroes' Journey</span>";
+            my $popup_message = "<span style='color: yellow;'>Multiclassing on The Heroes' Journey</span>";
 
             quest::say("Yes, let us explore the multitude of paths before you, lost hero. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
             quest::popup("Information", $popup_message);

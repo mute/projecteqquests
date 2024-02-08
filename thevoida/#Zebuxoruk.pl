@@ -41,7 +41,7 @@ sub EVENT_SAY {
             my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
 
             my $text_color_end = "</c>";
-            my $text_break = "</br>";
+            my $text_break = "<br>";
             my $text_yellow = plugin::PWColor("Yellow");
             my $text_red    = plugin::PWColor("Red");
             my $text_green  = plugin::PWColor("Green");

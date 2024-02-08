@@ -45,7 +45,7 @@ sub EVENT_SAY {
             my $text_yellow = plugin::PWColor("Yellow");
 
             my $popup_message = "$text_break $text_break 
-                                 $text_yellow Multiclassing on The Heroes' Journey $text_color_end $text_break $text_break;
+                                 $text_yellow Multiclassing on The Heroes' Journey $text_color_end $text_break $text_break";
 
             quest::say("Yes, let us explore the multitude of paths before you, lost hero. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
             quest::popup("Information", $popup_message);

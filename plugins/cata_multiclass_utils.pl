@@ -112,6 +112,10 @@ sub AddClass {
     if ($class_id && $class_id > 0 && $class_id < 17 && GetClassesCount($client) < 3) {
         $client->AddExtraClass($class_id);
 
+        if ($class_id = 8) {
+            $client->SetBaseClass(8);
+        }
+
         my $class_name = quest::getclassname($class_id);
         my $full_class_name = GetPrettyClassString();        
 

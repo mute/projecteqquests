@@ -49,7 +49,7 @@ sub EVENT_SAY {
             my $extra_class_list = plugin::GetClassesSelectionString();
             my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
 
-            my $popup_title   = "Welcome to The Heroes' Journey";
+            my $popup_title   = "Multiclassing on The Heroes' Journey";
             my $popup_message = 
                                 "${red}Please Read Completely${color_end}${break}${break}" .
                                 "Characters on The Heroes' Journey each have three classes. You chose one during character creation, " .

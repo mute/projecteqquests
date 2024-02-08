@@ -39,7 +39,7 @@ sub CommonCharacterUpdate {
             my $popup_title = "Welcome to The Heroes' Journey";
             my $popup_message = 
                 "The Heroes' Journey is a single-box, small-group focused server with a variety of ${yellow}UNIQUE${color_end} mechanics and features. " .
-                "We have worked hard on this project to deliver an experience never seen before, and hope that you enjoy the result! ${break}${break}" .
+                "We have worked hard on this project to deliver an experience never seen before, and hope that you enjoy the result! Please visit our $website and $discord for more information!${break}${break}" .
                 "${green}Multiclassing${color_end}: Characters on The Heroes' Journey each have three classes. You chose one during character creation, " .
                 "and you will choose two more now. You will gain the abilities and attributes of each of the chosen classes; " .
                 "Spells, Skills, Equipment, Alternate Advancement abilities, and even more 'hidden' features like AC caps and melee damage bonuses. ${break}${break}" .

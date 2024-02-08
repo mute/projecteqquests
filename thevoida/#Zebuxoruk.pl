@@ -43,9 +43,25 @@ sub EVENT_SAY {
             my $text_color_end = "</c>";
             my $text_break = "</br>";
             my $text_yellow = plugin::PWColor("Yellow");
+            my $text_red    = plugin::PWColor("Red");
+            my $text_green  = plugin::PWColor("Green");
 
-            my $popup_message = "$text_break $text_break 
-                                 $text_yellow Multiclassing on The Heroes' Journey $text_color_end $text_break $text_break";
+            my $text_website_link = plugin::PWHyperLink("https://heroesjourneyeq.com","visit our website")
+
+            my $popup_title   = "$text_yellow Multiclassing on The Heroes' Journey $text_color_end";
+            my $popup_message = "$text_red Please Read Completely $text_color_end $text_break $text_break $text_break" .
+                                "Characters on The Heroes' Journey each have three classes. You chose one during character creation, and you will choose two more now. " .
+                                "You will gain the abilities and attributes of each of the chosen classes; Spells, Skills, Equipment, Alternate Advancement abilities, " .
+                                " and even more 'hidden' features like AC caps and melee damage bonuses. $text_break $text_break" .
+                                "We have worked to make this process as intuitive as possible, but there are some things to be aware of as you make your choices. $text_break $text_break" .
+                                "$text_green Patcher and Client software$text_color_end: You $text_red MUST $text_color_end use our client on this server. This isn't a simple matter of ".
+                                "spell and string files; much of the multiclassing system will not work at all without the custom client modifications we have made. If you have not obtained it already," .
+                                "please visit $text_website_link. You can also find a link to our Discord there! $text_break $text_break" .
+                                "$text_green Bards$text_color_end: This class is slightly odd. If you did not select Bard during character creation and choose Bard as an additional class, you will be " .
+                                "immediately disconnected so that certain changes can be made to your character in order for Bard abilities to work correctly. " . #TODO - update this with however bards work out
+                                "$text_green Quests & Faction$text_color_end: The class that you selected during character selection may be considered your 'real' class for the purposes of some quests. " . 
+                                "It is intended that you be able to complete all quests which are available to any of your classes, but you may encounter some faction issues as a result of character select choices " .
+                                "Please report any such issues on our Discord so that they can be corrected.";
 
             quest::say("Yes, let us explore the multitude of paths before you, lost hero. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
             quest::popup("Information", $popup_message);

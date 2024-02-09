@@ -13,8 +13,10 @@ sub CommonCharacterUpdate {
     my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
     my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
 
+    my $character_zeb_progress = $client->GetBucket("zeb-progress") || 0;
+
     # Check if not in an instance and has less than 3 classes
-    if (!$instanceid && GetClassesCount($client) < 3) {
+    if (!$instanceid && $character_zeb_progress == 0) {
         quest::debug("Not in an instance!");
         
         # Create a new instance of 'thevoida'
@@ -35,7 +37,7 @@ sub CommonCharacterUpdate {
         if (!$client->GetBucket("newbie-writ") && $zoneid != $void_zone) { # Do not trigger in pocket plane
             $client->SummonItem(18471); # A Faded Writ
             $client->SetBucket("newbie-writ", "1");            
-        } elsif (GetClassesCount($client) < 3) { # Trigger in pocket plane 
+        } elsif ($character_zeb_progress == 0) { # Trigger in pocket plane 
             my $popup_title = "Welcome to The Heroes' Journey";
             my $popup_message = 
                 "The Heroes' Journey is a single-box, small-group focused server with a variety of ${yellow}UNIQUE${color_end} mechanics and features. " .

@@ -13,22 +13,29 @@ sub EVENT_SAY {
     # Greetings
     # Condition 1: Neither this character nor this account have interacted with this NPC
     if ($text=~/hail/i && !$account_zeb_progress && !$character_zeb_progress) {
-        quest::say("Hail yourself, $base_class_name. Yet another wandering hero finds this place through the blind abyss, the end of all things. We have met once before, when I challenged the gods, so long ago. In light of that service that you once performed, and will again, I will grant you the ability to [start anew]. Shall we begin?");
+        quest::say("Hail yourself, $base_class_name. Yet another wandering hero finds this place through the blind abyss, 
+                    the end of all things. We have met once before, when I challenged the gods, so long ago. In light of 
+                    that service that you once performed, and will again, I will grant you the ability to [start anew]. 
+                    Shall we begin?");
     }
 
     # Condition 2: This account has interacted with this NPC, but the character has not
     elsif ($text=~/hail/i && $account_zeb_progress && !$character_zeb_progress) {
-        quest::say("Hail. You find yourself here, again. The cycle continues. This time, present yourself before me as a $base_class_name, in this place beyond the concept of both time and 'place' itself. At the end of all. I suppose it is time to once again [start anew]. Shall we begin?");
+        quest::say("Hail. You find yourself here, again. The cycle continues. This time, present yourself before me as 
+                    a $base_class_name, in this place beyond the concept of both time and 'place' itself. At the end 
+                    of all. I suppose it is time to once again [start anew]. Shall we begin?");
     }
 
     # Condition 3: This character has interacted with Zeb before, but the most recent time was not this character.
     elsif ($text=~/hail/i && $character_zeb_progress && $last_zeb_charname ne $client->GetCleanName()) {
-        quest::say("Back again, hero? You shift your face as often as I shift the fates, and both of them futile. What do you [require of me]? If there is nothing, then your fate is set. Go [challenge it].");
+        quest::say("Back again, hero? You shift your face as often as I shift the fates, and both of them futile. What 
+                    do you [require of me]? If there is nothing, then your fate is set. Go [challenge it].");
     }
 
     # Condition 4: This character has interacted with Zeb before, and the most recent time was this character.
     elsif ($text=~/hail/i) {
-        quest::say("hero. Your journey continues, much as mine - eternally. What do you [require of me]? If there is nothing, then your fate is set. Go [challenge it].");
+        quest::say("Hero. Your journey continues, much as mine - eternally. What do you [require of me]? If there 
+                    is nothing, then your fate is set. Go [challenge it].");
     }
 
     
@@ -66,7 +73,8 @@ sub EVENT_SAY {
                                 "Please report any such issues on our Discord so that they can be corrected.${break}${break}";
 
 
-            quest::say("Yes, let us explore the multitude of paths before you, lost hero. As a $base_class_name $deity_message, your first choice, shall it be " . $extra_class_list);
+            quest::say("Let us explore the many paths before you, lost hero. As a $base_class_name $deity_message, your choice, shall it be " . $extra_class_list . "? Or... 
+                        you can simply return from whence you came, and [".quest::saylink("challenge it", 1, "chellenge")."] the fate before you.");
             quest::popup($popup_title, $popup_message);
         }
     }
@@ -78,7 +86,7 @@ sub EVENT_SAY {
             my $continue_response = quest::saylink("continue_bard", 1, "continue");
 
             quest::say("Ahh, the Bard. You must understand that choosing this path will forever change you, perhaps beyond my power to restore. Do you wish to [$continue_response]?");
-            $client->Message(13, "WARNING: You will be immediately disconnected so that your basic class can be changed to Bard if you continue.");
+            $client->Message(13, "WARNING: You will be immediately disconnected so that your basic class can be changed to Bard.");
         }
 
         if ($text == 'continue_bard') {
@@ -99,9 +107,8 @@ sub EVENT_SAY {
                 }
                 $client->SetBucket("zeb-progress", 1);
             } else {
-                # Assuming you have a method to generate the selection string for the remaining classes
                 my $selection_string = plugin::GetClassesSelectionString();
-                $secondary_response = "Your second and final choice, hero. Choose wisely: $selection_string";
+                $secondary_response = "Your second and final choice, hero. [".quest::saylink("challenge it", 1, "chellenge your fate")."], or choose wisely: $selection_string";
             }
 
             quest::say("Indeed - it is done. $secondary_response");
@@ -111,7 +118,8 @@ sub EVENT_SAY {
     }
 
     elsif ($text=~/challenge it/i) {
-        quest::say("Of this, I am sure. Are you prepared to [return] from whence you came?");
+        quest::say("Of this, I am sure. Are you prepared to [return] from whence you came? I have granted you the ability to travel to this place in the future, should you require it.");
+        # TODO - Assign Pocket Plane Gate spell or AA here.
     }
 
     elsif ($text=~/return/i) {

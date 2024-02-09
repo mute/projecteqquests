@@ -103,10 +103,6 @@ sub EVENT_SAY {
             
             if ($total_classes_now == 3) {
                 $secondary_response = "Your fate is set, hero. Go [challenge it].";
-                if (!$account_zeb_progress) {
-                    quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
-                }
-                $client->SetBucket("zeb-progress", 1);
             } else {
                 my $selection_string = plugin::GetClassesSelectionString();
                 $secondary_response = "Your second and final choice, hero. [".quest::saylink("challenge it", 1, "chellenge your fate")."], or choose wisely: $selection_string";
@@ -123,14 +119,12 @@ sub EVENT_SAY {
         # TODO - Assign Pocket Plane Gate spell or AA here.
     }
 
-    elsif ($text=~/return/i) {
-        if (plugin::GetClassesCount($client) == 3) {
-            quest::say("Farewell, hero. I'm sure that you'll find your way back here again.");
-
-            plugin::ReturnToZone($client);
-        } else {
-            quest::say("You are not yet ready to leave, hero. There is still time to [start anew].");
-        }
+    elsif ($text=~/return/i) {        
+        quest::say("Farewell, hero. I'm sure that you'll find your way back here again.");
+        $client->SetBucket("zeb-progress", 1);
+        if (!$account_zeb_progress) {
+            quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
+        }        
     }
 }
 

@@ -45,7 +45,7 @@ sub CommonCharacterUpdate {
                 "${green}Multiclassing${color_end}: Characters on The Heroes' Journey each have three classes. You chose one during character creation, " .
                 "and you will choose two more now. You will gain the abilities and attributes of each of the chosen classes; " .
                 "Spells, Skills, Equipment, Alternate Advancement abilities, and even more 'hidden' features like AC caps and melee damage bonuses. ${break}${break}" .
-                "${green}Patcher and Client software${color_end}: You ${text_red}MUST${color_end} use our client on this server. " .
+                "${green}Patcher and Client software${color_end}: You ${red}MUST${color_end} use our client on this server. " .
                 "This isn't a simple matter of spell and string files; much of the multiclassing system will not work at all without the custom client modifications we have made. ${break}${break}" .
                 "${green}Permanent Buffs${color_end}: Buff timers do not count down if they were cast by yourself or a group member. This also applies to pets! ${break}${break}" .
                 "${green}Large Bags${color_end}: Bags of greater than 10 slots are available! ${break}${break}";

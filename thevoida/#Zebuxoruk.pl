@@ -87,6 +87,7 @@ sub EVENT_SAY {
 
             quest::say("Ahh, the Bard. You must understand that choosing this path will forever change you, perhaps beyond my power to restore. Do you wish to [$continue_response]?");
             $client->Message(13, "WARNING: You will be immediately disconnected so that your basic class can be changed to Bard.");
+            return;
         }
 
         if ($text == 'continue_bard') {

@@ -124,7 +124,9 @@ sub EVENT_SAY {
         $client->SetBucket("zeb-progress", 1);
         if (!$account_zeb_progress) {
             quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
-        }        
+        }
+
+        plugin::ReturnToZone($client);       
     }
 }
 

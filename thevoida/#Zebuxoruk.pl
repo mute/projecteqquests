@@ -79,7 +79,7 @@ sub EVENT_SAY {
         }
     }
 
-    elsif ($text =~ /^select_class_(\d+)$/ || $text == 'continue_bard') {
+    elsif ($text =~ /^select_class_(\d+)$/ || $text eq 'continue_bard') {
         my $class_to_add = $1;        
 
         if ($class_to_add && $class_to_add == 8) {

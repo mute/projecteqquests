@@ -1,9 +1,9 @@
 sub EVENT_ENTERZONE { 
-    #plugin::CommonCharacterUpdate($client);
+    plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_CONNECT {
-    #plugin::CommonCharacterUpdate($client);
+    plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_LEVEL_UP {

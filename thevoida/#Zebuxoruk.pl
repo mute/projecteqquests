@@ -90,7 +90,7 @@ sub EVENT_SAY {
             return;
         }
 
-        if ($text == 'continue_bard') {
+        if ($text eq 'continue_bard') {
             $class_to_add = 8;
         }
 

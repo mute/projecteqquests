@@ -63,9 +63,9 @@ sub EVENT_SAY {
                                 "and you will choose two more now. You will gain the abilities and attributes of each of the chosen classes; " .
                                 "Spells, Skills, Equipment, Alternate Advancement abilities, and even more 'hidden' features like AC caps and melee damage bonuses. " .
                                 "We have worked to make this process as intuitive as possible, but there are some things to be aware of as you make your choices.${break}${break}" .
-                                "${green}Patcher and Client software${color_end}: You ${text_red}MUST${color_end} use our client on this server. " .
+                                "${green}Patcher and Client software${color_end}: You ${red}MUST${color_end} use our client on this server. " .
                                 "This isn't a simple matter of spell and string files; much of the multiclassing system will not work at all without the custom client modifications we have made. " .
-                                "If you have not obtained it already, please visit ${text_website_link}. You can also find a link to our Discord there!${break}${break}" .
+                                "If you have not obtained it already, please visit ${website}. You can also find a link to our Discord there!${break}${break}" .
                                 "${green}Bards${color_end}: If you did not select Bard during character creation and choose Bard as an additional class, you will be " .
                                 "immediately disconnected so that certain changes can be made to your character in order for Bard abilities to work correctly.${break}${break}" . #TODO - update this with however bards work out
                                 "${green}Quests & Faction${color_end}: The class that you selected during character selection (or Bard, if you include it in your build) may be considered your 'real' class for the purposes of some quests. " .

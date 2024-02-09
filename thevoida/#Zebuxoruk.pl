@@ -1,12 +1,3 @@
-my $color_end = "</c>";
-my $break = "<br>";
-my $yellow = plugin::PWColor("Yellow");
-my $red    = plugin::PWColor("Red");
-my $green  = plugin::PWColor("Green");
-
-my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
-my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
-
 sub EVENT_SAY {
     my $account_zeb_progress = quest::get_data(plugin::GetAccountKey() . "zeb-progress") || 0;
     my $character_zeb_progress = $client->GetBucket("zeb-progress") || 0;
@@ -49,6 +40,15 @@ sub EVENT_SAY {
             my $extra_class_list = plugin::GetClassesSelectionString();
             my $deity_message = $deity_name eq "Agnostic" ? "free from the whims of the gods" : "of the so-called god, $deity_name, now lost to the ages";
 
+            my $color_end = "</c>";
+            my $break = "<br>";
+            my $yellow = plugin::PWColor("Yellow");
+            my $red    = plugin::PWColor("Red");
+            my $green  = plugin::PWColor("Green");
+
+            my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
+            my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
+
             my $popup_title   = "Multiclassing on The Heroes' Journey";
             my $popup_message = 
                                 "${red}Please Read Completely${color_end}${break}${break}" .
@@ -71,8 +71,20 @@ sub EVENT_SAY {
         }
     }
 
-    elsif ($text =~ /^select_class_(\d+)$/) {
-        my $class_to_add = $1;
+    elsif ($text =~ /^select_class_(\d+)$/ || $text == 'continue_bard') {
+        my $class_to_add = $1;        
+
+        if ($class_to_add && $class_to_add == 8) {
+            my $continue_response = quest::saylink("continue_bard", 1, "continue");
+
+            quest::say("Ahh, the Bard. You must understand that choosing this path will forever change you, perhaps beyond my power to restore. Do you wish to [$continue_response]?");
+            $client->Message(13, "WARNING: You will be immediately disconnected so that your basic class can be changed to Bard if you continue.");
+        }
+
+        if ($text == 'continue_bard') {
+            $class_to_add = 8;
+        }
+
         if (plugin::IsValidToAddClass($class_to_add)) {
             plugin::AddClass($class_to_add);
             

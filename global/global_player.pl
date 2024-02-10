@@ -14,7 +14,7 @@ sub EVENT_LEVEL_UP {
 
     if (($new_level % 10 == 0) || $new_level == 5) {
         my $name = $client->GetCleanName();
-        my $full_class_name = GetPrettyClassString($client);
+        my $full_class_name = plugin::GetPrettyClassString($client);
 
         plugin::WorldAnnounce("$name ($full_class_name) has reached Level $new_level.");
     }

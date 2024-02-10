@@ -10,6 +10,8 @@ sub EVENT_SAY {
 
     quest::set_data(plugin::GetAccountKey() . "zeb-last-charname", $client->GetCleanName());
 
+    quest::debug("HasMeleeClass: " . plugin::HasMeleeClass($client));
+
     # Greetings
     # Condition 1: Neither this character nor this account have interacted with this NPC
     if ($text=~/hail/i && !$account_zeb_progress && !$character_zeb_progress) {

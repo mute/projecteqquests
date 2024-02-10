@@ -107,7 +107,7 @@ sub GetClassMap {
     );
 }
 
-sub IsMeleeClass2 {
+sub IsMeleeClass {
     my $class_id = shift;    
     my @melee_classes = (1, 3, 4, 5, 7, 8, 9, 15, 16);
     

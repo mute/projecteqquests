@@ -92,7 +92,7 @@ sub EVENT_SAY {
 
     elsif ($text =~ /^select_class_(\d+)$/ || $text eq 'continue_bard') {
         my $class_to_add = $1;
-        my $continue_response = quest::saylink("continue_$class_to_add", 1, "continue");
+        my $continue_response = quest::saylink("continue_$class_to_add", 0, "continue");
         my $class_name = quest::getclassname($class_to_add);
 
         if (!$account_zeb_progress) { $client->SetBucket("zeb-progress", 1); }
@@ -105,7 +105,7 @@ sub EVENT_SAY {
                 return;
             }
             if (plugin::IsMeleeClass($class_to_add) && !plugin::IsMeleeClass($client->GetClass())) {
-                quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response], or would you rather hear your choices [again]??");
+                quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response], or would you rather hear your choices [again]?");
                 $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to $class_name. 
                                       All class combinations that include a melee or Hybrid must have a Melee or Hybrid as their base class.");
                 return;

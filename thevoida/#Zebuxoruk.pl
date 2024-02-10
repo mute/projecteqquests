@@ -95,7 +95,7 @@ sub EVENT_SAY {
         my $continue_response = quest::saylink("continue_$class_to_add", 1, "continue");
         my $class_name = quest::getclassname($class_to_add);
 
-        if (!$account_zeb_progress) { $client->SetBucket("zeb-progress", 1); }
+        if (!$character_zeb_progress) { $client->SetBucket("zeb-progress", 1); }
         if (!$account_zeb_progress) { quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1); }   
 
         if ($class_to_add){

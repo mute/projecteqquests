@@ -10,7 +10,7 @@ sub EVENT_SAY {
 
     quest::set_data(plugin::GetAccountKey() . "zeb-last-charname", $client->GetCleanName());
 
-    quest::debug("HasMeleeClass: " . plugin::HasMeleeClass($client));
+    quest::debug("HasMeleeClass: " . plugin::HasMeleeClass($client) . ":" . plugin::IsMeleeClass(2));
 
     # Greetings
     # Condition 1: Neither this character nor this account have interacted with this NPC

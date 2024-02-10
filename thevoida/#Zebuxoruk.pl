@@ -93,6 +93,9 @@ sub EVENT_SAY {
         my $continue_response = quest::saylink("continue_$class_to_add", 1, "continue");
         my $class_name = quest::getclassname($class_to_add);
 
+        if (!$account_zeb_progress) { $client->SetBucket("zeb-progress", 1); }
+        if (!$account_zeb_progress) { quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1); }   
+
         if ($class_to_add){
             if ($class_to_add == 8) {
                 quest::say("Ahh, the Bard. Spellsinger, wordsmith. You must understand that choosing this path will forever change you, opening your soul to the music of Norrath. Do you wish to [$continue_response]?");
@@ -134,11 +137,6 @@ sub EVENT_SAY {
 
     elsif ($text=~/return/i) {        
         quest::say("Farewell, hero. I'm sure that you'll find your way back here again.");
-        $client->SetBucket("zeb-progress", 1);
-        if (!$account_zeb_progress) {
-            quest::set_data(plugin::GetAccountKey() . "zeb-progress", 1);
-        }
-
         plugin::ReturnToZone($client);       
     }
 }

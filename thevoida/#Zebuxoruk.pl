@@ -48,7 +48,7 @@ sub EVENT_SAY {
         }   
     }
     
-    elsif ($text=~/start anew/i) {
+    elsif ($text=~/start anew/i || $text =~/again/i) {
         if (plugin::GetClassesCount($client) >= 3) {
             # TODO - Add respec methods
             quest::say("Your fate is set, hero. Go [challenge it].");
@@ -98,11 +98,11 @@ sub EVENT_SAY {
 
         if ($class_to_add){
             if ($class_to_add == 8) {
-                quest::say("Ahh, the Bard. Spellsinger, wordsmith. You must understand that choosing this path will forever change you, opening your soul to the music of Norrath. Do you wish to [$continue_response]?");
+                quest::say("Ahh, the Bard. Spellsinger, wordsmith. You must understand that choosing this path will forever change you, opening your soul to the music of Norrath. Do you wish to [$continue_response], or would you rather hear your choices [again]?");
                 $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to Bard. All class combinations that include Bard must be base class Bard.");
                 return;
             } elsif (plugin::IsMeleeClass($class_to_add) && !plugin::HasMeleeClass($client)) {
-                quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response]?");
+                quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response], or would you rather hear your choices [again]??");
                 $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to $class_name. 
                                       All class combinations that include a melee or Hybrid must have a Melee or Hybrid as their base class.");
                                       return;

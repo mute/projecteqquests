@@ -104,7 +104,7 @@ sub EVENT_SAY {
                 $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to Bard. All class combinations that include Bard must be base class Bard.");
                 return;
             }
-            if (plugin::IsMeleeClass($class_to_add) && !plugin::HasMeleeClass($client)) {
+            if (plugin::IsMeleeClass($class_to_add) && !plugin::IsMeleeClass($client->GetClass())) {
                 quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response], or would you rather hear your choices [again]??");
                 $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to $class_name. 
                                       All class combinations that include a melee or Hybrid must have a Melee or Hybrid as their base class.");
@@ -116,7 +116,7 @@ sub EVENT_SAY {
 
         if (plugin::IsValidToAddClass($class_to_add)) {
             if (plugin::IsMeleeClass($class_to_add)) {
-                if ($class_to_add == 8 || !plugin::HasMeleeClass($client)) {
+                if ($class_to_add == 8 || !plugin::IsMeleeClass($client->GetClass())) {
                     quest::permaclass($class_to_add);
                 }
             }

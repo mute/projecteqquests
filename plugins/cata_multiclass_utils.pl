@@ -108,10 +108,15 @@ sub GetClassMap {
 }
 
 sub IsMeleeClass {
-    my $class_id = shift;    
+    my $class_id = shift;
     my @melee_classes = (1, 3, 4, 5, 7, 8, 9, 15, 16);
-    
-    return grep { $_ == $class_id } @melee_classes ? 1 : 0;
+
+    foreach my $melee_class (@melee_classes) {
+        if ($melee_class == $class_id) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 

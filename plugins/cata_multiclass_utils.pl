@@ -79,7 +79,7 @@ sub ReturnToZone {
     if ($client->GetLevel() == 1) {
         my $name = $client->GetCleanName();
         my $full_class_name = GetPrettyClassString($client);
-        plugin::WorldAnnounce("The immortal, $name ($full_class_name), has emerged from the blind abyss.");
+        plugin::WorldAnnounce("The Hero, $name ($full_class_name), has emerged from the blind abyss.");
     }
 
     # Move the client to the determined position

@@ -107,6 +107,31 @@ sub GetClassMap {
     );
 }
 
+sub IsMeleeClass {
+    my $class_id = shift;    
+    my @melee_classes = (1, 3, 4, 5, 7, 8, 9, 15, 16);
+    
+    return grep { $_ == $class_id } @melee_classes ? 1 : 0;
+}
+
+
+sub HasMeleeClass {
+    my $client   = shift || plugin::val('$client');
+    my $class_bits = $client->GetClassesBitmask();
+    
+    # Iterate through each possible class ID
+    for my $class_id (1..16) {
+        # Check if the class bit is set in the bitmask
+        if ($class_bits & (1 << ($class_id - 1))) {
+            # Check if the class is a melee class
+            return 1 if IsMeleeClass($class_id);
+        }
+    }
+    
+    # Return 0 if no melee class is found
+    return 0;
+}
+
 sub AddClass {
     my $class_id = shift;
     my $client = shift || plugin::val('$client');

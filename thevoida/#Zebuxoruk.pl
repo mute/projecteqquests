@@ -38,6 +38,15 @@ sub EVENT_SAY {
                     is nothing, then your fate is set. Go [challenge it].");
     }
 
+    elsif ($text=~/require of me/i) {
+        if (plugin::GetClassesCount($client) < 3) {
+            my $selection_response = quest::saylink("start anew",1,"selection");
+            quest::say("I see that you have not yet chosen all three of your threefold path. Would you like to make an additional class [$selection_response], or would you like to [leave] this place? 
+                        I can also help you to [reforge your soul], so that you might choose new paths.");
+        } else {
+            quest::say("You have chosen your threefold path, hero. Your fate is set - all there is to do is to [challenge it]. Unless... of course, you'd like to [reforge your soul]?")
+        }   
+    }
     
     elsif ($text=~/start anew/i) {
         if (plugin::GetClassesCount($client) >= 3) {
@@ -80,24 +89,28 @@ sub EVENT_SAY {
     }
 
     elsif ($text =~ /^select_class_(\d+)$/ || $text eq 'continue_bard') {
-        my $class_to_add = $1;        
+        my $class_to_add = $1;
+        my $continue_response = quest::saylink("continue_$class_to_add", 1, "continue");
+        my $class_name = quest::getclassname($class_to_add);
 
-        if ($class_to_add && $class_to_add == 8) {
-            my $continue_response = quest::saylink("continue_bard", 1, "continue");
-
-            quest::say("Ahh, the Bard. You must understand that choosing this path will forever change you, perhaps beyond my power to restore. Do you wish to [$continue_response]?");
-            $client->Message(13, "WARNING: You will be immediately disconnected so that your basic class can be changed to Bard.");
-            return;
-        }
-
-        if ($text eq 'continue_bard') {
-            $class_to_add = 8;
+        if ($class_to_add){
+            if ($class_to_add == 8) {
+                quest::say("Ahh, the Bard. Spellsinger, wordsmith. You must understand that choosing this path will forever change you, opening your soul to the music of Norrath. Do you wish to [$continue_response]?");
+                $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to Bard. All class combinations that include Bard must be base class Bard.");
+                return;
+            } elsif (plugin::IsMeleeClass($class_to_add) && !plugin::HasMeleeClass($client)) {
+                quest::say("A $class_name? I can see it, but you will need to go undergo certain conditioning, first. Do you wish to [$continue_response]?");
+                $client->Message(13, "WARNING: You will be immediately disconnected so that your base class can be changed to $class_name. 
+                                      All class combinations that include a melee or Hybrid must have a Melee or Hybrid as their base class.");
+                                      return;
+            }
+        } elsif ($text =~ /^continue_(\d+)$/) {
+            $class_to_add = $1;
         }
 
         if (plugin::IsValidToAddClass($class_to_add)) {
             plugin::AddClass($class_to_add);
             
-            # Determine the appropriate $secondary_response based on the new total number of classes
             my $total_classes_now = plugin::GetClassesCount();
             my $secondary_response;
             
@@ -114,7 +127,7 @@ sub EVENT_SAY {
         }
     }
 
-    elsif ($text=~/challenge it/i) {
+    elsif ($text=~/challenge it/i || $text=~/leave/i) {
         quest::say("Of this, I am sure. Are you prepared to [return] from whence you came? I have granted you the ability to travel to this place in the future, should you require it.");
         # TODO - Assign Pocket Plane Gate spell or AA here.
     }

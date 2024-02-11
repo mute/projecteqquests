@@ -10,7 +10,10 @@ sub EVENT_SAY {
 
     quest::set_data(plugin::GetAccountKey() . "zeb-last-charname", $client->GetCleanName());
 
-    quest::debug("HasMeleeClass: " . plugin::HasMeleeClass($client) . ":" . plugin::IsMeleeClass("3") . ":" . $client->GetClassesBitmask());
+    if ($client->GetGM()) {
+        quest::set_data($client->AccountID() . "-account-progression", 1);
+    }
+
 
     # Greetings
     # Condition 1: Neither this character nor this account have interacted with this NPC

@@ -11,7 +11,8 @@ sub EVENT_SAY {
     quest::set_data(plugin::GetAccountKey() . "zeb-last-charname", $client->GetCleanName());
 
     if ($client->GetGM()) {
-        quest::set_data($client->AccountID() . "-account-progression", 1);
+        my $accountKey = $client->AccountID() . "-account-progression";
+        quest::set_data($accountKey, 1);
     }
 
 

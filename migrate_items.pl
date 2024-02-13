@@ -111,11 +111,11 @@ my $dsn = "DBI:mysql:database=$dbName;host=$host;port=$port";
 # Connect to the database
 my $dbh = DBI->connect($dsn, $user, $password, { RaiseError => 1, AutoCommit => 0 }) or die $DBI::errstr;
 
-#add_new_item_rows($dbh,'Rose Colored');
-#add_new_item_rows($dbh,'Apocryphal');
+add_new_item_rows($dbh,'Rose Colored');
+add_new_item_rows($dbh,'Apocryphal');
 
-#update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
-#update_secondary_table_item_ids($dbh,'inventory', 'itemid');
+update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
+update_secondary_table_item_ids($dbh,'inventory', 'itemid');
 update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
 
 # Commit the changes and clean up

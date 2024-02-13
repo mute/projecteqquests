@@ -42,10 +42,10 @@ sub add_new_item_rows {
     my $placeholders = join(", ", ("?") x @columns);  # Placeholder for each column except 'id'
 
     # Prepare the INSERT statement, including 'id' explicitly only once
-    my $insert_item_sql = "INSERT INTO items (`id`, $columns_list) VALUES (?, $placeholders)";
+    my $insert_item_sql = "REPLACE INTO items (`id`, $columns_list) VALUES (?, $placeholders)";
     my $insert_item_sth = $dbh->prepare($insert_item_sql);
 
-    my $insert_map_sql = "INSERT INTO item_id_mapping (old_id, new_id) VALUES (?, ?)";
+    my $insert_map_sql = "REPLACE INTO item_id_mapping (old_id, new_id) VALUES (?, ?)";
     my $insert_map_sth = $dbh->prepare($insert_map_sql);
 
     # Define the delete statement for old items

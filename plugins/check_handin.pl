@@ -56,19 +56,28 @@ sub check_handin {
 	# "platinum" => platinum_amount
 	# -----------------------------
 	my %required = @_;
-	foreach my $req (keys %required) {
-		if (!defined $hashref->{$req} || $hashref->{$req} != $required{$req}) {
-			return 0;
-		}
-	}
+    foreach my $req (keys %required) {
+        my $adjusted_req = 0; # Flag to indicate if requirement has been adjusted
 
-	foreach my $req (keys %required) {
-		if ($required{$req} < $hashref->{$req}) {
-			$hashref->{$req} -= $required{$req};
-		} else {
-			delete $hashref->{$req};
-		}
-	}
+        # Check for exact ID or ID + 1 million or ID + 2 million
+        foreach my $offset (0, 1000000, 2000000) {
+            if (defined $hashref->{$req + $offset} && $hashref->{$req + $offset} >= $required{$req}) {
+                $adjusted_req = 1;
+                $hashref->{$req + $offset} -= $required{$req};
+
+                # Clean up if the item count goes to zero
+                if ($hashref->{$req + $offset} == 0) {
+                    delete $hashref->{$req + $offset};
+                }
+                last; # Exit the loop if requirement met
+            }
+        }
+
+        # If the requirement was not adjusted for any of the offsets, return 0 (failure)
+        if (!$adjusted_req) {
+            return 0;
+        }
+    }
 
 	return 1;
 }

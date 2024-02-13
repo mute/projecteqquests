@@ -19,7 +19,7 @@ sub EVENT_ITEM
 }
 
 sub UPDATE_PET_BAG {    
-    quest::debug("--Syncronizing Pet Inventory--");
+    #quest::debug("--Syncronizing Pet Inventory--");
     my $owner = $npc->GetOwner()->CastToClient();
     my $bag_size = 200; # actual bag size limit in source
     my $bag_id = 199999; # Custom Item
@@ -90,7 +90,7 @@ sub UPDATE_PET_BAG {
                 # if the key doesn't exist in new_bag_inventory or the values don't match
                 if (!exists $new_bag_inventory{$item_id}) {
                     $updated = 1; # set updated to true
-                    quest::debug("Inconsistency detected: $item_id not in bag or quantities differ.");
+                    #quest::debug("Inconsistency detected: $item_id not in bag or quantities differ.");
                     last; # exit the loop as we have found a difference
                 }
             }
@@ -107,7 +107,7 @@ sub UPDATE_PET_BAG {
             }
 
             if ($updated) {
-                quest::debug("--Pet Inventory Reset Triggered--");
+                #quest::debug("--Pet Inventory Reset Triggered--");
                 my @lootlist = $npc->GetLootList();
                 while (@lootlist) { # While lootlist has elements
                     foreach my $item_id (@lootlist) {
@@ -125,7 +125,7 @@ sub UPDATE_PET_BAG {
                     } keys %new_bag_inventory;
                     
                     foreach my $item_id (@sorted_item_ids) {
-                        quest::debug("Processing item to add: $item_id");
+                        #quest::debug("Processing item to add: $item_id");
                         if ($new_bag_inventory{$item_id}->{quantity} > 0) {
                             $npc->AddItem($item_id, 1, 1, @{$new_bag_inventory{$item_id}->{augments}});
                             $new_bag_inventory{$item_id}->{quantity}--;

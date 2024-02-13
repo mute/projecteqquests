@@ -135,10 +135,6 @@ sub UPDATE_PET_BAG {
 
             }
         }
-
-        if (not $npc->Charmed()) {
-            UPDATE_PET_STATS();
-        }  
     } else {
         quest::debug("The owner is not defined");
         return;

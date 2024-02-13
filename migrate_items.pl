@@ -112,9 +112,9 @@ my $dbh = DBI->connect($dsn, $user, $password, { RaiseError => 1, AutoCommit => 
 add_new_item_rows($dbh,'Rose Colored');
 add_new_item_rows($dbh,'Apocryphal');
 
-update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
-update_secondary_table_item_ids($dbh,'inventory', 'itemid');
-update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
+#update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
+#update_secondary_table_item_ids($dbh,'inventory', 'itemid');
+#update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
 
 # Commit the changes and clean up
 $dbh->commit;

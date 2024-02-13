@@ -42,6 +42,13 @@ sub EVENT_COMBINE_VALIDATE {
 	return 0;
 }
 
+sub EVENT_EQUIP_ITEM_CLIENT {
+    quest::debug("item_id " . $item_id);
+    quest::debug("item_quantity " . $item_quantity);
+    quest::debug("slot_id " . $slot_id);
+    quest::debug("item " . $item);
+}
+
 sub EVENT_COMBINE_SUCCESS {
     if ($recipe_id =~ /^1090[4-7]$/) {
         $client->Message(1,

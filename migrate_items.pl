@@ -21,7 +21,7 @@ sub calculate_new_id {
 }
 
 sub add_new_item_rows {
-    my ($item_type) = @_;
+    my ($dbh,$item_type) = @_;
     my $prefix = $item_type eq 'Rose Colored' ? 'Rose Colored' : 'Apocryphal';
     my $like_pattern = $prefix . '%';
 
@@ -65,7 +65,7 @@ sub add_new_item_rows {
 }
 
 sub update_secondary_table_item_ids {
-    my ($table_name, $column_name) = @_;
+    my ($dbh,$table_name, $column_name) = @_;
 
     # Prepare the SQL statement for updating the table
     my $update_sql = "UPDATE $table_name SET $column_name = (SELECT new_id FROM item_id_mapping WHERE old_id = $table_name.$column_name)";
@@ -95,12 +95,12 @@ my $dsn = "DBI:mysql:database=$dbname;host=$host;port=$port";
 # Connect to the database
 my $dbh = DBI->connect($dsn, $user, $password, { RaiseError => 1, AutoCommit => 0 }) or die $DBI::errstr;
 
-add_new_item_rows('Rose Colored');
-add_new_item_rows('Apocryphal');
+add_new_item_rows($dbh,'Rose Colored');
+add_new_item_rows($dbh,'Apocryphal');
 
-update_secondary_table_item_ids('sharedbank', 'itemid');
-update_secondary_table_item_ids('inventory', 'itemid');
-update_secondary_table_item_ids('lootdrop_entries', 'item_id');
+update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
+update_secondary_table_item_ids($dbh,'inventory', 'itemid');
+update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
 
 # Commit the changes and clean up
 $dbh->commit;

@@ -32,8 +32,8 @@ sub add_new_item_rows {
     # Dynamically determine column names, excluding 'id'
     my @columns = @{$sth->{NAME_lc}};
     # Assuming @columns does not include 'id' after this operation
-    my $id_index = grep { $columns[$_] eq 'id' } 0..$#columns;
-    splice(@columns, $id_index, 1);  # This should effectively remove 'id'
+    my ($id_index) = grep { $columns[$_] eq 'id' } 0..$#columns;
+    splice(@columns, $id_index, 1) if defined $id_index;  # Remove 'id' if found
 
     # Build the columns list for SQL, ensuring `id` is not duplicated
     my $columns_list = join(", ", map { "`$_`" } @columns);  # Use backticks for safety

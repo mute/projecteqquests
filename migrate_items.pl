@@ -31,14 +31,19 @@ sub add_new_item_rows {
 
     # Dynamically determine column names, excluding 'id'
     my @columns = @{$sth->{NAME_lc}};
+    # Assuming @columns does not include 'id' after this operation
     my $id_index = grep { $columns[$_] eq 'id' } 0..$#columns;
-    splice(@columns, $id_index, 1); # Remove 'id' from column names
-    
-    # Example: Adjusting the columns list to include backticks around column names
-    my $columns_list = join(", ", map { "`$_`" } @columns); # Note the backticks
-    my $placeholders = join(", ", map { "?" } @columns); # Placeholders for values
-    
-    my $insert_item_sql = "INSERT INTO items (id, $columns_list) VALUES (?, $placeholders)";
+    splice(@columns, $id_index, 1);  # This should effectively remove 'id'
+
+    # Build the columns list for SQL, ensuring `id` is not duplicated
+    my $columns_list = join(", ", map { "`$_`" } @columns);  # Use backticks for safety
+
+    # Build placeholders, accounting for 'id' already being prepended
+    my $placeholders = join(", ", ("?") x @columns);  # Placeholder for each column except 'id'
+
+    # Prepare the INSERT statement, including 'id' explicitly only once
+    my $insert_item_sql = "INSERT INTO items (`id`, $columns_list) VALUES (?, $placeholders)";
+
     my $insert_item_sth = $dbh->prepare($insert_item_sql);
 
     my $insert_map_sql = "INSERT INTO item_id_mapping (old_id, new_id) VALUES (?, ?)";

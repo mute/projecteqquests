@@ -80,8 +80,6 @@ sub add_new_item_rows {
 
 sub update_secondary_table_item_ids {
     my ($dbh,$table_Name, $column_Name) = @_;
-    
-    if 
 
     # Prepare the SQL statement for updating the table
     my $update_sql = "UPDATE $table_Name 

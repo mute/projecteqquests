@@ -4,14 +4,14 @@ use DBI;
 
 # Subroutine to calculate new ID
 sub calculate_new_id {
-    my ($id, $name) = @_;
+    my ($id, $Name) = @_;
     my $new_id = $id; # Default to original ID
 
-    if ($name =~ /^Rose Colored/) {
+    if ($Name =~ /^Rose Colored/) {
         # Assuming the 'normal' ID can be directly inferred (which may need adjustment)
         $new_id = ($id < 100000) ? ($id - 70000) : ($id - 700000);
         $new_id += 1000000; # Apply +1 million offset
-    } elsif ($name =~ /^Apocryphal/) {
+    } elsif ($Name =~ /^Apocryphal/) {
         # Similarly, adjust based on actual logic for 'Apocryphal' items
         $new_id = ($id < 100000) ? ($id - 80000) : ($id - 800000);
         $new_id += 2000000; # Apply +2 million offset
@@ -26,11 +26,11 @@ sub add_new_item_rows {
     my $like_pattern = $prefix . '%';
 
     # Fetch 'Rose Colored' or 'Apocryphal' items
-    my $sth = $dbh->prepare("SELECT * FROM items WHERE name LIKE ?");
+    my $sth = $dbh->prepare("SELECT * FROM items WHERE Name LIKE ?");
     $sth->execute($like_pattern);
 
-    # Dynamically determine column names, excluding 'id'
-    my @columns = @{$sth->{NAME_lc}};
+    # Dynamically determine column Names, excluding 'id'
+    my @columns = @{$sth->{Name_lc}};
     # Assuming @columns does not include 'id' after this operation
     my ($id_index) = grep { $columns[$_] eq 'id' } 0..$#columns;
     splice(@columns, $id_index, 1) if defined $id_index;  # Remove 'id' if found
@@ -55,15 +55,15 @@ sub add_new_item_rows {
 
     while (my $row = $sth->fetchrow_hashref) {
         
-        unless (defined $row->{name}) {
-            # Print debug output if 'name' is undefined
-            print "Debug: Item ID $row->{id} has a NULL name.\n";
+        unless (defined $row->{Name}) {
+            # Print debug output if 'Name' is undefined
+            print "Debug: Item ID $row->{id} has a NULL Name.\n";
             next;  # Skip the rest of the loop for this row
         }
 
-        print $row->{name};
+        print $row->{Name};
 
-        my $new_id = calculate_new_id($row->{id}, $row->{name});
+        my $new_id = calculate_new_id($row->{id}, $row->{Name});
         
         # Prepare values for insertion, excluding 'id'
         my @values = map { $row->{$_} } @columns;
@@ -80,10 +80,10 @@ sub add_new_item_rows {
 }
 
 sub update_secondary_table_item_ids {
-    my ($dbh,$table_name, $column_name) = @_;
+    my ($dbh,$table_Name, $column_Name) = @_;
 
     # Prepare the SQL statement for updating the table
-    my $update_sql = "UPDATE $table_name SET $column_name = (SELECT new_id FROM item_id_mapping WHERE old_id = $table_name.$column_name)";
+    my $update_sql = "UPDATE $table_Name SET $column_Name = (SELECT new_id FROM item_id_mapping WHERE old_id = $table_Name.$column_Name)";
     my $update_sth = $dbh->prepare($update_sql);
 
     # Execute the update
@@ -91,21 +91,21 @@ sub update_secondary_table_item_ids {
 
     # Check for errors
     if ($update_sth->err) {
-        warn "Error updating $table_name: " . $update_sth->errstr;
+        warn "Error updating $table_Name: " . $update_sth->errstr;
     } else {
-        print "Updated item IDs in $table_name successfully.\n";
+        print "Updated item IDs in $table_Name successfully.\n";
     }
 }
 
 # Database connection details
-my $dbname = 'peq';
+my $dbName = 'peq';
 my $host = 'mariadb';
 my $port = '3306'; # default MySQL port
 my $user = 'eqemu';
 my $password = 'dDye40WrWKOn2LwQDxAPK5dJIzSeNmh';
 
 # DSN for MySQL connection
-my $dsn = "DBI:mysql:database=$dbname;host=$host;port=$port";
+my $dsn = "DBI:mysql:database=$dbName;host=$host;port=$port";
 
 # Connect to the database
 my $dbh = DBI->connect($dsn, $user, $password, { RaiseError => 1, AutoCommit => 0 }) or die $DBI::errstr;

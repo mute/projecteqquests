@@ -29,24 +29,33 @@ function items.check_turn_in(trade, trade_check)
 	trade.other:SetEntityVariable("HANDIN_MONEY", string.format("%d|%d|%d|%d", trade.copper, trade.silver, trade.gold, trade.platinum))
 	
 	--for every item in trade_check check trade_return
-		--if item exists in trade_return then 
-			--remove that item from trade_return
-		--else
-			--failure
 	for i = 1, 4 do
 		local key = "item" .. i;
 		if(trade_check[key] ~= nil and trade_check[key] ~= 0) then
 			local found = false;
 			for j = 1, 4 do
-				local inst = trade_return["item" .. j];			
-				if(inst.valid and trade_check[key] == inst:GetID()) then
-					trade_return["item" .. j] = ItemInst();
-					found = true;
-					break;
+				local inst = trade_return["item" .. j];
+				-- Check against modified IDs
+				if(inst.valid) then
+					local baseID = inst:GetID()
+					local checkIDs = {
+						trade_check[key], -- Original ID
+						trade_check[key] + 1000000, -- ID + 1 million
+						trade_check[key] + 2000000, -- ID + 2 million
+					}
+
+					for _, validID in ipairs(checkIDs) do
+						if baseID == validID then
+							trade_return["item" .. j] = ItemInst(); -- Clearing the item to indicate it's been processed
+							found = true;
+							break; -- Exit the loop if the correct item is found
+						end
+					end
 				end
+				if found then break; end
 			end
 			
-			if(not found) then
+			if not found then
 				return false;
 			end
 		end

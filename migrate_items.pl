@@ -58,11 +58,11 @@ sub add_new_item_rows {
             # Print debug output if 'Name' is undefined
             print "Debug: Item ID $row->{id} has a NULL Name.\n";
             next;  # Skip the rest of the loop for this row
-        }
-
-        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]";
+        }        
 
         my $new_id = calculate_new_id($row->{id}, $row->{Name});
+
+        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]";
         
         # Prepare values for insertion, excluding 'id'
         my @values = map { $row->{$_} } @columns;

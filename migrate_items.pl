@@ -80,9 +80,13 @@ sub add_new_item_rows {
 
 sub update_secondary_table_item_ids {
     my ($dbh,$table_Name, $column_Name) = @_;
+    
+    if 
 
     # Prepare the SQL statement for updating the table
-    my $update_sql = "UPDATE $table_Name SET $column_Name = (SELECT new_id FROM item_id_mapping WHERE old_id = $table_Name.$column_Name)";
+    my $update_sql = "UPDATE $table_Name 
+                  SET $column_Name = COALESCE((SELECT new_id FROM item_id_mapping WHERE old_id = $table_Name.$column_Name), $column_Name)";
+
     my $update_sth = $dbh->prepare($update_sql);
 
     # Execute the update

@@ -30,7 +30,7 @@ sub add_new_item_rows {
     $sth->execute($like_pattern);
 
     # Dynamically determine column Names, excluding 'id'
-    my @columns = @{$sth->{NAME_lc}};
+    my @columns = @{$sth->{NAME}};
     # Assuming @columns does not include 'id' after this operation
     my ($id_index) = grep { $columns[$_] eq 'id' } 0..$#columns;
     splice(@columns, $id_index, 1) if defined $id_index;  # Remove 'id' if found
@@ -43,7 +43,6 @@ sub add_new_item_rows {
 
     # Prepare the INSERT statement, including 'id' explicitly only once
     my $insert_item_sql = "INSERT INTO items (`id`, $columns_list) VALUES (?, $placeholders)";
-
     my $insert_item_sth = $dbh->prepare($insert_item_sql);
 
     my $insert_map_sql = "INSERT INTO item_id_mapping (old_id, new_id) VALUES (?, ?)";

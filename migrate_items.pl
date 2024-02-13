@@ -60,7 +60,7 @@ sub add_new_item_rows {
             next;  # Skip the rest of the loop for this row
         }
 
-        print $row->{Name};
+        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]";
 
         my $new_id = calculate_new_id($row->{id}, $row->{Name});
         

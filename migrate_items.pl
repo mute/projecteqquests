@@ -62,7 +62,7 @@ sub add_new_item_rows {
 
         my $new_id = calculate_new_id($row->{id}, $row->{Name});
 
-        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]\n";
+        printf("Updating: [%-64s] from ID: [%07d] to new ID: [%07d]\n", $row->{Name}, $row->{id}, $new_id);
         
         # Prepare values for insertion, excluding 'id'
         my @values = map { $row->{$_} } @columns;
@@ -109,12 +109,12 @@ my $dsn = "DBI:mysql:database=$dbName;host=$host;port=$port";
 # Connect to the database
 my $dbh = DBI->connect($dsn, $user, $password, { RaiseError => 1, AutoCommit => 0 }) or die $DBI::errstr;
 
-add_new_item_rows($dbh,'Rose Colored');
-add_new_item_rows($dbh,'Apocryphal');
+#add_new_item_rows($dbh,'Rose Colored');
+#add_new_item_rows($dbh,'Apocryphal');
 
-update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
-update_secondary_table_item_ids($dbh,'inventory', 'itemid');
-#update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
+#update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
+#update_secondary_table_item_ids($dbh,'inventory', 'itemid');
+update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
 
 # Commit the changes and clean up
 $dbh->commit;

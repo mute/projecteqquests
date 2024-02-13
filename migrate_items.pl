@@ -30,7 +30,7 @@ sub add_new_item_rows {
     $sth->execute($like_pattern);
 
     # Dynamically determine column Names, excluding 'id'
-    my @columns = @{$sth->{name_lc}};
+    my @columns = @{$sth->{NAME_lc}};
     # Assuming @columns does not include 'id' after this operation
     my ($id_index) = grep { $columns[$_] eq 'id' } 0..$#columns;
     splice(@columns, $id_index, 1) if defined $id_index;  # Remove 'id' if found

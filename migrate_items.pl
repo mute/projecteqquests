@@ -62,7 +62,7 @@ sub add_new_item_rows {
 
         my $new_id = calculate_new_id($row->{id}, $row->{Name});
 
-        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]";
+        print "Updating:[".$row->{Name}."] from ID:[".$row->{id}."] to new ID:[".$new_id."]\n";
         
         # Prepare values for insertion, excluding 'id'
         my @values = map { $row->{$_} } @columns;

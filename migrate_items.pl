@@ -34,7 +34,8 @@ sub add_new_item_rows {
     my $id_index = grep { $columns[$_] eq 'id' } 0..$#columns;
     splice(@columns, $id_index, 1); # Remove 'id' from column names
     
-    my $columns_list = join(", ", @columns); # For SQL INSERT, excluding 'id'
+    # Example: Adjusting the columns list to include backticks around column names
+    my $columns_list = join(", ", map { "`$_`" } @columns); # Note the backticks
     my $placeholders = join(", ", map { "?" } @columns); # Placeholders for values
     
     my $insert_item_sql = "INSERT INTO items (id, $columns_list) VALUES (?, $placeholders)";

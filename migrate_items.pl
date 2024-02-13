@@ -54,11 +54,14 @@ sub add_new_item_rows {
     my $delete_sth = $dbh->prepare($delete_sql);
 
     while (my $row = $sth->fetchrow_hashref) {
+        
         unless (defined $row->{name}) {
             # Print debug output if 'name' is undefined
             print "Debug: Item ID $row->{id} has a NULL name.\n";
             next;  # Skip the rest of the loop for this row
         }
+
+        print $row->{name};
 
         my $new_id = calculate_new_id($row->{id}, $row->{name});
         

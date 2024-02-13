@@ -116,7 +116,7 @@ $dbh->commit;
 
 update_secondary_table_item_ids($dbh,'sharedbank', 'itemid');
 update_secondary_table_item_ids($dbh,'inventory', 'itemid');
-update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
+#update_secondary_table_item_ids($dbh,'lootdrop_entries', 'item_id');
 
 # Commit the changes and clean up
 $dbh->commit;

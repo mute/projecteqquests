@@ -23,3 +23,9 @@ sub EVENT_POPUPRESPONSE {
         }
     }
 }
+
+sub EVENT_CLICK_OBJECT {
+    quest::debug("objectid " . $objectid);
+    quest::debug("clicker_id " . $clicker_id);
+    quest::debug("object " . $object);
+}

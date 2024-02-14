@@ -1,4 +1,7 @@
 sub EVENT_CLICKDOOR {
+    quest::debug("doorid " . $doorid);
+    quest::debug("version " . $version);
+    quest::debug("door " . $door);
     my %portal_destinations = %{ plugin::get_portal_destinations() };
     my $destination         = quest::get_data("magic_map_target");
     if ($doorid == 146) {

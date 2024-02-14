@@ -8,7 +8,7 @@ sub CheckWorldWideBuffs {
         for my $spell_id (43002 .. 43008) {
             my $data = quest::get_data("eom_$spell_id");
 
-            if ($spell_id) {               
+            if ($data) {               
                 $npc->ApplySpellBuff($spell_id, quest::get_data_remaining("eom_$spell_id")/6);                
             } else {
                 $npc->BuffFadeBySpellID($spell_id);

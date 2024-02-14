@@ -31,7 +31,7 @@ sub CommonCharacterUpdate {
         $client->SetBucket("Last-Position-Heading", $client->GetHeading());
 
         # Move the client to the instance
-        $client->MovePCInstance($void_zone, $instance, quest::GetZoneSafeX($void_zone), quest::GetZoneSafeY($void_zone), quest::GetZoneSafeZ($void_zone), quest::GetZoneSafeHeading($void_zone));
+        $client->MovePCInstance($void_zone, $instance, 50 + (int(rand(20 + 1)) - 10), 50 + (int(rand(20 + 1)) - 10), 2, 350 + (int(rand(30 + 1)) - 15));
     } else {
 
         if (!$client->GetBucket("newbie-writ") && $zoneid != $void_zone) { # Do not trigger in pocket plane

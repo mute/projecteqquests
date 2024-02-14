@@ -16,7 +16,7 @@ sub EVENT_LEVEL_UP {
         my $name = $client->GetCleanName();
         my $full_class_name = plugin::GetPrettyClassString($client);
 
-        plugin::WorldAnnounce("The Hero, $name ($full_class_name) has reached Level $new_level.");
+        plugin::WorldAnnounce("$name ($full_class_name) has reached Level $new_level.");
     }
 }
 

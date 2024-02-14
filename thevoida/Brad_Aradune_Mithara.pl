@@ -1,15 +1,18 @@
 
 sub EVENT_SAY {
 
-if ($text =~/Hail/i){
-  quest::say("Hail $name! What would you like to know? [What inspired you initially?], [Did you have some ideas as to how an online RPG might work?], [Did Ultima Online influence EverQuest?], [Did you ever think EverQuest might not work?], [Was it easier to be creative and ambitious back in the day?], [Did you always take the philosophy that bigger is better?], [EverQuest is famed for its difficulty was this deliberate?], [Corpse runs, who was responsible?], [What were your grand ambitions for EverQuest]");
-}
+  if ($text =~/Hail/i){
+    quest::say("Hail, $name! It is odd to stand here, still. I'd like to speak to you of my past, in my own words. What would you like to know about? 
+                My [". quest::saylink("inspiration",0,"What inspired you initially?") ."], my [ideas], the [influence of Ultima Online on EverQuest]?   
+    
+    ");
+    quest::say("Hail $name! What would you like to know? [What inspired you initially?], [Did you have some ideas as to how an online RPG might work?], [Did Ultima Online influence EverQuest?], [Did you ever think EverQuest might not work?], [Was it easier to be creative and ambitious back in the   day?], [Did you always take the philosophy that bigger is better?], [EverQuest is famed for its difficulty was this deliberate?], [Corpse runs, who was responsible?], [What were your grand ambitions for EverQuest]");
+  }
 
 
-if ($text =~/What inspired you initially?/i){
-
-quest::say("Making a 3D online RPG was John Smedley's idea. Steve Clover and I were working on a 2D single player RPG called WarWizard 2 at the time. Our inspiration came from the desire to create a 3D fantasy world as well as from playing text MUDs (especially Sojourn/TorilMUD).");
-}
+  if ($text =~/What inspired you initially?/i){
+    quest::say("Making a 3D online RPG was John Smedley's idea. Steve Clover and I were working on a 2D single player RPG called WarWizard 2 at the time. Our inspiration came from the desire to create a 3D fantasy world as well as from playing text MUDs (especially Sojourn/TorilMUD).");
+  }
 
 
 if ($text =~/Did you have some ideas as to how an online RPG might work?/i){

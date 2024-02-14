@@ -20,7 +20,7 @@ sub CommonCharacterUpdate {
         quest::debug("Not in an instance!");
         
         # Create a new instance of 'thevoida'
-        my $instance = quest::CreateInstance('thevoida', 0, 360000);
+        my $instance = quest::CreateInstance('thevoida', 1, 360000);
         $client->AssignToInstance($instance);
 
         # Save the client's last position

@@ -11,7 +11,7 @@ function event_say(e)
 	elseif(e.message:findi("blade")) then 					--ranger test of the blade
 		e.self:Say("Very good choice, my blade is my best friend and yours will be as well if you can complete this task. Retrieve an efreeti long sword, an emerald spiroc feather, some bitter honey, and a circlet of thorns. Be careful with the honey, if it is tainted the blade will not come to life.");
 	elseif(e.message:findi("art of ranged attack")) then 	--ranger test of the art of ranged attack
-		e.self:Say("Many of the fools on Norrath don’t realize how powerful a good bow can be. Many dread wolves have met their fate from my bow and you can have the same power if you can bring me back these items. Efreeti war bow, thickened nectar, a sphinx tallow, and a shimmering pearl.");
+		e.self:Say("Many of the fools on Norrath donï¿½t realize how powerful a good bow can be. Many dread wolves have met their fate from my bow and you can have the same power if you can bring me back these items. Efreeti war bow, thickened nectar, a sphinx tallow, and a shimmering pearl.");
 	end
 end
 
@@ -33,7 +33,7 @@ function event_trade(e)
 		e.self:Say("Take this as your reward.");
 		eq.depop();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

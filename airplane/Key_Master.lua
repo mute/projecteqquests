@@ -13,11 +13,11 @@ function event_signal(e)
 			eq.spawn2(71059,0,0,-602.2,-254.4,-333.5,403); -- NPC: Protector_of_Sky
 			counter = 0;
 		end
-	elseif(e.signal == 2 and qglobals["keeper"] == nil) then
+	elseif(e.signal == 2) then
 		-- eq.set_timer("13",300000); what is this referred to?
-		eq.set_global("keeper","1",3,"H2");
+		--eq.set_global("keeper","1",3,"H2");
 		-- supposed to be 60-85 minute timer
-		eq.set_timer("87",math.random(1500000) + 3600000);
+		eq.set_timer("87",math.random(300000) + 600000); -- 10 to 15 minutes instead
 	end
 end
 

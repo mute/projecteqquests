@@ -7,7 +7,7 @@ function event_spawn(e)
 end
 
 function event_combat(e) -- ??
-	if e.joined then
+	if(e.joined == true) then
 		eq.spawn2(154054,0,0,972.00,-556.00,-41.00,370); -- Defiled Minion
 		eq.spawn2(154054,0,0,970.00,-602.00,-41.00,450); -- Defiled Minion
 		eq.spawn2(154054,0,0,910.00,-602.00,-41.00,60); -- Defiled Minion
@@ -54,4 +54,6 @@ end
 
 function event_death_complete(e)
 	eq.stop_all_timers();
+	eq.spawn2(202368,0, 0, e.self:GetX()+3,e.self:GetY()+3,e.self:GetZ(),0); --NPC: A_Planar_Projection
 end
+

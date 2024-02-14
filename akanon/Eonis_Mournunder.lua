@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18771)) then
-		e.other:Message(MT.Yellow,"A diminutive, but powerful looking gnome stands before you. 'I am Eonis Mournunder. The Dark Reflection has called you. Read the note in your inventory and hand it to me when you wish to begin your training. Your destiny awaits!'");
+		e.other:Message(15,"A diminutive, but powerful looking gnome stands before you. 'I am Eonis Mournunder. The Dark Reflection has called you. Read the note in your inventory and hand it to me when you wish to begin your training. Your destiny awaits!'");
 	end
 end
 
@@ -33,5 +33,5 @@ function event_trade(e)
 		e.other:Faction(240,-10,0); 	-- Deepmuses
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

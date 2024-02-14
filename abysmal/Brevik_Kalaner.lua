@@ -1,5 +1,17 @@
 -- Txevu Flagging
 
+function splitString(inputstr, sep)
+    if sep == nil then
+        sep = "%s" -- default to whitespace
+    end
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
+
 function event_say(e)
 	local has_all_keys = (e.other:HasItem(60176) and e.other:HasItem(60252) and e.other:HasItem(60253));
 	local has_some_keys = (e.other:HasItem(60176) or e.other:HasItem(60252));
@@ -15,7 +27,7 @@ function event_say(e)
 	elseif e.message:findi("need this back") then
 		local data_bucket = e.other:GetBucket("txevu_items");
 		if data_bucket ~= "" then -- Has Started
-			local s = eq.split(data_bucket, ',');
+			local s = splitString(data_bucket, ',');
 
 			local sliver	= tonumber(s[1]); -- Item: Sliver of the High Temple (60176)
 			local fragment	= tonumber(s[2]); -- Item: Fragment of the High Temple (60252)
@@ -61,7 +73,7 @@ function event_trade(e)
 	local splinter	= 0; -- Item: Splinter of the High Temple (60253)
 
 	if data_bucket ~= "" then -- Has Started
-		local s = eq.split(data_bucket, ',');
+		local s = splitString(data_bucket, ',');
 
 		sliver		= tonumber(s[1]); -- Item: Sliver of the High Temple (60176)
 		fragment	= tonumber(s[2]); -- Item: Fragment of the High Temple (60252)
@@ -89,7 +101,7 @@ end
 function progress_check(e)
 	local data_bucket = e.other:GetBucket("txevu_items");
 	if data_bucket ~= "" then -- Has Started
-		local s = eq.split(data_bucket, ',');
+		local s = splitString(data_bucket, ',');
 
 		local sliver	= tonumber(s[1]); -- Item: Sliver of the High Temple (60176)
 		local fragment	= tonumber(s[2]); -- Item: Fragment of the High Temple (60252)

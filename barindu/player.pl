@@ -18,3 +18,23 @@ sub EVENT_LOOT {
 	}
   }
 }
+
+sub EVENT_ENTERZONE {
+	$key = $client->AccountID() . "-kunark-flag";
+	$expansion = quest::get_data($key);
+
+	$bind = $client->GetBindZoneID;
+	$bindh = $client->GetBindHeading;
+	$bindx = $client->GetBindX;
+	$bindy = $client->GetBindY;
+	$bindz = $client->GetBindZ;
+
+	if (quest::get_data("god-open") == 10 && ($expansion >= 20 || quest::get_data($client->AccountID() . "-saryrn-flag"))) {
+		# do nothing
+	} else {
+		$client->Message(7, "You don't belong here!");
+		$client->MovePC($bind, $bindx, $bindy, $bindz, $bindh);
+	}
+}
+
+

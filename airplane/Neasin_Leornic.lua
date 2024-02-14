@@ -7,7 +7,7 @@ function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Great, let us waste no more time! Do you wish to begin your test of concentration, focus, or meditation?");
 	elseif(e.message:findi("concentration")) then 	--wizard test of concentration
-		e.self:Say("Concentration it is. Proceed upward through the sky and return to me an Azure Tessera, an Augmentor’s Gem, and a Grey Damask Cloak. This will prove your ability to concentrate and I will reward you with an Augmentors Mask.");
+		e.self:Say("Concentration it is. Proceed upward through the sky and return to me an Azure Tessera, an Augmentorï¿½s Gem, and a Grey Damask Cloak. This will prove your ability to concentrate and I will reward you with an Augmentors Mask.");
 	elseif(e.message:findi("focus")) then 			--wizard test of focus
 		e.self:Say("Focus is a must. Travel among the residents of the sky and bring to me an Iron Disc, an Ethereal Opal, and a Woven Skull Cap. This will prove your ability to focus and I will reward you with Al`Kabors Cap.");
 	elseif(e.message:findi("meditation")) then 		--wizard test of meditation
@@ -35,7 +35,7 @@ function event_trade(e)
 		e.self:Say("Ah good. Take this as your reward.");
 		eq.depop();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

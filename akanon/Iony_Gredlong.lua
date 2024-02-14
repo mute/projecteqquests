@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18775) then
-		e.other:Message(MT.Yellow,"Iony Gredlong's tiny voice echoes throughout the room. 'Welcome to the Abbey of Deep Musing " .. e.other:GetName() .. ". I am Iony Gredlong, your new Guild Master should you accept the ways of the Clerics of the Deep Muses. Read the note in your inventory and then hand it to me when you are ready to begin your training.'");
+	if(e.other:HasItem(18775) == true) then
+		e.other:Message(15,"Iony Gredlong's tiny voice echoes throughout the room. 'Welcome to the Abbey of Deep Musing " .. e.other:GetName() .. ". I am Iony Gredlong, your new Guild Master should you accept the ways of the Clerics of the Deep Muses. Read the note in your inventory and then hand it to me when you are ready to begin your training.'");
 	end
 end
 
@@ -65,5 +65,5 @@ function event_trade(e)
 		e.other:Faction(238,-15,0); 	-- Dark Reflection
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

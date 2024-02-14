@@ -37,13 +37,13 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(e.other:GetFaction(e.self) == 1) then
+	--if(e.other:GetFaction(e.self) == 1) then
 		if(item_lib.check_turn_in(e.trade, {item1 = 5504})) then		--soulfire
-			e.other:SummonItem(18033); 									--inte's first blessing
+			e.other:SummonFixedItem(18033); 									--inte's first blessing
 			e.other:AddEXP(100000);
 			e.self:Say("You have chosen wisely, my friend. Take this note as a token of my blessing upon you.");
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 5403})) then 	--ghoulbane
-			e.other:SummonItem(18034); 									--inte's second blessing
+			e.other:SummonFixedItem(18034); 									--inte's second blessing
 			e.other:AddEXP(100000);
 			e.self:Say("You have chosen wisely, my friend. Take this note as a token of my blessing upon you.");
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 18033, item2 = 18034, item3 = 19073, item4 = 1254})) then --inte's first blessing, inte's second blessing, miragul's head, miragul's robe
@@ -52,7 +52,7 @@ function event_trade(e)
 			e.self:Say("Long have I awaited this moment. You have done what even I thought impossible. Take this sword, the Fiery Avenger. You have earned both it and my deepest respect.");
 			eq.depop();
 		end
-	end
+	--end
 	if (e.other:HasItem(69953) and e.other:HasItem(69954) and e.other:HasItem(69955) and e.other:HasItem(69956) and item_lib.check_turn_in(e.trade, {item1 = 47100})) then
 		e.self:Say("You have defeated the minions of Anguish and have exceeded my expectations, " .. e.other:GetName() .. ". You have proven yourself to be a powerful paladin and a savior of all of Norrath. These tokens are the embodiment of your virtues, " .. e.other:GetName() .. ". Take them and this scabbard and create your final sword. Place all of your tokens into this scabbard along with Redemption and forge the sword out of your own virtues. Today is a joyous day among paladins everywhere, for we have a new mentor lord protector among us.");
 		e.other:SummonItem(69957); --token
@@ -61,7 +61,7 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		eq.set_global("paladin_epic","10",5,"F");
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

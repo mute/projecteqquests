@@ -3,7 +3,7 @@ sub EVENT_SAY {
 
   if ($text =~/Hail/i){
     quest::say("Hail, $name! It is odd to stand here, still. I'd like to speak to you of my past, in my own words. What would you like to know about? 
-                My [". quest::saylink("inspiration",0,"What inspired you initially?") ."], my [ideas], the [influence of Ultima Online on EverQuest]?   
+                My [". quest::saylink("What inspired you initially?",0,"inspiration") ."], my [". quest::saylink("Did you have some ideas as to how an online RPG might work?",0,"ideas") ."], the [influence of Ultima Online on EverQuest]?   
     
     ");
     quest::say("Hail $name! What would you like to know? [What inspired you initially?], [Did you have some ideas as to how an online RPG might work?], [Did Ultima Online influence EverQuest?], [Did you ever think EverQuest might not work?], [Was it easier to be creative and ambitious back in the   day?], [Did you always take the philosophy that bigger is better?], [EverQuest is famed for its difficulty was this deliberate?], [Corpse runs, who was responsible?], [What were your grand ambitions for EverQuest]");

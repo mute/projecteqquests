@@ -1,15 +1,21 @@
+sub EVENT_SIGNAL {
+	plugin::CheckWorldWideBuffs();
+}
+
 sub EVENT_ENTERZONE { 
+    plugin::CheckWorldWideBuffs();
     plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_CONNECT {
+    plugin::CheckWorldWideBuffs();
     plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_LEVEL_UP {
-    plugin::CommonCharacterUpdate($client);  
+    plugin::CheckWorldWideBuffs();
+    plugin::CommonCharacterUpdate($client);
 
-    # Calculate the client's new level and previous level
     my $new_level = $client->GetLevel();
 
     if (($new_level % 10 == 0) || $new_level == 5) {
@@ -20,6 +26,14 @@ sub EVENT_LEVEL_UP {
     }
 }
 
+sub EVENT_DISCOVER_ITEM {
+    my $name = $client->GetCleanName();
+    plugin::WorldAnnounceItem("$name has discovered: {item}.",$itemid);    
+}
+
+sub EVENT_ZONE {
+	plugin::CheckWorldWideBuffs();
+}
 
 sub EVENT_WARP {
     my $name = $client->GetCleanName();
@@ -27,10 +41,6 @@ sub EVENT_WARP {
 }
 
 sub EVENT_COMBINE_VALIDATE {
-	# $validate_type values = { "check_zone", "check_tradeskill" }
-	# criteria exports:
-	#	"check_zone"		=> zone_id
-	#	"check_tradeskill"	=> tradeskill_id (not active)
 	if ($recipe_id == 10344) {
 		if ($validate_type =~/check_zone/i) {
 			if ($zone_id != 289 && $zone_id != 290) {
@@ -40,13 +50,6 @@ sub EVENT_COMBINE_VALIDATE {
 	}
 	
 	return 0;
-}
-
-sub EVENT_EQUIP_ITEM_CLIENT {
-    quest::debug("item_id " . $item_id);
-    quest::debug("item_quantity " . $item_quantity);
-    quest::debug("slot_id " . $slot_id);
-    quest::debug("item " . $item);
 }
 
 sub EVENT_COMBINE_SUCCESS {
@@ -86,4 +89,3 @@ sub EVENT_COMBINE_SUCCESS {
         $client->Message(1,"Success");
     }
 }
-

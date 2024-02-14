@@ -1,19 +1,19 @@
 sub EVENT_SIGNAL {
-	plugin::CheckWorldWideBuffs();
+	plugin::CheckWorldWideBuffs($client);
 }
 
 sub EVENT_ENTERZONE { 
-    plugin::CheckWorldWideBuffs();
+    plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_CONNECT {
-    plugin::CheckWorldWideBuffs();
+    plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
 }
 
 sub EVENT_LEVEL_UP {
-    plugin::CheckWorldWideBuffs();
+    plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
 
     my $new_level = $client->GetLevel();
@@ -32,7 +32,7 @@ sub EVENT_DISCOVER_ITEM {
 }
 
 sub EVENT_ZONE {
-	plugin::CheckWorldWideBuffs();
+	plugin::CheckWorldWideBuffs($client);
 }
 
 sub EVENT_WARP {

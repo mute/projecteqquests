@@ -9,7 +9,7 @@ sub EVENT_SPAWN {
     if ($npc->IsPet() && $npc->GetOwner()->IsClient()) { 
         UPDATE_PET_BAG($npc);
         CHECK_CHARM_STATUS(); 
-        plugin::CheckWorldWideBuffs();       
+        plugin::CheckWorldWideBuffs($npc);       
     }
 }
 
@@ -23,20 +23,6 @@ sub EVENT_ITEM
 
 sub EVENT_DEATH {
     CHECK_CHARM_STATUS(); 
-}
-
-sub CheckWorldWideBuffs {
-    if ($npc->IsPet() && $npc->HasOwner() && $npc->GetOwner()->IsClient()) {
-        for my $value (43002 .. 43008) {
-            my $data = quest::get_data("eom_$value");
-
-            if ($data) {               
-                $npc->ApplySpellBuff($value, quest::get_data_remaining("eom_$value")/6);                
-            } else {
-                $npc->BuffFadeBySpellID($value);
-            }
-        }
-    }
 }
 
 sub UPDATE_PET_BAG {    

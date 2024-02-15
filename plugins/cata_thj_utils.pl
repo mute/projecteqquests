@@ -7,15 +7,6 @@ sub GetAccountKey
     }
 }
 
-sub WorldAnnounce
-{
-    my $message = shift;
-    my $channel = shift || "ooc";
-
-    quest::discordsend($channel, $message);
-    quest::worldwidemessage(15, $message);
-}
-
 sub ClassType {
     my $client = plugin::val('$client');
     my $class  = $client->GetClass();
@@ -38,3 +29,92 @@ sub ClassType {
 
     return "hybrid";
 }
+
+sub NPCTell {	
+	my $npc = plugin::val('npc');
+    my $client = plugin::val('client');
+	my $message = shift;
+
+	my $NPCName = $npc->GetCleanName();
+    my $tellColor = 257;
+	
+    $client->Message($tellColor, "$NPCName tells you, '" . $message . "'");
+}
+
+sub YellowText {
+	my $message     = shift;
+    my $client      = shift || plugin::val('client');
+    my $tellColor   = 335;
+	
+    $client->Message($tellColor, $message);
+}
+
+sub RedText {
+	my $message     = shift;
+    my $client      = shift || plugin::val('client');
+    my $tellColor   = 287;
+	
+    $client->Message($tellColor, $message);
+}
+
+sub PurpleText {
+	my $message     = shift;
+    my $client      = shift || plugin::val('client');
+    my $tellColor   = 257;
+	
+    $client->Message($tellColor, $message);
+}
+
+sub WorldAnnounce {
+	my $message = shift;
+	quest::discordsend("ooc", $message);
+	quest::we(335, $message);
+}
+
+# TODO - UPDATE THIS URL WHEN OUR ALLACLONE IS UP
+sub WorldAnnounceItem {
+    my ($message, $item_id) = @_;
+    my $itemname = quest::getitemname($item_id);
+
+    my $eqgitem_link = quest::varlink($item_id);
+    my $discord_link = "[[$itemname](https://www.pyrelight.net/allaclone/?a=item&id=$item_id)]";
+
+    # Replace a placeholder in the message with the EQ game link
+    $message =~ s/\{item\}/$eqgitem_link/g;
+
+    # Send the message with the game link to the EQ world
+    quest::we(335, $message);
+
+    # Replace the game link with the Discord link
+    $message =~ s/\Q$eqgitem_link\E/$discord_link/g;
+
+    # Send the message with the Discord link to Discord
+    #quest::discordsend("ooc", $message);
+}
+
+# Serializer
+sub SerializeList {
+    my @list = @_;
+    return join(',', @list);
+}
+
+# Deserializer
+sub DeserializeList {
+    my $string = shift;
+    return split(',', $string);
+}
+
+# Serializer
+sub SerializeHash {
+    my %hash = @_;
+    return join(';', map { "$_=$hash{$_}" } keys %hash);
+}
+
+# Deserializer
+sub DeserializeHash {
+    my $string = shift;
+    my %hash = map { split('=', $_, 2) } split(';', $string);
+    return %hash;
+}
+
+return 1;

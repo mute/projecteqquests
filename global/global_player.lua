@@ -259,47 +259,6 @@ function event_command(e)
 	return eq.DispatchCommands(e);
 end
 
---[[ the main key is the ID of the AA
---   the first set is the age required in seconds
---   the second is if to ignore the age and grant anyways live test server style
---   the third is enabled
---]]
-vet_aa = {
-    [481]  = { 31536000, true, true}, -- Lesson of the Devote 1 yr
-    [482]  = { 63072000, true, true}, -- Infusion of the Faithful 2 yr
-    [483]  = { 94608000, true, true}, -- Chaotic Jester 3 yr
-    [484]  = {126144000, true, true}, -- Expedient Recovery 4 yr
-    [485]  = {157680000, true, true}, -- Steadfast Servant 5 yr
-    [486]  = {189216000, true, true}, -- Staunch Recovery 6 yr
-    [487]  = {220752000, true, true}, -- Intensity of the Resolute 7 yr
-    [511]  = {252288000, true, true}, -- Throne of Heroes 8 yr
-    [2000] = {283824000, true, true}, -- Armor of Experience 9 yr
-    [8081] = {315360000, true, true}, -- Summon Resupply Agent 10 yr
-    [8130] = {346896000, true, true}, -- Summon Clockwork Banker 11 yr
-    [453]  = {378432000, true, true}, -- Summon Permutation Peddler 12 yr
-    [182]  = {409968000, true, true}, -- Summon Personal Tribute Master 13 yr
-    [600]  = {441504000, true, true}, -- Blessing of the Devoted 14 yr
-}
-
-
-function event_connect(e)
-	grant_veteran_aa(e)
-	don.fix_invalid_faction_state(e.self)
-end
-
-function grant_veteran_aa(e)
-	if not eq.is_dragons_of_norrath_enabled() then
-		return
-	end
-
-    local age = e.self:GetAccountAge();
-    for aa, v in pairs(vet_aa) do
-        if v[3] and (v[2] or age >= v[1]) then
-            e.self:GrantAlternateAdvancementAbility(aa, 1)
-        end
-    end
-end
-
 --[[
 0  /*13855*/ Skill1HBlunt = 0,
 1  /*13856*/ Skill1HSlashing,
@@ -390,13 +349,19 @@ function event_level_up(e)
     end
   end
 
-  if e.self:GetLevel() == 5 then
-    eq.popup("", "<c \"#F0F000\">Welcome to level 5.</c><br><br>You have just been granted a new ability called '<c \"#F0F000\">Origin</c>' which allows you to teleport back to your starting city.<br><br>Open the Alternate Advancement window by pressing the '<c \"#F0F000\">V</c>' key, look in the '<c \"#F0F000\">General' tab</c>, and find the '<c \"#F0F000\">Origin</c>' ability and select it.<br><br>Now press the '<c \"#F0F000\">Hotkey</c>' button to create a hotkey you can place on your hot bar.");
-  end
+  e.self:ScribeSpells(0, e.self:GetLevel());
+  e.self:LearnDisciplines(0, e.self:GetLevel());
+end
 
-  if e.self:GetLevel() == 10 and eq.is_dragons_of_norrath_enabled() then
-    eq.popup("", "<c \"#F0F000\">Welcome to level 10.</c><br><br>You are now able to begin the new player armor and weapon quests.  Speak with Castlen and Barrenzin or V`Lynn Renloe in the <c \"#66CCFF\">Plane of Knowledge</c> to begin.  One additional quest will become available to you at each level past level 10, so be sure to check back with these NPCs as you continue to gain experience.");
-  end
+function event_connect(e)
+	local last_login = e.self:GetBucket("LastLoginTime");
+	if (not last_login or last_login == "") then
+	        e.self:ScribeSpells(0, 1);
+	        e.self:LearnDisciplines(0, 1);
+	        e.self:SetBucket("LastLoginTime", "1");
+	        e.self:AssignTask(3);
+	        e.self:AssignTask(4);
+	end
 end
 
 test_items = {

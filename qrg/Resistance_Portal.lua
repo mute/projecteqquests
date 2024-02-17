@@ -599,9 +599,8 @@ local teleporterData = {
 local Allowed_Zones = {
     [1] = { "qeytoqrg", 4, 0, 0, 83, 508, 0, 0, 5, 0, "The Qeynos Hills" },
     [2] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
-    [3] = { "kurn", 97, 0, 0, -78, 195, 2, 183, 15, 0, "The Mosswood Tower" },
-    [4] = { "crushbone", 58, 0, 0, 158, -644, 4, 0, 25, 0, "Crushbone Keep" },
-    [5] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
+    [3] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "Mosswood Tower" },
+    [4] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" }
 }
 
 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
@@ -677,7 +676,45 @@ function event_say(e)
                 local zoneShortName = zoneData[1]
                 local zoneLongName = zoneData[11]
                 local zoneLongNameLink = eq.say_link(zoneLongName)
-                player:Message(colorGood, zoneLongNameLink)
+                player:Message(colorGood, "[" .. zoneShortNameLink .. "]     [" .. " (" .. zoneLongNameLink .. ")]")
+            end
+        else
+            player:Message(colorTalk, "No teleporter zones found for levels " .. levelRange)
+        end
+    else
+        eq.debug("else")
+        --:: Check if the player's input matches a zone name
+        for zoneKey, zoneData in ipairs(Allowed_Zones) do
+            local zoneShortName = zoneData[1]
+            local zoneLongName = zoneData[11]
+
+            if e.message:findi(zoneShortName) or e.message:findi(zoneLongName) then
+                player:Message(colorTalk, 'Zone: ' .. zoneShortName)
+                -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
+                local recordID = zoneData[1]
+                local zoneID = zoneData[2]
+                local version = zoneData[3]
+                local safeX = zoneData[5]
+                local safeY = zoneData[6]
+                local safeZ = zoneData[7]
+                local safeHeading = zoneData[8]
+                local minLvl = zoneData[9]
+                local playerLevel = player:GetLevel() -- Get the player's level
+                local expansion = zoneData[10]
+
+                if expansion <= MaxExpansionAllowed then
+                    if playerLevel <= minLvl and minLvl ~= 0 then
+                        player:Message(colorTalk,
+                            'Your level is too low to enter the requested zone:' .. zoneShortName)
+                        -- Can't enter this one because level too low
+                        return
+                    else
+                        player:Message(colorTalk,
+                            'Teleporting you to' .. zoneShortName .. '(' .. zoneLongName .. ').');
+                        e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
+                        return
+                    end
+                end
             end
         end
     end

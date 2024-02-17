@@ -609,7 +609,7 @@ local Leveling_Zones = {
         [1] = { "qeytoqrg", 4, 0, 0, 83, 508, 0, 0, 5, 0, "The Qeynos Hills" },
     },
     ['10-15'] = {
-        [2] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
+        [1] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
     },
     ['15-20'] = {
         [1] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "Mosswood Tower" },

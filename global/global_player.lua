@@ -2,14 +2,6 @@
 
 local don = require("dragons_of_norrath")
 
-function event_enter_zone(e)
-	mysterious_voice(e)
-
-	if eq.is_lost_dungeons_of_norrath_enabled() and eq.get_zone_short_name() == "lavastorm" and e.self:GetGMStatus() >= 80 then 
-		e.self:Message(MT.DimGray, "There are GM commands available for Dragons of Norrath, use " .. eq.say_link("#don") .. " to get started")
-	end
-end
-
 function mysterious_voice(e)
 	if not eq.is_lost_dungeons_of_norrath_enabled() then
 		return

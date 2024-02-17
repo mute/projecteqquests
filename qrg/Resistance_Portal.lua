@@ -689,7 +689,6 @@ function event_say(e)
             local zoneLongName = zoneData[11]
 
             if e.message:findi(zoneShortName) or e.message:findi(zoneLongName) then
-                player:Message(colorTalk, 'Zone: ' .. zoneShortName)
                 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
                 local recordID = zoneData[1]
                 local zoneID = zoneData[2]

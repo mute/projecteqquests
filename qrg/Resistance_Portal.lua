@@ -682,7 +682,6 @@ function event_say(e)
             player:Message(colorTalk, "No teleporter zones found for levels " .. levelRange)
         end
     else
-        eq.debug("else")
         --:: Check if the player's input matches a zone name
         for zoneKey, zoneData in ipairs(Allowed_Zones) do
             local zoneShortName = zoneData[1]

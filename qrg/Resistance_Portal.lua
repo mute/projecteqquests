@@ -674,9 +674,8 @@ function event_say(e)
             for _, zoneData in ipairs(zones) do
                 local zoneShortName = zoneData[1]
                 local zoneLongName = zoneData[11]
-                local zoneShortNameLink = eq.say_link(zoneShortName)
                 local zoneLongNameLink = eq.say_link(zoneLongName)
-                player:Message(colorGood, "[" .. zoneShortNameLink .. "]     [" .. " (" .. zoneLongNameLink .. ")]")
+                player:Message(colorGood, zoneLongNameLink)
             end
         else
             player:Message(colorTalk, "No teleporter zones found for levels " .. levelRange)

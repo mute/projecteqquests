@@ -1,31 +1,22 @@
 function event_spawn(e)
-    -- peq_halloween
-    if (eq.is_content_flag_enabled("peq_halloween")) then
-        -- exclude mounts and pets
-        if (e.self:GetCleanName():findi("mount") or e.self:IsPet()) then
-            return;
+        if (e.self:IsPet() and e.self:GetOwner():IsClient()) then
+                if (e.self:GetOwner():GetLevel() > 1) then
+                        e.self:SetLevel(e.self:GetOwner():GetLevel() - 1);
+                        e.self:ScaleNPC(e.self:GetOwner():GetLevel() - 1);
+                        e.self:Heal();
+                end
         end
+end
 
-        -- soulbinders
-        -- priest of discord
-        if (e.self:GetCleanName():findi("soulbinder") or e.self:GetCleanName():findi("priest of discord")) then
-            e.self:ChangeRace(eq.ChooseRandom(14,60,82,85));
-            e.self:ChangeSize(6);
-            e.self:ChangeTexture(1);
-            e.self:ChangeGender(2);
+function event_killed_merit(e)
+        if (e.self:IsRareSpawn()) then
+                local slain = e.self:GetNPCTypeID();
+                local bucket_name = e.other:CharacterID() .. slain .. "-Slain";
+                if (eq.get_data(bucket_name) == "") then
+                        eq.set_data(bucket_name, "true");
+                        e.other:AddAAPoints(e.self:GetLevel());
+                        e.other:Ding();
+                        e.other:Message(MT.Yellow, "You gain alternate advancement experience from slaying a rare enemy!");
+                end
         end
-
-        -- Shadow Haven
-        -- The Bazaar
-        -- The Plane of Knowledge
-        -- Guild Lobby
-        local halloween_zones = eq.Set { 202, 150, 151, 344 }
-        local not_allowed_bodytypes = eq.Set { 11, 60, 66, 67 }
-        if (halloween_zones[eq.get_zone_id()] and not_allowed_bodytypes[e.self:GetBodyType()] == nil) then
-            e.self:ChangeRace(eq.ChooseRandom(14,60,82,85));
-            e.self:ChangeSize(6);
-            e.self:ChangeTexture(1);
-            e.self:ChangeGender(2);
-        end
-    end
 end

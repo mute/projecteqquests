@@ -2,30 +2,6 @@
 
 local don = require("dragons_of_norrath")
 
-function event_enter_zone(e)
-	local qglobals = eq.get_qglobals(e.self);
-	if e.self:GetLevel() >= 15 and qglobals.Wayfarer == nil then
-		local zoneid = eq.get_zone_id();
-		if e.self:GetStartZone() ~= zoneid and (zoneid == 1 or zoneid == 2 or zoneid == 3 or zoneid == 8 or zoneid == 9 
-		or zoneid == 10 or zoneid == 19 or zoneid == 22 or zoneid == 23 or zoneid == 24 or zoneid == 29 or zoneid == 30 
-		or zoneid == 34 or zoneid == 35 or zoneid == 40 or zoneid == 41 or zoneid == 42 or zoneid == 45 or zoneid == 49 
-		or zoneid == 52 or zoneid == 54 or zoneid == 55 or zoneid == 60 or zoneid == 61 or zoneid == 62 or zoneid == 67 
-		or zoneid == 68 or zoneid == 75 or zoneid == 82 or zoneid == 106 or zoneid == 155 or zoneid == 202 or zoneid == 382 
-		or zoneid == 383 or zoneid == 392 or zoneid == 393 or zoneid == 408) then
-			e.self:Message(MT.Yellow, 
-				"A mysterious voice whispers to you, \'If you can feel me in your thoughts, know this -- "
-				.. "something is changing in the world and I reckon you should be a part of it. I do not know much, but I do know "
-				.. "that in every home city and the wilds there are agents of an organization called the Wayfarers Brotherhood. They "
-				.. "are looking for recruits . . . If you can hear this message, you are one of the chosen. Rush to your home city, or "
-				.. "search the West Karanas and Rathe Mountains for a contact if you have been exiled from your home for your deeds, "
-				.. "and find out more. Adventure awaits you, my friend.\'");
-		end
-	end
-
-	if eq.get_zone_short_name() == "lavastorm" and e.self:GetGMStatus() >= 80 then 
-		e.self:Message(MT.DimGray, "There are GM commands available for Dragons of Norrath, use " .. eq.say_link("#don") .. " to get started")
-	end
-end
 
 function event_combine_validate(e)
 	-- e.validate_type values = { "check_zone", "check_tradeskill" }
@@ -209,36 +185,7 @@ function event_command(e)
 	return eq.DispatchCommands(e);
 end
 
---[[ the main key is the ID of the AA
---   the first set is the age required in seconds
---   the second is if to ignore the age and grant anyways live test server style
---   the third is enabled
---]]
-vet_aa = {
-    [481]  = { 31536000, true, true}, -- Lesson of the Devote 1 yr
-    [482]  = { 63072000, true, true}, -- Infusion of the Faithful 2 yr
-    [483]  = { 94608000, true, true}, -- Chaotic Jester 3 yr
-    [484]  = {126144000, true, true}, -- Expedient Recovery 4 yr
-    [485]  = {157680000, true, true}, -- Steadfast Servant 5 yr
-    [486]  = {189216000, true, true}, -- Staunch Recovery 6 yr
-    [487]  = {220752000, true, true}, -- Intensity of the Resolute 7 yr
-    [511]  = {252288000, true, true}, -- Throne of Heroes 8 yr
-    [2000] = {283824000, true, true}, -- Armor of Experience 9 yr
-    [8081] = {315360000, true, true}, -- Summon Resupply Agent 10 yr
-    [8130] = {346896000, true, true}, -- Summon Clockwork Banker 11 yr
-    [453]  = {378432000, true, true}, -- Summon Permutation Peddler 12 yr
-    [182]  = {409968000, true, true}, -- Summon Personal Tribute Master 13 yr
-    [600]  = {441504000, true, true}, -- Blessing of the Devoted 14 yr
-}
-
 function event_connect(e)
-    local age = e.self:GetAccountAge();
-    for aa, v in pairs(vet_aa) do
-        if v[3] and (v[2] or age >= v[1]) then
-            e.self:GrantAlternateAdvancementAbility(aa, 1)
-        end
-    end
-
     don.fix_invalid_faction_state(e.self)
 end
 
@@ -332,13 +279,19 @@ function event_level_up(e)
     end
   end
 
-  if e.self:GetLevel() == 5 then
-    eq.popup("", "<c \"#F0F000\">Welcome to level 5.</c><br><br>You have just been granted a new ability called '<c \"#F0F000\">Origin</c>' which allows you to teleport back to your starting city.<br><br>Open the Alternate Advancement window by pressing the '<c \"#F0F000\">V</c>' key, look in the '<c \"#F0F000\">General' tab</c>, and find the '<c \"#F0F000\">Origin</c>' ability and select it.<br><br>Now press the '<c \"#F0F000\">Hotkey</c>' button to create a hotkey you can place on your hot bar.");
-  end
+  e.self:ScribeSpells(0, e.self:GetLevel());
+  e.self:LearnDisciplines(0, e.self:GetLevel());
+end
 
-  if e.self:GetLevel() == 10 then
-    eq.popup("", "<c \"#F0F000\">Welcome to level 10.</c><br><br>You are now able to begin the new player armor and weapon quests.  Speak with Castlen and Barrenzin or V`Lynn Renloe in the <c \"#66CCFF\">Plane of Knowledge</c> to begin.  One additional quest will become available to you at each level past level 10, so be sure to check back with these NPCs as you continue to gain experience.");
-  end
+function event_connect(e)
+	local last_login = e.self:GetBucket("LastLoginTime");
+	if (not last_login or last_login == "") then
+	        e.self:ScribeSpells(0, 1);
+	        e.self:LearnDisciplines(0, 1);
+	        e.self:SetBucket("LastLoginTime", "1");
+	        e.self:AssignTask(3);
+	        e.self:AssignTask(4);
+	end
 end
 
 test_items = {

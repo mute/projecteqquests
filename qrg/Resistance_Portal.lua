@@ -705,12 +705,12 @@ function event_say(e)
                 if expansion <= MaxExpansionAllowed then
                     if playerLevel <= minLvl and minLvl ~= 0 then
                         player:Message(colorTalk,
-                            'Your level is too low to enter the requested zone:' .. zoneShortName)
+                            'Your level is too low to enter the requested zone: ' .. zoneLongName)
                         -- Can't enter this one because level too low
                         return
                     else
                         player:Message(colorTalk,
-                            'Teleporting you to' .. zoneShortName .. '(' .. zoneLongName .. ').');
+                            'Teleporting you to ' .. zoneLongName .. '.');
                         e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
                         return
                     end

@@ -612,7 +612,7 @@ local Leveling_Zones = {
         [1] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
     },
     ['15-20'] = {
-        [1] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "Mosswood Tower" },
+        [1] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "The Mosswood Tower" },
     },
     ['25-30'] = {
         [1] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" },

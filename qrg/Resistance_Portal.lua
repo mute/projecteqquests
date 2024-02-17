@@ -596,6 +596,13 @@ local teleporterData = {
     [592] = { "thundercrest", 340, 15, 0, 56, -1757, 113, 0, 0, 9, "Thundercrest Isles: Secret of the Storm" }
 }
 
+local Allowed_Zones = {
+    [1] = { "qeytoqrg", 4, 0, 0, 83, 508, 0, 0, 5, 0, "The Qeynos Hills" },
+    [2] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
+    [3] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "Mosswood Tower" },
+    [4] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" }
+}
+
 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
 local Leveling_Zones = {
     ['5-10'] = {
@@ -653,10 +660,12 @@ function event_say(e)
         player:Message(colorTalk, 'Choose a ' ..
             levelingLink .. '.')
     elseif (e.message:findi("Leveling Zone")) then
-        local link_01_05 = eq.say_link('1-5')
         local link_05_10 = eq.say_link('5-10')
-        player:Message(colorTalk, '[' ..
-            link_01_05 .. '] [' .. link_05_10 .. ']');
+        local link_10_15 = eq.say_link('10-15')
+        local link_15_20 = eq.say_link('15-20')
+        local link_25_30 = eq.say_link('25-30')
+
+        player:Message(colorTalk, '[' .. link_05_10 .. '] [' .. link_10_15 .. '] [' .. link_15_20 .. '] [' .. link_25_30 .. ']' );
     elseif levelRange then
         local zones = Leveling_Zones[levelRange]
 
@@ -673,40 +682,37 @@ function event_say(e)
             player:Message(colorTalk, "No teleporter zones found for levels " .. levelRange)
         end
     else
+        eq.debug("else")
         --:: Check if the player's input matches a zone name
-        for range, zones in ipairs(Leveling_Zones) do
-            if zones then
-                for zoneKey, zoneData in ipairs(zones) do
-                    local zoneShortName = zoneData[1]
-                    local zoneLongName = zoneData[11]
+        for zoneKey, zoneData in ipairs(Allowed_Zones) do
+            local zoneShortName = zoneData[1]
+            local zoneLongName = zoneData[11]
 
-                    if e.message:findi(zoneShortName) or e.message:findi(zoneLongName) then
-                        player:Message(colorTalk, 'Zone: ' .. zoneShortName)
-                        -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
-                        local recordID = zoneData[1]
-                        local zoneID = zoneData[2]
-                        local version = zoneData[3]
-                        local safeX = zoneData[5]
-                        local safeY = zoneData[6]
-                        local safeZ = zoneData[7]
-                        local safeHeading = zoneData[8]
-                        local minLvl = zoneData[9]
-                        local playerLevel = player:GetLevel() -- Get the player's level
-                        local expansion = zoneData[10]
+            if e.message:findi(zoneShortName) or e.message:findi(zoneLongName) then
+                player:Message(colorTalk, 'Zone: ' .. zoneShortName)
+                -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
+                local recordID = zoneData[1]
+                local zoneID = zoneData[2]
+                local version = zoneData[3]
+                local safeX = zoneData[5]
+                local safeY = zoneData[6]
+                local safeZ = zoneData[7]
+                local safeHeading = zoneData[8]
+                local minLvl = zoneData[9]
+                local playerLevel = player:GetLevel() -- Get the player's level
+                local expansion = zoneData[10]
 
-                        if expansion <= MaxExpansionAllowed then
-                            if playerLevel <= minLvl and minLvl ~= 0 then
-                                player:Message(colorTalk,
-                                    'Your level is too low to enter the requested zone:' .. zoneShortName)
-                                -- Can't enter this one because level too low
-                                return
-                            else
-                                player:Message(colorTalk,
-                                    'Teleporting you to' .. zoneShortName .. '(' .. zoneLongName .. ').');
-                                e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
-                                return
-                            end
-                        end
+                if expansion <= MaxExpansionAllowed then
+                    if playerLevel <= minLvl and minLvl ~= 0 then
+                        player:Message(colorTalk,
+                            'Your level is too low to enter the requested zone:' .. zoneShortName)
+                        -- Can't enter this one because level too low
+                        return
+                    else
+                        player:Message(colorTalk,
+                            'Teleporting you to' .. zoneShortName .. '(' .. zoneLongName .. ').');
+                        e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
+                        return
                     end
                 end
             end

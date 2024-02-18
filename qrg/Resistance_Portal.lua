@@ -599,7 +599,7 @@ local teleporterData = {
 local Allowed_Zones = {
     [1] = { "qeytoqrg", 4, 0, 0, 83, 508, 0, 0, 5, 0, "The Qeynos Hills" },
     [2] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
-    [3] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "The Mosswood Tower" },
+    [3] = { "kurn", 97, 0, 0, -78, 195, 2, 183, 15, 0, "The Mosswood Tower" },
     [4] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" },
     [5] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
 }
@@ -687,7 +687,7 @@ function event_say(e)
         for zoneKey, zoneData in ipairs(Allowed_Zones) do
             local zoneShortName = zoneData[1]
             local zoneLongName = zoneData[11]
-            eq.debug("Message: " .. e.message .. ", zoneShortName: " .. zoneShortName .. ", zoneLongName: " .. zoneLongName)
+            -- eq.debug("Message: " .. e.message .. ", zoneShortName: " .. zoneShortName .. ", zoneLongName: " .. zoneLongName)
 
             if e.message == zoneLongName then
                 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
@@ -702,18 +702,18 @@ function event_say(e)
                 local playerLevel = player:GetLevel() -- Get the player's level
                 local expansion = zoneData[10]
 
-                if expansion <= MaxExpansionAllowed then
-                    if playerLevel <= minLvl and minLvl ~= 0 then
-                        player:Message(colorTalk,
-                            'Your level is too low to enter the requested zone: ' .. zoneLongName)
-                        -- Can't enter this one because level too low
-                        return
-                    else
-                        player:Message(colorTalk,
-                            'Teleporting you to ' .. zoneLongName .. '.');
-                        e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
-                        return
-                    end
+                eq.debug("Player level: " .. playerLevel .. ", minLvl: " .. minLvl)
+
+                if playerLevel <= minLvl and minLvl ~= 0 then
+                    player:Message(colorTalk,
+                        'Your level is too low to enter the requested zone: ' .. zoneLongName)
+                    -- Can't enter this one because level too low
+                    return
+                else
+                    player:Message(colorTalk,
+                        'Teleporting you to ' .. zoneLongName .. '.');
+                    e.other:MovePC(zoneID, safeX, safeY, safeZ, safeHeading);
+                    return
                 end
             end
         end

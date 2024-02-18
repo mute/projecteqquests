@@ -600,7 +600,7 @@ local Allowed_Zones = {
     [1] = { "qeytoqrg", 4, 0, 0, 83, 508, 0, 0, 5, 0, "The Qeynos Hills" },
     [2] = { "misty", 33, 0, 0, 0, 0, 7, 0, 10, 0, "Mosswood" },
     [3] = { "kurn", 97, 0, 0, -78, 195, 2, 183, 15, 0, "The Mosswood Tower" },
-    [4] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" },
+    [4] = { "crushbone", 58, 0, 0, 158, -644, 4, 0, 25, 0, "Crushbone Keep" },
     [5] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
 }
 
@@ -616,7 +616,7 @@ local Leveling_Zones = {
         [1] = { "kurn", 97, 0, 0, 0, 0, 7, 0, 15, 0, "The Mosswood Tower" },
     },
     ['25-30'] = {
-        [1] = { "crushbone", 59, 0, 0, 120, -330, -178, 0, 25, 0, "Crushbone Keep" },
+        [1] = { "crushbone", 58, 0, 0, 158, -644, 4, 0, 25, 0, "Crushbone Keep" },
         [2] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
     }
 }

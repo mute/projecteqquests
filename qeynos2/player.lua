@@ -1,6 +1,6 @@
 function event_enter_zone(e)
 	if not e.other:IsTaskActive(6) and not e.other:IsTaskCompleted(6) then
-		e.other:AssignTask(6);
+		e.other:AssignTask(6,e.self:GetID());
 	end
 end
 

@@ -702,9 +702,9 @@ function event_say(e)
                 local playerLevel = player:GetLevel() -- Get the player's level
                 local expansion = zoneData[10]
 
-                eq.debug("Player level: " .. playerLevel .. ", minLvl: " .. minLvl)
+                -- eq.debug("Player level: " .. playerLevel .. ", minLvl: " .. minLvl)
 
-                if playerLevel <= minLvl and minLvl ~= 0 then
+                if playerLevel < minLvl and minLvl ~= 0 then
                     player:Message(colorTalk,
                         'Your level is too low to enter the requested zone: ' .. zoneLongName)
                     -- Can't enter this one because level too low

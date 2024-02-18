@@ -687,7 +687,7 @@ function event_say(e)
         for zoneKey, zoneData in ipairs(Allowed_Zones) do
             local zoneShortName = zoneData[1]
             local zoneLongName = zoneData[11]
-            eq.debug("Message: " .. e.message .. ", zoneKey: " .. zoneKey)
+            eq.debug("Message: " .. e.message .. ", zoneShortName: " .. zoneShortName .. ", zoneLongName: " .. zoneLongName)
 
             if e.message == zoneLongName then
                 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}

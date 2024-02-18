@@ -1,4 +1,5 @@
 function event_enter_zone(e)
+	eq.debug("Entered zone");
 	if not e.other:IsTaskActive(6) and not e.other:IsTaskCompleted(6) then
 		e.other:AssignTask(6,e.self:GetID());
 	end

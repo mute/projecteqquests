@@ -41,7 +41,11 @@ sub EVENT_ZONE {
 	quest::debug("target_instance_id " . $target_instance_id);
 	quest::debug("target_instance_version " . $target_instance_version);
 
-    
+    if ($from_zone_id == 151) {
+        $client->MovePC(151, quest::GetZoneSafeX(151), quest::GetZoneSafeY(151), quest::GetZoneSafeZ(151), 0);
+    }
+
+
 	plugin::CheckWorldWideBuffs($client);
 }
 

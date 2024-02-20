@@ -53,6 +53,15 @@ sub GetClassMap {
     );
 }
 
+sub GetClassBitmask {
+    my ($class_id) = @_;
+    if ($class_id < 1 || $class_id > 16) {
+        return -1;
+    }
+    my $bitmask = 1 << ($class_id - 1);
+    return $bitmask;
+}
+
 sub IsMeleeClass {
     my $class_id = shift;
     my @melee_classes = (1, 3, 4, 5, 7, 8, 9, 15, 16);

@@ -1,8 +1,8 @@
 sub EVENT_SAY {
     my $classes = $client->GetClassesBitmask();
     if ($npc->GetClass() >= 20 && $npc->GetClass() <= 35) {
-        if ($text=~/hail/i ) {
-            plugin::NPCTell("Yes, I am a guildmaster");
+        if ($text=~/hail/i && !($classes & (plugin::GetClassBitmask($npc->GetClass() - 19)))) {
+            plugin::NPCTell("Yes, I am a guildmaster, no you don't have my class yet.");
         }
     }
 }

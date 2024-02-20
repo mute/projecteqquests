@@ -99,16 +99,18 @@ sub AddClass {
     if ($class_id && $class_id > 0 && $class_id < 17 && GetClassesCount($client) < 3) {
         $client->AddExtraClass($class_id);
 
-        if ($class_id == 8) {
-            quest::permaclass(8);
-        }
-
         my $class_name = quest::getclassname($class_id);
         my $full_class_name = GetPrettyClassString();        
 
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
         GrantClassesAA();
-    }
+
+        if ($class_id == 8) {
+            quest::permaclass(8);
+        } elsif (plugin::IsMeleeClass($class_id) && !plugin::IsMeleeClass($client->GetClass())) {
+            quest::permaclass($class_id);
+        }
+    }    
 }
 
 sub GetPrettyClassString {

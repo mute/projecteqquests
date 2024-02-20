@@ -81,6 +81,11 @@ sub EVENT_SAY {
                                 "All class combinations that include a melee or Hybrid must have a Melee or Hybrid as their base class.");
         }
     }
+
+    if ($text eq "class_select") {
+        AddClass($player_class_id);
+
+    }
 }
 
 

@@ -10,5 +10,5 @@ sub EVENT_SPELL_EFFECT_CLIENT {
 	quest::debug("spell " . $spell);
 
     my $x = $client->GetX();
-    quest::debug("X: $x");
+    $client->Message(13,"X: $x");
 }

@@ -9,6 +9,9 @@ sub EVENT_SPELL_EFFECT_CLIENT {
 	quest::debug("buff_slot " . $buff_slot);
 	quest::debug("spell " . $spell);
 
+    my $client = plugin::val('$client');
     my $x = $client->GetX();
     $client->Message(13,"X: $x");
+    quest::debug("X: $x");
+
 }

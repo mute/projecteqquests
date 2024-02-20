@@ -1,3 +1,12 @@
+sub EVENT_SAY {
+    my $classes = $client->GetClassesBitmask();
+    if ($npc->GetClass() >= 20 && $npc->GetClass() <= 35) {
+        if ($text=~/hail/i ) {
+            plugin::NPCTell("Yes, I am a guildmaster");
+        }
+    }
+}
+
 sub EVENT_TICK {
     if ($npc->IsPet() && $npc->GetOwner()->IsClient()) { 
         UPDATE_PET_BAG($npc);

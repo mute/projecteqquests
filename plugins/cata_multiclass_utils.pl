@@ -1,9 +1,13 @@
 sub CommonCharacterUpdate {    
     my $client = shift || plugin::val('$client');
-    my $void_zone = quest::GetZoneID("thevoida");
-    my $zoneid = $client->GetZoneID();
-    my $instanceid = $client->GetInstanceID();
+    GrantClassesAA();
+    
+    if (!$client->GetBucket("First-Login")) {
+        WelcomePopUp();
+    }
+}
 
+sub WelcomePopUp {
     my $color_end = "</c>";
     my $break = "<br>";
     my $yellow = plugin::PWColor("Yellow");
@@ -13,77 +17,19 @@ sub CommonCharacterUpdate {
     my $website = plugin::PWHyperLink("https://heroesjourneyeq.com","website");
     my $discord = plugin::PWHyperLink("https://discord.gg/h4eRaGjc5T","discord");
 
-    my $character_zeb_progress = $client->GetBucket("zeb-progress") || 0;
+    my $popup_title = "Welcome to The Heroes' Journey";
+    my $popup_message = 
+        "The Heroes' Journey is a single-box, small-group focused server with a variety of ${yellow}UNIQUE${color_end} mechanics and features. " .
+        "We have worked hard on this project to deliver an experience never seen before, and hope that you enjoy the result! Please visit our $website and $discord for more information!${break}${break}" .
+        "${green}Multiclassing${color_end}: Characters on The Heroes' Journey each have three classes. You chose one during character creation, " .
+        "and you will choose two more now. You will gain the abilities and attributes of each of the chosen classes; " .
+        "Spells, Skills, Equipment, Alternate Advancement abilities, and even more 'hidden' features like AC caps and melee damage bonuses. ${break}${break}" .
+        "${green}Patcher and Client software${color_end}: You ${red}MUST${color_end} use our client on this server. " .
+        "This isn't a simple matter of spell and string files; much of the multiclassing system will not work at all without the custom client modifications we have made. ${break}${break}" .
+        "${green}Permanent Buffs${color_end}: Buff timers do not count down if they were cast by yourself or a group member. This also applies to pets! ${break}${break}" .
+        "${green}Large Bags${color_end}: Bags of greater than 10 slots are available! ${break}${break}";
 
-    # Check if not in an instance and has less than 3 classes
-    if (!$instanceid && $character_zeb_progress == 0) {
-        quest::debug("Not in an instance!");
-        
-        # Create a new instance of 'thevoida'
-        my $instance = quest::CreateInstance('thevoida', 1, 360000);
-        $client->AssignToInstance($instance);
-
-        # Save the client's last position
-        $client->SetBucket("Last-Position-Zone", $zoneid);
-        $client->SetBucket("Last-Position-X", $client->GetX());
-        $client->SetBucket("Last-Position-Y", $client->GetY());
-        $client->SetBucket("Last-Position-Z", $client->GetZ());
-        $client->SetBucket("Last-Position-Heading", $client->GetHeading());
-
-        # Move the client to the instance
-        $client->MovePCInstance($void_zone, $instance, 50 + (int(rand(20 + 1)) - 10), 50 + (int(rand(20 + 1)) - 10), 2, 350 + (int(rand(30 + 1)) - 15));
-    } else {
-
-        if (!$client->GetBucket("newbie-writ") && $zoneid != $void_zone) { # Do not trigger in pocket plane
-            $client->SummonItem(18471); # A Faded Writ
-            $client->SetBucket("newbie-writ", "1");            
-        } elsif ($character_zeb_progress == 0) { # Trigger in pocket plane 
-            my $popup_title = "Welcome to The Heroes' Journey";
-            my $popup_message = 
-                "The Heroes' Journey is a single-box, small-group focused server with a variety of ${yellow}UNIQUE${color_end} mechanics and features. " .
-                "We have worked hard on this project to deliver an experience never seen before, and hope that you enjoy the result! Please visit our $website and $discord for more information!${break}${break}" .
-                "${green}Multiclassing${color_end}: Characters on The Heroes' Journey each have three classes. You chose one during character creation, " .
-                "and you will choose two more now. You will gain the abilities and attributes of each of the chosen classes; " .
-                "Spells, Skills, Equipment, Alternate Advancement abilities, and even more 'hidden' features like AC caps and melee damage bonuses. ${break}${break}" .
-                "${green}Patcher and Client software${color_end}: You ${red}MUST${color_end} use our client on this server. " .
-                "This isn't a simple matter of spell and string files; much of the multiclassing system will not work at all without the custom client modifications we have made. ${break}${break}" .
-                "${green}Permanent Buffs${color_end}: Buff timers do not count down if they were cast by yourself or a group member. This also applies to pets! ${break}${break}" .
-                "${green}Large Bags${color_end}: Bags of greater than 10 slots are available! ${break}${break}";
-
-                quest::popup($popup_title, $popup_message);
-        }
-
-        GrantClassesAA();
-    }    
-}
-
-sub ReturnToZone {
-    my $client = shift || plugin::val('$client');
-
-    # Check if all last position values exist
-    my $last_zone = $client->GetBucket("Last-Position-Zone");
-    my $last_x = $client->GetBucket("Last-Position-X");
-    my $last_y = $client->GetBucket("Last-Position-Y");
-    my $last_z = $client->GetBucket("Last-Position-Z");
-    my $last_heading = $client->GetBucket("Last-Position-Heading");
-
-    # Use bind point if any last position value is missing
-    unless (defined $last_zone && defined $last_x && defined $last_y && defined $last_z && defined $last_heading) {
-        $last_zone = $client->GetBindZoneID();
-        $last_x = $client->GetBindX();
-        $last_y = $client->GetBindY();
-        $last_z = $client->GetBindZ();
-        $last_heading = $client->GetBindHeading();
-    }
-
-    if ($client->GetLevel() == 1) {
-        my $name = $client->GetCleanName();
-        my $full_class_name = GetPrettyClassString($client);
-        plugin::WorldAnnounce("The Hero, $name ($full_class_name), has emerged from the blind abyss.");
-    }
-
-    # Move the client to the determined position
-    $client->MovePC($last_zone, $last_x, $last_y, $last_z, $last_heading);
+    quest::popup($popup_title, $popup_message);
 }
 
 sub GetClassMap {

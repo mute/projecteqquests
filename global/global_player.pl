@@ -33,6 +33,8 @@ sub EVENT_DISCOVER_ITEM {
 
 sub EVENT_ZONE {
 	plugin::CheckWorldWideBuffs($client);
+
+    quest::debug("We are zoning out of: $zoneid");
 }
 
 sub EVENT_WARP {

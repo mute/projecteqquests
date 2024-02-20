@@ -84,7 +84,7 @@ sub EVENT_SAY {
 
     if ($text eq "class_confirm") {
         if (plugin::GetClassesCount($client) < 3) {
-            AddClass($player_class_id);
+            plugin::AddClass($player_class_id);
         }
     }
 }

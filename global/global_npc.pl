@@ -24,7 +24,7 @@ sub EVENT_SAY {
             );
             
             my $greeting = $class_greetings{$player_class_id} // "Greetings, traveler. Are you seeking guidance or knowledge?";
-            if (!($classes & plugin::GetClassBitmask($player_class_id))) {
+            if (!($classes & plugin::GetClassBitmask($player_class_id)) && plugin::GetClassesCount($client) < 3) {
                 plugin::NPCTell($greeting);
             }
         }

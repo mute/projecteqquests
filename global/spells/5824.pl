@@ -11,4 +11,6 @@ sub EVENT_SPELL_EFFECT_CLIENT {
 
     my $x = $client->GetX();
     $client->Message(13,"X: $x");
+
+    return 1;
 }

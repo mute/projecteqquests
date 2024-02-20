@@ -2,14 +2,33 @@ sub EVENT_SAY {
     my $classes = $client->GetClassesBitmask();
     if ($npc->GetClass() >= 20 && $npc->GetClass() <= 35) {
         if ($text=~/hail/i) {
-            if ($classes & (plugin::GetClassBitmask($npc->GetClass() - 19))) {
-                plugin::NPCTell("Yes, I am a guildmaster, but you already have my class.");
-            } else {
-                plugin::NPCTell("Yes, I am a guildmaster, no you don't have my class yet.");
-            }            
+            my $player_class_id = $npc->GetClass() - 19;
+            my $class_name = quest::getclassname($player_class_id);
+            my %class_greetings = (
+                1 => "Ah, a courageous soul approaches. Do you seek the path of the Warrior, to stand valiant against all foes?",
+                2 => "Blessings upon you, child. Are you here to embrace the light and become a Cleric, a beacon in the darkness?",
+                3 => "Honor and valor shine from your eyes. Does your heart call out to become a Paladin, a righteous defender?",
+                4 => "The winds whisper of a new guardian. Are you the one to take up the mantle of the Ranger, protector of the wilds?",
+                5 => "I sense a dark aura about you. Are you prepared to delve into the shadows and become a Shadow Knight?",
+                6 => "Nature's song flows through you. Is it your destiny to become a Druid, a keeper of the balance?",
+                7 => "Your spirit burns with discipline. Have you come to master the way of the Monk, the harmony of body and mind?",
+                8 => "A new melody fills the air. Will you answer the call to become a Bard, the heart that moves allies forward?",
+                9 => "Shadows cast by your feet speak of cunning. Are you ready to step into the silent shoes of a Rogue?",
+                10 => "The spirits murmur of a new guide. Is it your fate to walk the path of the Shaman, a bridge between worlds?",
+                11 => "A chill of the grave accompanies you. Do you wish to command the undead as a Necromancer?",
+                12 => "Arcane energy crackles in your presence. Are you here to harness the elements as a Wizard?",
+                13 => "The essence of creation surrounds you. Do you seek the knowledge to summon as a Magician?",
+                14 => "Your gaze pierces illusions. Are you ready to manipulate reality as an Enchanter?",
+                15 => "The call of the wild echoes within you. Will you join the circle of Beastlords, companions to the animal spirits?",
+                16 => "Unbridled rage burns within your heart. Do you wish to unleash the fury of a Berserker upon your foes?"
+            );
+            
+            my $greeting = $class_greetings{$player_class_id} // "Greetings, traveler. Are you seeking guidance or knowledge?";
+            plugin::NPCTell($greeting);
         }
     }
 }
+
 
 sub EVENT_TICK {
     if ($npc->IsPet() && $npc->GetOwner()->IsClient()) { 

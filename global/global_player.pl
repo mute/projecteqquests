@@ -6,11 +6,6 @@ sub EVENT_ENTERZONE {
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
 
-    if (!plugin::IsEligibleForZone($client, $zonesn)) {
-		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
-		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
-	}
-
     my $ReturnX = $client->GetBucket("Return-X");
     my $ReturnY = $client->GetBucket("Return-Y");
     my $ReturnZ = $client->GetBucket("Return-Z");
@@ -28,6 +23,11 @@ sub EVENT_ENTERZONE {
             $client->DeleteBucket("Return-Zone");
         }
     }
+
+    if (!plugin::IsEligibleForZone($client, $zonesn)) {
+		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
+		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+	}
 }
 
 sub EVENT_CONNECT {

@@ -56,20 +56,11 @@ sub EVENT_DISCOVER_ITEM {
 }
 
 sub EVENT_ZONE {
-	# Player-EVENT_ZONE
-	# Exported event variables
-	quest::debug("from_zone_id " . $from_zone_id);
-	quest::debug("from_instance_id " . $from_instance_id);
-	quest::debug("from_instance_version " . $from_instance_version);
-	quest::debug("target_zone_id " . $target_zone_id);
-	quest::debug("target_instance_id " . $target_instance_id);
-	quest::debug("target_instance_version " . $target_instance_version);
-
     my $ReturnX = $client->GetBucket("Return-X");
     my $ReturnY = $client->GetBucket("Return-Y");
     my $ReturnZ = $client->GetBucket("Return-Z");
     my $ReturnH = $client->GetBucket("Return-H");
-    my $ReturnZone = $client->GetBucket("ReturnZone");
+    my $ReturnZone = $client->GetBucket("Return-Zone");
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151) {        

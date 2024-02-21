@@ -65,7 +65,7 @@ sub EVENT_ZONE {
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151) {        
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
-        } else {
+        } elsif ($from_zone_id != $ReturnZone) {
             $client->DeleteBucket("Return-X");
             $client->DeleteBucket("Return-Y");
             $client->DeleteBucket("Return-Z");

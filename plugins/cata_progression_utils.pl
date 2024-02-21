@@ -5,3 +5,9 @@ sub CheckLevelCap {
     
     $client->SetBucket("CharMaxLevel", $max_level);
 }
+
+sub IsEligibleForZone {
+    my ($client, $zoneid) = $_;
+
+    return 1;
+}

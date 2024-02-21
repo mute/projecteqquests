@@ -5,11 +5,26 @@ sub EVENT_SIGNAL {
 sub EVENT_ENTERZONE { 
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
+
+    if (!plugin::IsEligibleForZone($client, $zonesn)) {
+		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
+		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+	}
 }
 
 sub EVENT_CONNECT {
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
+
+    if (!$client->GetBucket("CharMaxLevel")) {
+		$client->SetBucket("CharMaxlevel", 51); #By default, on initial log in (first time) we are setting Max Level to 51.
+        plugin::YellowText("Your Level Cap has been set to 51.");
+	}
+
+    if (!plugin::IsEligibleForZone($client, $zonesn)) {
+		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
+		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+	}
 }
 
 sub EVENT_LEVEL_UP {
@@ -24,6 +39,15 @@ sub EVENT_LEVEL_UP {
 
         plugin::WorldAnnounce("$name ($full_class_name) has reached Level $new_level.");
     }
+}
+
+sub EVENT_CLICKDOOR {
+	my $target_zone = plugin::get_target_door_zone($zonesn, $doorid, $version);
+
+	if (!plugin::is_eligible_for_zone($client, $target_zone, 1)) {
+		#Disallow Zone
+		return 1;
+	}
 }
 
 sub EVENT_DISCOVER_ITEM {
@@ -41,8 +65,22 @@ sub EVENT_ZONE {
 	quest::debug("target_instance_id " . $target_instance_id);
 	quest::debug("target_instance_version " . $target_instance_version);
 
-    if ($from_zone_id == 151) {
-        #$client->MovePC(151, quest::GetZoneSafeX(151), quest::GetZoneSafeY(151), quest::GetZoneSafeZ(151), 0);
+    my $ReturnX = $client->GetBucket("Return-X");
+    my $ReturnY = $client->GetBucket("Return-Y");
+    my $ReturnZ = $client->GetBucket("Return-Z");
+    my $ReturnH = $client->GetBucket("Return-H");
+    my $ReturnZone = $client->GetBucket("ReturnZone");
+
+    if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
+        if ($from_zone_id == 151) {        
+            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
+        } else {
+            $client->DeleteBucket("Return-X");
+            $client->DeleteBucket("Return-Y");
+            $client->DeleteBucket("Return-Z");
+            $client->DeleteBucket("Return-H");
+            $client->DeleteBucket("Return-Zone");
+        }
     }
 
 

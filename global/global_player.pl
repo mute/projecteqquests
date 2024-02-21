@@ -10,6 +10,24 @@ sub EVENT_ENTERZONE {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
+
+    my $ReturnX = $client->GetBucket("Return-X");
+    my $ReturnY = $client->GetBucket("Return-Y");
+    my $ReturnZ = $client->GetBucket("Return-Z");
+    my $ReturnH = $client->GetBucket("Return-H");
+    my $ReturnZone = $client->GetBucket("Return-Zone");
+
+    if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
+        if ($from_zone_id == 151) {
+            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
+        } elsif ($from_zone_id != $ReturnZone) {
+            $client->DeleteBucket("Return-X");
+            $client->DeleteBucket("Return-Y");
+            $client->DeleteBucket("Return-Z");
+            $client->DeleteBucket("Return-H");
+            $client->DeleteBucket("Return-Zone");
+        }
+    }
 }
 
 sub EVENT_CONNECT {
@@ -56,24 +74,7 @@ sub EVENT_DISCOVER_ITEM {
 }
 
 sub EVENT_ZONE {
-    my $ReturnX = $client->GetBucket("Return-X");
-    my $ReturnY = $client->GetBucket("Return-Y");
-    my $ReturnZ = $client->GetBucket("Return-Z");
-    my $ReturnH = $client->GetBucket("Return-H");
-    my $ReturnZone = $client->GetBucket("Return-Zone");
 
-    if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
-        if ($from_zone_id == 151) {
-            $target_zone_id = $ReturnZone;
-            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
-        } elsif ($from_zone_id != $ReturnZone) {
-            $client->DeleteBucket("Return-X");
-            $client->DeleteBucket("Return-Y");
-            $client->DeleteBucket("Return-Z");
-            $client->DeleteBucket("Return-H");
-            $client->DeleteBucket("Return-Zone");
-        }
-    }
 
 	plugin::CheckWorldWideBuffs($client);
 }

@@ -47,8 +47,6 @@ sub EVENT_ZONE {
 
 
 	plugin::CheckWorldWideBuffs($client);
-
-    return 0;
 }
 
 sub EVENT_WARP {

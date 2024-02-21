@@ -42,7 +42,7 @@ sub EVENT_ZONE {
 	quest::debug("target_instance_version " . $target_instance_version);
 
     if ($from_zone_id == 151) {
-        $client->MovePC(151, quest::GetZoneSafeX(151), quest::GetZoneSafeY(151), quest::GetZoneSafeZ(151), 0);
+        #$client->MovePC(151, quest::GetZoneSafeX(151), quest::GetZoneSafeY(151), quest::GetZoneSafeZ(151), 0);
     }
 
 

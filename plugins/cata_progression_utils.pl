@@ -149,15 +149,15 @@ sub set_subflag {
     # Check if the stage is now complete
     if (is_stage_complete($client, $stage)) {
         if ($stage eq 'RoK' && $client->GetBucket("CharMaxLevel") == 51) {
-            $client->SetBucket("CharMaxlevel", 60);
+            $client->SetBucket("CharMaxLevel", 60);
         }
 
         if ($stage eq 'PoP' && $client->GetBucket("CharMaxLevel") == 60) {
-            $client->SetBucket("CharMaxlevel", 65);
+            $client->SetBucket("CharMaxLevel", 65);
         }
 
         if ($stage eq 'GoD' && $client->GetBucket("CharMaxLevel") == 65) {
-            $client->SetBucket("CharMaxlevel", 70);
+            $client->SetBucket("CharMaxLevel", 70);
         }
 
         $client->Message(4, "You have completed a progression stage!");

@@ -6,7 +6,7 @@ sub EVENT_ENTERZONE {
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
 
-    if (!plugin::IsEligibleForZone($client, $zonesn)) {
+	if (!plugin::is_eligible_for_zone($client, $zonesn)) {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
@@ -21,7 +21,7 @@ sub EVENT_CONNECT {
         plugin::YellowText("Your Level Cap has been set to 51.");
 	}
 
-    if (!plugin::IsEligibleForZone($client, $zonesn)) {
+	if (!plugin::is_eligible_for_zone($client, $zonesn)) {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
@@ -78,7 +78,10 @@ sub EVENT_ZONE {
         }
     }
 
-	plugin::CheckWorldWideBuffs($client);
+    if (!plugin::is_eligible_for_zone($client, $target_zone_id)) {
+		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
+		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+	}
 }
 
 sub EVENT_WARP {

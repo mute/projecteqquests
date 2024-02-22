@@ -1,14 +1,15 @@
 sub EVENT_DEATH_COMPLETE {
-quest::spawn(12000082,0,0,$x,$y,($z+10));
+    if (plugin::subflag_exists($npc->GetCleanName())) {
+        my $flag_mob = quest::spawn2(26000, 0, 0, $x, $y, ($z + 10), 0); # Spawn a flag mob
+        my $new_npc = $entity_list->GetNPCByID($flag_mob);
+        
+        $new_npc->SetBucket("Flag-Name", $npc->GetCleanName(), "1200s");
+        $new_npc->SetBucket("Stage-Name", plugin::get_subflag_stage($npc->GetCleanName()), "1200s");
+    }
+}
 
-$nanzata = $entity_list->GetMobByNpcTypeID(128090);
-$ventani = $entity_list->GetMobByNpcTypeID(128091);
-$hraashna = $entity_list->GetMobByNpcTypeID(128093);
-if (!$nanzata && !$ventani && !$hraashna) {
-#quest::signalwith(128094,66,0); # NPC: #The_Sleeper
-quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determined to unleash doom!");
+sub EVENT_KILLED_MERIT {
+    if (plugin::subflag_exists($npc->GetCleanName())) {
+        plugin::set_subflag($client, plugin::get_subflag_stage($npc->GetCleanName()), $npc->GetCleanName());
+    }
 }
-else { 
-quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determined to unleash doom!");
-}
- }

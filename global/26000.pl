@@ -1,7 +1,7 @@
 sub EVENT_SPAWN {
   quest::settimer(1, 1200);
 
-  quest::emote("The remnant rises from the corpse and stares around, as if waiting...");
+  quest::emote("rises from the corpse and stares around, as if waiting...");
 }
 
 sub EVENT_SAY {
@@ -13,6 +13,6 @@ sub EVENT_SAY {
 }
 
 sub EVENT_TIMER {
-    quest::emote("The remnant vanishes.");
+    quest::emote("vanishes.");
     quest::depop();
 }

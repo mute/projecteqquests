@@ -61,10 +61,12 @@ sub EVENT_ZONE {
     my $ReturnZ = $client->GetBucket("Return-Z");
     my $ReturnH = $client->GetBucket("Return-H");
     my $ReturnZone = $client->GetBucket("Return-Zone");
+    
+    quest::debug("WTF? $ReturnX, $ReturnY, $ReturnZ, $ReturnH, $ReturnZone");
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151) {
-            #$client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
+            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             quest::debug("$ReturnZone");
             return $ReturnZone;
         } elsif ($from_zone_id != $ReturnZone) {

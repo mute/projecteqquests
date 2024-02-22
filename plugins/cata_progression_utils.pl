@@ -146,7 +146,7 @@ sub set_subflag {
     quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
 
     plugin::YellowText("You have gained a progression flag!");
-    plugin::Message(263, "Your memories become more clear, you see the way forward drawing closer.");
+    $client->Message(263, "Your memories become more clear, you see the way forward drawing closer.");
 
     # Check if the stage is now complete
     if (is_stage_complete($client, $stage)) {

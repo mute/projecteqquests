@@ -68,14 +68,13 @@ sub EVENT_ZONE {
         if ($from_zone_id == 151) {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             quest::debug("$ReturnZone");
-            #return 32;
             return int($ReturnZone);
         } elsif ($from_zone_id != $ReturnZone) {
-            #$client->DeleteBucket("Return-X");
-            #$client->DeleteBucket("Return-Y");
-            #$client->DeleteBucket("Return-Z");
-            #$client->DeleteBucket("Return-H");
-            #$client->DeleteBucket("Return-Zone");
+            $client->DeleteBucket("Return-X");
+            $client->DeleteBucket("Return-Y");
+            $client->DeleteBucket("Return-Z");
+            $client->DeleteBucket("Return-H");
+            $client->DeleteBucket("Return-Zone");
         }
     }
 

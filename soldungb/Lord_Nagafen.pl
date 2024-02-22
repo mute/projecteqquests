@@ -64,7 +64,7 @@ sub WIPE_AGGRO {
 
 sub EVENT_DEATH_COMPLETE {
     if (plugin::subflag_exists($npc->GetCleanName())) {
-        my $flag_mob = quest::spawn2(26000, 0, 0, 0, $x, $y, ($z + 10)); # Spawn a flag mob
+        my $flag_mob = quest::spawn2(26000, 0, 0, $x, $y, ($z + 10), 0); # Spawn a flag mob
 
         #$flag_mob->SetBucket("Flag-Name", $npc->GetCleanName(), "1200s");
         #$flag_mob->SetBucket("Stage-Name", plugin::get_subflag_stage($npc->GetCleanName()), "1200s");

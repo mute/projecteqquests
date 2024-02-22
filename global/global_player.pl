@@ -44,7 +44,7 @@ sub EVENT_LEVEL_UP {
 sub EVENT_CLICKDOOR {
 	my $target_zone = plugin::get_target_door_zone($zonesn, $doorid, $version);
 
-	if (!plugin::IsEligibleForZone($client, $target_zone, 1)) {		
+	if (!plugin::is_eligible_for_zone($client, $target_zone, 1)) {		
 		return 1;
     }
 }

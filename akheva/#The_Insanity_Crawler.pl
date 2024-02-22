@@ -9,7 +9,3 @@ sub EVENT_SLAY {
 sub EVENT_DEATH_COMPLETE {
     quest::spawn2(202368, 0, 0, $npc->GetX() + 3, $npc->GetY() + 3, $npc->GetZ(), 0);
 }
-
-sub EVENT_KILLED_MERIT {
-	plugin::set_subflag($client, 'SoL', $npc->GetCleanName());
-}

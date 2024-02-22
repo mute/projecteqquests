@@ -61,7 +61,6 @@ sub EVENT_ZONE {
     my $ReturnZ = $client->GetBucket("Return-Z");
     my $ReturnH = $client->GetBucket("Return-H");
     my $ReturnZone = $client->GetBucket("Return-Zone");
-    return 32;
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151) {

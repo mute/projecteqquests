@@ -6,14 +6,14 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18731) then
-		e.other:Message(MT.Yellow,"A jovial yet commanding halfling speaks to you. 'Why hello there. friend! I am Beek Guinders, your new Guild Master. Read the note in your inventory and when you are ready to begin your training, hand it to me!'");
+	if(e.other:HasItem(18731) == true) then
+		e.other:Message(15,"A jovial yet commanding halfling speaks to you. 'Why hello there. friend! I am Beek Guinders, your new Guild Master. Read the note in your inventory and when you are ready to begin your training, hand it to me!'");
 	end
 end
 
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Emote("waves enthusiastically and says, Hay, ho, there, young " .. e.other:GetRaceName() .. "!  I'd love to yak it up with you but I'm a bit busy at the moment, trying to find some [" .. eq.say_link("help",false,"help") .. "].");
+		e.self:Emote("waves enthusiastically and says, Hay, ho, there, young " .. e.other:Race() .. "!  I'd love to yak it up with you but I'm a bit busy at the moment, trying to find some [" .. eq.say_link("help",false,"help") .. "].");
 	elseif(e.message:findi("help")) then
 		e.self:Say("Well, we're experimenting with some tanning methods but we're running low on supplies. We need to find someone to go out and [" .. eq.say_link("gather some things",false,"gather some things") .. "]. Seems no one wants to do an honest day's work any more. I'd do it myself but, errrr, my, uhhh, foot hair has been hurting lately... yes, that's it.");
 	elseif(e.message:findi("gather some thing")) then
@@ -50,7 +50,7 @@ function event_trade(e)
 	else
 		e.self:Say("Whoooops! I'll need the two ruined wolf pelts along with the berries and black wolf skin before I can reward you, " .. e.other:GetName() .. ". Don't dawdle.");
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19111 -- Beek_Guinders

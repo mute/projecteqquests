@@ -1,34 +1,23 @@
-<br/>
-<p align="center">
-  <h3 align="center">ProjectEQ Quest Repository</h3>
+# FVProject Quests
+These are the quest files for [The Firionia Vie Project](https://fvproject.com/) EQEmu Server.  These quest scripts cover "Classic" EverQuest, prior to any expansion content.
 
-</p>
+## > How to use
+Download or [Clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) this repository and simply delete everything out of your compiled server "quests" folder, and replace with all of this.
 
-![Downloads](https://img.shields.io/github/downloads/ProjectEQ/projecteqquests/total) ![Contributors](https://img.shields.io/github/contributors/ProjectEQ/projecteqquests?color=dark-green) ![Forks](https://img.shields.io/github/forks/ProjectEQ/projecteqquests?style=social) ![Stargazers](https://img.shields.io/github/stars/ProjectEQ/projecteqquests?style=social) ![Issues](https://img.shields.io/github/issues/ProjectEQ/projecteqquests) 
-
-## About The Project
-
-Primary quest repository for EQEmu.
-
-## Built With
-
-- Perl
-- LUA
+## Open Source
+These quest scripts are open source.  Please feel free to use them as you see fit under the terms of the [MIT license](https://github.com/Gates-Of-Time/FVProject-Quests/blob/master/LICENSE)
 
 ## Contributing
+Please review our [Coding Conventions](https://github.com/Gates-Of-Time/FVProject-Quests/blob/master/CONTRIBUTING.md) and feel free to join in!
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+## Issue Reporting
+Please join our [Discord Server](https://discord.gg/mkhHSN5) and report any issues in the #issue-reporting channel.
 
-- If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request and it will be reviewed.
-- Please make sure you check your spelling and grammar.
-- Create individual PR for each suggestion.
-- LUA is the preferred language moving forward.
-- For larger events that encompass a number of npcs and functions, please consider creating the event as an encounter.
+# References
+Please access the [EQEmu GitBook Wiki](https://eqemu.gitbook.io/server/) for information regarding the [Quest API](https://eqemu.gitbook.io/quest-api/) or any [Database References](https://eqemu.gitbook.io/database-schema/)
 
-### Creating A Pull Request
+## Contributors
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+<a href="https://github.com/gates-of-time/fvproject-quests/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=gates-of-time/fvproject-quests" />
+</a>

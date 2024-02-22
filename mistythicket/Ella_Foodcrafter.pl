@@ -22,7 +22,7 @@ sub EVENT_SAY {
     quest::say("Hi, hi. I've got a lot to do, many mouths to feed, some filthy goblins to smack. If you don't need me for something, please let me go back to my work. Karana watch over you.");
   }
   if (($text=~/two tasks/i) && (defined $qglobals{shiny_tin_bowl})) {
-    quest::say("Well, ya ask before ya act. That's a good sign. What I need isn't easy to find. First, I need a mixture. Plain sounding enough but it's a special one. Cleanses the mind and focuses the earth's energies into a forest walker's mind. I don't know how to make it. I don't even know what it's called. I merely know it exists and we'll be needing it for our task. When ya do find how to make it ya can mix it in that bowl. Keep it when you're done, it's a good bowl.");
+    quest::say("Well, ya ask before ya act. That's a good sign. What I need isn't easy to find. First, I need a mixture. Plain sounding enough but it's a special one. Cleanses the mind and focuses the earth's energies into a forest walker's mind. I don't know how to make it. I don't even know what it's called. I merely know it exists and we'll be needing it for our task. When ya do find how to make it ya can mix it in that bowl and then you can worry about the [second task]. Keep it when you're done, it's a good bowl.");
 	quest::summonitem(17860); # Item: Shiny Tin Bowl
 	quest::delglobal("shiny_tin_bowl");
   }
@@ -33,7 +33,7 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 18959 => 1)) {
-    quest::say("Hmmm. I've been waiting for someone to bring me this. I'm sorry such a young one as you has taken up this task. Maybe the sky god blesses ya though. Aye, ya have that look in your eye. Our task is to focus the blessings of the gods and cleanse the filth from the land. I have two tasks for ya.");
+    quest::say("Hmmm. I've been waiting for someone to bring me this. I'm sorry such a young one as you has taken up this task. Maybe the sky god blesses ya though. Aye, ya have that look in your eye. Our task is to focus the blessings of the gods and cleanse the filth from the land. I have [two tasks] for ya.");
     quest::setglobal("shiny_tin_bowl", 1, 0, "F");
   }
   elsif (plugin::check_handin(\%itemcount, 20473 => 1, 20460 => 1)) {

@@ -64,8 +64,8 @@ sub EVENT_TIMER {
 	}
 
 	if($timer eq 1) {
-		if($npc->IsEngaged()) {
-			quest::spawn2(quest::ChooseRandom(214114,214136),0,0,519,216,-293,132); # NPC(s): A_Chaos_Wraith (214114)
+		if($npc->IsEngaged()) { 
+			quest::spawn2(quest::ChooseRandom(214114,214136),0,0,519,216,-293,132); # NPC(s): A_Chaos_Wraith (214114) 
 			quest::spawn2(quest::ChooseRandom(214114,214136),0,0,647,346,-293,132); # NPC(s): A_Chaos_Wraith (214114)
 			quest::spawn2(quest::ChooseRandom(214114,214136),0,0,853,220,-293,132); # NPC(s): A_Chaos_Wraith (214114)
 			quest::spawn2(quest::ChooseRandom(214114,214136),0,0,779,-30,-293,132); # NPC(s): A_Chaos_Wraith (214114)

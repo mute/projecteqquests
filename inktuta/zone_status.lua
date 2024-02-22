@@ -210,7 +210,7 @@ function event_signal(e)
 	--stonemite event
 	if e.signal == 296033 or e.signal == 296030 or e.signal == 296035 or e.signal == 296036 then
 		if not confused_say and not rambling_say and not incoherent_say and not irrational_say then
-			eq.set_timer("stonemite",20 * 1000);				-- 20 sec timer to get all the phrases said
+			eq.set_timer("stonemite",60 * 1000);				-- 60 sec timer to get all the phrases said
 		end
 
 		if e.signal == 296033 then					-- NPC: #a_confused_exile
@@ -227,7 +227,7 @@ function event_signal(e)
 	elseif e.signal == 296024 then
 		local dz = eq.get_expedition()
 		if dz.valid then
-			dz:AddReplayLockoutDuration(eq.seconds("20h"))
+			-- dz:AddReplayLockoutDuration(eq.seconds("20h"))
 		end
 		eq.spawn2(296037,0,0,-496,-912,-129.12,512); -- NPC: #Jomica_the_Unforgiven_
 		OPEN_DOOR(1);
@@ -240,7 +240,7 @@ function event_signal(e)
 		eq.spawn2(296072,0,0,-198,-908,-126,0);			-- NPC: #a_pile_of_bones
 		local dz = eq.get_expedition()
 		if dz.valid then
-			dz:AddReplayLockoutDuration(eq.seconds("20h"))
+			-- dz:AddReplayLockoutDuration(eq.seconds("20h"))
 		end
 	
 	--Noqufiel Win
@@ -253,7 +253,7 @@ function event_signal(e)
 		eq.spawn2(296068,0,0,-127,-652,-127, 242);		-- NPC: #The_Bones_of_Noqufiel
 		local dz = eq.get_expedition()
 		if dz.valid then
-			dz:AddReplayLockoutDuration(eq.seconds("46h"))
+			-- dz:AddReplayLockoutDuration(eq.seconds("46h"))
 		end
 		eq.set_data("inktuta_status-"..eq.get_zone_instance_id(), "9",tostring(eq.seconds("6h")));
 	elseif e.signal == 296071 then
@@ -278,7 +278,7 @@ function event_timer(e)
 			eq.spawn2(296073,0,0,-383,-536,-76,0);		-- NPC: #a_pile_of_bones_
 			local dz = eq.get_expedition()
 			if dz.valid then
-				dz:AddReplayLockoutDuration(eq.seconds("20h"))
+				-- dz:AddReplayLockoutDuration(eq.seconds("20h"))
 			end
 			-- AddLockout(296033);
 			eq.set_data("inktuta_status-"..eq.get_zone_instance_id(), "4",tostring(eq.seconds("6h")));

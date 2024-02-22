@@ -31,6 +31,7 @@ sub EVENT_ITEM {
     quest::depop_withtimer();
   }
   else {
+    quest::givecash($copper, $silver, $gold, $platinum);
     plugin::return_items(\%itemcount);
   }
 }

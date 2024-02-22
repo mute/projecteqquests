@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18714) then
-		e.other:Message(MT.Yellow,"As you get your bearings, a healing energy seems to sweep over you and an almost etheral voice seems to echo in your mind. 'Welcome young cleric of Rodcet. I am Priestess Jahnda. Read the note in your inventory and hand it to me to begin your training.'");
+	if(e.other:HasItem(18714) == true) then
+		e.other:Message(15,"As you get your bearings, a healing energy seems to sweep over you and an almost etheral voice seems to echo in your mind. 'Welcome young cleric of Rodcet. I am Priestess Jahnda. Read the note in your inventory and hand it to me to begin your training.'");
 	end
 end
 
@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:Faction(221,-25,0); -- Bloodsabers
 		e.other:Faction(219,15,0); -- Antonius Bayle
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13724})) then
+	elseif(item_lib.check_turn_in(e.trade, {item1 = 13724}, 0)) then
 		e.self:Say("Excellent! Rodcet smiles upon us this day! Here, please take this pouch of evidence to Jahnda in the Temple of Life. She will know what we must do. I will remain here to keep an eye out for the minions of Bertoxxlous. Also, accept this small reward as a token of my appreciation of your efforts to rid Norrath of the influence of the Plaguebringer.");
 		-- Confirmed Live Factions
 		e.other:Faction(341,50); -- Priest of Life
@@ -49,5 +49,5 @@ function event_trade(e)
 			e.other:QuestReward(e.self,math.random(0,10),math.random(0,10),math.random(0,10),0,eq.ChooseRandom(13723,13720),4000);
 		end
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

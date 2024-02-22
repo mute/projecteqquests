@@ -27,8 +27,9 @@ function event_say(e)
     e.self:Say("The mistress of charm, Nadia is very beautiful. She, too, traveled with her relatives to the new land. I just recently received a letter from her. She says more and more pilgrims and explorers are arriving every day, and that the outpost is well defended now.");
   elseif(e.message:findi("polzin")) then
     e.self:Say("Master of the Phantasms - he is the last one you will seek out. Hmm...Polzin is native to Erudin, however, after the incident near Paineel, no one has heard from him. I hope that he is well.");
-  --elseif(e.message:findi("i need a sack")) then
-    --e.self:Say("Take this sack and combine the items I requested in it. Then return it to me.");
+  elseif(e.message:findi("i need a sack")) then
+    e.self:Say("Take this sack and combine the items I requested in it. Then return it to me.");
+    e.other:SummonFixedItem(17861); -- Item: Enchanters Sack - added back in by player request
 
   elseif(e.message:findi("purify") and e.other:HasItem(52952)) then
     e.self:Say("The purification is not something that I alone have the power to complete. There was once a crystal that held the power to purify something of this magnitude, however it was shattered long ago. You will need to speak to the masters that remain of dwindling races.");
@@ -48,7 +49,7 @@ function event_trade(e)
     e.self:Say("The path you trod was long and hard. Now you are worthy to bear the Serpent. Use it well.");
     e.other:Faction(404,30); -- Faction: Truespirit
     e.other:AddEXP(1500000);
-    e.other:SummonItem(10650); -- Item: Staff of the Serpent
+    e.other:SummonFixedItem(810650); -- Item: Staff of the Serpent
   elseif(item_lib.check_turn_in(e.trade, {item1 = 54267})) then
     e.self:Say("As I suspected, this is something extraordinary. You must go speak to Maelin at once. It has been many moons since I have entered the Plane of Knowledge. He may well have some new information for me. Go at once and tell him I sent you.");
     eq.set_global("ench_epic","2",5,"F");
@@ -61,12 +62,12 @@ function event_trade(e)
     e.other:SummonItem(52952); --Oculus 1.5
     e.other:AddAAPoints(5);
     e.other:Ding();
-    e.other:Message(MT.Yellow,'You have gained 5 ability points!');
+    e.other:Message(15,'You have gained 5 ability points!');
     eq.set_global("ench_epic","7",5,"F");
   elseif (item_lib.check_turn_in(e.trade, {item1 = 52947, item2 = 52945})) then
     e.self:Say("How very interesting. This could prove to be invaluable to my work. I have long been researching a new and most powerful tool to help our kind. It is necessary in these most dangerous of times. Unfortunately, it appears as though time has taken its toll on this tome. It is incomplete. Seek the missing pages so that I may study it in depth. There should be ten, unless they have been destroyed by time and decay.");
     e.other:SummonItem(57918); -- Item: Tattered Illegible Tome
     eq.set_global("EnchPre","2",5,"F");
   end
-  item_lib.return_items(e.self, e.other, e.trade)
+  --item_lib.return_items(e.self, e.other, e.trade)
 end

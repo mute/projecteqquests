@@ -1,6 +1,6 @@
 # items: 30516, 29647, 29645, 29648
 sub EVENT_SAY {
-  if ($faction <= 3) { # Require kindly faction
+  if ($faction <= 4) { # Require amiable faction
     if($text=~/hail/i){
       quest::say("Welcome, young mortal. Word of your deeds has preceded your arrival. Your intentions seem honorable, young one, however my trust is not an easy thing to win these days. Like you, there has been another that came before me with the trust of the dragon kin, and trust them too I did, but alas that proved to be destructive. I note your deeds to this shrine young one, but should you wish my counsel, you must prove your worth beyond doubt. Perhaps a small challenge shall be of interest to you?");
     }
@@ -17,7 +17,7 @@ sub EVENT_SAY {
 }
 
 sub EVENT_ITEM {
-  if ($faction <= 3) { # require kindly faction
+  if ($faction <= 4) { # require amiable faction
     if(plugin::check_handin(\%itemcount, 30516 => 1)){
       quest::emote("watches as you drop the colossal head of King Tormax to the ground before him. You sense intense hatred within Yelinak as he stares down at the bloody remains of a descendent of the one who slew his mate. Obviously the death of Tormax has done little to console the ancient snow dragon. Finally Yelinak speaks,");
       quest::say("I look upon this face, and even though he is dead, the hatred burns on. My grief and anger are unchanged even in the face of ultimate fate. His grandfathers act was so despicable and all-encompassing that it instilled an... immortal loathing. Nevertheless, you have completed the task I set before you and, as such, you deserve my gratitude. Please accept this [treasure].");
@@ -42,8 +42,16 @@ sub EVENT_ITEM {
   else { 
    quest::say("I do not know you well enough to entrust you with such an item, yet."); 
   }
-  plugin::return_items(\%itemcount); 
+  #plugin::return_items(\%itemcount); 
 }
 
 
 #Zone : skyshrine : NPC_ID : 114106 : Lord Yelinak
+
+
+
+sub EVENT_DEATH_COMPLETE {
+
+ quest::spawn(12000079,0,0,$x,$y,($z+10));
+
+}

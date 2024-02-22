@@ -1,7 +1,7 @@
 -- items: 63114, 63115, 63125, 63116, 63124, 63117, 15562, 63118, 63127, 63128, 63126, 63130, 63129
 function event_say(e)
 	if (e.message:findi("hail")) then
-		if (e.other:GetRaceName() == "Froglok") then
+		if (e.other:Race() == "Froglok") then
 			if (e.other:Class() == "Wizard" and e.other:GetLevel() >= 20) then
 				if (e.other:HasItem(63115)) then
 					e.self:Say("Bah! You think I'll accept you back so easily after that error? Everyone is talking about it! Those smug scions are STILL chuckling. I'll give you a task you can actually accomplish. Go get me 3 fresh Twilight Blooms from Odus. Return them and the prism to me. Perhaps such an inane task will jolt your lazy mind!");
@@ -45,12 +45,12 @@ function event_trade(e)
 	
 	-- Portal Prism (63114)
 	if (item_lib.check_turn_in(e.trade, {item1 = 63114})) then
-		e.other:Message(MT.Yellow, "Anlut Heavenfall tells you, 'Let us see if you've learned the hidden way or if you must return the crystal to me and beg for further guidance. . .");
+		e.other:Message(15, "Anlut Heavenfall tells you, 'Let us see if you've learned the hidden way or if you must return the crystal to me and beg for further guidance. . .");
 		e.other:SummonItem(63115); -- Portal Prism
 		e.other:MovePC(152, 0.00, 0.00, -30.25, 360); -- Teleport to Nexus
 	-- Portal Prism (63115), Twilight Bloom x3
 	elseif (item_lib.check_turn_in(e.trade, {item1 = 63115, item2 = 63125, item3 = 63125, item4 = 63125})) then
-		e.other:Message(MT.Yellow, "Anlut Heavenfall tells you, 'Hmph. Well, I hope that you've studied it more carefully this time . . .");
+		e.other:Message(15, "Anlut Heavenfall tells you, 'Hmph. Well, I hope that you've studied it more carefully this time . . .");
 		e.other:SummonItem(63116); -- Portal Prism
 		e.other:MovePC(37, -910.00, 886.00, 350.00, 0); -- Teleport to Oasis of Marr (Change needed when Oasis is eventually removed)
 	-- Portal Prism (63116), Time Torn Skull
@@ -77,5 +77,5 @@ function event_trade(e)
 		e.other:SummonItem(63129); -- Heavenfall Girding
 	end
 	
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end

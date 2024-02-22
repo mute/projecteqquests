@@ -19,11 +19,11 @@ function event_trade(e)
 	local item_lib = require("items");
 		if (item_lib.check_turn_in(e.trade, {item1 = 52113})) then -- Misshapen Cragbeast Flesh
 			e.self:Emote("places her hand over your eyes and forces you to examine the Cragbeast Queen's Flesh through her transparent fingers. The skin takes the shape of a hideous mask. Do you see now, ".. e.other:GetCleanName() .."? Do you understand?");
-			 e.other:QuestReward(e.self,0,0,0,0,52120,50000); --Visage of the Brute
+			e.other:SummonItem(52120); --Visage of the Brute
 		elseif (item_lib.check_turn_in(e.trade, {item1 = 52119})) then -- taskmistress krisz's head
 			e.self:TempName("Caridwi_the_Avenged");
 			e.self:Emote("gasps. Her ghostly skin grows even more pale as she comes to grips with her fate. Oh my. She . . . killed me, didn't she? Krisz slew me in front of everyone I knew and loved. Her fate is entwined with mine no longer. I will sing one last song and then leave this world. Thank you for avenging me, ".. e.other:GetCleanName() ..". The leather choker around Krisz's neck may prove of some use to you.");
-			e.other:QuestReward(e.self,0,0,0,0,52137,50000); --Choker of Centaur Slaying
+			e.other:SummonItem(52137); --Choker of Centaur Slaying
     end
   item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18708) then
-		e.other:Message(MT.Yellow,"As your eyes adjust to the dark interior of the room, a sly looking man turns towards you. 'Shh! Not too loudly. I am Hanns if you are here to start your training, read the note in your inventory and hand it to me.'");
+	if(e.other:HasItem(18708) == true) then
+		e.other:Message(15,"As your eyes adjust to the dark interior of the room, a sly looking man turns towards you. 'Shh! Not too loudly. I am Hanns if you are here to start your training, read the note in your inventory and hand it to me.'");
 	end
 end
 
@@ -55,7 +55,7 @@ function event_trade(e)
 		e.other:Faction(223,20,0); -- Circle of Unseen Hands
 		e.other:AddEXP(50000);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Submitted by Jim Mills

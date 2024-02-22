@@ -79,7 +79,7 @@ quest::summonitem(8442); # Item: Leggings of the Pine
 
 #shark tooth sleeves and jade leaves -> Sleeves of the Pine
 if(plugin::check_handin(\%itemcount, 8796 => 1, 8795 => 1)) {
-quest::say("Marvelously done, my friend. I am pleased to know that the natural world has embraced and recognized you so. I have bound the moss thread to the Polished Jade Leaves and your sleeves are complete. Take them and wear them with the selfless knowledge that you are equal to all of nature’s most devoted warders.");
+quest::say("Marvelously done, my friend. I am pleased to know that the natural world has embraced and recognized you so. I have bound the moss thread to the Polished Jade Leaves and your sleeves are complete. Take them and wear them with the selfless knowledge that you are equal to all of natureï¿½s most devoted warders.");
 quest::summonitem(8445); # Item: Sleeves of the Pine
 }
 

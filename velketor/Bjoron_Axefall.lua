@@ -6,7 +6,7 @@ end
 
 function event_signal(e)
 	if(e.signal == 1) then
-		e.self:Say("a beginning, a");
+		e.self:Say("A beginning, a");
 		eq.signal(112032,1); -- NPC: Khlem_Alestone
 	end
 end

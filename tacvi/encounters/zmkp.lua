@@ -9,11 +9,14 @@ local ZMKP_Delay  = 20;
 
 -- Time out on Balancing seemed to be about 70 seconds
 local ZMKP_Balance_Timer = 70 * 1000;
-local ZMKP_Fury = 100;
-local ZMKP_Rage = 100;
-local ZMKP_Speed = 100;
-local ZMKP_Defense = 100;
+
+local ZMKP_Fury		= 100;
+local ZMKP_Rage		= 100;
+local ZMKP_Speed	= 100;
+local ZMKP_Defense	= 100;
+
 local target_hp = 90;
+
 local defense_balanced = false;
 local fury_balanced = false;
 local rage_balanced = false;
@@ -61,15 +64,17 @@ function ZMKP_Timer(e)
 
 		if not speed_balanced then
 			-- Reduce ZMKP's Attack Delay by 10% each time the Speed mob is out of Balance.
-			ZMKP_Delay = ZMKP_Delay * 0.90;
+			ZMKP_Delay = ZMKP_Delay - 2;
 			e.self:ModifyNPCStat("attack_delay",  tostring(ZMKP_Delay));
 			failed = true;
 		end
+
 		if not defense_balanced then
 			ZMKP_AC = ZMKP_AC + 100;
 			e.self:ModifyNPCStat("ac",            tostring(ZMKP_AC));
 			failed = true;
 		end
+
 		if not fury_balanced then
 			ZMKP_MaxHit = ZMKP_MaxHit + 585;
 			ZMKP_MinHit = ZMKP_MinHit + 215;
@@ -77,6 +82,7 @@ function ZMKP_Timer(e)
 			e.self:ModifyNPCStat("min_hit",       tostring(ZMKP_MinHit));
 			failed = true;
 		end
+
 		if not rage_balanced then
 			ZMKP_AtkHit = ZMKP_AtkHit + 200;
 			e.self:ModifyNPCStat("atk",           tostring(ZMKP_AtkHit));
@@ -92,20 +98,20 @@ function ZMKP_Timer(e)
 		-- so dots will oddly still hurt him, with enough necros it is possible to skip an event if we just used HP events (live doesn't skip, probably does if you manage to kill him though)
 		-- So instead of just using straight HP events, we gotta do some checking here!
 		if math.floor(e.self:GetHPRatio()) <= (target_hp - 10) then
-				-- we'll we gotta skip an active phase basically, to next balance!
-				eq.set_timer("balance", ZMKP_Balance_Timer);
-				eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-				e.self:SetOOCRegen(0);
-				target_hp = target_hp - 10;
+			-- we'll we gotta skip an active phase basically, to next balance!
+			eq.set_timer("balance", ZMKP_Balance_Timer);
+			eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
+			e.self:SetOOCRegen(0);
+			target_hp = target_hp - 10;
 
-				eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-				eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-				eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-				eq.signal(298128, 2); -- NPC: #Balance_of_Rage
+			eq.signal(298125, 2); -- NPC: #Balance_of_Speed
+			eq.signal(298126, 2); -- NPC: #Balance_of_Defense
+			eq.signal(298127, 2); -- NPC: #Balance_of_Fury
+			eq.signal(298128, 2); -- NPC: #Balance_of_Rage
 		else
-				e.self:ProcessSpecialAbilities(ZMKP_Active);
-				target_hp = target_hp - 10;
-				eq.set_next_hp_event(target_hp);
+			e.self:ProcessSpecialAbilities(ZMKP_Active);
+			target_hp = target_hp - 10;
+			eq.set_next_hp_event(target_hp);
 		end
 	elseif e.timer == "wipecheck" then
 		-- Check to see if there are any Clients in the room with ZMKP
@@ -126,77 +132,13 @@ function ZMKP_Timer(e)
 end
 
 function ZMKP_Hp(e)
-	if e.hp_event == 90 then
-		eq.signal(298223,1); -- Lock Doors
+	if e.hp_event == 90 or e.hp_event == 80 or e.hp_event == 70 or e.hp_event == 60 or e.hp_event == 50 or e.hp_event == 40 or e.hp_event == 30 then
+		if e.hp_event == 90 then
+			eq.signal(298223,1); -- Lock Doors
+		end
 
 		eq.set_timer("balance", ZMKP_Balance_Timer);
 		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 80 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 70 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 60 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 50 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 40 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
-		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
-		e.self:SetOOCRegen(0);
-		e.self:WipeHateList();
-
-		eq.signal(298125, 2); -- NPC: #Balance_of_Speed
-		eq.signal(298126, 2); -- NPC: #Balance_of_Defense
-		eq.signal(298127, 2); -- NPC: #Balance_of_Fury
-		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
-	elseif e.hp_event == 30 then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of battle meditation.");
-		eq.set_timer("balance", ZMKP_Balance_Timer);
 		e.self:ProcessSpecialAbilities(ZMKP_Inactive);
 		e.self:SetOOCRegen(0);
 		e.self:WipeHateList();
@@ -207,12 +149,9 @@ function ZMKP_Hp(e)
 		eq.signal(298128, 2); -- NPC: #Balance_of_Rage
 	elseif e.hp_event == 20 then
 		eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, "Kvxe enters a state of seething rage as he accelerates his combat speed.");
-		ZMKP_Delay = ZMKP_Delay * 0.90;
+		ZMKP_Delay = ZMKP_Delay - 2;
 		e.self:ModifyNPCStat("attack_delay",  tostring(ZMKP_Delay));
 	end
-end
-
-function ZMKP_Signal(e)
 end
 
 function ZMKP_Death(e)
@@ -262,10 +201,10 @@ function ZMKP_Signal_Balance(e)
 			eq.get_entity_list():MessageClose(e.self, false, 120, MT.Yellow, e.self:GetCleanName() .. " is falling out of balance.");
 		end
 	elseif e.signal == 2 then
-		defense_balanced = false;
-		fury_balanced = false;
-		rage_balanced = false;
-		speed_balanced = false;
+		defense_balanced	= false;
+		fury_balanced		= false;
+		rage_balanced		= false;
+		speed_balanced		= false;
 
 		eq.set_next_hp_event(target_hp + 3);
 		e.self:ProcessSpecialAbilities("42,1")
@@ -308,7 +247,6 @@ function event_encounter_load(e)
 	eq.register_npc_event('zmkp', Event.combat,         298029, ZMKP_Combat);
 	eq.register_npc_event('zmkp', Event.timer,          298029, ZMKP_Timer);
 	eq.register_npc_event('zmkp', Event.hp,             298029, ZMKP_Hp);
-	eq.register_npc_event('zmkp', Event.signal,         298029, ZMKP_Signal);
 	eq.register_npc_event('zmkp', Event.death_complete, 298029, ZMKP_Death);
 
 	eq.register_npc_event('zmkp', Event.spawn,          298125, ZMKP_Spawn_Speed);
@@ -325,4 +263,7 @@ function event_encounter_load(e)
 	eq.register_npc_event('zmkp', Event.hp,             298126, ZMKP_Hp_Balance);
 	eq.register_npc_event('zmkp', Event.hp,             298127, ZMKP_Hp_Balance);
 	eq.register_npc_event('zmkp', Event.hp,             298128, ZMKP_Hp_Balance);
+end
+
+function event_encounter_unload(e)
 end

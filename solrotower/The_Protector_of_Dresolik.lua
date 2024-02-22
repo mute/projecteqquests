@@ -3,7 +3,7 @@ eq.set_timer("depop", 1800 * 1000);
 end
 
 function event_combat(e)
-if e.joined then
+if (e.joined == true) then
 eq.set_timer("OOBcheck", 6 * 1000);
 eq.stop_timer("depop");
 else

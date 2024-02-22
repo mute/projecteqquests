@@ -65,11 +65,11 @@ function event_timer(e)
 			end
 			eq.set_global(instance_id.."_gaschmb1","67710",3,"M5");
 		end
-		if count == 99 then -- Wipe
-			eq.signal(292051,1); -- Gas Chamber 1
-			eq.signal(292051,1); -- Gas Chamber 1
-			eq.signal(292051,1); -- Gas Chamber 1
-			eq.signal(292051,1); -- Gas Chamber 1
+		if count == 60 then -- Wipe
+			--eq.signal(292051,1); -- Gas Chamber 1
+			--eq.signal(292051,1); -- Gas Chamber 1
+			--eq.signal(292051,1); -- Gas Chamber 1
+			--eq.signal(292051,1); -- Gas Chamber 1
 			eq.signal(292051,1); -- Gas Chamber 1
 			eq.set_timer("restart", 1 * 60 * 1000); -- 1 Minute to Reset
 			eq.stop_timer("gaschamber");
@@ -85,12 +85,13 @@ function event_timer(e)
 end
 
 function event_enter(e)
+	eq.debug("Entered Gas Chamber 1");
 	if completed then
 		eq.get_entity_list():FindDoor(9):SetLockPick(0);
 		eq.get_entity_list():FindDoor(9):ForceOpen(e.self);
 		eq.signal(292080,1); -- #Gas_Chamber_Cheater
 	elseif not started then
-		eq.set_timer("gaschamber", 20 * 1000); -- 20 Seconds
+		eq.set_timer("gaschamber", 60 * 1000); -- 60 Seconds
 	end		
 end
 

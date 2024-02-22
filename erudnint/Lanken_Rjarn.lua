@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18729)) then
-		e.other:Message(MT.Yellow,"A commanding, yet kind looking Erudite turns towards you. 'Do not be startled. I am Lanken Rjarn, Guild Master for all aspiring Enchanters. Read the note in your inventory and hand it to me when you are ready to begin your training. I look forward to training you.'");
+		e.other:Message(15,"A commanding, yet kind looking Erudite turns towards you. 'Do not be startled. I am Lanken Rjarn, Guild Master for all aspiring Enchanters. Read the note in your inventory and hand it to me when you are ready to begin your training. I look forward to training you.'");
 	end
 end
 
@@ -32,7 +32,7 @@ function event_trade(e)
 		e.other:Faction(267,15,0); -- High Guard of Erudin
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnint  ID:24032 -- Lanken_Rjarn

@@ -15,6 +15,11 @@ function event_death_complete(e)
    eq.spawn2(294579,0,0,-187,-853,-3,254); -- NPC: a_pile_of_bones
    eq.spawn2(294579,0,0,-182,-922,-3,496); -- NPC: a_pile_of_bones
    eq.signal(294631,3); --set lockout
+
+   local dz = eq.get_expedition()
+   if dz.valid then
+     dz:AddReplayLockoutDuration(eq.seconds("10h"))
+   end
 end
 
 function event_combat(e)

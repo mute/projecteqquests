@@ -9,7 +9,7 @@ sub EVENT_COMBAT {
 sub EVENT_TIMER {
 	if ($timer == 87) {
 		my $ranNum = 0;
-		$ranNum = int(rand(5));
+		$ranNum = int(rand(10));
 		if($ranNum == 0) {
 			#212067 - an_efreeti_makin
 			quest::spawn2(212067, 0, 0, $x, $y, $z, $h); # NPC: an_efreeti_makin
@@ -26,6 +26,10 @@ sub EVENT_TIMER {
 			#212071 - an_efreeti_nabil
 			quest::spawn2(212071, 0, 0, $x, $y, $z, $h); # NPC: an_efreeti_nabil
 		}
+			elsif ($ranNum > 5)
+			{
+				
+			}
 	}
 }
 

@@ -5,49 +5,65 @@ function event_signal(e)
 if (e.signal == 1) then
  if(e.self:GetSp2() == 98734) then
         e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+		e.self:SetSpecialAbility(35, 0); -- turn off immunity
+		e.self:SetSpecialAbility(19, 0);
+		e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate1", 15 * 1000);
  end
 elseif (e.signal == 2) then
  if(e.self:GetSp2() == 98735) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate2", 15 * 1000);
  end
 elseif (e.signal == 3) then
  if(e.self:GetSp2() == 98736) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate3", 15 * 1000);
  end
 elseif (e.signal == 4) then
  if(e.self:GetSp2() == 98737) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate4", 15 * 1000);
  end
 elseif (e.signal == 5) then
  if(e.self:GetSp2() == 98738) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate5", 15 * 1000);
  end
 elseif (e.signal == 6) then
  if(e.self:GetSp2() == 98739) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate6", 15 * 1000);
  end
 elseif (e.signal == 7) then
  if(e.self:GetSp2() == 98740) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate7", 15 * 1000);
  end
 elseif (e.signal == 8) then
  if(e.self:GetSp2() == 98741) then
-        e.self:SetSpecialAbility(24, 0); --turn off immunity
-        e.self:SetSpecialAbility(35, 0); --turn turn off immunity
+	e.self:SetSpecialAbility(24, 0); --turn off immunity
+	e.self:SetSpecialAbility(35, 0); -- turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	eq.set_timer("deactivate8", 15 * 1000);
  end
 end

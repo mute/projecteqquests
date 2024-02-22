@@ -1,5 +1,5 @@
 function event_combat(e)
-	if e.joined then
+	if (e.joined == true) then
 			if(not eq.is_paused_timer("despawn")) then
 				eq.pause_timer("despawn");
 			end

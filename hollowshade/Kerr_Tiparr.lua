@@ -37,7 +37,7 @@ function event_trade(e)
     local item_lib = require("items");
     
     if quests then
-        if(item_lib.check_turn_in(e.trade, {item1 = 5566})) then -- Pot of Spicy Fish Stew
+        if(item_lib.check_turn_in( e.trade, {item1 = 5566})) then -- Pot of Spicy Fish Stew
             e.self:Say("Thanks " .. e.other:GetName() .. "! That was delicious. Here is the empty bowl.");
             e.other:QuestReward(e.self,0,0,4,0,5567); -- Empty Stew Bowl
         end
@@ -45,5 +45,5 @@ function event_trade(e)
         e.self:Say("Apologies my friend, this will have to wait until we are able to return to the fort.");
     end
     
-    item_lib.return_items(e.self, e.other, e.trade)
+    --item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -32,40 +32,40 @@ sub EVENT_SAY {
 		}			
 	}
 	#epic 1.5
-	elsif(defined $qglobals{berserk_epic} && $qglobals{berserk_epic} >=1) {
+#	elsif(defined $qglobals{berserk_epic} && $qglobals{berserk_epic} >=1) {
 		#have Raging Soul Shard
-		if($text=~/hail/i && ($qglobals{berserk_epic} ==1 || $qglobals{berserk_epic} ==2)  && plugin::check_hasitem($client, 11999)) {
-			quest::emote("appears to be lost in this own thoughts, mumbling to himself occasionally, and barely acknowledging your existence. Just as you're about to speak again, he says, 'Ach, ya have to forgive me absentmindedness, friend. I've been rather busy pondering [" . quest::saylink("matters") . "] at hand.");
-						quest::setglobal("berserk_epic",3, 5, "F");
-		}
-		if($text=~/hail/i && $qglobals{berserk_epic} ==1 && !plugin::check_hasitem($client, 11999)) {
-			quest::emote("Its good to see you again, friend. It seems my axe has fared well thus far, aye? Indeed it has. Have you spoke with your guildmaster yet? They will be glad to see that you are on your path towards controlling your rage.");
-		}		
-		if($text=~/matters/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("Since the recent discovery of the portal on Taelosia, we've been finding many different types of ores, plants, and minerals that were unlike anything we'd ever seen before. These materials have been used to craft simple weapons, potions, and sometimes even been used in various recipes for. . .uh. . .some interesting dishes. Yet I believe that they can be used for [" . quest::saylink("something") . "] much, much more.");
-		}
-		if($text=~/something/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("Some of these materials were of a quality that I feel can be used to craft implements of incredible power and perhaps these [" . quest::saylink("materials") . "] can even be incorporated into the processes used to craft the Axe of Ire to create an even more durable [" . quest::saylink("weapon") . "].");
-		}
-		if($text=~/materials/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("Smiths have used many different types of tempering materials, from water to plant extracts to even blood from exotic animals on occasion. Why I've even heard about one legendary smith using the tears of a god! But given the magical properties of the ore that yew are collecting for me, I suspect that the plants and even some of the animal have been affected by the same type of magic. It is my theory that if we combined the [" . quest::saylink("ore") . "] with [" . quest::saylink("blood") . "] and [" . quest::saylink("extracts") . "] from the plants and animals of Taelosia, we would increase our efforts doubly.");
-		}
-		if($text=~/ore/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("I thank ye for volunteering. The ore I seek comes form the areas closest to where the portal to Discord was originally opened. Ore from this area, I've been told, seems to be the purest form available. Once yew've gathered 4 pieces of this ore, return to me so that I may continue my research.");
-		}
-		if($text=~/blood/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("There are many different types of creatures lurking throughout all of Taelosia though two intrigue me the most. . .the cragbeasts and the hynids. In order to craft the various tempers that I need, I will require 4 vials of blood from each of these creatures.");
-		}
-		if($text=~/extracts/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("Taelosia is vibrant with some of the most exotic plants known to Norrath, with nary a tree in sight. That in and of itself is a bit unusual but the plant-life that does exist in Taelosia seems to be very potent in nature. Gather 4 samples from two different plants and return to me once this has been done.");
-		}
-		if($text=~/weapon/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
-			quest::say("Ever since I've heard stories about these materials, I've been working on various designs for a new axe. . .trying to figure out how one could imbue it with the essence and spirit of a true berserker. Unfortunately I have been unable to get my hands on any raw ore of a high enough quality to experiment with.");
-		}
-		if($text=~/hail/i && $qglobals{berserk_epic} ==4) {
-			quest::emote("once again looks lost in deep thought, 'Apologies $name. Another student o'mine has not returned yet and shall soon be overdue. I am beginning to worry that she may be in trouble. Yet she still has more time to complete her task so mayhap I shouldnah worry. Shaking himself of his concerns Keras asks, 'Come now, how well did the axes fair?'");
-		}		
-	  }
+#		if($text=~/hail/i && ($qglobals{berserk_epic} ==1 || $qglobals{berserk_epic} ==2)  && plugin::check_hasitem($client, 11999)) {
+#			quest::emote("appears to be lost in this own thoughts, mumbling to himself occasionally, and barely acknowledging your existence. Just as you're about to speak again, he says, 'Ach, ya have to forgive me absentmindedness, friend. I've been rather busy pondering [" . quest::saylink("matters") . "] at hand.");
+#						quest::setglobal("berserk_epic",3, 5, "F");
+#		}
+#		if($text=~/hail/i && $qglobals{berserk_epic} ==1 && !plugin::check_hasitem($client, 11999)) {
+#			quest::emote("Its good to see you again, friend. It seems my axe has fared well thus far, aye? Indeed it has. Have you spoke with your guildmaster yet? They will be glad to see that you are on your path towards controlling your rage.");
+#		}		
+#		if($text=~/matters/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("Since the recent discovery of the portal on Taelosia, we've been finding many different types of ores, plants, and minerals that were unlike anything we'd ever seen before. These materials have been used to craft simple weapons, potions, and sometimes even been used in various recipes for. . .uh. . .some interesting dishes. Yet I believe that they can be used for [" . quest::saylink("something") . "] much, much more.");
+#		}
+#		if($text=~/something/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("Some of these materials were of a quality that I feel can be used to craft implements of incredible power and perhaps these [" . quest::saylink("materials") . "] can even be incorporated into the processes used to craft the Axe of Ire to create an even more durable [" . quest::saylink("weapon") . "].");
+#		}
+#		if($text=~/materials/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("Smiths have used many different types of tempering materials, from water to plant extracts to even blood from exotic animals on occasion. Why I've even heard about one legendary smith using the tears of a god! But given the magical properties of the ore that yew are collecting for me, I suspect that the plants and even some of the animal have been affected by the same type of magic. It is my theory that if we combined the [" . quest::saylink("ore") . "] with [" . quest::saylink("blood") . "] and [" . quest::saylink("extracts") . "] from the plants and animals of Taelosia, we would increase our efforts doubly.");
+#		}
+#		if($text=~/ore/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("I thank ye for volunteering. The ore I seek comes form the areas closest to where the portal to Discord was originally opened. Ore from this area, I've been told, seems to be the purest form available. Once yew've gathered 4 pieces of this ore, return to me so that I may continue my research.");
+#		}
+#		if($text=~/blood/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("There are many different types of creatures lurking throughout all of Taelosia though two intrigue me the most. . .the cragbeasts and the hynids. In order to craft the various tempers that I need, I will require 4 vials of blood from each of these creatures.");
+#		}
+#		if($text=~/extracts/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("Taelosia is vibrant with some of the most exotic plants known to Norrath, with nary a tree in sight. That in and of itself is a bit unusual but the plant-life that does exist in Taelosia seems to be very potent in nature. Gather 4 samples from two different plants and return to me once this has been done.");
+#		}
+#		if($text=~/weapon/i && $qglobals{berserk_epic} ==1 && plugin::check_hasitem($client, 11999)) {
+#			quest::say("Ever since I've heard stories about these materials, I've been working on various designs for a new axe. . .trying to figure out how one could imbue it with the essence and spirit of a true berserker. Unfortunately I have been unable to get my hands on any raw ore of a high enough quality to experiment with.");
+#		}
+#		if($text=~/hail/i && $qglobals{berserk_epic} ==4) {
+#			quest::emote("once again looks lost in deep thought, 'Apologies $name. Another student o'mine has not returned yet and shall soon be overdue. I am beginning to worry that she may be in trouble. Yet she still has more time to complete her task so mayhap I shouldnah worry. Shaking himself of his concerns Keras asks, 'Come now, how well did the axes fair?'");
+#		}		
+#	  }
   #epic 1.0
   else {
 	  if($text=~/hail/i && $class eq "Berserker" && plugin::check_hasitem($client, 68299) && $qglobals{"berserk_epic"} == undef) {
@@ -79,7 +79,7 @@ sub EVENT_SAY {
 		quest::say("Much as ye are now, I was once saddled with unbridled rage, and now with age and experience, I have learned to master the power that comes with my anger.");
 		quest::say("Once ye have mastered yer abilities, ye will be rewarded with a gift that only a true berserker can control. It is a gift that will harness yer rage and use it to yer advantage. This is why ye must walk the same path I did in me youth. Do ye wish to take this [great stride]?");
 	  }
-	  if($text=~/great stride/i && $class eq "Berserker" && $ulevel > 45 && $dragon == undef && $imp == undef) {
+	  if($text=~/great stride/i && $class eq "Berserker" && $ulevel > 45) { #&& $dragon == undef && $imp == undef #removed this so can be repeated
 		quest::say("Ye do understand there is no turning back? I hope so. This is a journey -- and sometimes a long one -- depending on what ye've leared so far. Yer skills and wisdom in battle will be tested. Go talk to an old, fallen friend of mine, Lingering Axefall. We call him that because he reguses to let his spirit rest. He failed his task and remains bound here to lead others into the trial he lost. Be wary, though. He is elusive.");
 		quest::say("The foe he stood against and lost to still wishes to extinguish his spirit. Take this axe and give it to him so he will know that ye are ready for the test and that I sent ye. Also, take this medal with you. It will help me keep track of your progress. Best of luck, friend.");
 		quest::summonitem(60189); # Item: Throwing Axe of the Spirit
@@ -156,7 +156,7 @@ sub EVENT_ITEM {
   }
   elsif(plugin::check_handin(\%itemcount, 60210 => 1, 60211 => 1)) {
     quest::say("I am so impressed and proud of ye, $name. This had been a long journey, hasn't it? That said, this will be the most important adventure of yer life, for now you are a true berserker and a master of all of yer skills. As I promised, the completion of these trials would not only bring ye the honor of being recognized as a true berserker, but also a weapon only a true berserker can wield -- one that I fashioned myself. Use this weapon in yer travels and may it serve ye well in battle. Be well,$name, the Berserker.");
-    quest::summonitem(68299); # Item: Kerasian Axe of Ire
+    quest::summonfixeditem(868299); # Item: Kerasian Axe of Ire
 	quest::setglobal("berserk_epic", 1, 5, "F");
   }
 #1.5 turnins 
@@ -202,7 +202,7 @@ sub EVENT_ITEM {
     quest::setglobal("berserk_epic",9, 5, "F");
   }
   elsif(plugin::check_handin(\%itemcount, 72029 => 1, 18398 => 1, 17349 => 1, 17137 => 1)) {  
-    quest::summonitem(20072); # Item: Unhoned Vengeful Taelosian Blood Axe
+    quest::summonfixeditem(20072); # Item: Unhoned Vengeful Taelosian Blood Axe
     quest::say("Ah ye've returned with the necessary components, me friend? Give me but a moment to look over what you've managed to get yer hands on. Yes, these should do the job quite nicely. We'll see just what potential can be unleashed in this axe of yours! So the Dragorn smith said to reinforce the haft with this ore, eh? I can accomplish that surely. Work with the Moonstone should be easy enough tew as it don't seem to require much enchantment from me. The Lightning Core will require a bit o' work though as I'm not very experienced with it. Still though, I can surely do something with it. I would na ever thought of using one of these on an axe though! Crafty Gnomes indeed.' After some time and a bit of effort, Keras hands you back your axe. 'Here ya go, lad. I tried honing the edge further but I dinnah have a whetstone strong enough. Maybe that smith o' yours can help ye futher?");
   }
   plugin::return_items(\%itemcount);

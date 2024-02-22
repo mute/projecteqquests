@@ -9,14 +9,14 @@ function event_combat(e)
 end
 
 function event_timer(e)
-	if(e.timer=="OOBcheck") then
+	if e.timer == "OOBcheck" then
 		eq.stop_timer("OOBcheck");
-			if (e.self:GetX() < 1215 or e.self:GetY() > 106 or e.self:GetY() < -106) then
-				e.self:CastSpell(3791,e.self:GetID()); -- Spell: Ocean's Cleansing
-				e.self:GotoBind();
-				e.self:WipeHateList();
-			else
-				eq.set_timer("OOBcheck", 3 * 1000);
-			end
+		if (e.self:GetX() < 1215 or e.self:GetY() > 106 or e.self:GetY() < -106) then
+			e.self:CastSpell(3791,e.self:GetID()); -- Spell: Ocean's Cleansing
+			e.self:GotoBind();
+			e.self:WipeHateList();
+		else
+			eq.set_timer("OOBcheck", 3 * 1000);
+		end
 	end
 end

@@ -40,7 +40,7 @@ function event_trade(e)
 		e.other:SummonItem(50003); --Innoruuk's Voice (Epic 1.5)
 		e.other:AddAAPoints(5);
 		e.other:Ding();
-		e.other:Message(MT.Yellow,'You have gained 5 ability points!');
+		e.other:Message(15,'You have gained 5 ability points!');
 	end
 	if(qglobals["shadowknight_epic"] == "9" and item_lib.check_turn_in(e.trade, {item1 = 19098})) then --hand in Kilidna's Head (drops from Kilidna in City of Mist)
 		e.self:Emote("takes the head from you and holds it by the hair. Gilina casts a small spell and the head springs to life.  'Talk, Kilidna. What has happened to you?' Kilidna's head begins to sob. 'I am sorry, master. I was corrupted by evil magic! Now look at me! I dare say I will not be able to finish my studies any time soon.' Gilina scowls, 'What did you find out while in the city of mist? Tell me now!' 'Well master, it seems that when Innoruuk's Voice was summoned to this plane, it drew the attention of many [" ..eq.say_link('powerful beings', false, 'powerful beings') .. "].'");
@@ -51,5 +51,5 @@ function event_trade(e)
 		e.self:Say("This item will be used to help anchor Lhranc to this plane of existence. The anchor will not be enough however. In an area in the Realm of Discord known as Anguish, you will need to find a globe of discordant energy. This will be used to infuse the earthly anchor with the power of discord. When you have these two items, hand them to my contact, Filligno the Slayer. He has tracked down Lhranc in Dranik, the Ruined City in the Realm of Discord. He will need your help to get Lhranc's attention however.");
 		e.other:SummonItem(24584); --Lhranc's Earthly Anchor
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end

@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18712) then
-		e.other:Message(MT.Yellow,"As you get your bearings, a lightly armored man that appears to be in incredible shape turns to greet you. 'Welcome traveller. I am LuSun. If you wish to learn the ways of the Silent Fist, read the note in your inventory and hand it to me to begin your training.'");
+	if(e.other:HasItem(18712) == true) then
+		e.other:Message(15,"As you get your bearings, a lightly armored man that appears to be in incredible shape turns to greet you. 'Welcome traveller. I am LuSun. If you wish to learn the ways of the Silent Fist, read the note in your inventory and hand it to me to begin your training.'");
 	end
 end
 
@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Faction(361,15,0); -- Ashen Order
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos2  ID:2077 -- LuSun

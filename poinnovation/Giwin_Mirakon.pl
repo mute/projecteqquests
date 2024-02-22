@@ -1,6 +1,7 @@
 sub EVENT_SAY {
 
-if($text=~/Hail/i && $pop_poi_behometh_preflag == undef)
+#if($text=~/Hail/i && $pop_poi_behometh_preflag == undef)
+if($text=~/Hail/i)
 	{
 	quest::say("How did you get in here? Hrmm no matter, you will be helping me now for I am a [great warrior] of Rallos Zek and I know you wish not to provoke my fury!");
 	}
@@ -12,13 +13,15 @@ if($text=~/task/i && $pop_poi_behometh_preflag == undef)
 	{
 	quest::say("Ya, you see Rallos sent me here to contract the machines to work on a mana powered piece of machinery that could test all on the eternal battlefield. This weapon of ultimate destruction is taking quite a long time to be completed. You know.. If you were to go [" . quest::saylink("test the machine") . "] and it were to fail against you I could be on my way back to tell Rallos that it was defeated by mere mortals. Help me to get back to the battlefield and out of this rusted out junkheap.");
 	}
-if($text=~/test the machine/i && $pop_poi_behometh_preflag == undef)
+#if($text=~/test the machine/i && $pop_poi_behometh_preflag == undef)	
+if($text=~/test the machine/i)
 	{
 	quest::say("Haha! I knew I sensed the warring spirit within you. Go through over there. Ignore those steam powered soldiers and their talk of perimeters. Go into the main construction area. You will know you are there when you see power carriers taking energy to power up the machine. If you can stop the energy carriers from releasing their energy the machine will activate to see what has happened. I shall come to check on you and take a full report when you have destroyed it. Long live Rallos!");
 	quest::setglobal("pop_poi_behometh_preflag", 1, 5, "F");
         $client->Message(3,"You receive a character flag!");
 	}
-if($text=~/Hail/i && $pop_poi_behometh_preflag == 1 && $tactics_flag == 1 && $pop_poi_behometh_flag == undef)
+#if($text=~/Hail/i && $pop_poi_behometh_preflag == 1 && $tactics_flag == 1 && $pop_poi_behometh_flag == undef)
+if($text=~/Hail/i && $pop_poi_behometh_preflag == 1 && $tactics_flag == 1)
 	{
         $client->Message(2,"You receive a character flag!");
 	quest::setglobal("pop_poi_behometh_flag", 1, 5, "F");
@@ -82,7 +85,7 @@ sub EVENT_SIGNAL {
 if($signal == 1) {
 	$tactics_flag=1;
         quest::shout("Quickly! Come see me!");
-	quest::settimer(8,600);
+	quest::settimer(8,1800);
 	}
 if($signal == 2) {
         quest::shout("Fool! The machine cannot work outside of the room!");

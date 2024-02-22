@@ -44,11 +44,8 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 20410 => 1)) { #Bladesoul's Spiritual Pouch
-    quest::say(""); #Need text
-    $insane = quest::spawn2(128142,0,0,$x,$y,$z,$h); #Ulessa the Insane
-    $insaneobj = $entity_list->GetMobID($insane);
-    $insanenpc = $insaneobj->CastToNPC();
-    $insanenpc->AddToHateList($client,1);
+    quest::say("The spirits are... Wait... No... these aren't... my memories... no... NO STOP!"); #Quest reward instead of spawn
+    quest::summonitem(29486);
     quest::depop_withtimer();
   }
   plugin::return_items(\%itemcount);

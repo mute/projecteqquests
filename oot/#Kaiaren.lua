@@ -75,11 +75,11 @@ function event_trade(e)
         end
     end
 
-    item_lib.return_items(e.self, e.other, e.trade);
+    --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function event_combat(e)
-    if not e.joined then
+    if (e.joined == false) then
         eq.stop_all_timers();
         eq.set_timer("reset", 900000); -- 15 mins
     end

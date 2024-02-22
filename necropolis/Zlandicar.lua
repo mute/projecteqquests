@@ -1,4 +1,8 @@
 -- items: 26010, 28060
+function event_death_complete(e)
+    eq.spawn2(12000096,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); -- NPC: Knight_of_Luclin
+end
+
 function event_say(e)
 	if (e.other:GetFaction(e.self) <= 5) then
 		if(e.message:findi("hail")) then
@@ -27,5 +31,5 @@ function event_trade(e)
 		  e.other:AddEXP(250000);
 		  end
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

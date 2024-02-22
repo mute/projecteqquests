@@ -9,7 +9,7 @@ sub EVENT_COMBAT {
 sub EVENT_TIMER {
     if($timer == 1) {
         if($z < -975) {
-            $npc->GMMove(-175,354,-759.13,503);
+            $npc->MovePCInstance(207, $instanceid, -175,354,-759.13,503);
         }
     }
 }

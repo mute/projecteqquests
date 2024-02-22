@@ -1,5 +1,5 @@
 function event_combat(e)
-  if e.joined then
+  if (e.joined == true) then
     eq.set_timer("spider", 2 * 1000);
   else
     eq.stop_timer("spider");

@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18761)) then
-		e.other:Message(MT.Yellow,"Margyn McCann greets you. 'Welcome to the Church of the Tribunal. Read the note in your inventory and when you are ready to begin your training, hand it to me.'");
+		e.other:Message(15,"Margyn McCann greets you. 'Welcome to the Church of the Tribunal. Read the note in your inventory and when you are ready to begin your training, hand it to me.'");
 	end
 end
 
@@ -79,7 +79,7 @@ function event_trade(e)
 		e.other:SummonItem(13512); 	-- Faded Blue Tunic
 		e.other:AddEXP(100);        -- Give exp for turning in quest
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- modified by Speedz, edited by Robregen for PEQ

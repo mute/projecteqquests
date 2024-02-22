@@ -7,7 +7,7 @@ function event_say(e)
 	if(e.message:findi("hail")) then
     if ( e.other:HasItem(62604) ) then
       e.self:Say("I see you have purified that stone. Can I look at it?");
-    elseif ( qglobals["ranger_epic15_pre"] == "7" and not e.other:HasItem(62603)) then
+    elseif ( qglobals["ranger_epic15_pre"] == "7" and e.other:HasItem(62603) == false ) then
       e.other:SummonItem(62603); -- Item: Polished Blasted Stone
     elseif ( qglobals["ranger_epic15_pre"] == "6" ) then 
       e.self:Say("You make my limbs ache. There is something unnatural about you. What is it?");
@@ -39,7 +39,7 @@ function event_say(e)
         -- At this point he'll walk a short ways, and he'll cast a spell on you called Bolt of Faith. It's an unresistable stun, 50% snare, and gives -50 to dexterity. It lasts one minute. Once it lands you'll see text. 
 
         e.self:CastSpell(5687, e.other:GetID()); -- Spell: Bolt of Faith
-        client:Message(MT.Lime, "As the lightning courses through your body, you feel the stone dissolving. That material flows from your mouth in an unnatural fashion and you see it fade as it rushes away from you across the planes toward something moving in the distance.");
+        client:Message(14, "As the lightning courses through your body, you feel the stone dissolving. That material flows from your mouth in an unnatural fashion and you see it fade as it rushes away from you across the planes toward something moving in the distance.");
 
         client:DeleteItemInInventory(Slot.Secondary, 1, true);
         client:DeleteItemInInventory(Slot.Face, 1, true);
@@ -70,12 +70,12 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.trade, {item1 = 20483,item2 = 20484})) then
 		e.self:Emote("waves his hands over the gem of corruption and a wave of warm energy passes through the area. With care for such a huge creature, he melds the gem into the sword and seems to glow all over as he channels energy into the weapon. 'Thus is the link of hate broken between Innoruuk and the spirit of earth. Through your will has balance returned. Your deeds, your work for the good of all, will be remembered by anyone who walks beneath the canopy of a forest or roams the plains. Continue your vigil over nature's balance.'");
-		e.other:SummonItem(20488); -- earthcaller
+		e.other:SummonFixedItem(820488); -- earthcaller
 		e.other:Ding();
 		e.other:AddEXP(2500000);
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 20699,item2 = 20697,item3 = 20698,item4 = 20440})) then
 		e.self:Emote("pushes the spirits into the air, making them dance around the scimitar. With a wave of his hand they melt into the blade and hilt of the weapon. 'With this the spirits of the lands are now free from the corruption of the dark gods.  Through your strength and dedication was this possible, "..e.other:GetName()..".  May the foul poison that once poured into the earth itself never do so again. Take this weapon that you may continue to watch over the balance of nature. Go now, with the gods' blessings.'");
-		e.other:SummonItem(20490); -- naturewalker's scimitar
+		e.other:SummonFixedItem(820490); -- naturewalker's scimitar
 		e.other:Ding();
 		e.other:AddEXP(2500000);
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 13411})) then
@@ -116,7 +116,7 @@ function event_trade(e)
     e.other:SummonItem(62604); -- Stone of Winde
     eq.set_global("ranger_epic15_pre","9",5,"F");
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: northkarana ID: 13061 NPC: Xanuusus 

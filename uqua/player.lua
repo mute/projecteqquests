@@ -1,6 +1,6 @@
 local gas_1_range = {-293, -263, -769, -718}
 local gas_2_range = {-886, -850, -801, -750}
-local player_minimum = 6;
+local player_minimum = 1;
 
 function event_enter_zone(e)
 	local qglobals = eq.get_qglobals(e.self); 
@@ -16,12 +16,26 @@ function event_enter_zone(e)
 	end
 end
 
+-- Define the list of protection item IDs
+local validItemIDs = {
+    [67736] = true,
+    [67737] = true,
+    [67738] = true,
+    [67739] = true
+}
+
+-- Function to check if an item ID or its variants are in the list
+local function isItemValid(id)
+	id = id % 100000;
+    return validItemIDs[id] == true 
+end
+
 function auracast(e)	
 	local qglobals = eq.get_qglobals(e.self); 
 	local instance_id = eq.get_zone_instance_id();
 
-	local rangeditem	= (e.self:GetItemIDAt(Slot.Range) == 67736 or e.self:GetItemIDAt(Slot.Range) == 67737 or e.self:GetItemIDAt(Slot.Range) == 67738 or e.self:GetItemIDAt(Slot.Range) == 67739);
-	local secondaryitem	= (e.self:GetItemIDAt(Slot.Secondary) == 67736 or e.self:GetItemIDAt(Slot.Secondary) == 67737 or e.self:GetItemIDAt(Slot.Secondary) == 67738 or e.self:GetItemIDAt(Slot.Secondary) == 67739);
+	local rangeditem   = isItemValid(e.self:GetItemIDAt(Slot.Range))
+	local secondaryitem = isItemValid(e.self:GetItemIDAt(Slot.Secondary))
 	local hasbuff		= e.self:FindBuff(756);
 
 	if qglobals[instance_id.. '_destper'] ~= nil then

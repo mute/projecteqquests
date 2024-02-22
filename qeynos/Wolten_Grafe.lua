@@ -1,4 +1,4 @@
--- items: 17941, 18804, 13882, 13006, 18805, 6537, 13396, 2112, 2106, 2111, 2104, 2108
+-- items: 17941, 18804, 13882, 13006, 18805, 6537, 13396, 2001 - 2013
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Hail, noble " .. e.other:GetName() .. ". Remember to spread the words of Karana throughout the faraway lands on which you shall tread. We of the Temple of Thunder are looking for new members - good people who [wish to join our cause]. Let the call go out!");
@@ -47,7 +47,7 @@ function event_trade(e)
 		e.other:GiveCash(0,0,8,0);
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 13396})) then -- Rat Kings Head
 		e.self:Say("So it is true, he does... or did, exist.  Well done "..e.other:GetName()..", take this for your trouble.");
-		e.other:SummonItem(eq.ChooseRandom(2112, 2106, 2111, 2104, 2108)); -- Item(s): Patchwork Boots (2112)
+		e.other:SummonItem(eq.ChooseRandom(2007, 2012, 2006, 2010, 2003, 2004, 2005, 2008, 2009, 2011, 2013, 2002, 2001)); -- Item(s): Leather Armor
 		e.other:Ding();
 		e.other:Faction(280,5,0); -- Knights of Thunder
 		e.other:Faction(341,5,0); -- Preists of Life
@@ -56,7 +56,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		e.other:GiveCash(7,5,0,0);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos  ID:1043 -- Wolten_Grafe 

@@ -18,7 +18,8 @@ if($text=~/I see Deyid/i) {  #this line spawns Deyid on live for whatever reason
   quest::unique_spawn(204051, 0, 0, 1011, 1081, 274, 92); # Deyid_the_Twisted (204051)
 }
 if($text=~/We are ready/i) {
-  quest::movegrp(204,1194,1121,280); 
+  #quest::movegrp(204,1194,1121,280);
+  quest::MovePCInstance(204, $instanceid, 1194, 1121, 280); #zone: ponightmare within current instance 
  }
 }
 

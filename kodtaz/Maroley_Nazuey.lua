@@ -2,7 +2,7 @@
 -- Maroley_Nazuey NPCID: 293116
 -- items: 60153
 local expedition_name = "Ikkinz, Chambers of Twin Struggles"
-local dz_version = instance_version.ikkinz_chambers_of_twin_struggles
+local dz_version = 1
 
 local expedition_info = {
   expedition = { name=expedition_name, min_players=1, max_players=6 },

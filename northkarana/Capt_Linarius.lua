@@ -1,6 +1,6 @@
 -- items: 13303, 5369, 9002, 13304
 function event_combat(e)
-  if e.joined then
+  if(e.joined == true) then
     e.self:Say(string.format("Time to die %s!",e.other:GetCleanName()));
   end
 end
@@ -35,5 +35,5 @@ function event_trade(e)
 		e.self:Say("You fool!!! You have slain a loyal defender of the guard!  Prepare to DIE!!!"); -- text made up
 		eq.attack(e.other:GetName());
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

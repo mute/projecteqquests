@@ -34,4 +34,3 @@ sub EVENT_WAYPOINT_DEPART {
 }
 
 # EOF zone: eastkarana ID: 15170 NPC: Teola
-

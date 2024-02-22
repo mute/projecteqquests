@@ -14,14 +14,13 @@ local sixth_door   = { [10] = true, [12] = true }
 local seventh_door = { [13] = true, [14] = true }
 local statue_door  = { [11] = true } -- statue behind fourth door area
 
-local group_trial_1 = instance_version.ikkinz_chambers_of_singular_might
-local group_trial_2 = instance_version.ikkinz_chambers_of_twin_struggles
-local group_trial_3 = instance_version.ikkinz_chambers_of_the_tri_fates
-local raid_trial_1  = instance_version.ikkinz_chambers_of_righteousness
-local raid_trial_2  = instance_version.ikkinz_chambers_of_glorification
-local raid_trial_3  = instance_version.ikkinz_chambers_of_transcendence
-local raid_trial_4  = instance_version.ikkinz_chambers_of_destruction
-
+local group_trial_1 = 0
+local group_trial_2 = 1
+local group_trial_3 = 2
+local raid_trial_1  = 3
+local raid_trial_2  = 4
+local raid_trial_3  = 5
+local raid_trial_4  = 6
 function event_click_door(e)
 	local zone_version = eq.get_zone_instance_version()
 	local door_id = e.door:GetDoorID()

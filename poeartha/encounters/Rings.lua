@@ -185,156 +185,26 @@ end
 			
 			
 			
-function Stone_Death(e) -- Count these mobs, if 44, spawn 4 x Rubble at their assigned locations.
+function Stone_Death(e) -- Count these mobs, if 44, spawn A Rock Monstrosity
 	stone_dead=stone_dead+1;
 	eq.debug("Stone Fortification: " .. stone_dead);
 		if stone_dead == 44 then
-		--eq.zone_emote(MT.Yellow,"YAY");
+		--eq.zone_emote(15,"YAY");
 		eq.depop_with_timer(218029);
-		eq.spawn2(218076,0,0,-588.14,-236.93,85.75,3.3); -- NPC: A_Mound_of_Rubble
-		eq.spawn2(218118,0,0,-642.33,-236.64,85.75,387.8); -- NPC: A_Mound_of_Rubble
-		eq.spawn2(218119,0,0,-640.72,-287.26,85.75,256.5); -- NPC: A_Mound_of_Rubble
-		eq.spawn2(218120,0,0,-589.11,-287.21,85.75,129.5); -- NPC: A_Mound_of_Rubble
+		eq.spawn2(218089,0,0,-614.11,-263.43,89.75,45.8):AddToHateList(e.self:GetTarget(),1); -- NPC: #A_Rock_Monstrosity
 		stone_dead=0;
 		eq.debug("Stone Fortification: " .. stone_dead);
 		end
-end
-
-
-function Rubble_Combat(e) -- Set actions @ 20% HP
-	if e.joined then
-	eq.set_next_hp_event(20);
-	end
-end
-	
-function Rubbletwo_Combat(e) -- Set actions @ 20% HP
-	if e.joined then
-	eq.set_next_hp_event(20);
-	end
-end
-
-function Rubblethree_Combat(e) -- Set actions @ 20% HP
-	if e.joined then
-	eq.set_next_hp_event(20);
-	end
-end
-
-function Rubblefour_Combat(e) -- Set actions @ 20% HP
-	if e.joined then
-	eq.set_next_hp_event(20);
-	end
-end
-
-function Rubble_HP(e)  -- If 20% HP and NOT the 4th Rubble brought to 20% -  Wipe my agro, go invlun, stop attacking & Path back to my spawn point and await further instructions.
-	if (e.hp_event == 20) then
-		e.self:WipeHateList();
-		e.self:SetHP(e.self:GetMaxHP())
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro_on, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_magic, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_melee, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro, 1);
-		e.self:SetSpecialAbility(SpecialAbility.no_harm_from_client, 1);
-		e.self:MoveTo(-588.14,-236.93,85.75,3.3,true);
-		rubble_done=rubble_done+1
-		eq.debug("Rubble: " .. rubble_done);
-	end
-	if rubble_done == 4 then -- If im 4th, Despawn all 4 - let the zone know something is happening & Spawn Rock Monstrosity Named
-	eq.zone_emote(MT.NPCQuestSay,"The mounds of rubble reform back into the Rock Monstrosity.");
-	eq.depop_all(218076);
-	eq.depop_all(218118);
-	eq.depop_all(218119);
-	eq.depop_all(218120);
-	eq.spawn2(218089,0,0,-614.11,-263.43,89.75,45.8):AddToHateList(e.self:GetTarget(),1); -- NPC: #A_Rock_Monstrosity
-	end	
-end
-
-function Rubbletwo_HP(e) -- If 20% HP and NOT the 4th Rubble brought to 20% -  Wipe my agro, go invlun, stop attacking & Path back to my spawn point and await further instructions.
-	if (e.hp_event == 20) then
-		e.self:WipeHateList();
-		e.self:SetHP(e.self:GetMaxHP())
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro_on, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_magic, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_melee, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro, 1);
-		e.self:SetSpecialAbility(SpecialAbility.no_harm_from_client, 1);
-		e.self:MoveTo(-642.33,-236.64,85.75,387.8,true);
-		rubble_done=rubble_done+1
-		eq.debug("Rubble: " .. rubble_done);
-	end
-	if rubble_done == 4 then -- If im 4th, Despawn all 4 - let the zone know something is happening & Spawn Rock Monstrosity Named
-	eq.zone_emote(MT.NPCQuestSay,"The mounds of rubble reform back into the Rock Monstrosity.");
-	eq.depop_all(218076);
-	eq.depop_all(218118);
-	eq.depop_all(218119);
-	eq.depop_all(218120);
-	eq.spawn2(218089,0,0,-614.11,-263.43,89.75,45.8):AddToHateList(e.self:GetTarget(),1); -- NPC: #A_Rock_Monstrosity
-	end	
-end
-
-function Rubblethree_HP(e) -- If 20% HP and NOT the 4th Rubble brought to 20% -  Wipe my agro, go invlun, stop attacking & Path back to my spawn point and await further instructions.
-	if (e.hp_event == 20) then
-		e.self:WipeHateList();
-		e.self:SetHP(e.self:GetMaxHP())
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro_on, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_magic, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_melee, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro, 1);
-		e.self:SetSpecialAbility(SpecialAbility.no_harm_from_client, 1);
-		e.self:MoveTo(-640.72,-287.26,85.75,256.5,true);
-		rubble_done=rubble_done+1
-		eq.debug("Rubble: " .. rubble_done);
-	end
-	if rubble_done == 4 then -- If im 4th, Despawn all 4 - let the zone know something is happening & Spawn Rock Monstrosity Named
-	eq.zone_emote(MT.NPCQuestSay,"The mounds of rubble reform back into the Rock Monstrosity.");
-	eq.depop_all(218076);
-	eq.depop_all(218118);
-	eq.depop_all(218119);
-	eq.depop_all(218120);
-	eq.spawn2(218089,0,0,-614.11,-263.43,89.75,45.8):AddToHateList(e.self:GetTarget(),1); -- NPC: #A_Rock_Monstrosity
-	end	
-end
-
-function Rubblefour_HP(e) -- If 20% HP and NOT the 4th Rubble brought to 20% -  Wipe my agro, go invlun, stop attacking & Path back to my spawn point and await further instructions.
-	if (e.hp_event == 20) then
-		e.self:WipeHateList();
-		e.self:SetHP(e.self:GetMaxHP())
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro_on, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_magic, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_melee, 1);
-		e.self:SetSpecialAbility(SpecialAbility.immune_aggro, 1);
-		e.self:SetSpecialAbility(SpecialAbility.no_harm_from_client, 1);
-		e.self:MoveTo(-589.11,-287.21,85.75,129.5,true);
-		rubble_done=rubble_done+1
-		eq.debug("Rubble: " .. rubble_done);
-	end
-	if rubble_done == 4 then -- If im 4th, Despawn all 4 - let the zone know something is happening & Spawn Rock Monstrosity Named
-	eq.zone_emote(MT.NPCQuestSay,"The mounds of rubble reform back into the Rock Monstrosity.");
-	eq.depop_all(218076);
-	eq.depop_all(218118);
-	eq.depop_all(218119);
-	eq.depop_all(218120);
-	eq.spawn2(218089,0,0,-614.11,-263.43,89.75,45.8):AddToHateList(e.self:GetTarget(),1); -- NPC: #A_Rock_Monstrosity
-	end	
-end
-
-
-function Rubble_Death(e)
-	eq.depop(218076);
-	eq.depop(218118);
-	eq.depop(218119); -- [Fail Condition] These cannot be brute forced. If these die [Fail Event]
-	eq.depop(218120);
-	stone_counter=0;
-	
 end
 
 function Monstrosity_Death(e) -- After my Death - Spawn Peregin & FD him, set his actions to not agro, go invuln, immune to all forms of agro. Also spawn the waves of Stone Heaps.
 		eq.spawn2(218049,0,0,-631.84,-277.58,89.75,64.3); -- NPC: Peregrin_Rockskull
 		heap_dead=0;
 		eq.debug("Heap Dead: " .. heap_dead);
-		eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 		rubble_done=0;
 		eq.debug("Rubble: " .. rubble_done);
 end
@@ -353,7 +223,7 @@ function Pereginspawnone_Timer(e)
 		if e.timer == "FD" then
 		eq.stop_timer('FD');
 		e.self:SetAppearance(3);
-		--eq.zone_emote(MT.Yellow,"Im FD NOW!");
+		--eq.zone_emote(15,"Im FD NOW!");
 		end
 end
 
@@ -384,42 +254,42 @@ function Heap_Death(e)  -- Count waves of Heaps in 4's  it takes 24 to spawn the
 	heap_dead=heap_dead+1;
 	eq.debug("Heap Dead: " .. heap_dead);
 		if heap_dead == 4 then -- Spawn Wave 1
-		eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-		eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+		eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 		end
 			if heap_dead == 8 then  -- Spawn Wave 2
-			eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-			eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-			eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-			eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+			eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+			eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+			eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+			eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 			end
 				if heap_dead == 12 then -- Spawn Wave 3
-				eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-				eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-				eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-				eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+				eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+				eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+				eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+				eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 				end
 					if heap_dead == 16 then -- Spawn Wave 4
-					eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-					eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-					eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-					eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+					eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+					eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+					eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+					eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 					end
 						if heap_dead == 20 then -- Spawn Wave 5
-						eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-						eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-						eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
-						eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Stone_Heap
+						eq.spawn2(218079,0,0,-545.32,-331.85,85.75,448.3); -- NPC: A_Stone_Heap
+						eq.spawn2(218079,0,0,-544.83,-189.64,85.75,327.5); -- NPC: A_Stone_Heap
+						eq.spawn2(218079,0,0,-689.25,-188.92,85.75,196.0); -- NPC: A_Stone_Heap
+						eq.spawn2(218079,0,0,-689.83,-336.55,85.75,67.5); -- NPC: A_Stone_Heap
 						end
-							if heap_dead  == 24 and el:IsMobSpawnedByNpcTypeID(218092) then -- ## Check to see if named can be spawned ##
+							if heap_dead  == 24 and el:IsMobSpawnedByNpcTypeID(218092) == true then -- ## Check to see if named can be spawned ##
 							eq.depop_all(218049); -- Depop Fake Peregin
 							eq.depop_with_timer(218092); -- Depop ##StoneTrigger## so we can spawn PHs next round.
 							eq.spawn2(218121,0,0,-631.84,-277.58,89.75,64.3); -- Peregin Rockskull // with Loot
 							heap_dead=0; -- Reset heap count back to 0.
 							eq.debug("Heap Dead: " .. heap_dead);
-							elseif heap_dead == 24 and not el:IsMobSpawnedByNpcTypeID(218092) then -- ## Check to see if we should spawn Placeholder instead ##
+							elseif heap_dead == 24 and el:IsMobSpawnedByNpcTypeID(218092) == false then -- ## Check to see if we should spawn Placeholder instead ##
 							eq.depop_all(218049); -- Depop Fake Peregin
 							eq.spawn2(218129,0,0,-631.84,-277.58,89.75,64.3); -- Spawn PH ## An Encrusted Dirt Cloud ##
 							heap_dead=0; -- Reset heap count back to 0.
@@ -427,7 +297,7 @@ function Heap_Death(e)  -- Count waves of Heaps in 4's  it takes 24 to spawn the
 end
 
 function Peregin_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -453,9 +323,9 @@ function Peregin_Death(e) -- Named Death
 		local el = eq.get_entity_list();
 		stone_counter=1; -- If Peregin dies, set this to success.
 		eq.debug("Stone_Success: " .. stone_counter);
-		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -466,13 +336,13 @@ function Peregin_Death(e) -- Named Death
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 		else
-		--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+		--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 		end
 end
 
 
 function Encrusted_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -496,9 +366,9 @@ function Encrusted_Death(e) --PH Death
 		local el = eq.get_entity_list();
 		stone_counter=1; -- If Placeholder dies, set this to success.
 		eq.debug("Stone_Success: " .. stone_counter);
-		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -509,7 +379,7 @@ function Encrusted_Death(e) --PH Death
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 		else
-		--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+		--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 		end
 end
 		
@@ -531,10 +401,10 @@ end
 
 function Mudwalker_Death(e)	
 		local el = eq.get_entity_list();
-		if not el:IsMobSpawnedByNpcTypeID(218013) and el:IsMobSpawnedByNpcTypeID(218090) then -- Are all ##Earthen Mudwalker's## down and is ##Mud_Trigger## up? If so start event for loot.
+		if el:IsMobSpawnedByNpcTypeID(218013) == false and el:IsMobSpawnedByNpcTypeID(218090) == true then -- Are all ##Earthen Mudwalker's## down and is ##Mud_Trigger## up? If so start event for loot.
 		eq.depop_with_timer(218125); -- Depop ##Sludge Lurker## Untargettable Version
 		eq.spawn2(218070,0,0,339.58,84.85,71.75,511.0); -- Spawn ##Sludge Lurker##
-		elseif not el:IsMobSpawnedByNpcTypeID(218013) and not el:IsMobSpawnedByNpcTypeID(218090) then -- Are all ##Earthen Mudwalker's## down and is ##Mud_Trigger## down? If so start event for PH.
+		elseif el:IsMobSpawnedByNpcTypeID(218013) == false and el:IsMobSpawnedByNpcTypeID(218090) == false then -- Are all ##Earthen Mudwalker's## down and is ##Mud_Trigger## down? If so start event for PH.
 		eq.depop_with_timer(218125); -- Depop ##Sludge Lurker## Untargettable Version
 		eq.spawn2(218124,0,0,339.58,84.85,71.75,511.0); -- Spawn ##Sludge Lurker ## PH ring mode
 		end
@@ -557,7 +427,7 @@ function Gorgertwo_Death(e)
 end
 	
 function Mudslinger_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -610,9 +480,9 @@ function Mudslinger_Death(e)
 	mud_counter=1
 	eq.debug("Mud_Success: " .. mud_counter);
 	eq.stop_timer('mud_box');
-	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -623,7 +493,7 @@ function Mudslinger_Death(e)
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 	else
-	--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+	--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 	end
 end		
 
@@ -726,7 +596,7 @@ function Gorger_Death(e)
 end
 
 function Monstrous_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -781,9 +651,9 @@ function Monstrous_Death(e)
 	mud_counter=1 -- Set Mud ring to Success
 	eq.debug("Mud_Success: " .. mud_counter);
 	eq.stop_timer('mud_box');
-	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -794,7 +664,7 @@ function Monstrous_Death(e)
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 	else
-	--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+	--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 	end
 end
 function Dusty_Spawn(e)
@@ -870,11 +740,11 @@ function Soil_Death(e)
 	local el = eq.get_entity_list();
 	soil_dead=soil_dead+1; -- Count my deaths
 	eq.debug("Soil: " .. soil_dead);
-	if soil_dead == 3 and el:IsMobSpawnedByNpcTypeID(218093) then -- Did 3 soils die? Is Dust Trigger up?  If so spawn Perfected Warder of Earth
+	if soil_dead == 3 and el:IsMobSpawnedByNpcTypeID(218093) == true then -- Did 3 soils die? Is Dust Trigger up?  If so spawn Perfected Warder of Earth
 	eq.spawn2(218096,0,0,5.88,-583.60,31.75,1.0); -- Spawn A Perfected Warder of Earth
 	soil_dead=0; -- Reset soil counter
 	eq.depop_with_timer(218093); -- Depop ## Dust Trigger ## so we can pop PH if needed
-	elseif soil_dead == 3 and not el:IsMobSpawnedByNpcTypeID(218093) then
+	elseif soil_dead == 3 and el:IsMobSpawnedByNpcTypeID(218093) == false then
 	eq.spawn2(218122,0,0,-32.37,-560.45,31.75,127.8):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Dust_Follower
 	eq.spawn2(218122,0,0,24.07,-581.69,31.75,456.0):AddToHateList(e.self:GetTarget(),1); -- Spawn the PH ring ## Dust Follower x 3 ##
 	eq.spawn2(218122,0,0,25.65,-527.70,31.75,332.5):AddToHateList(e.self:GetTarget(),1); -- NPC: A_Dust_Follower
@@ -883,7 +753,7 @@ function Soil_Death(e)
 end
 
 function Soil_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -910,9 +780,9 @@ function Follower_Death(e)
 	dust_counter=1; -- Set ring to success
 	follower_dead=0; -- Reset count
 	eq.debug("Dust_Success: " .. dust_counter);
-		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+		if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 			eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-			--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+			--eq.zone_emote(15,"Arbitor has spawned!");
 			eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 			stone_counter=0;
 			vine_counter=0;
@@ -923,7 +793,7 @@ function Follower_Death(e)
 			eq.debug("Dust_Success: " .. dust_counter);
 			eq.debug("Mud_Success: " .. mud_counter);
 		else
-		--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+		--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 		end
 	end
 end
@@ -933,7 +803,7 @@ function Follower_Spawn(e)
 end
 
 function Follower_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -990,7 +860,7 @@ end
 
 
 function Warder_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -1059,9 +929,9 @@ function Warder_Death(e)
 	local el = eq.get_entity_list();
 	dust_counter=1; -- Set this ring to success.
 	eq.debug("Dust_Success: " .. dust_counter);
-	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -1072,7 +942,7 @@ function Warder_Death(e)
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 	else
-	--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+	--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 	end
 end
 
@@ -1101,7 +971,7 @@ function Tainted_Death(e)
 	local el = eq.get_entity_list();
 	tainted_dead=tainted_dead+1; -- Count deaths
 	eq.debug("Tainted:" .. tainted_dead);
-	if tainted_dead == 30 and el:IsMobSpawnedByNpcTypeID(218127) then
+	if tainted_dead == 30 and el:IsMobSpawnedByNpcTypeID(218127) == true then
 	eq.depop_with_timer(218127); -- Depop ring timer mob.
 	eq.depop_all(218126); -- Depop Bloodthirsty Vegerog & Repop them to agro
 	tainted_dead=0; -- Reset count on tainted.
@@ -1123,12 +993,12 @@ function Bloodthirsty_Death(e)
 	local el = eq.get_entity_list();
 	bloodthirsty_dead=bloodthirsty_dead+1;  -- Count these
 	eq.debug("BloodThirsty: " .. bloodthirsty_dead);
-	if bloodthirsty_dead == 10 and el:IsMobSpawnedByNpcTypeID(218091) then
+	if bloodthirsty_dead == 10 and el:IsMobSpawnedByNpcTypeID(218091) == true then
 	eq.spawn2(218058,0,0,484.89,-835.89,34.05,9.3); -- Spawn Named
 	bloodthirsty_dead=0; -- Reset counter
 	eq.debug("BloodThirsty: " .. bloodthirsty_dead);
 	eq.depop_with_timer(218091); -- Depop ## Vine Trigger ## so we can pop PH next time.
-	elseif bloodthirsty_dead == 10 and not el:IsMobSpawnedByNpcTypeID(218091) then
+	elseif bloodthirsty_dead == 10 and el:IsMobSpawnedByNpcTypeID(218091) == false then
 	eq.spawn2(218128,0,0,484.89,-835.89,34.05,9.3); -- Spawn Placeholder
 	bloodthirsty_dead=0; -- Reset counter
 	eq.debug("BloodThirsty: " .. bloodthirsty_dead);
@@ -1139,9 +1009,9 @@ function Deru_Death(e)
 	local el = eq.get_entity_list();
 	vine_counter=1; -- Reset counter
 	eq.debug("Vine_Success: " .. vine_counter);
-	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -1152,12 +1022,12 @@ function Deru_Death(e)
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 	else
-	--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+	--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 	end
 end
 
 function Deru_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else
@@ -1177,7 +1047,7 @@ function Deru_Timer(e)
 end
 
 function Bloodsoaked_Combat(e)
-		if e.joined then
+		if (e.joined == true) then
 			eq.set_timer('Hardblur', 180 * 1000);
 			eq.set_timer('Softblur', 6 * 1000);
 		else
@@ -1200,9 +1070,9 @@ function Bloodsoaked_Death(e)
 	local el = eq.get_entity_list();
 	vine_counter=1; -- Set vine ring to success
 	eq.debug("Vine_Success: " .. vine_counter);
-	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
+	if stone_counter == 1 and vine_counter == 1 and mud_counter == 1 and dust_counter == 1 and el:IsMobSpawnedByNpcTypeID(218094) == true then -- Are Stone/Dust/Vine/Mud all complete & is the Final Trigger mob Up? If so spawn Arbitor.
 		eq.spawn2(218053,0,0,1520.9,-2745.2,6.1,376.4); -- Spawn Mystical Arbitor of Earth
-		--eq.zone_emote(MT.Yellow,"Arbitor has spawned!");
+		--eq.zone_emote(15,"Arbitor has spawned!");
 		eq.depop_with_timer(218094); -- Despawn the Trigger mob ##Final_Trigger## so event can't be repeated multiple times.
 		stone_counter=0;
 		vine_counter=0;
@@ -1213,7 +1083,7 @@ function Bloodsoaked_Death(e)
 		eq.debug("Dust_Success: " .. dust_counter);
 		eq.debug("Mud_Success: " .. mud_counter);
 	else
-	--eq.zone_emote(MT.Yellow,"Sorry the Mystical Arbitor is in another Castle!");
+	--eq.zone_emote(15,"Sorry the Mystical Arbitor is in another Castle!");
 	end
 end
 
@@ -1222,7 +1092,7 @@ function Mystical_Arbitorspawn(e)
 end
 
 function Mystical_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer('Hardblur', 180 * 1000);
 		eq.set_timer('Softblur', 6 * 1000);
 	else

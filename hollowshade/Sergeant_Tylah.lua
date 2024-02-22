@@ -40,7 +40,7 @@ function event_trade(e)
     local item_lib = require("items");
     
     if quests then
-        if(item_lib.check_turn_in(e.trade, {item1 = 3457, item2 = 3457, item3 = 3457, item4 = 3457})) then -- 4x Boiled Rockhopper Egg
+        if(item_lib.check_turn_in( e.trade, {item1 = 3457, item2 = 3457, item3 = 3457, item4 = 3457})) then -- 4x Boiled Rockhopper Egg
             e.self:Emote("devours all four of the eggs in the blink of an eye, 'Delicious! May the spirits bless you " .. e.other:GetName() .. "! Here are a few acrylia flakes for your trouble. I'll be happy to pay for more should you find yourself with any extra!");
             e.other:QuestReward(e.self,0,0,0,0,3459); -- Acrylia Flakes
         end
@@ -48,5 +48,5 @@ function event_trade(e)
         e.self:Say("Apologies my friend, I have no time to trade now. I must keep watch over the fort until this invasion is over.");
     end
     
-    item_lib.return_items(e.self, e.other, e.trade)
+    --item_lib.return_items(e.self, e.other, e.trade)
 end

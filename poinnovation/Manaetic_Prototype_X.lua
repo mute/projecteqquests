@@ -1,5 +1,7 @@
+local instance_id = eq.get_zone_instance_id();
+
 function event_combat(e)
-	if e.joined then
+	if(e.joined == true) then
 		eq.set_timer("banish",math.random(15,30) * 1000);
 	else
 		eq.stop_timer("banish");
@@ -14,7 +16,7 @@ function event_timer(e)
 		eq.set_timer("banish",math.random(15,30) * 1000);
 
 		if cur_target.valid and not cur_target:IsPet() then
-			cur_target:MovePC(206,269.5,-239.5,3.13,128);
+			cur_target:MovePCInstance(206, instance_id, 269.5,-239.5,3.13,128);
 		end
 	end
 end

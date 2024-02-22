@@ -2,31 +2,47 @@
 sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 60173 =>1)) {
     quest::emote("motions for you to enter the altar through the entrance behind him.");
-    if(defined($qglobals{ikky}) && ($qglobals{ikky} == 14)) {
-      $raid = $client->GetRaid();
-      if($raid){
-		  if ($raid->RaidCount() <= 54) {
-			if(!defined($qglobals{ikkylockout6})) {
-			  $InInstanceIkky7 = quest::GetInstanceID("ikkinz",6);
-			  if($InInstanceIkky7 == 0){
-				$Instance = quest::CreateInstance("ikkinz", 6, 21600);
-				quest::AssignRaidToInstance($Instance);	
-				quest::say("Instance added.");
-				$client->MarkCompassLoc(1860, 660, -447);
-			  } else {
-				$client->Message(13, "You are already in an instance!");
-			  }
-			} else {
-			  $client->Message(13,"You have recently completed a raid.");
+	if ((defined($qglobals{ikky}) && ($qglobals{ikky} >= 14)) || $client->GetGM()) {	
+		# Define the expedition name and version
+		my $expedition_name = "Ikkinz, Antechamber of Destruction";
+		my $dz_version = 6;
+		my $dz_duration = 79200;
+
+		# Define the expedition information
+		my %expedition_info = (
+			expedition => {
+				name        => $expedition_name,
+				min_players => 1,
+				max_players => 54
+			},
+			instance => {
+				zone     => "ikkinz",
+				version  => $dz_version,
+				duration => $dz_duration
+			},
+			compass => {
+				zone => "kodtaz",
+				x    => 1860,
+				y    => 660,
+				z    => -447
+			},
+			safereturn => {
+				zone => "kodtaz",
+				x    => $npc->GetX(),
+				y    => $npc->GetY(),
+				z    => $npc->GetZ(),
+				h    => 0.0
+			},
+			zonein => {
+				x => -157,
+				y => 27,
+				z => -2,
+				h => 0
 			}
-		  } else {
-			$client->Message(13, "You have ".$raid->RaidCount()." players in raid.  Only 54 allowed");
-		  } 
-      } else {
-        $client->Message(13, "You are not in a raid!");
-      }
-    }
-    quest::summonitem(60173); # Item: Icon of the Altar
+		);
+
+		my $expedition = $client->CreateExpedition(\%expedition_info);
+	}
   }
-  plugin::return_items(\%itemcount);
+  quest::summonfixeditem(60173); # Item: Icon of the Altar
 }   

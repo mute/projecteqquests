@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18734) then
-		e.other:Message(MT.Yellow,"An important looking Halfling turns to address you. 'Welcome to the Tagglefoot's Farmstead. I can see by the gleam in your eye that you are here to begin your training with the Storm Reapers. I am Hibbs Rootenpaw. Read the note in your inventory and hand it to me when you are ready to begin your training.'");
+	if(e.other:HasItem(18734) == true) then
+		e.other:Message(15,"An important looking Halfling turns to address you. 'Welcome to the Tagglefoot's Farmstead. I can see by the gleam in your eye that you are here to begin your training with the Storm Reapers. I am Hibbs Rootenpaw. Read the note in your inventory and hand it to me when you are ready to begin your training.'");
 	end
 end
 
@@ -52,5 +52,5 @@ function event_trade(e)
 		e.other:Faction(324,-15,0); -- -Unkempt Druids
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

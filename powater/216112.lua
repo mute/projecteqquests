@@ -1,5 +1,5 @@
 function event_combat(e)
-  if e.joined then
+  if (e.joined == true) then
     e.self:Emote("of tiny creatures erupts around you in a feeding frenzy.");
     local which = math.random(3);
     if  (which == 1) then

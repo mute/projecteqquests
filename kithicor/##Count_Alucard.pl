@@ -3,8 +3,7 @@
 
 sub EVENT_SPAWN {
 	quest::shout("I sense...mortals");
-#commenting move until pathing is fixed
-	#quest::moveto(-782,-1319,-43);
+	quest::pathto(-782,-1319,-43);
 }
 
 sub EVENT_DEATH_COMPLETE {

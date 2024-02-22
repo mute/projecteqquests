@@ -52,17 +52,17 @@ sub EVENT_SAY {
 sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 20448 => 1)) {
     quest::emote("looks at the coin and nods gravely at you as she slips it into a fold of her clothing. 'I see. The story of this coin speaks much to me as do the words you have given me. Telin sent word that you would arrive. The tidings you bring are ill indeed. Here, take this amulet and find Sionae. She is nearby. We will speak more on this matter when all are present.'");
-    quest::summonitem(20450); # Item: Braided Grass Amulet
+    quest::summonfixeditem(20450); # Item: Braided Grass Amulet
     quest::unique_spawn(15178,0,0,-1595,-2595,3.2,254); #spawn sionae
   }
   elsif(plugin::check_handin(\%itemcount, 62810 => 1)){ #Sickly Maiden's Hair
     quest::say("This plant has an illness that I have never sensed before.' Althele pauses in thought for a moment. 'You are a hunter, so I shall put your skills to work. First, take this to Corun in Surefall. He is an expert on animal illnesses. Then put your hunting skills to work and see if you can capture any animals that may have eaten this plant. Corun will want to see them to help him discover what the sickness is.");
-    quest::summonitem(62811); #Tuft of Sickly Maiden's Hair
+    quest::summonfixeditem(62811); #Tuft of Sickly Maiden's Hair
   }
   elsif (plugin::check_handin(\%itemcount, 20452 => 1)) {
     quest::emote("hands the book to Tholris who reads through it with lines of concern etched on his face, then whispers into her ear. 'Dire news, indeed. This cannot be allowed. I must keep this book but you, $name, must not allow Innoruuk to seed the land with his hatred and filth. You have only just begun your quest. The path you are guided upon will be difficult, if not impossible, but someone must finish it. Please, take this, read of it, follow its instructions. Tunare bless your path and Karana watch over you.");
     quest::exp(100000);
-    quest::summonitem(18959); # Item: Earth Stained Note
+    quest::summonfixeditem(18959); # Item: Earth Stained Note
     $depop1 = $entity_list->GetMobByNpcTypeID(15178); #despawn the druids
     $depop2 = $entity_list->GetMobByNpcTypeID(15167);
     $depop3 = $entity_list->GetMobByNpcTypeID(15170);

@@ -50,7 +50,7 @@ function event_trade(e)
 	local fac = e.other:GetFaction(e.self);
     if (item_lib.check_turn_in(e.trade, {item1 = 13378})) then -- Ogre Head "Identifies as Pungla's Head"
 		if(fac <= 5) then --indifferent or higher is required here
-			local prize = math.random(1, #verified_loot);
+			local prize = math.random(1, table.getn(verified_loot));
 			e.self:Say("Haha! He shall mix no more Flaming Pungla's! I shall drink from his rotting skull tonight. As for you, take this and call it yours. Consider yourself a friend of Clurg.");
 			e.other:Faction(228,15,0); --Clurg
 			e.other:Faction(274,-15,0); --Kazon Stormhammer
@@ -76,5 +76,5 @@ function event_trade(e)
 			e.other:SummonItem(13379);	-- Compendium returned. Not enough faction @ indifferent
 		end
 	end
-    item_lib.return_items(e.self, e.other, e.trade);
+    --item_lib.return_items(e.self, e.other, e.trade);
 end

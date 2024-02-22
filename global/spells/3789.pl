@@ -1,6 +1,6 @@
 sub EVENT_SPELL_EFFECT_CLIENT
 {
-	if(quest::is_depths_of_darkhollow_enabled())
+	if(($client->GetClientVersionBit() & 4294967292)!= 0)
 	{
 		quest::MovePCInstance(25, 1, -924, 1401, 46, 0); # Zone: nektulos
 	}

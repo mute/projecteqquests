@@ -23,7 +23,7 @@ function Control_Timer(e)
 end
 
 function Maestro_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer("OOBcheck", 3 * 1000);
 		eq.stop_timer("resetevent");
 	else
@@ -70,8 +70,8 @@ function Maestro_Hp(e)
         eq.spawn2(186191,0,0,-117.37,-483,35.88,129.2); -- NPC: #an_accompanist
         e.self:ModifyNPCStat("hp_regen", "10000");
         eq.set_next_hp_event(40);
-        eq.zone_emote(MT.White, "A haunting tune floats through the music hall.  Someone or SOMETHING has begun playing the pipe organ.");
-        eq.zone_emote(MT.White, "Maestro of Rancor chortles, 'This song is sweet to my senses. Keep up with the dance mortals... IF YOU CAN!");
+        eq.zone_emote(0, "A haunting tune floats through the music hall.  Someone or SOMETHING has begun playing the pipe organ.");
+        eq.zone_emote(0, "Maestro of Rancor chortles, 'This song is sweet to my senses. Keep up with the dance mortals... IF YOU CAN!");
     elseif (e.hp_event == 40) then
         eq.depop_all(186197); -- #a_silent_banshee (186197)
         eq.spawn2(186192,0,0,-291,-421,23.23,256); -- NPC: #a_screeching_banshee
@@ -95,21 +95,21 @@ function Maestro_Death(e)
 end
 
 function Accompanist_Death(e)
-  if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(186191) then
+  if(eq.get_entity_list():IsMobSpawnedByNpcTypeID(186191) == false) then
     eq.signal(186111,1); -- NPC: #Maestro_of_Rancor
 -- signal maestro to reduce HP regen since hands are dead
   end
 end
 
 function Banshee_Death(e)
-  if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(186192) and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(186193) and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(186194) and eq.get_entity_list():IsMobSpawnedByNpcTypeID(186111) then
+  if(eq.get_entity_list():IsMobSpawnedByNpcTypeID(186192) == false and eq.get_entity_list():IsMobSpawnedByNpcTypeID(186193) == false and eq.get_entity_list():IsMobSpawnedByNpcTypeID(186194) == false and eq.get_entity_list():IsMobSpawnedByNpcTypeID(186111) == true) then
     eq.signal(186111,2); -- NPC: #Maestro_of_Rancor
     -- signal maestro to spawn 2 more banshees since all banshees are dead and maestro is still alive
   end
 end
 
 function Moaning_Combat(e)
-    if e.joined then
+    if (e.joined == true) then
         eq.set_timer("nuke", math.random(2,5) * 1000);
     else
         eq.stop_timer("nuke");
@@ -118,7 +118,7 @@ end
 
 function Moaning_Timer(e)
     if(e.timer=="nuke") then
-        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, MT.Yellow, 100,"You seem to recognize one banshees music as a fire resist song.");
+        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, 15, 100,"You seem to recognize one banshees music as a fire resist song.");
         local rand = math.random(1,2);
           if (rand ==1) then
             e.self:CastedSpellFinished(943, e.self:GetHateTop()); -- Mana Drain (943)

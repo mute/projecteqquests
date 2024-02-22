@@ -2,8 +2,8 @@
 #(Body Modification)
 
 my $race_change_cost = 10;
-my $sex_change_cost  = 5;
-my $name_change_cost = 5;
+my $sex_change_cost  = 10;
+my $name_change_cost = 10;
 
 sub EVENT_SAY {
 if ($client->GetGM()) {

@@ -1,4 +1,3 @@
--- items: 17878, 2417
 function event_say(e)
 	local qglobals = eq.get_qglobals(e.self,e.other);
 
@@ -10,7 +9,7 @@ function event_say(e)
 			e.self:Say("I've heard stories about a holy sword. There are many rumored to be hidden all throughout the world, yet only a few have actually been found. Amstaf had one of these swords. It is known for its ability to dismiss the undead. Perhaps by having this sword it'll bring you closer to finding your friend. Gather a ghoul's heart, Amstaf's Scroll, the Blade of Nobility, a noblemans hilt and place them in this [bag].");
 		elseif(e.message:findi("bag")) then
 			e.self:Say("Take this bag and gather the items I've mentioned. I've been told that the Ghoul's Heart can be found in the estate of the undead, while the scroll can be found in the Keep not far from the Karanas. One of the others are rumored to be found near the dwarven city among the goblins. While the last should be found in the caverns of Najena.");
-			e.other:SummonItem(17878); -- Noblemans bag
+			e.other:SummonFixedItem(17878); -- Noblemans bag
 			eq.delete_global("Ruathey");
 		end
 	end

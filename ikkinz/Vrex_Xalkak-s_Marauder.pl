@@ -65,13 +65,13 @@ sub EVENT_DEATH_COMPLETE {
 	quest::ze(15,"Your energy didn't match that required to kill the stone worker.");
     quest::spawn2(294594,0,0,$x,$y,$z,$h); # NPC: Vrex_Xalkak`s_Marauder
      if($archkill == 1) {
-      quest::ze(15,"The creature will perish under the strength of intelligent magic");
+      quest::ze(15,"The creature will perish under the strength of intelligent magic or the power of healers");
     }
     if($archkill == 2) {
-      quest::ze(15,"The creature appears weak to the combined effort of might and magic!");
+      quest::ze(15,"The creature appears weak to the combined effort of might and magic or the power of healers!");
     }
     if($archkill == 3) {
-      quest::ze(15,"The creature appears weak to the combined effort of strength and cunning!");
+      quest::ze(15,"The creature appears weak to the combined effort of strength and cunning or the power of healers!");
     }
     if($archkill == 4) {
       quest::ze(15,"The creature cannot stand up to the power of healers");
@@ -79,4 +79,3 @@ sub EVENT_DEATH_COMPLETE {
 	quest::ze(15,"It reforms instantly!");
   }
 }
-

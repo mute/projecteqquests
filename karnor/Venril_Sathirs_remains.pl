@@ -21,17 +21,7 @@ sub EVENT_ITEM {
     $z = $npc->GetZ();
     $h = $npc->GetHeading();
     quest::spawn2(102123,0,0,$x,$y,$z,$h); # NPC: Spirit_of_Venril_Sathir
-    quest::depop_withtimer();
-  }
-}
-
-sub EVENT_SPAWN {
-  quest::settimer(1,20);
-}
-sub EVENT_TIMER {
-  if ($entity_list->IsMobSpawnedByNpcTypeID(102112)) {
-    quest::stoptimer(1);
-    quest::depop_withtimer();
+    quest::depop();
   }
 }
 

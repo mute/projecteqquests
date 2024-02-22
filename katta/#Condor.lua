@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 29846})) then --  recording stone
+	if(item_lib.check_turn_in(e.trade, {item1 = 29846}, 0)) then --  recording stone
 		e.self:Say("Pefect, this should give us some idea of what they may or may not know. 'as he puts the stone in his belt pouch.' Very well done, my friend. Have you ever considered a career in espoinage? Take this.  I have little need for it these days - Tilbok will know how to recharge it, 'he says with a wry grin before disappearing back into the shadaows.");
 		e.other:Faction(1503,5);  -- Validus Custodus
 		e.other:Faction(1502,1);  -- Katta Castellum Citizens
@@ -27,5 +27,5 @@ function event_trade(e)
 		e.other:QuestReward(e.self,0,0,0,0,5105,5000); -- Mask of Espionage
 		eq.depop();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

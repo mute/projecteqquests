@@ -38,7 +38,7 @@ sub EVENT_SIGNAL {
     quest::depopall(216074); #Depop any remaining trash creatures Triloun-057, regrua-067, hraquis-074
     quest::depopall(216067);
     quest::depopall(216057);
-    quest::setglobal("coirnav_done", 3, 7, "D4"); # You can't attempt this again for 5 days
+    quest::setglobal("coirnav_done", 3, 7, "D1"); # You can't attempt this again for 1 days
     quest::spawn2(216066,0,0,$x,$y,$z,138); #Spawn Essence of Water
   }
 }
@@ -64,7 +64,7 @@ sub EVENT_TIMER {
     quest::depop(216108);
     quest::depop(216109);
     quest::depop(216110);
-    quest::setglobal("coirnav_done", 3, 7, "H2"); # You can't attempt this again for 2 hours
+    quest::setglobal("coirnav_done", 3, 7, "H1"); # You can't attempt this again for 1 hours
     quest::settimer(7,45); # Reset kickout timer
   }
 
@@ -127,7 +127,7 @@ sub KICK_ALL_PLAYERS {
 }
 
 sub SPAWN_WAVE1 {
-  quest::settimer(1,895); # 15 Minute timer for the kickout event!!
+  quest::settimer(1,1200); # 20 Minute timer for the kickout event!!
   quest::settimer(2,180); # 3 Minute timer for second wave spawn
   quest::settimer(3,300); # 5 Minute timer for third wave
   quest::settimer(4,600); # 10 Minute timer for the emote

@@ -10,8 +10,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18792) then
-		e.other:Message(MT.Yellow,"As your eyes adjust to the darkness, a large troll decked out in grimy metal armor turns towards you. 'I be Hukulk. You read note in inventory and hand to me to start training!'");
+	if(e.other:HasItem(18792) == true) then
+		e.other:Message(15,"As your eyes adjust to the darkness, a large troll decked out in grimy metal armor turns towards you. 'I be Hukulk. You read note in inventory and hand to me to start training!'");
 	end
 end
 
@@ -67,7 +67,7 @@ function event_trade(e)
 		e.other:Faction(235,2,0);	-- Da Bashers
 		e.other:AddEXP(250);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function reject(e, pfaction)

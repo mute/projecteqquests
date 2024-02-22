@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18727)) then
-		e.other:Message(MT.Yellow,"Ghanlin Skyphire, a stern and powerful looking man looks your way, 'What is this? An apprentice wizard in our ranks? If so, then read the note in your inventory and hand it to me to start your training. With my help you will start on the path to becoming a great and powerful wizard if that be your will.'");
+		e.other:Message(15,"Ghanlin Skyphire, a stern and powerful looking man looks your way, 'What is this? An apprentice wizard in our ranks? If so, then read the note in your inventory and hand it to me to start your training. With my help you will start on the path to becoming a great and powerful wizard if that be your will.'");
 	end
 end
 
@@ -24,7 +24,7 @@ function event_trade(e)
 		e.other:Faction(267,15,0);  --High Guard of Erudin		
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:erudnint  ID:24040 -- Ghanlin_Skyphire

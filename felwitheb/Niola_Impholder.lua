@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18777)) then
-		e.other:Message(MT.Yellow,"As you enter what seems to be a small bedroom, a beautiful High Elf woman looks your way. 'Hello. You have come for training in the ways of the Keepers of the Art? Very good. Please read the note in your inventory and when you are ready to begin, hand it to me.'");
+		e.other:Message(15,"As you enter what seems to be a small bedroom, a beautiful High Elf woman looks your way. 'Hello. You have come for training in the ways of the Keepers of the Art? Very good. Please read the note in your inventory and when you are ready to begin, hand it to me.'");
 	end
 end
 
@@ -52,7 +52,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:AddEXP(30000);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:felwitheb  ID:62021 -- Niola_Impholder

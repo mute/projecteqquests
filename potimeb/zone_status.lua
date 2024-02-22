@@ -75,47 +75,47 @@ Lockouts = {
 		[223172] = {P1WATER,   				eq.seconds('12h')},
 		[223173] = {P1FIRE,   	 			eq.seconds('12h')},
 		[223171] = {P1UNDEAD,  				eq.seconds('12h')},
-		[223118] = {P2AIR,    				eq.seconds('132h')},
-		[223134] = {P2EARTH,    			eq.seconds('132h')},
-		[223096] = {P2WATER,   	 			eq.seconds('132h')},
-		[223146] = {P2FIRE,    				eq.seconds('132h')},
-		[223127] = {P2UNDEAD,    			eq.seconds('132h')},
-		[223008] = {FEROCIOUSWARBOAR,   	eq.seconds('132h')},
-		[223009] = {BLACKHEART,   			eq.seconds('132h')},
-		[223016] = {XEROAN,    				eq.seconds('132h')},
-		[223017] = {KRAKSMAAL,    			eq.seconds('132h')},
-		[223022] = {DEADLYWARBOAR,    		eq.seconds('132h')},
-		[223023] = {SKULLSMASH,    			eq.seconds('132h')},
-		[223013] = {HERLSOAKIAN,    		eq.seconds('132h')},
-		[223012] = {SINRUNAL,    			eq.seconds('132h')},
-		[223010] = {NEEDLETUSK,    			eq.seconds('132h')},
-		[223011] = {RIANIT,    				eq.seconds('132h')},
-		[223015] = {DERSOOL,    			eq.seconds('132h')},
-		[223014] = {XERSKEL,    			eq.seconds('132h')},
-		[223021] = {SQUADLEADER,    		eq.seconds('132h')},
-		[223020] = {DARKKNIGHT,    			eq.seconds('132h')},
-		[223019] = {TORMENT,    			eq.seconds('132h')},
-		[223018] = {DREAMWARP,    			eq.seconds('132h')},
-		[223073] = {AVATAR,    				eq.seconds('132h')},
-		[223074] = {SUPGUARDIAN,    		eq.seconds('132h')},
-		[223075] = {TERRIS,    				eq.seconds('132h')},
-		[223076] = {SARYRN,    				eq.seconds('132h')},
-		[223077] = {TALLONZEK,    			eq.seconds('132h')},
-		[223078] = {VALLONZEK,    			eq.seconds('132h')},
-		[223098] = {BERTOXXULOUOSTRASH,    	eq.seconds('132h')},
-		[223142] = {BERTOXXULOUOS,    		eq.seconds('132h')},
-		[223165] = {CAZICTHULETRASH,    	eq.seconds('132h')},
-		[223166] = {CAZICTHULE,    			eq.seconds('132h')},
-		[223000] = {INNORUUKTRASH,    		eq.seconds('132h')},
-		[223167] = {INNORUUK,    			eq.seconds('132h')},
-		[223001] = {RALLOSZEKTRASH,    		eq.seconds('132h')},
-		[223168] = {RALLOSZEK,    			eq.seconds('132h')},
-		[223201] = {QUARM,    				eq.seconds('132h')},
-		[999995] = {PHASE1COMPLETE,			eq.seconds('12h')},
-		[999996] = {PHASE2COMPLETE,    		eq.seconds('132h')},
-		[999997] = {PHASE3COMPLETE,    		eq.seconds('132h')},
-		[999998] = {PHASE4COMPLETE,    		eq.seconds('132h')},
-		[999999] = {PHASE5COMPLETE,    		eq.seconds('132h')}
+		[223118] = {P2AIR,    				eq.seconds('22h')},
+		[223134] = {P2EARTH,    			eq.seconds('22h')},
+		[223096] = {P2WATER,   	 			eq.seconds('22h')},
+		[223146] = {P2FIRE,    				eq.seconds('22h')},
+		[223127] = {P2UNDEAD,    			eq.seconds('22h')},
+		[223008] = {FEROCIOUSWARBOAR,   	eq.seconds('22h')},
+		[223009] = {BLACKHEART,   			eq.seconds('22h')},
+		[223016] = {XEROAN,    				eq.seconds('22h')},
+		[223017] = {KRAKSMAAL,    			eq.seconds('22h')},
+		[223022] = {DEADLYWARBOAR,    		eq.seconds('22h')},
+		[223023] = {SKULLSMASH,    			eq.seconds('22h')},
+		[223013] = {HERLSOAKIAN,    		eq.seconds('22h')},
+		[223012] = {SINRUNAL,    			eq.seconds('22h')},
+		[223010] = {NEEDLETUSK,    			eq.seconds('22h')},
+		[223011] = {RIANIT,    				eq.seconds('22h')},
+		[223015] = {DERSOOL,    			eq.seconds('22h')},
+		[223014] = {XERSKEL,    			eq.seconds('22h')},
+		[223021] = {SQUADLEADER,    		eq.seconds('22h')},
+		[223020] = {DARKKNIGHT,    			eq.seconds('22h')},
+		[223019] = {TORMENT,    			eq.seconds('22h')},
+		[223018] = {DREAMWARP,    			eq.seconds('22h')},
+		[223073] = {AVATAR,    				eq.seconds('22h')},
+		[223074] = {SUPGUARDIAN,    		eq.seconds('22h')},
+		[223075] = {TERRIS,    				eq.seconds('22h')},
+		[223076] = {SARYRN,    				eq.seconds('22h')},
+		[223077] = {TALLONZEK,    			eq.seconds('22h')},
+		[223078] = {VALLONZEK,    			eq.seconds('22h')},
+		[223098] = {BERTOXXULOUOSTRASH,    	eq.seconds('22h')},
+		[223142] = {BERTOXXULOUOS,    		eq.seconds('22h')},
+		[223165] = {CAZICTHULETRASH,    	eq.seconds('22h')},
+		[223166] = {CAZICTHULE,    			eq.seconds('22h')},
+		[223000] = {INNORUUKTRASH,    		eq.seconds('22h')},
+		[223167] = {INNORUUK,    			eq.seconds('22h')},
+		[223001] = {RALLOSZEKTRASH,    		eq.seconds('22h')},
+		[223168] = {RALLOSZEK,    			eq.seconds('22h')},
+		[223201] = {QUARM,    				eq.seconds('22h')},
+		[999999] = {PHASE1COMPLETE,			eq.seconds('12h')},
+		[999999] = {PHASE2COMPLETE,    		eq.seconds('22h')},
+		[999999] = {PHASE3COMPLETE,    		eq.seconds('22h')},
+		[999999] = {PHASE4COMPLETE,    		eq.seconds('22h')},
+		[999999] = {PHASE5COMPLETE,    		eq.seconds('22h')}
 };
 
 function event_spawn(e)
@@ -142,7 +142,7 @@ function event_spawn(e)
 		-- send signal to flavor text NPC
 		eq.signal(223227,2); -- Emoter
 		-- spawn phase 2 controller
-		eq.unique_spawn(223242,0,0,190,1070,494,0); --phase_two_controller (223242)
+		eq.unique_spawn(2231731,0,0,190,1070,494,0); --phase_two_controller (2231731)
 	elseif (expedition:HasLockout('Phase 1 Complete') and expedition:HasLockout('Phase 2 Complete') and not expedition:HasLockout('Phase 3 Complete')) then
 		UpdateFailTimer(75);
 		current_phase = "Phase3";
@@ -169,7 +169,7 @@ function event_spawn(e)
 		eq.signal(223227,6); -- Emoter
 		-- spawn Quarm
 		if not expedition:HasLockout('Quarm') then -- If left DZ and zone before P6 Complete lockout
-			eq.spawn2(223201,0,0,-401,-1106,32.5,132);
+			eq.spawn2(223201,0,0,-401,-1106,32.5,22);
 			-- spawn #A_Servitor_of_Peace
 			eq.spawn2(223101,0,0,244,-1106,-1.125,194.0625);
 		end
@@ -222,7 +222,7 @@ function event_signal(e)
 			if not expedition:HasLockout('Phase 2 Complete') then -- Moving to Phase 2
 				event_counter = 0;
 				UpdateFailTimer(60); -- Add 60 Minutes to fail timer
-				eq.unique_spawn(223242,0,0,190,1070,494,0); --phase_two_controller (223242)
+				eq.unique_spawn(2231731,0,0,190,1070,494,0); --phase_two_controller (2231731)
 				eq.signal(223227,2); -- Emoter
 			elseif (expedition:HasLockout('Phase 2 Complete') and not expedition:HasLockout('Phase 3 Complete')) then -- Moving to Phase 3
 				SetupPhaseThree()
@@ -247,7 +247,7 @@ function event_signal(e)
 	elseif (e.signal == 5) then
 		if (expedition:HasLockout('Terris-Thule') and expedition:HasLockout('Saryrn') and expedition:HasLockout('Tallon Zek') and expedition:HasLockout('Vallon Zek')) then -- If all Phase 4 gods are dead
 			if not expedition:HasLockout('Phase 4 Complete') then
-				expedition:AddLockout('Phase 4 Complete', 475200);
+				expedition:AddLockout('Phase 4 Complete', 79200);
 			end
 			if not expedition:HasLockout('Phase 5 Complete') then
 				current_phase = "Phase5";
@@ -266,7 +266,7 @@ function event_signal(e)
 		instance_id = eq.get_zone_instance_id();
 
 		if (expedition:HasLockout('Bertoxxulous') and expedition:HasLockout('Cazic-Thule') and expedition:HasLockout('Innoruuk') and expedition:HasLockout('Rallos Zek')) then -- If all Phase 5 gods are dead
-			expedition:AddLockout('Phase 5 Complete', 475200);
+			expedition:AddLockout('Phase 5 Complete', 79200);
 			eq.spawn_condition("potimeb",instance_id,11,0);
 			eq.spawn_condition("potimeb",instance_id,12,0);
 			eq.spawn_condition("potimeb",instance_id,13,0);
@@ -293,7 +293,7 @@ function event_signal(e)
 	-- signal 8 comes from Druzzil_Ro
 	elseif (e.signal == 8) then
 		-- update the zone status
-		expedition:AddLockout('Phase 6 Complete', 475200);
+		expedition:AddLockout('Phase 6 Complete', 79200);
 		SetZoneLockout();
 		-- port everyone in the zone back to the PoK library top floor
 		local client_list = entity_list:GetClientList();
@@ -485,7 +485,7 @@ function ControlPhaseThree()
 	elseif (current_phase == "Phase3.9") then
 		event_counter = event_counter + 1;
 		if (event_counter == 2) then
-			expedition:AddLockout('Phase 3 Complete', 475200);
+			expedition:AddLockout('Phase 3 Complete', 79200);
 			event_counter = 0;
 			if (expedition.valid and expedition:HasLockout('Phase 3 Complete') and not expedition:HasLockout('Phase 4 Complete')) then
 				current_phase = "Phase4";
@@ -547,38 +547,38 @@ function SpawnPhaseFive()
 	local expedition = eq.get_expedition()
 
 	if (expedition.valid and not expedition:HasLockout('Bertoxxulous') and not expedition:HasLockout('Bertoxxulous Trash')) then
-		eq.spawn2(223098,0,0,-299,-297,23.3,62); -- Fake Bertoxxulous
+		eq.spawn2(223142,0,0,-299,-297,23.3,62); -- Fake Bertoxxulous
 		UpdateFailTimer(60); -- 1 Hour per God
 		eq.spawn_condition("potimeb",instance_id,14,1);	
 	elseif (expedition.valid and not expedition:HasLockout('Bertoxxulous') and expedition:HasLockout('Bertoxxulous Trash')) then
-		eq.spawn2(223142,0,0,-299,-297,23.3,62); -- Real Bertoxxulous
+		eq.spawn2(223098,0,0,-299,-297,23.3,62); -- Real Bertoxxulous - 223098 - swapped
 		UpdateFailTimer(60); -- 1 Hour per God
 	end
 	
 	if (expedition.valid and not expedition:HasLockout('Cazic-Thule') and not expedition:HasLockout('Cazic-Thule Trash')) then
-		eq.spawn2(223165,0,0,-257,255,6,203); -- Fake Cazic
+		eq.spawn2(223166,0,0,-257,255,6,203); -- Fake Cazic
 		UpdateFailTimer(60); -- 1 Hour per God
 		eq.spawn_condition("potimeb",instance_id,12,1);	
 	elseif (expedition.valid and not expedition:HasLockout('Cazic-Thule') and expedition:HasLockout('Cazic-Thule Trash')) then
-		eq.spawn2(223166,0,0,-257,255,6,203); -- Real Cazic
+		eq.spawn2(223165,0,0,-257,255,6,203); -- Real Cazic
 		UpdateFailTimer(60); -- 1 Hour per God
 	end
 	
 	if (expedition.valid and not expedition:HasLockout('Innoruuk') and not expedition:HasLockout('Innoruuk Trash')) then
-		eq.spawn2(223000,0,0,303.3,306,13.3,323); -- Fake Innoruuk
+		eq.spawn2(223167,0,0,303.3,306,13.3,323); -- Fake Innoruuk
 		UpdateFailTimer(60); -- 1 Hour per God
 		eq.spawn_condition("potimeb",instance_id,11,1);	
 	elseif (expedition.valid and not expedition:HasLockout('Innoruuk') and expedition:HasLockout('Innoruuk Trash')) then
-		eq.spawn2(223167,0,0,303.3,306,13.3,323); -- Real Innoruuk
+		eq.spawn2(223000,0,0,303.3,306,13.3,323); -- Real Innoruuk
 		UpdateFailTimer(60); -- 1 Hour per God
 	end
 	
 	if (expedition.valid and not expedition:HasLockout('Rallos Zek') and not expedition:HasLockout('Rallos Zek Trash')) then
-		eq.spawn2(223001,0,0,264,-279,18.75,435); -- Fake Rallos
+		eq.spawn2(223168,0,0,264,-279,18.75,435); -- Fake Rallos
 		UpdateFailTimer(60); -- 1 Hour per God
 		eq.spawn_condition("potimeb",instance_id,13,1);	
 	elseif (expedition.valid and not expedition:HasLockout('Rallos Zek') and expedition:HasLockout('Rallos Zek Trash')) then
-		eq.spawn2(223168,0,0,264,-279,18.75,435); -- Real Rallos
+		eq.spawn2(223001,0,0,264,-279,18.75,435); -- Real Rallos
 		UpdateFailTimer(60); -- 1 Hour per God
 	end
 end
@@ -592,7 +592,6 @@ function UpdateFailTimer(minutes_to_add)
 end
 
 function event_timer(e)
-	local expedition = eq.get_expedition()
 	if (e.timer == "event_hb") then
 		total_time = total_time - 1;
 		
@@ -610,7 +609,6 @@ function event_timer(e)
 		
 		--announce time remaining in hourly increments
 		if ((total_time ~= nil and total_time > 0 and total_time % 60 == 0)) then
-			local hours_left = "";
 			if (total_time / 60 == 8) then
 				hours_left = "eight hours";
 			elseif (total_time / 60 == 7) then
@@ -660,7 +658,7 @@ function event_timer(e)
 		end
 	elseif (e.timer == "lockout") then	--handles instance where Quarm killed but Zeb/Druzzil Ro script not completed
 		eq.stop_timer(e.timer);
-		expedition:AddLockout('Phase 6 Complete', 475200);
+		expedition:AddLockout('Phase 6 Complete', 79200);
 		SetZoneLockout();
 		-- port everyone in the zone back to PoTimeA
 		local client_list = eq.get_entity_list():GetClientList();

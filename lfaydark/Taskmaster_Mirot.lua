@@ -1,10 +1,10 @@
 -- Taskmaster Mirot quest/event in Lesser Faydark for Cleric 1.5 // Harmony of the Soul Epic --Drogerin
 -- Taskmaster Mirot is invulnerable to attack/spells unless Cleric has item he wants
--- A Wayfayer in camp is invulnerable to attack/spells unless Cleric has item Taskmaster Mirot wants, They then become aggro.
+-- A Wayfayer in camp is invulnerable to attack/spells unless Cleric has item Taskmaster Mirot wants, They then become agro.
 
 function event_say(e)
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["cleric_epic"] ~= nil and qglobals["cleric_epic"] >= "4" and e.message:findi("hail")) then
+	if(qglobals["cleric_epic"] >= "4" and e.message:findi("hail")) then
 		e.self:Emote("looks at you for a moment before his eyes shine with recognition. 'Its you, I've heard about you. We will not allow you to interfere with our plans again!");
 		e.self:SetInvisible(2);
 		e.self:SetTargetable(false);
@@ -33,7 +33,7 @@ end
 
 function event_signal(e)
 	if (e.signal == 1) then
-		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(57153) then
+		if (eq.get_entity_list():IsMobSpawnedByNpcTypeID(57153) == false) then
 			eq.spawn2(57151,0,0,3420,-33.5,-1.9,82); -- NPC: #Taskmaster_Mirot
 			eq.spawn2(57154,0,0,3430,-13.5,-1.9,180); -- NPC: Reanimated_Minion
 			eq.spawn2(57154,0,0, 3425,-25 ,-1.9,330); -- needs_heading_validation

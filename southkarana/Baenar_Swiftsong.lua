@@ -27,7 +27,7 @@ function event_say(e)
 		e.self:Say("You have? Did it speak to you?  What did it say?  Only the essences of those unjustly wronged or the vilest of souls are bound to this realm and sometimes end up in that accursed place.  Only that which binds them to this realm may set them free.   Curse those who would harm an innocent child!  I knew of one such unfortunate child.  I was to bring her a [doll] for her birthday but she fell to a thieving cutthroat's sword!'  Baenar's eyes fill with tears.  'Pardon me, friends, she was like a daughter to me.  I loved her as I would my own!");
 	elseif(e.message:findi("doll")) then
 		e.self:Say("What's that you say? You wish to have the doll I was to give her? Whatever for? Bah! Nevermind me. I rant like an old woman sometimes. I should let her memory go but I would stop my heart from beating before I forget that child. Here, take this invoice. I have no further use for it. Give it to Marfen Binkdirple.");
-		e.other:SummonItem(20372); -- Solusek Mining Company Invoice
+		e.other:SummonFixedItem(20372); -- Solusek Mining Company Invoice
 	end
 end
 
@@ -38,14 +38,14 @@ function event_trade(e)
 		e.self:Say("So, Belious Naliedin sent you, eh?' Baenar shakes his head. 'I hope your letter of introduction did not empty your purse. You have the audience you seek. What is your [request]? A song perhaps? To immortalize your heroic deeds in song? How about an epic battle with a gnoll pup? I'll make you famous.");
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 20371})) then
 		e.self:Say("A note from the child? How can that be! How could she know I was her father? Unless? Cyrah told her. Forgive me. Cyrah was the name of the woman to whom I was betrothed. Unfortunately her parents forbade her from marrying a lowly bard such as myself. Her father married her off to a young merchant in Qeynos named Maligar. She married him only out of respect to her father. Her heart was truly mine, at least, so she always said. When Serra was born, I visited them both often. She was like no other, so innocent and sweet. In those few years I watched her grow up to be more and more like her mother and I saw none of the father in her appearance. I do not like Maligar, but the least we can do is inform him of his child's death. I saw his caravan pass by not more than a day ago headed to Qeynos.");
-		e.other:SummonItem(20368); -- Item: Note to Maligar
+		e.other:SummonFixedItem(20368); -- Item: Note to Maligar
 		e.other:Ding();
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 20367})) then
 		e.self:Say("That vile dog! I knew there was something not right with him, the way he stared at everyone with contempt! Even his own wife! I curse him! I curse him to stay upon the realm and deny him what he most desires! This is too much! I cannot play or write this day. The sadness overwhelms me. In honor of Serra, the daughter that was denied to me in spirit, I vow never to play this instrument again! It was her favorite and she listened to me play for hours on end. Here take it! Take it out of my sight! Leave me be with my grief and my loss.");
-		e.other:SummonItem(20366); -- Item: Mahlin's Mystical Bongos
+		e.other:SummonFixedItem(20366); -- Item: Mahlin's Mystical Bongos
 		e.other:Ding();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:southkarana  ID:14046 -- Baenar_Swiftsong

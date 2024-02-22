@@ -2,7 +2,7 @@
 -- npc id: 293118
 -- items: 60154
 local expedition_name = "Ikkinz, Chambers of the Tri-Fates"
-local dz_version = instance_version.ikkinz_chambers_of_the_tri_fates
+local dz_version = 2
 
 local expedition_info = {
   expedition = { name=expedition_name, min_players=1, max_players=6 },

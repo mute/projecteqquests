@@ -33,6 +33,8 @@ function event_signal(e)
 	eq.set_next_hp_event(65);
 	e.self:SetAppearance(0); --stand up
 	e.self:SetSpecialAbility(35, 0); --turn off immunity
+	e.self:SetSpecialAbility(19, 0);
+	e.self:SetSpecialAbility(20, 0);
 	e.self:SetSpecialAbility(24, 0); --turn off anti aggro
 end
 
@@ -42,6 +44,8 @@ function event_timer(e)
 		e.self:GotoBind();
 		e.self:WipeHateList();
 		e.self:SetSpecialAbility(35, 1); --turn on immunity
+		e.self:SetSpecialAbility(19, 1);
+		e.self:SetSpecialAbility(20, 1);
 		e.self:SetSpecialAbility(24, 1); --turn on anti aggro
 		eq.start(33); -- re start grid
 	end

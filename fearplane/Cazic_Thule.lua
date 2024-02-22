@@ -17,6 +17,11 @@ end
 function event_death_complete(e)
 	-- leave out broken golem, The Tempest Reaver, and Irak_Altil
 	send_signal_to_all_npc_in_zone(3, {72078,72074,72012});
+
+	-- sanity depop
+	eq.depop(1120001104);
+	eq.spawn2(1120001104,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading());
+	-- spawn fading ally
 end
 
 function event_trade(e)
@@ -27,7 +32,7 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		e.other:Ding();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_combat(e)
@@ -74,16 +79,16 @@ function send_signal_to_all_npc_in_zone(signal_to_send,exclude_table)
 			if (exclude_npc_list[npc:GetNPCTypeID()] == nil and signal_sent_to[npc:GetNPCTypeID()] == nil) then
 				-- make sure the npc is valid (again, should never fail, but better to be certain.
 				if (npc.valid) then
-					if (show_debug) then eq.zone_emote(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " is being sent signal " .. tostring(signal_to_send) .. "."); end
+					if (show_debug) then eq.zone_emote(4,"NPCID: " .. npc:GetNPCTypeID() .. " is being sent signal " .. tostring(signal_to_send) .. "."); end
 					-- send signal to this NPCID
 					eq.signal(npc:GetNPCTypeID(),signal_to_send);
 					-- add this NPCID to the list of NPCID that we have already signalled
 					signal_sent_to[npc:GetNPCTypeID()] = true;
 				end
-			elseif signal_sent_to[npc:GetNPCTypeID()] then
-				if (show_debug) then eq.zone_emote(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " has already been sent signal " .. tostring(signal_to_send) .. "."); end
-			elseif exclude_npc_list[npc:GetNPCTypeID()] then
-				if (show_debug) then eq.zone_emote(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " is excluded and will not be sent signal " .. tostring(signal_to_send) .. "."); end
+			elseif(signal_sent_to[npc:GetNPCTypeID()] == true) then
+				if (show_debug) then eq.zone_emote(4,"NPCID: " .. npc:GetNPCTypeID() .. " has already been sent signal " .. tostring(signal_to_send) .. "."); end
+			elseif(exclude_npc_list[npc:GetNPCTypeID()] == true) then
+				if (show_debug) then eq.zone_emote(4,"NPCID: " .. npc:GetNPCTypeID() .. " is excluded and will not be sent signal " .. tostring(signal_to_send) .. "."); end
 			end
 		end
 	end

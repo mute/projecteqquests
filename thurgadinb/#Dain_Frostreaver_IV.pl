@@ -28,7 +28,7 @@ sub EVENT_SAY {
     }
   }
   if ($text=~/accept/i) {
-    if ($faction < 3) {
+    if ($faction < 4) {
       quest::emote("smiles at you with pride and says, 'Something told me you would, $name. For years upon years the plagues of King Tormax have been unleashed upon my people. And indeed it was also by Tormax's hand that me own father, Dain Frostreaver the Third was slain. My attempts at assassinating him have only met with failure, and our forces, while strong, are not yet mighty enough to assault Kael Drakkel. Therefore I have ye and yer companions as my last hope, $name. Kill that bastard who calls himself King Tormax... and bring me his head!");
     }
   }
@@ -62,7 +62,7 @@ sub EVENT_ITEM {
     quest::exp(4000000);
   }
   #Tormax's head
-  elsif($faction == 1 && plugin::check_handin(\%itemcount, 30516 => 1)) {
+  elsif($faction <= 4 && plugin::check_handin(\%itemcount, 30516 => 1)) {
     quest::say("You have done what no Coldain could do, $name! This is indeed a glorious say in our people's history. In return for your invaluable service I present you with the Tri-plated Golden Hackle Hammer. Its magic is powerful and I am sure it will serve you well.");
     quest::ze(2, "Let it be know from this day forth that $name and their companions are Heros of the Coldain Kingdom. King Tormax has been slain, it is a time for celebration. Let no tankard go unfilled!");
     quest::summonitem(30502); # Item: Tri-Plated Golden Hackle Hammer

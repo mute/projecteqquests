@@ -1,7 +1,7 @@
 sub EVENT_SPAWN {
   #no aggro timer, respawn untargetable.
   #added this because of the reports of MB going active and despawning on his own.
-  quest::settimer(9,1200);
+  quest::settimer(9,1800);
   #leash timer
   quest::settimer(4,1);
 }
@@ -19,8 +19,8 @@ sub EVENT_TIMER {
     quest::depop();
   }
   if($timer == 8) {
-    #failed. shorten respawn timer to 24 hours. 
-    quest::updatespawntimer(42135,86400000);
+    #failed. shorten respawn timer to 15 minutes. 
+    quest::updatespawntimer(42135,900000);
     quest::depop();
   }
   if($timer == 4 && ($x < 1010 || $x > 1240)) {
@@ -33,6 +33,6 @@ sub EVENT_TIMER {
 
 sub EVENT_AGGRO {
   #fail timer
-  quest::settimer(8,1200);
+  quest::settimer(8,1800);
   quest::stoptimer(9);
 }

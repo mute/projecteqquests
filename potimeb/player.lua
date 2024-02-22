@@ -91,7 +91,7 @@ function event_click_door(e)
 								[3] = {29,30,31,32},	--undead
 								[4] = {42,43,44,45},	--earth
 								[5] = {46,47,48,49} };	--air
-		if (expedition.valid and expedition:HasLockout('Phase 1 Complete')  or e.self:GetGM()) then
+		if (expedition.valid) then --and expedition:HasLockout('Phase 1 Complete')  or e.self:GetGM()
 			tbl_id = door_check(door_id,phase1_doors);
 			if tbl_id ~= nil then
 				OpenDoors(e,door_id,phase1_doors[tbl_id]);	--open 4 door panels
@@ -104,7 +104,7 @@ function event_click_door(e)
 		local phase2_doors = {	[1] = {13,14,15,16},		
 								[2] = {33,34,35,36},	
 								[3] = {38,39,40,41} };
-		if (expedition.valid and expedition:HasLockout('Phase 2 Complete')  or e.self:GetGM()) then
+		if (expedition.valid) then --and expedition:HasLockout('Phase 2 Complete')  or e.self:GetGM()
 			tbl_id = door_check(door_id,phase2_doors);
 			if tbl_id ~= nil then
 				OpenDoors(e,door_id,phase2_doors[tbl_id]);	--open 4 door panels

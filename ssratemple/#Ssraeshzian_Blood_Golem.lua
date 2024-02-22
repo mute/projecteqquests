@@ -1,5 +1,5 @@
 function event_combat(e)
-if e.joined then
+if (e.joined == true) then
 eq.spawn2(162280, 0, 0, 625, -356,  403,  0); --Ssraezsha (162280)
 eq.spawn2(162280, 0, 0, 689, -356,  403,  0); --Ssraezsha (162280)
 eq.spawn2(162280, 0, 0, 689, -293,  403,  0); --Ssraezsha (162280)

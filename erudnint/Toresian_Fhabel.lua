@@ -6,7 +6,7 @@ function event_say(e)
 		e.self:Say("Welcome. my friend! We are the Craftkeepers. We study the circle of magic called enchantment. What circle do you [study]?");
 	elseif(e.message:findi("study enchantment")) then
 		e.self:Say("Then I welcome you into our circle. It is good to see new blood. I have a favor to ask of you. Do you wish to [assist Toresian] or do you not have the time?");
-		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(23080) or not eq.get_entity_list():IsMobSpawnedByNpcTypeID(23001) then
+		if(eq.get_entity_list():IsMobSpawnedByNpcTypeID(23080) == false or eq.get_entity_list():IsMobSpawnedByNpcTypeID(23001) ==  false) then
 			eq.unique_spawn(eq.ChooseRandom(23080,23001),0,0,575,683,-12.13,156); -- NPC(s): Slansin (23080), Slansin (23001)
 		end
 	elseif(e.message:findi("assist Toresian")) then
@@ -21,7 +21,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnint  ID:23073 -- Toresian_Fhabel

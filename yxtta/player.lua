@@ -61,6 +61,9 @@ function enterzone(e)
 		eq.get_entity_list():FindDoor(16):SetLockPick(0);
 		event_completed = true;
 	end
+
+	-- Unlock the door always because fuck this event
+	eq.get_entity_list():FindDoor(16):SetLockPick(0);
 end
 
 function event_reset(e)
@@ -100,7 +103,7 @@ function event_click_door(e)
 		if expected_door == door then				-- Success
 			ask_question(e);
 		else										-- Failure
-			eq.set_timer("click_timer", 30 * 1000); -- 30s (Live is 60s and its painful)
+			eq.set_timer("click_timer", 60 * 1000); -- 60s (Live is 60s and its painful)
 			fail_clicks = fail_clicks + 1;			-- Increment Failure
 			if fail_clicks == 3 then				-- Fail Click 3x = Bad Guys Attack
 				stone_attack(e);
@@ -115,7 +118,7 @@ function event_click_door(e)
 		door_order_number	= math.random(1,10); 	-- Choose Random Order
 		ready_to_click		= true;
 		expected_door		= door_order[door_order_number][question];
-		eq.set_timer("click_timer", 30 * 1000); 	-- 30s (Live is 60s and its painful)
+		eq.set_timer("click_timer", 60 * 1000); 	-- 600s (Live is 60s and its painful)
 		e.self:Message(MT.Yellow, question_dialog[expected_door][math.random(1,3)]);
 		question			= question + 1;
 	end
@@ -124,7 +127,7 @@ end
 function event_timer(e)
 	if e.timer == "click_timer" then
 		ready_to_click = true;
-		eq.set_timer("reset_event", 2 * 60 * 1000); -- 2 Minute Reset
+		eq.set_timer("reset_event", 120 * 1000); -- 2 Minute Reset
 		eq.stop_timer("click_timer");
 	elseif e.timer == "reset_event" then
 		event_reset(e);
@@ -156,7 +159,7 @@ function ask_question(e)
 		question = question + 1;														-- Increment Question Number
 		expected_door		= door_order[door_order_number][question];					-- Get Next "Random" door
 		ready_to_click		= false;													-- Door is no longer ready to click pending below timer
-		eq.set_timer("click_timer", 30 * 1000); 										-- 30s (Live is 60s and its painful)
+		eq.set_timer("click_timer", 60 * 1000); 										-- 600s (Live is 60s and its painful)
 		e.self:Message(MT.Yellow, question_dialog[expected_door][math.random(1,3)]);	-- Provide text for next door
 	end
 end

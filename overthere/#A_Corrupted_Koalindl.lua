@@ -3,7 +3,7 @@ function event_spawn(e)
 end
 
 function event_combat(e)
-  if e.joined then
+  if (e.joined == true) then
 		e.self:Emote("swims toward you in a blood frenzy");
   end
 end

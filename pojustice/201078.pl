@@ -16,6 +16,9 @@ my $group = undef;
 my $count = undef;
 my $pc = undef;
 
+$instanceid = quest::GetInstanceID();
+
+
 sub EVENT_SPAWN {
    #Depop any existing controllers
 	quest::depopall(201425);
@@ -42,20 +45,36 @@ sub EVENT_SAY
             #Tell Event_Execution_Control about it
             quest::signalwith(201425, 1, 0); # NPC: #Event_Execution_Control
 
+            $group = $entity_list->GetGroupByClient($client);
+            if ($group) {
+            # Loop through each member of the Group
+            for ($count = 0; $count < $group->GroupCount(); $count++) {
+            # Store the Group's member count
+            $pc = $group->GetMember($count);
+            # Match if the Group member is near the client who triggered the event
+            if ($pc->CalculateDistance($x,$y,$z) <= 150) {
+                #:: Assign to the instance
+                #$pc->AssignToInstance($iid);
+                #:: Move the Group member to the specified location
+                $pc->MovePCInstance(201, $instanceid,254,-1053, 73,300);
+            }
+        }
+    }
+
             #Cast Penance of Execution
             #quest::selfcast(1127); #required db edit targettype = 41
-            $group = $entity_list->GetGroupByClient($client);
-            if ($group) { 
-              for ($count = 0; $count < $group->GroupCount(); $count++) {
-                $pc = $group->GetMember($count);
-                if ($pc && $pc->IsClient() && $pc->CalculateDistance($x,$y,$z) <= 50) {
-                  $pc->MovePC(201,254,-1053, 73, 300); # Zone: pojustice
-                }
-              }
-            }
-            $group = undef;
-            $pc = undef;
-            $count = undef;
+            #$group = $entity_list->GetGroupByClient($client);
+            #if ($group) { 
+             # for ($count = 0; $count < $group->GroupCount(); $count++) {
+              #  $pc = $group->GetMember($count);
+              #  if ($pc && $pc->IsClient() && $pc->CalculateDistance($x,$y,$z) <= 50) {
+                  quest::MovePCInstance(201, $instanceid, 254,-1053, 73, 300); # Zone: pojustice
+                #}
+              #}
+            #}
+            #$group = undef;
+            #$pc = undef;
+            #$count = undef;
          }
          
          else {

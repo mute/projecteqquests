@@ -27,10 +27,10 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM {
 	if (plugin::check_handin(\%itemcount, 20410 => 1)) {	# Bladesoul's Spiritual Pouch
-		quest::say("Paldar Bladesoul melds the components inside the pouch to form a spiritual concoction. He then ingests the mixture and changes shape into a menacing drake. Unawares of the difficulties of spiritual transference to corporeal form, the beast goes insane and begins attacking you!");
+		quest::say("Paldar Bladesoul melds the components inside the pouch to form a spiritual concoction. He then ingests the mixture and changes shape into a menacing drake. Unawares of the difficulties of spiritual transference to corporeal form, the beast explodes before your eyes!");
+		quest::summonitem(29485);
 		quest::depop_withtimer();
-		quest::spawn2(128140,0,0,$x,$y,$z,$h); # NPC: Paldar_the_Demented
 	}
 
-	plugin::return_items(%itemcount);
+	#plugin::return_items(%itemcount);
 }

@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18432)) then
-		e.other:Message(MT.Yellow,"The fragrent smell of jumjum growing in the nearby field greets your nostrils. As you take in the wonderful fragrance, an important looking Halfling greets you. 'Welcome to the Tagglefoot's Farmstead. I am Megosh Thistlethorn. I can see by the gleam in your eyes that you are here to begin your training with the Storm Reapers. Read the note in your inventory and then hand it to me when you are ready to begin your training.'");
+		e.other:Message(15,"The fragrent smell of jumjum growing in the nearby field greets your nostrils. As you take in the wonderful fragrance, an important looking Halfling greets you. 'Welcome to the Tagglefoot's Farmstead. I am Megosh Thistlethorn. I can see by the gleam in your eyes that you are here to begin your training with the Storm Reapers. Read the note in your inventory and then hand it to me when you are ready to begin your training.'");
 	end
 end
 
@@ -54,7 +54,7 @@ function event_trade(e)
 		e.other:Faction(324,-5,0); -- Faction: Unkempt Druids
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19050 -- Megosh_Thistlethorn

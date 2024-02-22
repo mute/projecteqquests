@@ -23,6 +23,9 @@ sub EVENT_SAY {
   if ($text=~/one more to go/i) {
     quest::say("The lute has a head and body. The only thing missing is a set of strings that will never break! I have heard rumors of a living dead poison dragon in the lands of Kunark. If your were somehow able to get your hands on his guts, I could finish the lute. You would have to bring me the head, the body and the undead dragon gut for lute strings!");
   }
+   if ($text=~/what components/i) {
+    quest::summonfixeditem(20380);
+  }
 }
 
 sub EVENT_ITEM {

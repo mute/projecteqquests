@@ -29,12 +29,12 @@ function Control_Timer(e)
     end
 end
 
-function Real_Death(e)
-    eq.depop_with_timer(186201);
-end
+--function Real_Death(e)
+    --eq.depop_with_timer(186201);
+--end
     
 function Real_Combat(e)
-	if e.joined then
+	if (e.joined == true) then
 		eq.set_timer("OOBcheck", 3 * 1000);
 		eq.stop_timer("resetevent");
 	else
@@ -84,7 +84,7 @@ function Real_Hp(e)
         eq.set_next_hp_event(5);
         eq.set_timer("hate", 1 * 1000);
     elseif(e.hp_event == 5) then
-	    if eq.get_entity_list():IsMobSpawnedByNpcTypeID(186198) then
+	    if (eq.get_entity_list():IsMobSpawnedByNpcTypeID(186198) == true) then
 		    e.self:SetSpecialAbility(35, 1); --turn on immunity since EOH is alive
 	    end
     end
@@ -123,12 +123,12 @@ function Evangelist_Timer(e)
         eq.set_timer("text2", 30 * 1000);
     elseif(e.timer=="text2") then
         eq.stop_timer("text2");
-        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, MT.White, 150,"The air around you is thick with tension and the walls seem to bend inward as the Evangelist continues, 'With the sum of our wicked spite, rage, and animosity... Your children call out to you.  Your exalted presence is required, your extraordinary power is desired, and a gaggle of babbling fools is in need of trial by fire. Master, allow us a true demonstration of your might.");
+        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, 0, 150,"The air around you is thick with tension and the walls seem to bend inward as the Evangelist continues, 'With the sum of our wicked spite, rage, and animosity... Your children call out to you.  Your exalted presence is required, your extraordinary power is desired, and a gaggle of babbling fools is in need of trial by fire. Master, allow us a true demonstration of your might.");
         eq.set_timer("spawninny", 4 * 1000);
     elseif(e.timer=="spawninny") then
         eq.stop_timer("spawninny");
         eq.unique_spawn(186107,0,0,-420,-1292,25,255); --#Innoruuk (186107) real
-        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, MT.White, 150,"Evangelist of Hate shouts, 'ALL PRAISE INNORUUK, OUR LORD AND CREATOR!");
+        eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, 0, 150,"Evangelist of Hate shouts, 'ALL PRAISE INNORUUK, OUR LORD AND CREATOR!");
         eq.set_timer("checkadds", 2 * 1000);
     elseif(e.timer=="checkadds") then
         eq.stop_timer("checkadds");

@@ -7,12 +7,10 @@ function event_say(e)
 		eq.pause(30);
 	elseif(fac<=3) then
 		if(e.message:findi("shield of falsehood")) then
-			e.self:Say(string.format("Yes, I have taken Marr's Promise along with Woe and Envy and fashioned them together to create the Shield of Falsehood. Wield this in defense of possession and the weakness that comes with hoarding treasure instead of using it to accomplish your goals. May it serve you well, %s.",e.other:GetRaceName()));
-			e.other:SummonItem(1679); -- Item: Shield of Falsehood
+			e.self:Say(string.format("Yes, I have taken Marr's Promise along with Woe and Envy and fashioned them together to create the Shield of Falsehood. Wield this in defense of possession and the weakness that comes with hoarding treasure instead of using it to accomplish your goals. May it serve you well, %s.",e.other:Race()));
 		elseif(e.message:findi("last path")) then
 			e.self:Say("You have trusted us along the paths we have set before you. You have been known to be patient and await the right moment. And now, you have learned the wisdom to act in our best interest. However, one last path awaits, to determine if you have the ability to act out what must be done.");
 			e.self:Say("There are many troubles about the world we try to rub out but none is more serious than the curse on what the wasichu call the Emerald Jungle. Go there and find one of our spirits. Show them the gem you have been given and follow the path they set you on.");
-			e.other:SummonItem(1668); -- Item: Sparkling Gem
 		end
 	end
 end
@@ -31,6 +29,8 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:Faction(404,200,0); -- Faction: Truespirit
 		e.other:AddEXP(1000);
+		e.other:SummonFixedItem(1668); -- Item: Sparkling Gem
+		e.other:SummonFixedItem(1679); -- Item: Shield of Falsehood
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 1669,item2 = 1670})) then -- Part of Shaman Epic 1.0
 		e.self:Say("This is a sad day. You have failed and strayed from the path set before you. Please try to live as close to the spirits as you are able, though this is the closest you will ever get.");
 		eq.depop_with_timer();
@@ -40,7 +40,7 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 1670})) then -- Part of Shaman Epic 1.0
 		e.self:Say("This is a sad day. You have failed and strayed from the path set before you. Please try to live as close to the spirits as you are able, though this is the closest you will ever get.");
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- Submitted by: Jim Mills (Gilmore Girls`Is`Awesome`XOXO)

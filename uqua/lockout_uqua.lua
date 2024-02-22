@@ -23,16 +23,16 @@ function event_signal(e)
 			end
 		elseif twins == 1 then
 			if dz.valid then
-				dz:AddReplayLockout(eq.seconds("44h"))
+				dz:AddReplayLockout(eq.seconds("22h"))
 			end
 		end
 	elseif e.signal == 2 then
 		if dz.valid then
-			dz:AddReplayLockout(eq.seconds("59h"))
+			dz:AddReplayLockout(eq.seconds("22h"))
 		end
 	elseif e.signal == 3 then
 		if dz.valid then
-			dz:AddReplayLockout(eq.seconds("107h"))
+			dz:AddReplayLockout(eq.seconds("22h"))
 		end
 	end
 end

@@ -1,5 +1,5 @@
 function event_combat(e)
-if e.joined then
+if (e.joined == true) then
 eq.set_timer("OOBcheck", 6 * 1000);
 else
 eq.stop_timer("OOBcheck");
@@ -23,7 +23,7 @@ end
 end
 
 function event_death_complete(e)
-	if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(212046) and eq.get_entity_list():IsMobSpawnedByNpcTypeID(212062) then
+	if (eq.get_entity_list():IsMobSpawnedByNpcTypeID(212046) == false and eq.get_entity_list():IsMobSpawnedByNpcTypeID(212062) == true) then
 		eq.spawn2(212061,0,0,607,1585,-162,126); --The_Protector_of_Dresolik
 		eq.depop_with_timer(212062);
 	end

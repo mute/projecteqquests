@@ -139,7 +139,7 @@ function Seneschal_Death(e)
   -- Pop Giants outside of Thurgadin
   -- Depop all the mobs in Thurgadin for 2hours.
   Stop_Event();
-  eq.zone_emote(MT.Red, "The forces defending the Grand Citadel of Thurgadin have failed, the Kromrif have overrun the first and oldest race.  The age of the dwarf has come to an end...");
+  eq.zone_emote(13, "The forces defending the Grand Citadel of Thurgadin have failed, the Kromrif have overrun the first and oldest race.  The age of the dwarf has come to an end...");
 
   -- Depop the Dwarf Generals if they are still alive.
   eq.depop_all(118169);
@@ -160,7 +160,7 @@ function Narandi_Spawn(e)
 end
 
 function Narandi_Death(e)
-  eq.zone_emote(MT.Red, 'No surprise the Age of the Dwarf continues with a Glorious victory of the Kromrif.');
+  eq.zone_emote(13, 'No surprise the Age of the Dwarf continues with a Glorious victory of the Kromrif.');
 
   Stop_Event();
 end
@@ -179,7 +179,7 @@ function Churn_Trade(e)
     e.self:Depop();
   end
 
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -196,7 +196,7 @@ function Kargin_Trade(e)
     e.self:Depop();
   end
 
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -213,7 +213,7 @@ function Corbin_Trade(e)
     e.self:Depop();
   end
 
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -230,7 +230,7 @@ function Dobbin_Trade(e)
     e.self:Depop();
   end
 
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -247,7 +247,7 @@ function Garadain_Trade(e)
     e.self:Depop();
   end
 
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function Zrelik_Trade(e)
@@ -255,7 +255,7 @@ function Zrelik_Trade(e)
   if (item_lib.check_turn_in(e.trade, {item1 = 18511})) then
     Start_Event();
   end
-  item_lib.return_items(e.self, e.other, e.trade);
+  --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function event_encounter_load(e)

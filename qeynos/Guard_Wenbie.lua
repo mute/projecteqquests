@@ -1,6 +1,6 @@
 -- items: 13014
 function event_combat(e)
-  if e.joined then
+  if(e.joined == true) then
     e.self:Say(string.format("Time to die %s!",e.other:GetCleanName()));
   end
 end
@@ -38,5 +38,5 @@ function event_trade(e)
 			muffin = muffin - 1;
 		until muffin == 0
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

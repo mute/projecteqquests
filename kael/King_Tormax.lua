@@ -1,21 +1,21 @@
 -- items: 30501, 25858, 24984, 25857
 function event_say(e)
-	if (e.other:GetFaction(e.self) <= 3) then -- require kindly or better
+	if (e.other:GetFaction(e.self) <= 4) then -- require kindly or better
 		if(e.message:findi("hail")) then
-		  e.self:Say("Greetings, " .. e.other:GetRaceName() .. ". You know who I am, but I only vaguely know of you. My purpose is simple, I will rule these lands like my father, and my grandfather before him. All tasks but two are inconsequential to me.");
+		  e.self:Say("Greetings, " .. e.other:Race() .. ". You know who I am, but I only vaguely know of you. My purpose is simple, I will rule these lands like my father, and my grandfather before him. All tasks but two are inconsequential to me.");
 		elseif(e.message:findi("task")) then
-		  e.self:Say("The tasks are simple, " .. e.other:GetRaceName() .. ". I wish the death of the other 'powers' of this frozen waste land. If you are able to destroy either of my mortal foes, bring me proof of your exploits and you will be known as the hero of Kael Drakkel.");
+		  e.self:Say("The tasks are simple, " .. e.other:Race() .. ". I wish the death of the other 'powers' of this frozen waste land. If you are able to destroy either of my mortal foes, bring me proof of your exploits and you will be known as the hero of Kael Drakkel.");
 		elseif(e.message:findi("power")) then
 		  e.self:Emote("laughs deeply. 'I speak of the foolish old dragon Yelinak and that pitiful Dain Frostreaver.");
     		end
 	else
-		e.self:Say("Why do I even suffer such lesser beings in my presence? Remove yourself, " .. e.other:GetRaceName() .. ", else I'll have my guards relieve you of your head.");
+		e.self:Say("Why do I even suffer such lesser beings in my presence? Remove yourself, " .. e.other:Race() .. ", else I'll have my guards relieve you of your head.");
 	end
 end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (e.other:GetFaction(e.self) <= 3) then -- require kindly or better
+	if (e.other:GetFaction(e.self) <= 4) then -- require amiable or better
 		if(item_lib.check_turn_in(e.trade, {item1 = 30501})) then  -- dains head
 			e.other:Ding();
 			e.other:SummonItem(25858);	-- belt of dwarf slaying
@@ -34,7 +34,7 @@ function event_trade(e)
 			e.other:AddEXP(250000);
 		end
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_combat(e)

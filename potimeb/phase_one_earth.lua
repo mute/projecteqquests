@@ -68,9 +68,9 @@ end
 function TrialWinCheck(e)	--to make successful end event once both boss and adds are dead
 	if terlok and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(223147) and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(223106) then	
 		-- tell zone_status
-		eq.signal(223097,223169); -- Add Loot Lockout for Phase 1 Wing
-		eq.signal(223097,2); -- Increment Phase 1 Wing Counter
-		eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()},MT.LightGray,80,"Ethereal mists gather at the far wall, causing it to fade in and out of focus.");
+		--eq.signal(223097,223169); -- Add Loot Lockout for Phase 1 Wing
+		--eq.signal(223097,2); -- Increment Phase 1 Wing Counter
+		eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()},7,80,"Ethereal mists gather at the far wall, causing it to fade in and out of focus.");
 
 		-- depop as my job is done.
 		eq.depop();

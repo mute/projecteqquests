@@ -89,7 +89,7 @@ function KeleTimer(e)
 			if random_client.valid then
 				kele:Say("I tire of these games. We shall see you in the afterlife.");
 				eq.get_entity_list():RemoveFromHateLists(random_hate);
-				random_client:MovePCInstance(296, eq.get_zone_instance_id(), 210, -500, -26, 490);
+				--random_client:MovePCInstance(296, eq.get_zone_instance_id(), 210, -500, -26, 490);
 			end
 		end
 	elseif e.timer == "adds" then

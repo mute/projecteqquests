@@ -8,7 +8,7 @@
 -- requester is required to be in group with at least 1 person (group can be in a raid)
 -- the real minimum is 2 due to the group requirement even though expedition is set to 1
 local expedition_name = "Ikkinz, Chambers of Singular Might"
-local dz_version = instance_version.ikkinz_chambers_of_singular_might
+local dz_version = 0
 
 -- live uses min players 1 but checks for a group manually (confirmed via a
 -- player count conflict message using a raid prior to September 16, 2020 changes)

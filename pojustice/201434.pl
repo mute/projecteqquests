@@ -3,6 +3,8 @@
 #Kilelen
 # items: 31599, 31842, 31796, 31960, 31845, 31844, 31846
 
+$instanceid = quest::GetInstanceID();
+
 sub EVENT_SAY
 {
 	if(defined $qglobals{pop_poj_mavuin}) {
@@ -17,17 +19,34 @@ sub EVENT_SAY
 		elsif($text=~/begin the trial of flame/i) {
 			if (!defined $flame) {
 				quest::say("Then begin.");
+
+				$group = $entity_list->GetGroupByClient($client);
+            if ($group) {
+            # Loop through each member of the Group
+            for ($count = 0; $count < $group->GroupCount(); $count++) {
+            # Store the Group's member count
+            $pc = $group->GetMember($count);
+            # Match if the Group member is near the client who triggered the event
+            if ($pc->CalculateDistance($x,$y,$z) <= 150) {
+                #:: Assign to the instance
+                #$pc->AssignToInstance($iid);
+                #:: Move the Group member to the specified location
+                $pc->MovePCInstance(201, $instanceid, 937,-703, 53, 300);
+            }
+        }
+    }
 				#Cast Penance of Flame
         #quest::selfcast(1124);
-        $group = $entity_list->GetGroupByClient($client);
-        if ($group) { 
-          for ($count = 0; $count < $group->GroupCount(); $count++) {
-            $pc = $group->GetMember($count);
-            if ($pc && $pc->IsClient() && $pc->CalculateDistance($x,$y,$z) <= 50) {
-              $pc->MovePC(201,937,-703, 53, 300); # Zone: pojustice
-            }
-          }
-        }
+        #$group = $entity_list->GetGroupByClient($client);
+        #if ($group) { 
+          #for ($count = 0; $count < $group->GroupCount(); $count++) {
+            #$pc = $group->GetMember($count);
+            #if ($pc && $pc->IsClient() && $pc->CalculateDistance($x,$y,$z) <= 50) {
+				
+              quest::MovePCInstance(201, $instanceid, 937,-703, 53, 300); # Zone: pojustice
+            #}
+          #}
+        #}
 				quest::settimer(201, 30);
 				#Tell event burning control about it, 30 second delay
 				quest::signalwith(201417, 1, 30); # NPC: #Event_Burning_Control
@@ -36,14 +55,14 @@ sub EVENT_SAY
 				quest::spawn2(201417, 0, 0, 880, -729, 55, 0); # NPC: #Event_Burning_Control
 			}
 			else {
-				quest::say("I'm sorry, the Trial of Flame is currently unavilable to you.");
+				quest::say("I'm sorry, the Trial of Flame is currently unavailable to you.");
 				#if (($flame > 0) && ($flame < 6)) {
 				#	$npc->CastSpell(1124, $userid);
 				#	quest::say("Then begin.");		
 				#	$flame++;
 				#}
 				#else {
-				#	quest::say("I'm sorry, the Trial of Flame is currently unavilable to you.");
+				#	quest::say("I'm sorry, the Trial of Flame is currently unavailable to you.");
 				#}
 			}
 		}

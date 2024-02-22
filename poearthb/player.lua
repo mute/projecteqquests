@@ -31,7 +31,7 @@ function event_click_door(e)
 			end
       	end
       	-- if not, open the door
-      	if not mob_spawned_in_east then
+      	if (mob_spawned_in_east == false) then
       		-- Unlock
       		e.door:SetLockPick(0)
       		-- Open both at the same time
@@ -42,7 +42,7 @@ function event_click_door(e)
 			end
 		else
 			-- Mobs are still up, door is locked
-			e.self:Message(MT.White, "As you attempt to move the wall of stone it is clear that it is being held in place by a powerful force")
+			e.self:Message(0, "As you attempt to move the wall of stone it is clear that it is being held in place by a powerful force")
 		end
 
 	--second door, on the way to TRC
@@ -60,7 +60,7 @@ function event_click_door(e)
 	      	end
 	 	end
 	 	-- if not, open the door
-	 	if not mob_spawned_in_middle then
+	 	if (mob_spawned_in_middle == false) then
 	 		-- Unlock
 	 		e.door:SetLockPick(0)
       		-- Open both at the same time
@@ -71,7 +71,7 @@ function event_click_door(e)
 	 		end
 	 	else
 	 		-- Mobs are still up, door is locked
-	 		e.self:Message(MT.White, "The massive wall of rock, dirt and stone seems to be impenetrable. It is obviously held in place by a magical force")
+	 		e.self:Message(0, "The massive wall of rock, dirt and stone seems to be impenetrable. It is obviously held in place by a magical force")
 	 	end
 	end
 end

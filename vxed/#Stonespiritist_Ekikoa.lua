@@ -10,7 +10,7 @@ local function update_flags(client, make_permanent)
   -- has a limit to prevent excessive dzadd flagging
   eq.debug(string.format("flagged count [%s]", flagged_count))
 
-  if flagged_count >= 7 or has_temp_vxed then
+  if flagged_count >= 8 or has_temp_vxed then
     client:Message(MT.NPCQuestSay, "Ekikoa tells you, 'I'm afraid that I have already aided as many as I can, I do not have the strength to assist you further.'")
   elseif make_permanent then
     client:Message(MT.NPCQuestSay, "Ekikoa tells you, 'This stone behind me is a shard of an Attunement Obelisk.  With a unique and ancient magic, we can attune spirits to this farstone to allow travel.  When you touch it, the stone will be imprinted with your essence, because this is only a section of an obelisk, more must be done in order to have full use of these obelisks.  Now, when you touch this stone, you will be sent back to Udranda.  She will tell you what you must do next when you are ready.'")

@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18725)) then
-		e.other:Message(MT.Yellow,"Weligon Steelherder tells you, 'Greetings, A young recruit perhaps? I am Weligon Steelherder, Guild Master of the Deepwater Knights. Read the note in your inventory and then hand it to me when you are ready to begin your training. Truth awaits!'");
+		e.other:Message(15,"Weligon Steelherder tells you, 'Greetings, A young recruit perhaps? I am Weligon Steelherder, Guild Master of the Deepwater Knights. Read the note in your inventory and then hand it to me when you are ready to begin your training. Truth awaits!'");
 	end
 end
 
@@ -15,9 +15,9 @@ function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Hail, " .. e.other:GetName() .. "! This is the Deepwater Temple. Here you shall find the wisdom and courage of Prexus, the Ocean Lord. I am glad to see you have an interest. Forgive me if I cut our conversation short, but I have many [Deepwater tasks] to complete.");  
 	elseif(e.message:findi("deepwater task")) then   
-		if(e.other:GetFaction(e.self) > 5) then
+		if(e.other:GetFaction(e.self) > 6) then
 			e.self:Say("We, the Deepwater Knights, know of your vile ways. You had best leave while you can.");
-		elseif(e.other:GetFaction(e.self) < 4) then
+		elseif(e.other:GetFaction(e.self) < 5) then
 			e.self:Say("We here at the Deepwater Temple must tend to the [Peacekeeper battlestaff] and the [Deepwater harpoon] as well as other duties such as [ocean protection]. There is always something we must do.");  
 		else
 			e.self:Say("There is no reason to dislike you, but we of the Deepwater Knights must see more done for our cause before we truly accept you.");
@@ -77,7 +77,7 @@ function event_trade(e)
 		e.other:Faction(265,-15,0); --  Heretics
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:24065 -- Weligon_Steelherder

@@ -32,9 +32,9 @@ end
 function event_timer(e)
 	if(e.timer == "Phase1Fire") then
 		-- spawn first wave of 3 #a_flame_mephit
-		eq.spawn2(eq.ChooseRandom(223088,223089),0,0,45,573,504,371);
-		eq.spawn2(eq.ChooseRandom(223088,223089),0,0,68,553,504,371);
-		eq.spawn2(eq.ChooseRandom(223088,223089),0,0,68,593,504,371);
+	    eq.spawn2(223088,0,0,68,573,504,371); -- NPC: #a_flame_mephit
+		eq.spawn2(223088,0,0,68,563,504,371); -- NPC: #a_flame_mephit
+		eq.spawn2(223088,0,0,68,583,504,371); -- NPC: #a_flame_mephit
 		eq.unique_spawn(223128,0,0,68,573,504,371);	--Kazrok_of_Fire (223128)  untargetable version
 		eq.stop_timer("Phase1Fire");
 	end
@@ -62,11 +62,11 @@ function event_signal(e)
 	-- signal 2 comes from Kazrok_of_Fire,an_inferno_mephit_, and a_flame_mephit_
 	elseif (e.signal == 2) then
 		event_counter = event_counter + 1;
-		if (event_counter == 7) then
+		if (event_counter == 7) then --changed from ==7.
 			-- tell zone_status
 			eq.signal(223097,223173); -- Add Loot Lockout for Phase 1 Wing
 			eq.signal(223097,2); -- Increment Phase 1 Wing Counter
-			eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()},MT.LightGray,80,"Ethereal mists gather at the far wall, causing it to fade in and out of focus.");
+			eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()},7,80,"Ethereal mists gather at the far wall, causing it to fade in and out of focus.");
 			-- depop as my job is done.
 			eq.depop();
 		end

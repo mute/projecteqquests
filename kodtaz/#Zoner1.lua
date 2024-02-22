@@ -5,6 +5,6 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-  local dz_version = instance_version.ikkinz_chambers_of_singular_might
+  local dz_version = 0
   e.other:MovePCDynamicZone("ikkinz", dz_version, false) -- Zone: ikkinz group 1 version
 end

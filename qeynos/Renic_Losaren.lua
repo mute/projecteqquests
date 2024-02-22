@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18715) then
-		e.other:Message(MT.Yellow,"As you glance about the room, Renic Losaren greets you. 'Why hello there. Are you perhaps a new recruit? If you wish to follow the ways of Karana and become a cleric, read the note in your inventory and hand me your note to start your training.'");
+	if(e.other:HasItem(18715) == true) then
+		e.other:Message(15,"As you glance about the room, Renic Losaren greets you. 'Why hello there. Are you perhaps a new recruit? If you wish to follow the ways of Karana and become a cleric, read the note in your inventory and hand me your note to start your training.'");
 	end
 end
 
@@ -37,5 +37,5 @@ function event_trade(e)
 		e.other:AddEXP(100);
 	end
 	
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

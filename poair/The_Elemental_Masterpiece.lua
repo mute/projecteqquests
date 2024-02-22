@@ -3,7 +3,7 @@ eq.signal(215453,2); -- NPC: #Smoke_Trigger
 end
 
 function event_combat(e)
-if e.joined then
+if (e.joined == true) then
 eq.set_timer('Hardblur', 180 * 1000);
 eq.set_timer('Softblur', 6 * 1000);
 else

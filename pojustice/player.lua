@@ -2,13 +2,14 @@ local player_list = nil;
 local player_list_count = nil;
 local raid_group = nil;
 local clicker = nil;
+local instance_id = eq.get_zone_instance_id();
 
 function event_click_door(e)
 	local seventh_hammer_doors = { 1, 2, 3, 4, 5, 6 };
 	local door_id = e.door:GetDoorID();
 
 	if (door_id >= 8 and door_id <= 13) then
-		e.self:MovePC(201, 456, 825, 9, 360); -- Zone: pojustice
+		e.self:MovePCInstance(201, instance_id, 456, 825, 9, 360); -- Zone: pojustice DZ
 	elseif (door_id >= 1 and door_id <= 6) then
 		if (e.self:GetItemIDAt(Slot.Cursor) == 31599) then
 			-- make sure these are reset
@@ -35,14 +36,13 @@ function event_click_door(e)
 			--monk has to have all trials done to loot Symbol on live so force monk to do the clickup or no triggered spawn
 			local qglobals = eq.get_qglobals(e.self);
 			local el = eq.get_entity_list();
-			
-			if qglobals["monk_epic"] ~= nil and qglobals["monk_epic"] >= "5" and qglobals["monk_7thhammer"] == nil and not el:IsMobSpawnedByNpcTypeID(201074) then
+			if (qglobals["monk_epic"] >= "5" and qglobals["monk_7thhammer"] == nil and el:IsMobSpawnedByNpcTypeID(201074) == false) then
 				eq.unique_spawn(201074,0,0,71,1218,9,0); -- NPC: The_Seventh_Hammer
 				eq.signal(201074, 999); -- NPC: The_Seventh_Hammer
 				eq.set_global("monk_7thhammer","1",3,"H2");
 			end
 		else
- 			e.self:MovePC(201, 156, 470, -48, 360); -- Zone: pojustice
+ 			e.self:MovePCInstance(201, instance_id, 156, 470, -48, 360); -- Zone: pojustice
 		end
 	end
 end
@@ -59,7 +59,7 @@ function MoveGroup(src_x, src_y, src_z, distance, tgt_x, tgt_y, tgt_z, tgt_h)
 						-- check the distance and port them up if close enough
 						if (client_v:CalculateDistance(src_x, src_y, src_z) <= distance) then
 							-- port the player up
-							client_v:MovePC(201, tgt_x, tgt_y, tgt_z, tgt_h); -- Zone: pojustice
+							client_v:MovePCInstance(201, instance_id, tgt_x, tgt_y, tgt_z, tgt_h); -- Zone: pojustice
 						end
 					end
 				end

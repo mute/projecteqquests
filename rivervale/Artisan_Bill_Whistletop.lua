@@ -15,7 +15,7 @@
 
 
 function event_say(e)
-local race = e.other:GetRaceName();
+local race = e.other:Race();
 local level = e.other:GetLevel();
 
 	if(race == "Halfling") then
@@ -35,28 +35,28 @@ local level = e.other:GetLevel();
 			e.self:Say("I have four tasks that need to be completed. The first is an adventure into [Beholder's	Maze] where you will clear a path for young Halflings so they can make a safe passage through the maze to East Karana. The next you will be tasked with venturing into the heart of [the Hole] where you hunt for some ingredients for my drip clock. The third task leads you into [Karnor's Castle] where you will collect bone specimen for my collection. The final task you will adventure into [Stillmoon temple] and	learn about the creatures that inhabit the area.");
 		elseif(e.message:findi("beholder's maze")) then
 			if(level >= 30) then
-				eq.task_selector({500178});
+				eq.task_selector({178});
 			else
 				e.self:Say("I'm sorry, I don't think you are ready for that task yet. Please come back once you've gotten a bit more experience.");
 			end
 			-- if(e.message:findi("beholder's maze")		
 		elseif(e.message:findi("the hole")) then
 			if(level >= 40) then
-				eq.task_selector({500179});
+				eq.task_selector({179});
 			else
 				e.self:Say("I'm sorry, I don't think you are ready for that task yet. Please come back once you've gotten a bit more experience.");
 			end
 			-- if(e.message:findi("the hole")		
 		elseif(e.message:findi("Karnor's Castle")) then
 			if(level >= 60) then
-				eq.task_selector({500180});
+				eq.task_selector({180});
 			else
 				e.self:Say("I'm sorry, I don't think you are ready for that task yet. Please come back once you've gotten a bit more experience.");
 			end
 			-- if(e.message:findi("Karnor's Castle")		
 		elseif(e.message:findi("Stillmoon temple")) then
 			if(level >= 70) then
-				eq.task_selector({500181});
+				eq.task_selector({181});
 			else
 				e.self:Say("I'm sorry, I don't think you are ready for that task yet. Please come back once you've gotten a bit more experience.");
 			end
@@ -70,7 +70,7 @@ end
 
 function event_trade(e)
 local item_lib = require("items");
-local race = e.other:GetRaceName();
+local race = e.other:Race();
 
 	if(race == "Halfling") then
 		if(item_lib.check_turn_in(e.trade, {item1 = 12372, item2 = 12373, item3 = 13077, item4 =  14019})) then --Cat Skull Cap, Fractured Femur, Minotaur Horn, Bunch of Optic Nerves
@@ -81,9 +81,9 @@ local race = e.other:GetRaceName();
 			e.self:Say("Oh, yeah, the armor pattern book. Sorry, I forgot about that. Here you go!");
 			e.other:SummonItem(38447); --Ancestral Halfling Armor
 		else
-			item_lib.return_items(e.self, e.other, e.trade);
+			--item_lib.return_items(e.self, e.other, e.trade);
 		end
 	else -- if($race eq "Halfling")
-		item_lib.return_items(e.self, e.other, e.trade);
+		--item_lib.return_items(e.self, e.other, e.trade);
 	end
 end -- sub EVENT_ITEM

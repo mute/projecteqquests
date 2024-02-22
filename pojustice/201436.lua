@@ -16,6 +16,9 @@ local cooldown_timer      = 1800000;
 -- 15min from a Failure or a Win to boot the players out of the trial and clean up the corpses
 local eject_timer         =  900000;
 
+local instance_id = eq.get_zone_instance_id();
+
+
 function event_say(e)
    local qglobals = eq.get_qglobals(e.self, e.other);
 
@@ -36,7 +39,7 @@ function event_say(e)
                trial_group_id = trial_group:GetID();
             else
                client_id = e.other:CharacterID();
-               e.other:MovePC(201, 490, -1094, 73, 360); -- Zone: pojustice
+               e.other:MovePCInstance(201, instance_id, 490, -1094, 73, 360); -- Zone: pojustice
             end
 
             -- Move To: 201, 500, -1045, 73.1
@@ -51,7 +54,7 @@ function event_say(e)
          if ( e.other:HasItem(31846) ) then
             eq.set_global("pop_poj_tribunal", "1", 5, "F");
             eq.set_global("pop_poj_hanging", "1", 5, "F");
-            e.other:Message(MT.LightBlue, "You receive a character flag!");
+            e.other:Message(4, "You receive a character flag!");
          end
 		elseif (e.message:findi("i seek knowledge") ) then
 			local marks = { 31796, 31842, 31844, 31845, 31846 , 31960 }
@@ -84,8 +87,8 @@ function event_timer(e)
       else
           local client_e = eq.get_entity_list():GetClientByCharID(client_id);
           if (client_e ~= nil and client_e.valid) then
-              client_e:MovePC( 201, 456, 825, 9, 360 ); -- Zone: pojustice
-              client_e:Message(MT.BrightBlue, "A mysterious force translocates you.");
+              client_e.other:MovePCInstance( 201, instance_id, 456, 825, 9, 360 ); -- Zone: pojustice
+              client_e.other:Message( 3, "A mysterious force translocates you.");
           end
       end
 
@@ -112,7 +115,7 @@ function event_timer(e)
       eq.stop_timer(e.timer);
       -- Check to see if all the PCs have left the Trial area; if so
       -- Clean Corpses up and release thoe hold.
-      if not ProximityCheck(490, -1094, 73, 120) then 
+      if ( ProximityCheck(490, -1094, 73, 120) == false) then 
          eq.stop_timer("cooldown");
          eq.stop_timer("ejecttimer");
          eq.set_timer("ejecttimer", 100);
@@ -147,11 +150,11 @@ function event_trade(e)
    if (item_lib.check_turn_in(e.trade, {item1 = 31846})) then
       eq.set_global("pop_poj_tribunal", "1", 5, "F");
       eq.set_global("pop_poj_hanging", "1", 5, "F");
-      e.other:Message(MT.LightBlue, "You receive a character flag!");
+      e.other:Message(4, "You receive a character flag!");
       e.other:SummonItem(31846); -- Item: Mark of Suffocation
    end
 
-   item_lib.return_items(e.self, e.other, e.trade);
+   --item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function MoveGroup(trial_group, src_x, src_y, src_z, distance, tgt_x, tgt_y, tgt_z, tgt_h, msg)
@@ -168,10 +171,10 @@ function MoveGroup(trial_group, src_x, src_y, src_z, distance, tgt_x, tgt_y, tgt
                -- check the distance and port them up if close enough
                if (client_v:CalculateDistance(src_x, src_y, src_z) <= distance) then
                   -- port the player up
-                  client_v:MovePC(201, tgt_x, tgt_y, tgt_z, tgt_h); -- Zone: pojustice
+                  client_v:MovePCInstance(201, instance_id, tgt_x, tgt_y, tgt_z, tgt_h); -- Zone: pojustice
 
                   if (msg) then
-                     client_v:Message(MT.BrightBlue, msg);
+                     client_v:Message(3, msg);
                   end					
                end
             end

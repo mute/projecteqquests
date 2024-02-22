@@ -4,6 +4,7 @@ local player_list_count = nil;
 local raid_group = nil;
 local client_e = nil;
 local entity_list = nil;
+local instance_id = eq.get_zone_instance_id();
 
 function event_click_door(e)
 	-- populate the current entity list whenever someone clicks.
@@ -51,7 +52,7 @@ function event_click_door(e)
 		if (e.self:KeyRingCheck(9425)) then
 			key_found = true;
 		-- if it is not on the keyring check for them to have the item.
-		elseif e.self:HasItem(9425) then
+		elseif (e.self:HasItem(9425) == true) then
 			key_found = true;
 			-- add it tot he keyring
 			e.self:KeyRingAdd(9425);
@@ -126,7 +127,7 @@ function PortIntoTower(cur_x, cur_y, cur_z, distance, dest_x, dest_y, dest_z, de
 						-- check the distance and port them up if close enough
 						if (client_v:CalculateDistance(cur_x, cur_y, cur_z) <= distance) then
 							-- port the player up
-							client_v:MovePC(209, dest_x, dest_y, dest_z, dest_h); -- Zone: bothunder
+							client_v:MovePCInstance(209, instance_id, dest_x, dest_y, dest_z, dest_h); -- Zone: bothunder
 						end
 					end
 				end
@@ -134,6 +135,6 @@ function PortIntoTower(cur_x, cur_y, cur_z, distance, dest_x, dest_y, dest_z, de
 		end
 	else
 		-- port the player up
-		client_e.self:MovePC(209, dest_x, dest_y, dest_z, dest_h); -- Zone: bothunder
+		client_e.self:MovePCInstance(209, instance_id, dest_x, dest_y, dest_z, dest_h); -- Zone: bothunder
 	end
 end

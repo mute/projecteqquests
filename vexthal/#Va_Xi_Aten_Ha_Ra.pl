@@ -19,6 +19,8 @@ sub EVENT_SPAWN {
 
 sub EVENT_DEATH_COMPLETE {
   quest::depopall(158094);
+  quest::unique_spawn(158096,0,0,1417,0,236,384); #Spawn Aten Ha Ra on death
 }
+
 
 #End of File, Zone:vexthal  NPC:158009 -- #Va_Xi_Aten_Ha_Ra

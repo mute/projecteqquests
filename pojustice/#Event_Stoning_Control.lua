@@ -28,7 +28,7 @@ end
 
 function event_signal(e)
    if (e.signal == 1) then
-		eq.get_entity_list():MessageClose(e.self, false, 120, MT.BrightBlue, "Success!");
+		eq.get_entity_list():MessageClose(e.self, false, 120, 3, "Success!");
 
       eq.signal(201437, 1); -- NPC: The_Tribunal Stoning Trial
 
@@ -37,7 +37,7 @@ function event_signal(e)
 
    elseif (e.signal == 2) then
       -- Failed
-      eq.get_entity_list():MessageClose(e.self, false, 120,MT.BrightBlue, "An unnatural silence falls around you.  The justice of the Tribunal has been pronounced once again.  The defendants have been found... lacking.");
+      eq.get_entity_list():MessageClose(e.self, false, 120,3, "An unnatural silence falls around you.  The justice of the Tribunal has been pronounced once again.  The defendants have been found... lacking.");
 
       despawn_prisoners();
       eq.signal(201437, 2); -- NPC: The_Tribunal Stoning Trial
@@ -84,11 +84,11 @@ end
 
 function spawn_mobs(wave)
 
-	local index = #wave_ids;
+	local index = table.getn(wave_ids);
 	local npc;
 	
 	-- Spawn Archers
-	if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(201494) then 
+	if ( eq.get_entity_list():IsMobSpawnedByNpcTypeID(201494) == false ) then 
 		eq.spawn2( 201494, 0, 0, -177, -1188, 73, 2); -- NPC: a_pitiless_avenger
 		eq.spawn2( 201494, 0, 0,  -82, -1188, 73, 2); -- NPC: a_pitiless_avenger
 	end

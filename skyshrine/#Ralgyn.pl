@@ -1,6 +1,6 @@
 # items: 1866, 1867
 sub EVENT_SAY {
-  if ($faction==1) {
+  if ($faction<=3) {
     if ($text=~/hail/i) {
       quest::say("Hello, $name, what brings you to these sacred quarters on this day? If it is treasure that you seek please ask someone else for I do not have time to think of such petty things. My worries are much greater at this time I am afraid.");
     }
@@ -26,7 +26,7 @@ sub EVENT_SAY {
 }
 
 sub EVENT_ITEM {
-  if (($faction==1) && ($CircletFalinkan=="2")) {
+  if (($faction<=3) && ($CircletFalinkan=="2")) {
     # 1866  Glanitar's Imbued Talisman
     if (plugin::check_handin(\%itemcount,1866=>1)) {
       quest::say("It is with great sorrow that I receive this talisman which clearly symbolizes the death of my son for he would first suffer a hundred deaths then rather then to willingly give up his only bind to his Mother. However your assistance and dedication to me is unquestioned. For your efforts I would like you to carry something very special to me. Please take this Circlet and treasure it always as it belonged to my Faliana. I feel as much as you assisted me in obtaining the whereabouts of my son I know that she would want you to have it as much as I do. Sadly, now I must mourn my lost son however I shall never forget your kindness, $name, Thank you.");
@@ -39,7 +39,7 @@ sub EVENT_ITEM {
       quest::depop_withtimer();
     }
   }
-  plugin::return_items(\%itemcount); # return unused items
+  #plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:skyshrine  NPC:114002 -- #Ralgyn

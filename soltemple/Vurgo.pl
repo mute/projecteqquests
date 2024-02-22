@@ -22,13 +22,8 @@ sub EVENT_ITEM {
 	} elsif($itemcount{10536} == 1 && $itemcount{10537} == 1 && $itemcount{10529} == 1) { # Book of Darkness, Book of Frost, Shadowed Book
 		quest::summonitem("10527"); # Words of Darkness
 	} else {
-		quest::say("I don't need this.");
-		if($item1 > 0){quest::summonitem("$item1");} 
-		if($item2 > 0){quest::summonitem("$item2");} 
-		if($item3 > 0){quest::summonitem("$item3");} 
-		if($item4 > 0){quest::summonitem("$item4");}
-		if($platinum != 0 || $gold !=0 || $silver != 0 || $copper != 0) {quest::givecash($copper, $silver, $gold, $platinum);}
+		plugin::returnUnusedItems();
+		}
 	}
-}
 
 #END of FILE Zone:soltemple  ID:80016 -- Vurgo 

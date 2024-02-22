@@ -8,7 +8,7 @@ end
 function ZMYV_Combat(e)
 	if e.joined then
 		e.self:Say("The weak willed and the idle will serve my cause.");
-		eq.set_timer("allure", 90 * 1000);
+		-- eq.set_timer("allure", 90 * 1000);
 	else
 		eq.set_timer("wipecheck", 1 * 1000);
 		eq.stop_timer("check");
@@ -27,16 +27,12 @@ function ZMYV_Timer(e)
 			eq.depop();
 		end
 	elseif e.timer == "allure" then 
-		for i=1,6 do
-			local target = e.self:GetHateRandom();
-			if target:IsPet() then
-				target = target:GetOwner();
-			end
-
-			if target.valid and not target:FindBuff(4441) then
-				e.self:SpellFinished(4441, target); -- Spell: Allure of Hatred
-			end
-		end
+		eq.signal(298000,1);
+		eq.signal(298001,1);
+		eq.signal(298003,1);
+		eq.signal(298004,1);
+		eq.signal(298005,1);
+		eq.signal(298006,1);
 		e.self:WipeHateList();
 	elseif e.timer == "check" then
 		local instance_id = eq.get_zone_instance_id();
@@ -82,15 +78,37 @@ function ZMYV_Hp(e)
 	end
 end
 
+function Charm_Signal(e)
+	local target = eq.get_entity_list():GetRandomClient(366,-488,-0.375,5000);
+	if target.valid and not target:FindBuff(4441) then
+		e.self:SpellFinished(4441, target); -- Spell: Allure of Hatred
+	end
+end
+
 function ZMYV_Death(e)
 	eq.signal(298223,298023); -- NPC: zone_status
 	eq.signal(298223,2,1000); -- Unlock Doors
+	eq.depop(298000);
+	eq.depop(298001);
+	eq.depop(298003);
+	eq.depop(298004);
+	eq.depop(298005);
+	eq.depop(298006);
+	e.self:DeathNotification(e);
 end
 
 function event_encounter_load(e)
-	eq.register_npc_event('zmyv', Event.spawn,          298023, ZMYV_Spawn); 
-	eq.register_npc_event('zmyv', Event.combat,         298023, ZMYV_Combat); 
-	eq.register_npc_event('zmyv', Event.timer,          298023, ZMYV_Timer); 
-	eq.register_npc_event('zmyv', Event.hp,             298023, ZMYV_Hp); 
-	eq.register_npc_event('zmyv', Event.death_complete, 298023, ZMYV_Death); 
+	eq.register_npc_event('zmyv', Event.spawn,          298023, ZMYV_Spawn);
+	eq.register_npc_event('zmyv', Event.combat,         298023, ZMYV_Combat);
+	eq.register_npc_event('zmyv', Event.timer,          298023, ZMYV_Timer);
+	eq.register_npc_event('zmyv', Event.hp,             298023, ZMYV_Hp);
+	eq.register_npc_event('zmyv', Event.death_complete, 298023, ZMYV_Death);
+	
+	-- Charm NPCs
+	eq.register_npc_event('zmyv', Event.signal,			298000, Charm_Signal);
+	eq.register_npc_event('zmyv', Event.signal,			298001, Charm_Signal);
+	eq.register_npc_event('zmyv', Event.signal,			298003, Charm_Signal);
+	eq.register_npc_event('zmyv', Event.signal,			298004, Charm_Signal);
+	eq.register_npc_event('zmyv', Event.signal,			298005, Charm_Signal);
+	eq.register_npc_event('zmyv', Event.signal,			298006, Charm_Signal);
 end

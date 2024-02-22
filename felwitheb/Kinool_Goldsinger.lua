@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18778)) then
-		e.other:Message(MT.Yellow,"You enter a dimly lit room. In the center of the room, an important looking High Elf stands on a platform. He turns to greet you. 'Welcome young apprentice. I am Kinool Goldsinger, Guild Master of the Enchanters' guild here in Felwithe. Please read teh note in your inventory and when you are ready to begin your training, hand it to me.'");
+		e.other:Message(15,"You enter a dimly lit room. In the center of the room, an important looking High Elf stands on a platform. He turns to greet you. 'Welcome young apprentice. I am Kinool Goldsinger, Guild Master of the Enchanters' guild here in Felwithe. Please read teh note in your inventory and when you are ready to begin your training, hand it to me.'");
 	end
 end
 
@@ -53,7 +53,7 @@ function event_trade(e)
   		e.other:AddEXP(5000);
   		e.other:SummonItem(8402); -- Item: Rain Caller
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:felwitheb  ID:62020 -- Kinool_Goldsinger 

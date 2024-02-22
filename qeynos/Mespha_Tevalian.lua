@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18720) then
-		e.other:Message(MT.Yellow,"As you glance about the room, Mespha Tevalian greets you. 'Why hello there. Are you perhaps a new recruits? If you wish to learn the ways of the Enchanter, read the note in your inventory and hand me your note to start your training.'");
+	if(e.other:HasItem(18720) == true) then
+		e.other:Message(15,"As you glance about the room, Mespha Tevalian greets you. 'Why hello there. Are you perhaps a new recruits? If you wish to learn the ways of the Enchanter, read the note in your inventory and hand me your note to start your training.'");
 	end
 end
 
@@ -35,5 +35,5 @@ function event_trade(e)
 		e.other:Faction(296,-15,0); -- Opal Dark Briar
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

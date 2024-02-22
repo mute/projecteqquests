@@ -6,6 +6,9 @@
 function event_death_complete(e)
 	-- send a signal to the #water_trigger that I died
 	eq.signal(223172,1);
+	eq.signal(223097,223172); -- Add Loot Lockout for Phase 1 Wing
+	eq.signal(223097,2); -- Increment Phase 1 Wing Counter
+		
 end
 
 function event_spawn(e)
@@ -49,3 +52,4 @@ function event_hp(e)
 		e.self:SetSpecialAbilityParam(SpecialAbility.area_rampage,0,40);	--increase area rampage
 	end
 end
+

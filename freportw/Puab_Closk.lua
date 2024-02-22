@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18746)) then
-		e.other:Message(MT.Yellow,"As you get your bearings, a lightly armored man that appears to be in incredible shape turns to greet you. 'Welcome traveller. I am Puab Closk. If you wish to learn the ways of the Ashen Order, read the note in your inventory and hand it to me to begin your training.'");
+		e.other:Message(15,"As you get your bearings, a lightly armored man that appears to be in incredible shape turns to greet you. 'Welcome traveller. I am Puab Closk. If you wish to learn the ways of the Ashen Order, read the note in your inventory and hand it to me to begin your training.'");
 	end
 end
 
@@ -50,7 +50,7 @@ function event_trade(e)
 		e.other:Faction(309,5,0); -- Silent Fist Clan
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportw -- Puab_Closk

@@ -1,5 +1,5 @@
 function event_combat(e)
-  if e.joined then
+  if (e.joined == true) then
 	e.self:Emote("Spiders descend from the canopy above, hungry for flesh.");
     local which = math.random(1,2);
     if  (which == 1) then

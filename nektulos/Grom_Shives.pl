@@ -4,7 +4,7 @@ sub EVENT_SPAWN {
 }
 
 sub EVENT_SAY {
-	if(quest::istaskactivityactive(3540,10)){
+	if(quest::istaskactivityactive(216,10)){
 		if($text=~/Hail/i) {
 			if(defined $qglobals{halloween_race_victory} && !defined $qglobals{halloween_race_complete}) {
 				quest::summonitem(80056); # Item: Cloak of Death
@@ -13,20 +13,20 @@ sub EVENT_SAY {
 				quest::setglobal("halloween_race_complete",1,0,"D30");
 				quest::delglobal("halloween_race_victory");
 				quest::say("Amazing! You rode swiftly and true... few could rival your speed! Take this cloak, and wear it to commemorate this day.");
-				quest::updatetaskactivity(3540,10);
+				quest::updatetaskactivity(216,10);
 			}
 			elsif(defined $qglobals{"halloween_race_victory"} && defined $qglobals{halloween_race_complete}){
 				quest::say("Amazing! You rode swiftly and true... few could rival your speed!");
-				quest::updatetaskactivity(3540,10);
+				quest::updatetaskactivity(216,10);
 			}
 			else {
 				quest::say("You managed to find your way through Nektulos to Neriak, but you did not as quickly as you could have... Let me know if you would like to [try] again.");
-				quest::failtask(3540);
+				quest::failtask(216);
 			}
 		}
 				
 	}
-	elsif(quest::istaskactive(3540)){
+	elsif(quest::istaskactive(216)){
 		if($text=~/Hail/i) {
       			quest::say("What are you waiting for? Get going!");
       		}
@@ -38,7 +38,7 @@ sub EVENT_SAY {
 			}
 		}
       	}
-	elsif(!quest::istaskactive(3540)){
+	elsif(!quest::istaskactive(216)){
 		if($text=~/Hail/i) {
    			quest::emote("nods solemnly at you, 'Have you also come to stand [vigil] on this day of grim history?'");
       		}
@@ -62,8 +62,8 @@ sub EVENT_SAY {
 		}
 		if($text=~/Mount/i || $text=~/Try/i) {
    			quest::emote("hands you a bridle, 'When you are [ready], you will need to ride with haste and reach the gates of Neriak before the fourth minute has passed.'");
-			quest::assigntask(500219);
-      			quest::assigntask(3540);
+			quest::assigntask(219);
+      			quest::assigntask(216);
 			quest::summonitem(80039); # Item: Bridle of the Cursed
 		}
 	}	

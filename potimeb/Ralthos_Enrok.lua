@@ -4,6 +4,8 @@
 
 function event_spawn(e)
 	eq.set_next_hp_event(75);
+	local expedition = eq.get_expedition()
+
 end
 
 function event_combat(e)
@@ -23,8 +25,14 @@ function event_timer(e)
 end
 
 function event_death_complete(e)
+	local expedition = eq.get_expedition()
+
 	eq.signal(223097,223127); -- Add Loot Lockout for Phase 2 Wing
 	eq.signal(223242,2); --signal phase_two_undead
+	eq.depop_all(2231731);
+	eq.signal(223097,3);	--signal zone_status that phase is complete
+
+	expedition:AddLockout('Phase 2 Complete', 79200);
 end
 
 function event_hp(e)

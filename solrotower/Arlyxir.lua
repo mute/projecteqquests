@@ -1,7 +1,7 @@
 function event_combat(e)
-	if e.joined then
-		eq.set_timer("OOBcheck", 6 * 1000);
-		eq.set_timer("heal", 750000);
+	if (e.joined == true) then
+		eq.set_timer("OOBcheck", 6 * 10000);
+		eq.set_timer("heal", 7500000);
 	else
 		eq.stop_timer("OOBcheck");
 		eq.stop_timer("heal");
@@ -17,7 +17,7 @@ function event_timer(e)
 			e.self:GotoBind();
 			e.self:WipeHateList();
 		else
-			eq.set_timer("OOBcheck", 6 * 1000);
+			eq.set_timer("OOBcheck", 6 * 10000);
 		end
 	elseif ( e.timer == "heal" ) then
 		e.self:Emote("is immolated in flames, and is reborn!");

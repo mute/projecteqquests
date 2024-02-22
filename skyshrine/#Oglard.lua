@@ -2,7 +2,7 @@
 function event_say(e)
 	if(e.other:GetFaction(e.self) < 2) then
 		if(e.message:findi("hail")) then
-			e.self:Say("Greetings, young " .. e.other:GetRaceName() .. ". Very few of your kind has ever seen the halls you now walk through. You must have provided a great service to our kin for them to allow you passage into this inner sanctum. We welcome you to our ancient home.");
+			e.self:Say("Greetings, young " .. e.other:Race() .. ". Very few of your kind has ever seen the halls you now walk through. You must have provided a great service to our kin for them to allow you passage into this inner sanctum. We welcome you to our ancient home.");
 		elseif(e.message:findi("thank you")) then
 			e.self:Say("Might, wisdom, and manners? Quite a surprise to see all of these traits in one of the younger races. I am impressed. I see you are a noble creature, one who would treat another creature of nobility with respect... 'Oglard's eyes suddenly begin to shine with a magical golden light. He looks down upon you as if in judgement and asks, 'Tell me, " .. e.other:GetCleanName() .. ", have you done battle with dragons?'");
 		elseif(e.message:findi("no I have not")) then
@@ -41,5 +41,5 @@ function event_trade(e)
 		e.self:Say("Thank you, " .. e.other:GetCleanName() .. ". With this urn, our fears are confirmed. His spirit is split, each striving for its own desire. We've decided what must be done. Your help is key in the success of our plans. If you wish to continue what you have started, please take this urn to Eldriaks Fe`Dhar. He will make known to you our plan.");
 		e.other:QuestReward(e.self,0,0,0,0,2053,5000); -- Dragon Craft Urn (2nd combined version)
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

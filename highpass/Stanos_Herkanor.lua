@@ -3,10 +3,10 @@ function event_say(e)
 	local qglobals = eq.get_qglobals(e.other);
 	
 	if(e.message:findi("hail")) then
-		if e.other:HasItem(11057) and qglobals.Fatestealer == nil then
+		if(e.other:HasItem(11057) == true and qglobals.Fatestealer == nil) then
 			e.self:Say(string.format("Ha, the prodigy returns. So good to see you, %s. I always consider it an honor to have your company, and we have much to talk about!",e.other:GetName()));
 			eq.set_global("Fatestealer","1",5,"F");
-			e.self:Say(string.format("But not here and not now. We are in grave danger, you and I, and should not be seen speaking to one another. Seek out my associates. They will apprise you of what needs to be done. When you have found them... Tell them that the sun is setting on the horizon.' He clasps your palm and gives you a strange handshake, 'Before you go, know that you have proved yourself as one of us, %s. You are a member of this circle and nothing will ever break that.",e.other:GetName()));
+			e.self:Say(string.format("But not here and not now. We are in grave danger, you and I, and should not be seen speaking to one another. Seek out my associates. They will apprise you of what needs to be done. When you have found them... Tell them that the sun is setting on the horizon.' He clasps your palm and gives you a strange handshake, 'Before you go, know that you have proved yourself as one of us, %s. You are a member of this circle and nothing will ever break that.",e.other:GetName()));			
 		elseif(qglobals.Fatestealer ~= nil) then
 			e.self:Say(string.format("We are in grave danger, you and I, and should not be seen speaking to one another. Seek out my associates. They will apprise you of what needs to be done. When you have found them... Tell them that the sun is setting on the horizon.' He clasps your palm and gives you a strange handshake, 'Before you go, know that you have proved yourself as one of us, %s. You are a member of this circle and nothing will ever break that.",e.other:GetName()));
 		else
@@ -55,7 +55,7 @@ function event_trade(e)
 		eq.depop();
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 28013,item2 = 7506,item3 = 7505})) then
 		e.self:Say(string.format("Very well done. I leave now to confront Hanns with this evidence. Even so, it will not be easy to regain his trust. That is why I need those daggers, in case all else fails. Bristlebane grant me luck - I can no longer live like a hunted dog. In any case, I am grateful for your aid. Take this wretched blade, I can bear it no longer. I must warn you, I feel it carries Innoruuk's curse; all who are near it learn the meaning of hate. Ironic, isn't it? You went to all that work to redeem yourself for a rapier, yet the true reward came when you redeemed another..Good luck, %s, for much as I, you will need it.",e.other:GetName()));
-		e.other:SummonItem(11057); -- Item: Ragebringer
+		e.other:SummonFixedItem(811057); -- Item: Ragebringer
 		e.other:Ding();
 		e.other:Faction(332,5,0); -- Faction: Highpass Guards
 		e.other:Faction(329,10,0); -- Faction: Carson McCabe
@@ -76,7 +76,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		eq.depop();
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

@@ -10,8 +10,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18791) then
-		e.other:Message(MT.Yellow,"As your eyes adjust to the darkness, a pretty troll (pretty by trollish standards) turns toward you. 'I be Kaglari. You read note in inventory and hand to me to start training!'");
+	if(e.other:HasItem(18791) == true) then
+		e.other:Message(15,"As your eyes adjust to the darkness, a pretty troll (pretty by trollish standards) turns toward you. 'I be Kaglari. You read note in inventory and hand to me to start training!'");
 	end
 end
 
@@ -63,5 +63,5 @@ function event_trade(e)
 		e.other:Faction(251,-15,0); -- -Frogloks of Guk
 		e.other:AddEXP(20);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end

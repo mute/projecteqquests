@@ -7,10 +7,10 @@ sub EVENT_SAY {
   quest::say("I trust that what is said here will not be repeated to outsiders, yes? Good. For some time now, we've been fortifying our position in the shrine to fend off giant attacks as they come. Though there hasn't been a major engagement between the shrine and the giants for quite some time, there have been strafing runs done by them in an attempt to test us. If you're up for it, I have a [mission] I need someone new to the shrine to complete.");
  }
  elsif($text=~/mission/i){ #Part of: Helms of Giant Warriors
-  quest::say("We've been looking for someone that isn't from the shrine to find some of the giants that have been on these strafing runs and have them eliminated. You're of the perfect ilk because they will not recognize you as a friend to the shrine. Once you pry their steel-plated helms from their cold, dead heads and bring them back to me, your worth will be proven and you may show promise as an ally to the shrine.");
+  quest::say("We've been looking for someone that isn't from the shrine to find some of the giants that have been on these strafing runs and have them eliminated. You're of the perfect ilk because they will not recognize you as a friend to the shrine. Once you pry their steel-plated helms from their cold, dead heads and bring them back to me, your worth will be proven and you may show promise as an ally to the shrine. By the way, I have to keep track of everything you turn in, so please hand them to me one at a time!");
  }
  elsif($text=~/assignment/i){ #Start of: Strike Home Toe The Giants
-  quest::say("While the helmets of the giants are a good way to prove your worth, it really strikes home to the giants when they see some of their best warriors dead without their toes. If you can bring me back either Storm Giant toes or Frost Giant toes, you will not only show us that you are a friend to the shrine, but also that the giants are not as indestructible as they would have you believe.");
+  quest::say("While the helmets of the giants are a good way to prove your worth, it really strikes home to the giants when they see some of their best warriors dead without their toes. If you can bring me back either Storm Giant toes or Frost Giant toes, you will not only show us that you are a friend to the shrine, but also that the giants are not as indestructible as they would have you believe. By the way, I have to keep track of everything you turn in, so please hand them to me one at a time!");
  }
 }
 

@@ -24,7 +24,7 @@ local carp_fake=false;
 
 
 function Carp_Combat(e)
-	if e.joined and not carp_fake then
+	if (e.joined == true) and carp_fake == false then
 	eq.spawn2(200037,0,0,385.41, -127.15, -60.25, 384.3):AddToHateList(e.self:GetHateRandom(),1); -- Spawn Breddan_Rutyl
 	eq.spawn2(200036,0,0,393.25, -107.67, -60.25, 391.3):AddToHateList(e.self:GetHateRandom(),1); -- Spawn Fran Prisoal
 	eq.spawn2(200038,0,0,385.17, -98.43, -60.25, 384.8):AddToHateList(e.self:GetHateRandom(),1); -- Spawn Abroan Drian
@@ -44,7 +44,7 @@ function Add_Death(e)
 	local el = eq.get_entity_list();
 	carp_add=carp_add+1
 	eq.debug("Trash Dead: " .. carp_add);
-	if carp_add == 3 and carp_fake and el:IsMobSpawnedByNpcTypeID(200007) then
+	if carp_add == 3 and carp_fake == true and ( el:IsMobSpawnedByNpcTypeID(200007) == true) then
 	eq.depop_all(200007);  -- Depop myself
 	eq.spawn2(200007,0,0,384.00,-113.00,-53.78,386.0):AddToHateList(e.self:GetHateRandom(),1); -- Pop my true self // No adds this time // No Invulnerable State  // Auto Agro Myself
 	end
@@ -140,7 +140,7 @@ end
 
 
 function Bishop_Death(e)
-	eq.spawn2(200067,0,0,306.97,314.78,-70.25,259.0); -- Spawn Untargetable Version of High Priest.
+	eq.spawn2(200032,0,0,306.97,314.78,-70.25,259.0); -- Spawn Untargetable Version of High Priest.
 	eq.spawn2(200034,33,0,325,325,-71.5,277.2); -- Spawn Vindor on their grid.
 	eq.spawn2(200033,34,0,290,325,-71.5,277.2); -- Spawn Raex on their grid.
 end
@@ -152,6 +152,7 @@ end
 
 function event_encounter_load(e)
 	eq.register_npc_event('Carp', Event.combat, 			200007, Carp_Combat);
+	eq.register_npc_event('Carp', Event.spawn,				200007, Carp_Summon);
 	eq.register_npc_event('Carp', Event.hp,					200007, Carp_HP);
 	eq.register_npc_event('Carp', Event.death_complete,		200007, Carp_Death);
 	
@@ -168,7 +169,10 @@ function event_encounter_load(e)
 	
 	eq.register_npc_event('Carp', Event.spawn,				200034, Vindor_Spawn);
 	eq.register_npc_event('Carp', Event.timer,				200034, Vindor_Timer);
-
+	eq.register_npc_event('Carp', Event.death_complete,		200034, Vindor_Death);
+	
+	
+	eq.register_npc_event('Carp', Event.death_complete,		200033, Raex_Death);
 	eq.register_npc_event('Carp', Event.spawn,				200033, Raex_Spawn);
 	eq.register_npc_event('Carp', Event.timer,				200033, Raex_Timer);
 	

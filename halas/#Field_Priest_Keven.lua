@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18847)) then
-		e.other:Message(MT.Yellow,"Field Priest Keven turns towards you. 'There you are. I have been waiting for you. Are you ready to begin your training? With my help you will be able to command a great beast to become your most trusted companion. Read the note in your inventory and hand it to me when you are ready to begin your training.'");
+		e.other:Message(15,"Field Priest Keven turns towards you. 'There you are. I have been waiting for you. Are you ready to begin your training? With my help you will be able to command a great beast to become your most trusted companion. Read the note in your inventory and hand it to me when you are ready to begin your training.'");
 	end
 end
 
@@ -24,7 +24,7 @@ function event_trade(e)
 		e.other:SummonItem(13574);  -- Soiled Gray Tunic
 		e.other:AddEXP(100);        -- Give exp for turning in quest
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

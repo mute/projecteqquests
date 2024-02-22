@@ -1,9 +1,11 @@
 sub EVENT_SPELL_EFFECT_TRANSLOCATE_COMPLETE
 {
-	if (quest::is_depths_of_darkhollow_enabled()) {
+	if($client && ($client->GetClientVersionBit() & 4294967292)!= 0)
+	{
 		quest::MovePCInstance(25, 1, -715, -57, 42, 0); # Zone: nektulos
 	}
-	else {
+	else
+	{
 		quest::movepc(25, -772, 432, 35); # Zone: nektulos
 	}
 }

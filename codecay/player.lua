@@ -1,9 +1,12 @@
 -- player.lua codecay
+
+local instance_id = eq.get_zone_instance_id();
+
 function event_enter_zone(e)
 	local qglobals = eq.get_qglobals(e.self);
 	
 	if(qglobals["mage_epic"] == "10" and qglobals["mage_epic_cod"] == nil) then
-		e.self:Message(MT.Yellow,"Your staff begins to glow");
+		e.self:Message(15,"Your staff begins to glow");
 	end
 end
 
@@ -12,10 +15,10 @@ function event_click_door(e)
 	-- chair to click down to bertox event
 	if (e.door:GetDoorID() == 7) then
 		if(qglobals["pop_cod_preflag"] == "1" or e.self:GetGM()) then
-			e.self:MovePC(200, 0, -16, -289, 256)
+			e.self:MovePCInstance(200, instance_id, 0, -16, -289, 256)
 		else
 			--made up
-			e.self:Message(MT.Default, "There is still more work to be done.")
+			e.self:Message(1, "There is still more work to be done.")
 		end
 	end
 end

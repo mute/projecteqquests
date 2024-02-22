@@ -8,7 +8,7 @@ local curse_bearers	= {296059,296060,296061,296062,296063,296064};
 function event_spawn(e)
 	initial = 0;
 	eq.set_timer("win_check", 5 * 1000);		-- 5s Check
-	eq.set_timer("initial_bearers", 15 * 1000)	-- 15s timer
+	eq.set_timer("initial_bearers", 60 * 1000)	-- 60s timer
 end
 
 function event_signal(e)
@@ -42,7 +42,7 @@ function event_timer(e)
 			eq.spawn2(v,0,0,42,-912,-126,390);
 		end
 		eq.stop_timer("initial_bearers");
-		eq.set_timer("spawn_cursebearer", 15 * 1000);
+		eq.set_timer("spawn_cursebearer", 60 * 1000);
 	elseif e.timer == "spawn_cursebearer" then
 		for i = 1,6,1 do
 			if eq.get_entity_list():IsMobSpawnedByNpcTypeID(curse_callers[i]) then

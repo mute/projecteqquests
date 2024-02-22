@@ -6,7 +6,7 @@
   ----------------------------------
 -- items: 13870
 function event_waypoint_arrive(e)
-	if e.wp == 6 then
+	if(wp == 6) then
 		e.self:Say("When will Wickystick send help?!");
 	end
 end
@@ -32,7 +32,7 @@ local item_lib = require("items");
 		e.other:GiveCash(0,8,1,0);
 		e.other:AddEXP(15);
 	else
-		item_lib.return_items(e.self, e.other, e.trade); -- return unused items
+		--item_lib.return_items(e.self, e.other, e.trade); -- return unused items
 	end
 end
  --END of FILE Zone:rivervale  ID:19086 -- Fiddy_Bobick

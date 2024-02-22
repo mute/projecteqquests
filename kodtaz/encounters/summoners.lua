@@ -91,6 +91,8 @@ local priest = eq.get_entity_list():GetMobByNpcTypeID(293213);
         end
     elseif (e.signal == 4) then
         e.self:SetSpecialAbility(35, 0); --turn off immunity
+        e.self:SetSpecialAbility(19, 0);
+	    e.self:SetSpecialAbility(20, 0);
         e.self:SetSpecialAbility(24, 0); --turn off anti aggro
     elseif (e.signal == 5) then
         spawnadds = spawnadds + 1;
@@ -151,89 +153,6 @@ eq.spawn2(293217,0,0,750,754,-460,360); -- NPC: #Deranged_Supreme_Stoneservant
 eq.spawn2(293217,0,0,705,668,-453,468); -- NPC: #Deranged_Supreme_Stoneservant
 eq.spawn2(293217,0,0,705,668,-453,468); -- NPC: #Deranged_Supreme_Stoneservant
 end
-
-function Provoker_Combat(e)
-    if e.joined then
-        eq.set_timer("oobcheck", 5 * 1000);
-    else
-        eq.stop_timer("oobcheck");
-    end
-end
-
-function Provoker_Timer(e)
-    if (e.timer == "oobcheck") then
-    local npc1 = eq.get_entity_list():GetMobByNpcTypeID(293001);
-        -- calc distance to leash npc in center of ring
-        if ( npc1:CalculateDistance(e.self:GetX(), e.self:GetY(), e.self:GetZ()) > 150) then
-            e.self:SetHP(e.self:GetMaxHP())
-            e.self:CastSpell(3791, e.self:GetID())
-            e.self:WipeHateList()
-        end
-    end
-end
-
-function Lesser_Combat(e)
-    if e.joined then
-        eq.set_timer("oobcheck", 5 * 1000);
-    else
-        eq.stop_timer("oobcheck");
-    end
-end
-
-function Lesser_Timer(e)
-    if (e.timer == "oobcheck") then
-    local npc1 = eq.get_entity_list():GetMobByNpcTypeID(293001);
-        -- calc distance to leash npc in center of ring
-        if ( npc1:CalculateDistance(e.self:GetX(), e.self:GetY(), e.self:GetZ()) > 150) then
-        e.self:SetHP(e.self:GetMaxHP())
-        e.self:CastSpell(3791, e.self:GetID())
-        e.self:WipeHateList()
-        end
-    end
-end
-
-
-function Greater_Combat(e)
-    if e.joined then
-        eq.set_timer("oobcheck", 5 * 1000);
-    else
-        eq.stop_timer("oobcheck");
-    end
-end
-
-function Greater_Timer(e)
-    if (e.timer == "oobcheck") then
-    local npc1 = eq.get_entity_list():GetMobByNpcTypeID(293001);
-        -- calc distance to leash npc in center of ring
-        if ( npc1:CalculateDistance(e.self:GetX(), e.self:GetY(), e.self:GetZ()) > 150) then
-            e.self:SetHP(e.self:GetMaxHP())
-            e.self:CastSpell(3791, e.self:GetID())
-            e.self:WipeHateList()
-        end
-    end
-end
-
-function Deranged_Combat(e)
-    if e.joined then
-        eq.set_timer("oobcheck", 5 * 1000);
-    else
-        eq.stop_timer("oobcheck");
-    end
-end
-
-function Deranged_Timer(e)
-    if (e.timer == "oobcheck") then
-    local npc1 = eq.get_entity_list():GetMobByNpcTypeID(293001);
-        -- calc distance to leash npc in center of ring
-        if ( npc1:CalculateDistance(e.self:GetX(), e.self:GetY(), e.self:GetZ()) > 150) then
-            e.self:SetHP(e.self:GetMaxHP())
-            e.self:CastSpell(3791, e.self:GetID())
-            e.self:WipeHateList()
-        end
-    end
-end
-
-
 
 function Lesser_Death(e)
     if respawn == 0 then

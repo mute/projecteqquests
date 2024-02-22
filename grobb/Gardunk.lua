@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18845)) then
-		e.other:Message(MT.Yellow,"As your eyes adjust to the darkness, a large troll covered in scars turns towards you. 'I be Gardunk. You read note in inventory and hand to me to start training. Me make you strong like animal!'");
+		e.other:Message(15,"As your eyes adjust to the darkness, a large troll covered in scars turns towards you. 'I be Gardunk. You read note in inventory and hand to me to start training. Me make you strong like animal!'");
 	end
 end
 
@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:Faction(251,-2,0); -- Frogloks of Guk
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:grobb  ID:6084 -- Gardunk

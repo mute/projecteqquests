@@ -4,7 +4,7 @@
 # Kiladiveus - created Sub EVENT_ITEM for quest. Used Faction requirement method. 
 
 sub EVENT_SAY {
-  if ($faction <= 3) { # Require Warmly and greater faction
+  if ($faction <= 4) { # Require Warmly and greater faction
     if($text=~/Hail/i){
       quest::say("Greetings to you. You are far away from your homelands, stranger. I am looking for someone. We here at the Temple of Lore are always seeking fellow priests of various faiths. Tell me, $race, are you a cleric?");
     }
@@ -48,7 +48,7 @@ sub EVENT_SIGNAL {
 }
 
 sub EVENT_ITEM {
-  if ($faction <= 3) { # Require warmly and greater faction
+  if ($faction <= 4) { # Require warmly and greater faction
     if (plugin::check_handin(\%itemcount, 25805 => 3, 24928 => 1)) { # tunic
       quest::summonitem(31043); # Item: Breastplate of Forbidden Rites
     }

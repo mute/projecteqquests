@@ -1,6 +1,6 @@
 # items: 29146
 sub EVENT_SPAWN {
-quest::settimer("essence",1200);
+quest::settimer("essence",1800);
 }
 
 sub EVENT_SAY {

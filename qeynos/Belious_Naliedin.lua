@@ -6,8 +6,8 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	if e.other:HasItem(18717) then
-		e.other:Message(MT.Yellow,"As you get your bearings, you hear a beautiful song. It almost seems to draw you towards it. It's as if you can hear a voice in your head as the music surrounds you. 'Welcome to the Wind Spirit's Song. I am Belious Naliedin. Read the note in your inventory and hand it to me when you are ready to begin your training as a bard.' The music then fades as quickly as it had begun.");
+	if(e.other:HasItem(18717) == true) then
+		e.other:Message(15,"As you get your bearings, you hear a beautiful song. It almost seems to draw you towards it. It's as if you can hear a voice in your head as the music surrounds you. 'Welcome to the Wind Spirit's Song. I am Belious Naliedin. Read the note in your inventory and hand it to me when you are ready to begin your training as a bard.' The music then fades as quickly as it had begun.");
 	end
 end
 
@@ -72,7 +72,7 @@ function event_trade(e)
 		e.other:Faction(285,-12,0); -- Mayong Mistmoore
 		e.other:AddEXP(1000);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos  ID:1133 -- Belious_Naliedin

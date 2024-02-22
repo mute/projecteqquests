@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18762)) then
-		e.other:Message(MT.Yellow,"Dun McDowell turns to address you. 'Welcome. I trust ye are ready for training in the ways of the rogue? Well read the note in your inventory and hand it to me when ye are ready to begin training.'");
+		e.other:Message(15,"Dun McDowell turns to address you. 'Welcome. I trust ye are ready for training in the ways of the rogue? Well read the note in your inventory and hand it to me when ye are ready to begin training.'");
 	end
 end
 
@@ -30,7 +30,7 @@ function event_trade(e)
 		e.other:Faction(305,100); 	-- Rogues of the White Rose
 		e.other:AddEXP(100);
 	end
-	item_lib.return_items(e.self, e.other, e.trade)
+	--item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:halas  ID:29069 -- Dun_McDowell 

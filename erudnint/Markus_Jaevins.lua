@@ -7,7 +7,7 @@ end
 
 function event_enter(e)
 	if(e.other:HasItem(18728)) then
-		e.other:Message(MT.Yellow,"Markus Jaevins tells you, 'Welcome to the Tower of the Gate Callers, I am Markus Jaevins. Please read the note in your inventory and hand it to me when you are ready to start learning the ways of the Magician.'");
+		e.other:Message(15,"Markus Jaevins tells you, 'Welcome to the Tower of the Gate Callers, I am Markus Jaevins. Please read the note in your inventory and hand it to me when you are ready to start learning the ways of the Magician.'");
 	end
 end
 
@@ -48,7 +48,7 @@ function event_trade(e)
 		e.other:Faction(265,-30,0); -- heretics
 		e.other:AddEXP(2500);
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF zone: erudnint ID: 23037 npc: Markus_Jaevins

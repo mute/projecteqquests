@@ -154,8 +154,8 @@ function TrueCombat(e)
 			event_started = true;
 		end
 		eq.set_timer("leash",1*1000);
-		eq.set_timer("banish",(15 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
-		eq.set_timer("cursecallers",(15 + math.random(15)) * 1000); -- 15-30s Cursecallers
+		eq.set_timer("banish",(30 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
+		eq.set_timer("cursecallers",(30 + math.random(15)) * 1000); -- 15-30s Cursecallers
 	else
 		eq.stop_timer("banish");
 		eq.stop_timer("leash");
@@ -166,8 +166,8 @@ end
 function MirrorCombat(e)
 	if e.joined then
 		eq.set_timer("leash",1*1000);
-		eq.set_timer("banish",(15 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
-		eq.set_timer("cursecallers",(15 + math.random(15)) * 1000); -- 15-30s Cursecallers
+		eq.set_timer("banish",(30 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
+		eq.set_timer("cursecallers",(30 + math.random(15)) * 1000); -- 15-30s Cursecallers
 	else
 		eq.stop_timer("banish");
 		eq.stop_timer("leash");
@@ -189,7 +189,7 @@ function TrueTimer(e)
 			if top_hate_v.valid then
 				e.self:Say("I will deal with you later.")
 				e.self:SetHate(top_hate_v, 1, 1)
-				top_hate_v:MovePCInstance(296, eq.get_zone_instance_id(), -117, -912, -127, 128)
+				--top_hate_v:MovePCInstance(296, eq.get_zone_instance_id(), -117, -912, -127, 128)
 			end
 		end
 		eq.set_timer("banish",(15 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
@@ -198,7 +198,7 @@ function TrueTimer(e)
 		if math.random(100) > 75 then -- 25% chance to spawn cursecaller, these were very sporadic on live which leads me to believe low chance to spawn.
 			eq.spawn2(eq.ChooseRandom(296059,296060,296061,296062,296063,296064), 0, 0,-238,-657,-126,242):AddToHateList(eq.get_entity_list():GetRandomClient(e.self:GetX(),e.self:GetY(),e.self:GetZ(),500*500)); -- NPC(s): #a_brainless_cursebearer (296059), #a_deadened_cursebearer (296060), #a_mindless_cursebearer (296061), #a_numbed_cursebearer (296062), #a_vacuous_cursebearer (296063), #an_unfeeling_cursebearer (296064)
 		end
-		eq.set_timer("cursecallers",(15 + math.random(15)) * 1000); -- 15-30s Cursecallers
+		eq.set_timer("cursecallers",(30 + math.random(15)) * 1000); -- 15-30s Cursecallers
 	end
 end
 
@@ -216,10 +216,10 @@ function MirrorTimer(e)
 			if top_hate_v.valid then
 				e.self:Say("I will deal with you later.")
 				e.self:SetHate(top_hate_v, 1, 1)
-				top_hate_v:MovePCInstance(296, eq.get_zone_instance_id(), -117, -912, -127, 128)
+				--top_hate_v:MovePCInstance(296, eq.get_zone_instance_id(), -117, -912, -127, 128)
 			end
 		end
-		eq.set_timer("banish",(15 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
+		eq.set_timer("banish",(30 + math.random(15)) * 1000); -- 15-30s banish while in Noq Form
 	elseif e.timer == "set_hp" then
 		eq.stop_timer(e.timer);
 		mirror_shake_hp = e.self:GetHP();

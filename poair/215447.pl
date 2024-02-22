@@ -1,3 +1,9 @@
+
 sub EVENT_DEATH_COMPLETE {
-quest::signalwith(215450,1,1); # NPC: #Air_Trigger
-}
+
+
+			quest::spawn2(215446,0,0,-375,-659,105.13,11.8); # NPC: Sporadic Stormrider
+			quest::spawn2(215446,0,0,-375,-659,105.13,11.8); # NPC: Sporadic Stormrider
+			quest::spawn2(215446,0,0,-375,-659,105.13,11.8); # NPC: Sporadic Stormrider
+
+            }

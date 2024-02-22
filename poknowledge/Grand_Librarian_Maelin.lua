@@ -2,11 +2,11 @@
 -- items: 84091, 84092, 84093, 84087, 52950, 55900, 20520
 function event_say(e)
 	local qglobals = eq.get_qglobals(e.other);
-	if(eq.is_task_active(500220)) then
+	if(eq.is_task_active(220)) then
 		if(e.message:findi("trick or treat")) then
 			e.self:Say("Ah, here you go. Fresh from the Sugar Assembalage 2000.");
 			e.other:SummonItem(eq.ChooseRandom(84091,84092,84093,84087,84087,84087,84087,84087,84087)); -- Item(s): Sand (84091), Chunk of Coal (84092), Pocket Lint (84093), Jawbreaker (84087), Jawbreaker (84087), Jawbreaker (84087), Jawbreaker (84087), Jawbreaker (84087), Jawbreaker (84087)
-			eq.update_task_activity(500220,1,1);
+			eq.update_task_activity(220,1,1);
 		end
 	end
 	if(e.other:HasItem(29165)) then --Quintessence of Elements
@@ -23,7 +23,7 @@ function event_say(e)
 			e.self:Emote("Maelin takes a deep breath and continues");
 			e.self:Say("I can see now that he was not joking at all. Let us suppose that you travelers could venture into the Elemental Planes and retrieve this essence; and form it into one powerful conglomeration. You could open a tear into the period of time before Zebuxoruk was imprisoned. There is no way you can free him from his stasis now, but if you were to halt the Pantheon at the time of imprisonment. Hah! It could work I do believe. Forgive me, but my old gnomish heart is alive with the excitement of possibilities. Gather up your strength friends, travel into the deep elements. You will need all of your wits about you. Find the very essence of the elementals, and fuse them into one. How to combine them I do not know, and can only wish you luck on finding that information. If you can accomplish this please come get me. I would like to record the events as they take place!'");
 			eq.set_global("pop_elemental_grand_librarian","1",5,"F");
-			e.other:Message(MT.LightBlue,"You receive a character flag!");
+			e.message:other(4,"You receive a character flag!");
 		end
 	end
 	if(qglobals["shadowknight_epic"] == "1") then
@@ -46,5 +46,5 @@ function event_trade(e)
 		e.self:Say("I knew they were egg-layers! Ha, this is one gnome who hates losing a bet and thanks to you I wont! This is the tome you seek. Please bring it back to me when you are done.");
 		e.other:SummonItem(20520); --The Silent Gods
 	end
-	item_lib.return_items(e.self, e.other, e.trade);
+	--item_lib.return_items(e.self, e.other, e.trade);
 end

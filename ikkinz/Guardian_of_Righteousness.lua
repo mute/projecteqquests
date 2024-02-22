@@ -67,5 +67,12 @@ function event_death_complete(e)
 	eq.signal(294342,1); -- NPC: Crumbling_Monolith
 	eq.signal(294631,1); --set lockout
 	eq.get_entity_list():FindDoor(11):SetLockPick(0);
+
+	
+	local dz = eq.get_expedition()
+	if dz.valid then
+		dz:AddReplayLockoutDuration(eq.seconds("2h"))
+	end
 end
+
 

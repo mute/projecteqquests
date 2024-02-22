@@ -14,3 +14,6 @@ quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determ
  }
 
 
+sub EVENT_KILLED_MERIT {
+    plugin::set_subflag($client, 'SoL', $npc->GetCleanName());
+}

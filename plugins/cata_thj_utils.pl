@@ -49,6 +49,14 @@ sub YellowText {
     $client->Message($tellColor, $message);
 }
 
+sub BlueText {
+	my $message     = shift;
+    my $client      = shift || plugin::val('client');
+    my $tellColor   = 263;
+	
+    $client->Message($tellColor, $message);
+}
+
 sub RedText {
 	my $message     = shift;
     my $client      = shift || plugin::val('client');

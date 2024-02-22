@@ -11,3 +11,8 @@ else {
 quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determined to unleash doom!");
 }
  }
+
+sub EVENT_KILLED_MERIT {
+    if ()
+    plugin::set_subflag($client, 'SoL', $npc->GetCleanName());
+}

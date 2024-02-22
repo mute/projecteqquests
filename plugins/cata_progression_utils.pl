@@ -109,6 +109,32 @@ my %STAGE_PREREQUISITES = (
     # ... and so on for each stage
 );
 
+# Convert to a direct lookup hash
+our %DIRECT_LOOKUP;
+foreach my $stage (keys %STAGE_PREREQUISITES) {
+    foreach my $objective (@{$STAGE_PREREQUISITES{$stage}}) {
+        $DIRECT_LOOKUP{$objective} = 1;
+    }
+}
+
+sub get_subflag_stage {
+    my ($subflag_name) = @_;  # The name of the subflag to search for
+
+    # Iterate through each stage in the hash
+    foreach my $stage (keys %STAGE_PREREQUISITES) {
+        # Check if the subflag name is in the list of prerequisites for this stage
+        if (grep { $_ eq $subflag_name } @{$STAGE_PREREQUISITES{$stage}}) {
+            return $stage; # Return the stage name if found
+        }
+    }
+    return undef; # Return undefined if the subflag name is not found in any stage
+}
+
+sub subflag_exists {
+    my ($search_term) = @_;
+    return $DIRECT_LOOKUP{$search_term} // 0; # Returns 1 if present, 0 otherwise
+}
+
 # Breakpoints for original flagging system:
 # Kunark: 2
 # Velious: 3
@@ -146,7 +172,7 @@ sub set_subflag {
     quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
 
     plugin::YellowText("You have gained a progression flag!");
-    $client->Message(263, "Your memories become more clear, you see the way forward drawing closer.");
+    plugin::BlueText("Your memories become more clear, you see the way forward drawing closer.");
 
     # Check if the stage is now complete
     if (is_stage_complete($client, $stage)) {
@@ -163,6 +189,7 @@ sub set_subflag {
         }
 
         plugin::YellowText("You have completed a progression stage!");
+        plugin::BlueText("Your memories gain sudden, sharp focus. You see the path forward.");
     }
 
     return 1;

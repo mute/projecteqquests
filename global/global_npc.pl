@@ -118,6 +118,12 @@ sub EVENT_DEATH {
     CHECK_CHARM_STATUS(); 
 }
 
+sub EVENT_KILLED_MERIT {
+    if (plugin::subflag_exists($npc->GetCleanName())) {
+        plugin::set_subflag($client, plugin::get_subflag_stage($npc->GetCleanName()), $npc->GetCleanName());
+    }
+}
+
 sub UPDATE_PET_BAG {    
     #quest::debug("--Syncronizing Pet Inventory--");
     my $owner = $npc->GetOwner()->CastToClient();

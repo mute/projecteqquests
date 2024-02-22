@@ -128,6 +128,7 @@ sub get_subflag {
     return $flag{$objective};
 }
 
+#usage plugin::set_subflag($client, 'Rok', 'Lord Nagafen', 1); flags $client for Lord Nagafen in RoK stage.
 sub set_subflag {
     my ($client, $stage, $objective, $value) = @_;
     $value //= 1; # Default value is 1 if not otherwise defined
@@ -144,7 +145,8 @@ sub set_subflag {
     # Serialize and save the updated account progress
     quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
 
-    $client->Message(4, "You have gained a progression flag!");
+    plugin::YellowText("You have gained a progression flag!");
+    plugin::Message(263, "Your memories become more clear, you see the way forward drawing closer.");
 
     # Check if the stage is now complete
     if (is_stage_complete($client, $stage)) {
@@ -160,7 +162,7 @@ sub set_subflag {
             $client->SetBucket("CharMaxLevel", 70);
         }
 
-        $client->Message(4, "You have completed a progression stage!");
+        plugin::YellowText("You have completed a progression stage!");
     }
 
     return 1;
@@ -189,7 +191,7 @@ sub is_stage_complete {
         unless ($objective_progress{$prerequisite}) {
             quest::debug("Prerequisite not met: $prerequisite");
             if ($inform) {
-                 $client->Message(4, "You are not yet ready to experience that memory.");
+                 $client->Message(263, "You are not yet ready to experience that memory.");
             }
             return 0;
         }

@@ -5,13 +5,8 @@ function event_say(e)
         e.self:CastSpell(4179,e.other:GetID(),0,1); -- Spell: Teleport: Butcherblock
     elseif (e.message:findi("everfrost")) then
         e.self:CastSpell(4180,e.other:GetID(),0,1); -- Spell: Teleport: Everfrost
-    elseif (e.message:findi("natimbi") and eq.get_data("god-open")) then
-        local saryrn_flag = eq.get_data(e.other:AccountID() .. "-saryrn-flag")
-        local kunark_flag = eq.get_data(e.other:AccountID() .. "-kunark-flag")
-    
-        if (tonumber(saryrn_flag or "0") > 0 or tonumber(kunark_flag or "0") >= 20) then
-            e.other:MovePC(280, -1557, -853, 241, 180); -- Zone: natimbi
-        end
+    elseif (e.message:findi("natimbi")) then
+        e.other:MovePC(280, -1557, -853, 241, 180); -- Zone: natimbi
     elseif (e.message:findi("north ro")) then
         e.other:MovePC(34, 914, 2679, -25, 20); -- Zone: nro
     elseif (e.message:findi("south ro")) then

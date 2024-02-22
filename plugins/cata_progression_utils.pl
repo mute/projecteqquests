@@ -156,6 +156,10 @@ sub set_subflag {
             $client->SetBucket("CharMaxlevel", 65);
         }
 
+        if ($stage eq 'GoD' && $client->GetBucket("CharMaxLevel") == 65) {
+            $client->SetBucket("CharMaxlevel", 70);
+        }
+
         $client->Message(4, "You have completed a progression stage!");
     }
 

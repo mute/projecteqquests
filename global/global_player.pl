@@ -80,12 +80,14 @@ sub EVENT_ZONE {
     if (!plugin::is_eligible_for_zone($client, $target_zone_id)) {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+        return 151;
 	}
 }
 
 sub EVENT_WARP {
     my $name = $client->GetCleanName();
     quest::discordsend("cheaters", "$name was detected warping.");
+    $client->Kill();
 }
 
 sub EVENT_COMBINE_VALIDATE {

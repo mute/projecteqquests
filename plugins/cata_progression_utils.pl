@@ -249,15 +249,13 @@ sub is_eligible_for_zone {
     my ($client, $zone_name, $inform) = @_;    
     $inform //= 0; # Set to 0 if not defined
 
-    if (!$client->GetGM()) {
-        # Check if the zone exists in the atlas
-        if (exists $atlas{$zone_name}) {
-            # Use is_stage_complete to check if the client has completed the required stage
-            return is_stage_complete($client, $atlas{$zone_name}, $inform);
-        } else {
-            # If the zone is not in the atlas, assume it's accessible or handle as needed
-            return 1;
-        }
+    # Check if the zone exists in the atlas
+    if (exists $atlas{$zone_name}) {
+        # Use is_stage_complete to check if the client has completed the required stage
+        return is_stage_complete($client, $atlas{$zone_name}, $inform);
+    } else {
+        # If the zone is not in the atlas, assume it's accessible or handle as needed
+        return 1;
     }
 }
 

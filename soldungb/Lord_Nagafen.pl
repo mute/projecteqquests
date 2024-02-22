@@ -54,6 +54,10 @@ sub EVENT_TIMER {
 	}
 }
 
+sub EVENT_KILLED_MERIT {
+	plugin::set_subflag($client, 'RoK', 'Lord Nagafen');
+}
+
 sub WIPE_AGGRO {
 	$npc->BuffFadeAll();
 	$npc->WipeHateList();

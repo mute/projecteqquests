@@ -1,3 +1,5 @@
+# Add ports with cost to allow players to visit Hate and Sky- phrase is [nominal fee]
+
 sub EVENT_SPAWN {
     $x = $npc->GetX();
     $y = $npc->GetY();
@@ -17,22 +19,12 @@ sub EVENT_SAY {
   my $cost            = 1000 * get_cost_for_level();
 
   if ($text=~/hail/i) { 
-    quest::say("Greetings $name! I can help you get to almost anywhere! I sell
-                    [teleportion stones] which, when handed back to me, will attune this magic map 
-                    to several notable places that I've visted before. If you are a more experienced adventurer however, 
-                    I can [transport you] or [your group] to places that you have visted, in this life or in others, 
-                    and attuned yourself to by discovering Rune Circles.");
-  }
-
-  elsif ($text=~/teleportion stones/i) {
-    quest::say("Absolutely. The process is simple! Purchase the teleportation stone of your choosing 
-                    then give it to me. I will then enchant the map to take you to your destination! 
-                    Simply click on the map afterwards and you will be off!");
+    quest::say("Greetings $name! Have you discovered any Rune Circles in your journeys? I can [transport you] or [your group] to any of those you or any of your lineage have attuned to. If you are looking to journey to The Plane of Hate or The Plane of Sky for the first time, I can get you there for a [nominal fee].");
   }
 
   elsif ($text=~/your group/i && !$group_flg) {
     quest::say("If you'd like for me to transport your group, I'll need a stronger connection to your memories. Bring me five
-                [Echo of Memory], and I can transport all of you any time you ask.");
+                [Echo of Memory], and I will let you transport your entire group any time you ask.");
     return; # Exit early.
   }
 
@@ -40,7 +32,7 @@ sub EVENT_SAY {
     if ($eom_available >= 5) {
       quest::say("Simply [confirm] to me that you'd like to spend your Echoes in this way, and it will be done.");
     } else {
-      quest::say("I'm sorry, but you don't have enough Echoes in order to resonante with those memories at the moment.");
+      quest::say("I'm sorry, but you don't have enough Echoes at the moment. Do you need to reclaim them under the alt currency tab? If not, ways to donate are listed on the server's Discord server.");
     }
   }
 
@@ -164,8 +156,8 @@ sub get_cost_for_level {
   my $level  = $client->GetLevel();
 
   my %cost_map = (
-    0  => 10,  # Default for levels 1-50
-    51 => 25,  # Cost for levels 51-60
+    0  => 5,  # Default for levels 1-50
+    52 => 25,  # Cost for levels 51-60
     61 => 75,  # Cost for levels 61-65
     66 => 150, # Cost for levels above 65
   );

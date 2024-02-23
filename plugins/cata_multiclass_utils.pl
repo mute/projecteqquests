@@ -106,6 +106,10 @@ sub AddClass {
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
         GrantClassesAA();
 
+        if ($class_id & 29696 && !plugin::check_hasitem($client, 199999)) {
+            $client->SummonItem(199999); # Pet Bag
+        }
+
         if ($class_id == 8) {
             quest::permaclass(8);
         } elsif (plugin::IsMeleeClass($class_id) && !plugin::IsMeleeClass($client->GetClass())) {

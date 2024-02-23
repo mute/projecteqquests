@@ -39,6 +39,28 @@ sub get_portal_destinations {
     };
 }
 
+sub set_default_attunement {
+    my ($accountID, $raceID) = @_;     
+    
+    my %default_attunements = (
+        3 => [
+            ["(Erudin City)", [26, -240.0, -1216.0, 52.0, 510.0], 'O'],
+            ["(Paineel City)", [75, 553, 746, -118.20, 0], 'O'],
+            ],
+        
+        
+    );
+
+   
+    if (exists $default_attunements{$raceID}) {        
+        foreach my $attunement (@{$default_attunements{$raceID}}) {            
+            my ($zoneDesc, $locData, $suffix) = @$attunement;            
+            plugin::add_zone_entry($accountID, $zoneDesc, $locData, $suffix);
+        }
+    }
+}
+
+
 sub get_continent_by_suffix {
     my ($suffix) = @_;  
 

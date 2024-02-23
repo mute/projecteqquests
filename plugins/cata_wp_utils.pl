@@ -44,10 +44,10 @@ sub set_default_attunement {
     
     my %default_attunements = (
         3 => [
-            ["(Erudin City)", [26, -240.0, -1216.0, 52.0, 510.0], 'O'],
-            ["(Paineel City)", [75, 553, 746, -118.20, 0], 'O'],
+            ["Erudin (Erudin City)", [26, -240.0, -1216.0, 52.0, 510.0], 'O'],
+            ["Paineel (Paineel City)", [75, 553, 746, -118.20, 0], 'O'],
             ],
-        
+
         
     );
 

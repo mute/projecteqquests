@@ -33,7 +33,8 @@ sub EVENT_CONNECT {
         $client->SetBucket("First-Login", 1);
     }
 
-    if (plugin::check_hasitem($client, 18741) && !$client->GetBucket('newbieRewardBits')) {
+    my $rewardedClassesBitmask = $client->GetBucket('newbieRewardBits') || 0;
+    if (plugin::check_hasitem($client, 18741) && $rewardedClassesBitmask > 0) {
         $client->Summonitem(18741); #A Faded Writ
         $client->Message(263, "You find a small note in your pocket.");
     } else {

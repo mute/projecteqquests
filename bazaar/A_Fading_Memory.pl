@@ -4,7 +4,7 @@ sub EVENT_SAY {
     quest::say("Oh my, you really don’t remember me do you? I could never forget a comrade in arms! Hail $name! Let me see that faded writ and I’ll give you something to jog your memory");
   }
   if($text=~/denizens of this realm/i){
-    quest::say("Hmmm I don’t want to risk sending you into shock or an existential crisis. Just do what feels natural and try to remember who needs your help and whose demise you must bring about. Every quest you endeavor will reward you with Rose Colored or Apocryphal items like I have. Go see Apocrypha toward the back of the main building for his blessing, then use Tearel and his magic map to choose where to begin your adventure! Good luck $name.");
+    quest::say("Hmmm I don’t want to risk sending you into shock or an existential crisis. Just do what feels natural and try to remember who needs your help and whose demise you must bring about. Every quest you endeavor will reward you with Rose Colored or Apocryphal items like I have. You may return to wherever you were when you opened your portal here by simply leaving the bazaar. Conversely, you may return to any place which you have attuned by speaking with Tearel! Good luck $name.");
     }
 }
 
@@ -64,6 +64,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(855623); #Apocryphal Dull Axe
     quest::summonfixeditem(813514); #Apocryphal Dusty Tunic
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -75,6 +76,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(89999); #Apocryphal Club
     quest::summonfixeditem(813542); #Apocryphal Faded Blue Robe
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -99,6 +101,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(813514); #Apocryphal Dusty Tunic
     quest::summonfixeditem(9992); #Chant of Battle
     quest::summonfixeditem(15703);#Chords of Dissonance
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -122,6 +125,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(89999); #Apocryphal Club
     quest::summonfixeditem(813542); #Apocryphal Faded Blue Robe
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -133,6 +137,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(86012); #Apocryphal Worn Great Staff*
     quest::summonfixeditem(813566); #Apocryphal Blood Spotted Robe*
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -155,6 +160,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(86012); #Apocryphal Worn Great Staff*
     quest::summonfixeditem(813566); #Apocryphal Blood Spotted Robe*
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -166,6 +172,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(86012); #Apocryphal Worn Great Staff*
     quest::summonfixeditem(813566); #Apocryphal Blood Spotted Robe*
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){
@@ -177,6 +184,7 @@ my $PCClass = $client->GetClass();
     quest::summonfixeditem(17423); #Adventurer's Pack
     quest::summonfixeditem(867133); #Apocryphal Iron Tekko*
     quest::summonfixeditem(813514); #Apocryphal Dusty Tunic*
+    quest::summonfixeditem(199999); #Pet Bag
     quest::givecash(0, 0, 3, 0);
     quest::say("Hmmm… Does this refresh your memory at all?. I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     if($text=~/denizens of this realm/i){

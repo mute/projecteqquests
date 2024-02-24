@@ -110,6 +110,7 @@ sub EVENT_SAY {
             }
           }
 
+          quest::debug("$zone $x $y $z $heading");
           $client->MovePC($zone, $x, $y, $z, $heading);
         } else {
           quest::say("I'm sorry, but you don't have enough platinum to pay for this transport.");

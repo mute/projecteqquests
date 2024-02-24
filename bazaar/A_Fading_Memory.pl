@@ -52,6 +52,14 @@ sub RewardItems {
         32768 => { items => [17423, 855623, 813514], cash => 3 }, # Berserker, 3 silver
     );
 
+    foreach my $class (keys %classRewards) {
+      foreach my $index (0 .. $#{$classRewards{$class}->{items}}) {
+        if ($classRewards{$class}->{items}[$index] >= 80000 && $classRewards{$class}->{items}[$index] <= 89999) {
+          $classRewards{$class}->{items}[$index] = $classRewards{$class}->{items}[$index] - 80000 + 2000000;
+        }
+      }
+    }
+
     my $playerClassBitmask = $client->GetClassesBitmask();
     my $rewardedClassesBitmask = $client->GetBucket('newbieRewardBits') || 0;
     my $rewardGiven = 0;

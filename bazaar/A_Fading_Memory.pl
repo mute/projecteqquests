@@ -22,7 +22,7 @@ sub EVENT_SAY {
 sub EVENT_ITEM {
     if (plugin::check_handin(\%itemcount, 18471 => 1)) {
       quest::debug("TEST");
-        RewardItems($client);
+      RewardItems($client);
     } else {
         quest::say("I don't need this item, $name. Perhaps you should keep it.");
     }  
@@ -50,13 +50,15 @@ sub RewardItems {
       8192  => { items => [17423, 86012, 813566, 199999], cash => 3 }, # Enchanter, 3 silver
       16384 => { items => [17423, 867133, 813514, 199999], cash => 3 }, # Beastlord, 3 silver
       32768 => { items => [17423, 855623, 813514], cash => 3 }, # Berserker, 3 silver
-  );
+    );
 
     my $playerClassBitmask = $client->GetClassesBitmask();
     my $rewardedClassesBitmask = $client->GetBucket('newbieRewardBits') || 0; # Retrieve previously rewarded classes, defaulting to 0
-
     my $rewardGiven = 0;
+
+    quest::debug("TEST2");
     foreach my $classBitmask (keys %{$classRewards}) {
+        quest::debug("TEST3");
         if (($playerClassBitmask & $classBitmask) && !($rewardedClassesBitmask & $classBitmask)) { 
             # Summon the fixed items for the class
             foreach my $item (@{$classRewards->{$classBitmask}->{items}}) {

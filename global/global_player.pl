@@ -30,7 +30,7 @@ sub EVENT_CONNECT {
 
     if (!$client->GetBucket("First-Login")) {
         plugin::WelcomePopUp();
-        $client->SetBucket("First-Login");
+        $client->SetBucket("First-Login", 1);
     }
 
     if (plugin::check_hasitem($client, 18741) && !$client->GetBucket('newbieRewardBits')) {

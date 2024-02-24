@@ -61,8 +61,6 @@ sub RewardItems {
             foreach my $item (@{$classRewards->{$classBitmask}->{items}}) {
                 $client->summonitem($item);
             }
-            # Give cash reward
-            $client->givecash(@{$classRewards->{$classBitmask}->{cash}});
             
             $rewardedClassesBitmask |= $classBitmask; 
             $rewardGiven = 1;

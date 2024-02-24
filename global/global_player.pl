@@ -29,7 +29,8 @@ sub EVENT_CONNECT {
 	}
 
     if (!$client->GetBucket("First-Login")) {
-        WelcomePopUp();
+        quest::WelcomePopUp();
+        $client->SetBucket("First-Login");
     }
 
     if (plugin::check_hasitem($client, 18741) && !$client->GetBucket('newbieRewardBits')) {

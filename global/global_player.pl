@@ -34,7 +34,7 @@ sub EVENT_CONNECT {
         my $name = $client->GetCleanName();
         my $full_class_name = plugin::GetPrettyClassString($client);
 
-        plugin::WorldAnnounce("$charname ($full_class_name) has logged in for the first time.");
+        plugin::WorldAnnounce("$name ($full_class_name) has logged in for the first time.");
         plugin::WelcomePopUp();        
     }
 

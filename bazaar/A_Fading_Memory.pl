@@ -60,7 +60,7 @@ sub RewardItems {
         if (($playerClassBitmask & $classBitmask) && !($rewardedClassesBitmask & $classBitmask)) { 
             # Summon the fixed items for the class
             foreach my $item (@{$classRewards{$classBitmask}->{items}}) {
-                $client->summonitem($item);
+                $client->SummonItem($item);
             }
             
             $rewardedClassesBitmask |= $classBitmask; 

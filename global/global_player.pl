@@ -101,12 +101,6 @@ sub EVENT_ZONE {
 	}
 }
 
-sub EVENT_WARP {
-    my $name = $client->GetCleanName();
-    quest::discordsend("cheaters", "$name was detected warping.");
-    $client->Kill();
-}
-
 sub EVENT_COMBINE_VALIDATE {
 	if ($recipe_id == 10344) {
 		if ($validate_type =~/check_zone/i) {

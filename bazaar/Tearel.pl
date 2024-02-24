@@ -78,7 +78,7 @@ sub EVENT_SAY {
       
       # Execute transport when a specific location is selected
       if (exists($flat_data->{$location})) {
-        my $zone_id = quest::GetZoneID($flat_data->{$location}[0]);
+        my $zone = quest::GetZoneID($flat_data->{$location}[0]);
         my $x = $flat_data->{$location}[1];
         my $y = $flat_data->{$location}[2];
         my $z = $flat_data->{$location}[3];
@@ -93,7 +93,7 @@ sub EVENT_SAY {
                 my $player = $raid->GetMember($count);
                 if($player) {
                   if($player->IsClient() && $client->CharacterID() != $player->CharacterID()) {
-                    $player->CastToClient()->MovePC($zone_id, $x, $y, $z, $heading);
+                    $player->CastToClient()->MovePC($zone, $x, $y, $z, $heading);
                   }
                 }
               }
@@ -104,13 +104,13 @@ sub EVENT_SAY {
               for (my $count = 0; $count < $group->GroupCount(); $count++) {
                   my $player = $group->GetMember($count);
                   if ($player && $client->CharacterID() != $player->CharacterID()) {
-                      $player->CastToClient()->MovePC($zone_id, $x, $y, $z, $heading);
+                      $player->CastToClient()->MovePC($zone, $x, $y, $z, $heading);
                   }
               }
             }
           }
 
-          $client->MovePC($zone_id, $x, $y, $z, $heading);
+          $client->MovePC($zone, $x, $y, $z, $heading);
         } else {
           quest::say("I'm sorry, but you don't have enough platinum to pay for this transport.");
         }

@@ -29,7 +29,7 @@ sub EVENT_CONNECT {
 	}
 
     if (!$client->GetBucket("First-Login")) {
-        quest::WelcomePopUp();
+        plugin::WelcomePopUp();
         $client->SetBucket("First-Login");
     }
 

@@ -36,6 +36,9 @@ sub EVENT_CONNECT {
     if (plugin::check_hasitem($client, 18741) && !$client->GetBucket('newbieRewardBits')) {
         $client->Summonitem(18741); #A Faded Writ
         $client->Message(263, "You find a small note in your pocket.");
+    } else {
+        my $val = $client->GetBucket('newbieRewardBits');
+        quest::debug("VAL: $val");
     }
 }
 

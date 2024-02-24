@@ -1,11 +1,8 @@
 sub CommonCharacterUpdate {    
     my $client = shift || plugin::val('$client');
     GrantClassesAA();
-    
-    if (!$client->GetBucket("First-Login")) {
-        WelcomePopUp();
-    }
 }
+
 
 sub WelcomePopUp {
     my $color_end = "</c>";

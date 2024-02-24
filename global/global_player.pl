@@ -33,7 +33,7 @@ sub EVENT_CONNECT {
         $client->SetBucket("First-Login", 1);
     }
 
-    if (!plugin::check_hasitem($client, 18741) && !$client->GetBucket('newbieRewardBits')) {
+    if (!plugin::check_hasitem($client, 18471) && !$client->GetBucket('newbieRewardBits')) {
         $client->SummonItem(18741); #A Faded Writ
         $client->Message(263, "You find a small note in your pocket.");
     }

@@ -57,7 +57,7 @@ sub RewardItems {
     my $rewardGiven = 0;
 
     quest::debug("TEST2");
-    foreach my $classBitmask (keys %{$classRewards}) {
+    foreach my $classBitmask (keys %$classRewards) {
         quest::debug("TEST3");
         if (($playerClassBitmask & $classBitmask) && !($rewardedClassesBitmask & $classBitmask)) { 
             # Summon the fixed items for the class

@@ -63,14 +63,15 @@ sub RewardItems {
             foreach my $item (@{$classRewards->{$classBitmask}->{items}}) {
                 $client->summonitem($item);
             }
-             
+            
+            $cash_total += $classRewards->{$classBitmask}->{cash}; 
             $rewardedClassesBitmask |= $classBitmask; 
             $rewardGiven = 1;
         }
     }
 
     if ($rewardGiven) {
-        $client->AddMoneyToPP(0, 0, 0, $cash_total)
+        $client->AddMoneyToPP(0, 0, 0, $cash_total);
         $client->SetBucket('newbieRewardBits', $rewardedClassesBitmask);
         $client->say("Hmmm… Does this refresh your memory at all? I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     }

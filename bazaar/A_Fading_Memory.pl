@@ -1,21 +1,22 @@
 my %classRewards = (
-    1     => { items => [17423, 89998, 813514], cash => [0, 0, 3, 0] }, # Warrior, bitmask: 1 (2^0)
-    2     => { items => [17423, 89999, 813542], cash => [0, 0, 3, 0] }, # Cleric, bitmask: 2 (2^1)
-    4     => { items => [17423, 855623, 813514], cash => [0, 0, 3, 0] }, # Paladin, bitmask: 4 (2^2)
-    8     => { items => [17423, 89998, 88009, 88500, 88500, 813514], cash => [0, 0, 3, 0] }, # Ranger, bitmask: 8 (2^3)
-    16    => { items => [17423, 855623, 813514, 199999], cash => [0, 0, 3, 0] }, # Shadow Knight, bitmask: 16 (2^4)
-    32    => { items => [17423, 89999, 813542, 199999], cash => [0, 0, 3, 0] }, # Druid, bitmask: 32 (2^5)
-    64    => { items => [17423, 867133, 813514], cash => [0, 0, 3, 0] }, # Monk, bitmask: 64 (2^6)
-    128   => { items => [17423, 89998, 813514, 9992, 15703, 199999], cash => [0, 0, 3, 0] }, # Bard, bitmask: 128 (2^7)
-    256   => { items => [17423, 89997, 813514, 44531], cash => [0, 0, 3, 0] }, # Rogue, bitmask: 256 (2^8)
-    512   => { items => [17423, 89999, 813542, 199999], cash => [0, 0, 3, 0] }, # Shaman, bitmask: 512 (2^9)
-    1024  => { items => [17423, 86012, 813566, 199999], cash => [0, 0, 3, 0] }, # Necromancer, bitmask: 1024 (2^10)
-    2048  => { items => [17423, 86012, 813566], cash => [0, 0, 3, 0] }, # Wizard, bitmask: 2048 (2^11)
-    4096  => { items => [17423, 86012, 813566, 199999], cash => [0, 0, 3, 0] }, # Magician, bitmask: 4096 (2^12)
-    8192  => { items => [17423, 86012, 813566, 199999], cash => [0, 0, 3, 0] }, # Enchanter, bitmask: 8192 (2^13)
-    16384 => { items => [17423, 867133, 813514, 199999], cash => [0, 0, 3, 0] }, # Beastlord, bitmask: 16384 (2^14)
-    32768 => { items => [17423, 855623, 813514], cash => [0, 0, 3, 0] }, # Berserker, bitmask: 32768 (2^15)
+    1     => { items => [17423, 89998, 813514], cash => 3 }, # Warrior, 3 silver
+    2     => { items => [17423, 89999, 813542], cash => 3 }, # Cleric, 3 silver
+    4     => { items => [17423, 855623, 813514], cash => 3 }, # Paladin, 3 silver
+    8     => { items => [17423, 89998, 88009, 88500, 88500, 813514], cash => 3 }, # Ranger, 3 silver
+    16    => { items => [17423, 855623, 813514, 199999], cash => 3 }, # Shadow Knight, 3 silver
+    32    => { items => [17423, 89999, 813542, 199999], cash => 3 }, # Druid, 3 silver
+    64    => { items => [17423, 867133, 813514], cash => 3 }, # Monk, 3 silver
+    128   => { items => [17423, 89998, 813514, 9992, 15703, 199999], cash => 3 }, # Bard, 3 silver
+    256   => { items => [17423, 89997, 813514, 44531], cash => 3 }, # Rogue, 3 silver
+    512   => { items => [17423, 89999, 813542, 199999], cash => 3 }, # Shaman, 3 silver
+    1024  => { items => [17423, 86012, 813566, 199999], cash => 3 }, # Necromancer, 3 silver
+    2048  => { items => [17423, 86012, 813566], cash => 3 }, # Wizard, 3 silver
+    4096  => { items => [17423, 86012, 813566, 199999], cash => 3 }, # Magician, 3 silver
+    8192  => { items => [17423, 86012, 813566, 199999], cash => 3 }, # Enchanter, 3 silver
+    16384 => { items => [17423, 867133, 813514, 199999], cash => 3 }, # Beastlord, 3 silver
+    32768 => { items => [17423, 855623, 813514], cash => 3 }, # Berserker, 3 silver
 );
+
 
 sub EVENT_SAY {
   if ($text=~/hail/i) {
@@ -55,6 +56,7 @@ sub RewardItems {
     my $rewardedClassesBitmask = $client->GetBucket('newbieRewardBits') || 0; # Retrieve previously rewarded classes, defaulting to 0
 
     my $rewardGiven = 0;
+    my $cash_total = 0;
     foreach my $classBitmask (keys %{$classRewards}) {
         if (($playerClassBitmask & $classBitmask) && !($rewardedClassesBitmask & $classBitmask)) { 
             # Summon the fixed items for the class
@@ -62,12 +64,14 @@ sub RewardItems {
                 $client->summonitem($item);
             }
             
+            $cash_total += $classRewards->{$classBitmask}->{cash}; 
             $rewardedClassesBitmask |= $classBitmask; 
             $rewardGiven = 1;
         }
     }
 
     if ($rewardGiven) {
+        $client->AddMoneyToPP(0, 0, 0, $cash_total)
         $client->SetBucket('newbieRewardBits', $rewardedClassesBitmask);
         $client->say("Hmmm… Does this refresh your memory at all? I think you’ll find that if you look around here long enough, things will seem more and more like you remember. You see, you may have forgotten how strong you are, but the [denizens of this realm] could never.");
     }

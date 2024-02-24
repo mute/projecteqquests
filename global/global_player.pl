@@ -34,7 +34,7 @@ sub EVENT_CONNECT {
     }
 
     if (!plugin::check_hasitem($client, 18471) && !$client->GetBucket('newbieRewardBits')) {
-        $client->SummonItem(18741); #A Faded Writ
+        $client->SummonItem(18471); #A Faded Writ
         $client->Message(263, "You find a small note in your pocket.");
     }
 }

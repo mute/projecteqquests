@@ -156,7 +156,8 @@ sub get_cost_for_level {
   my $level  = $client->GetLevel();
 
   my %cost_map = (
-    0  => 5,  # Default for levels 1-50
+    0  => 0,  # Default for levels 1-50
+    10 => 5,
     52 => 25,  # Cost for levels 51-60
     61 => 75,  # Cost for levels 61-65
     66 => 150, # Cost for levels above 65

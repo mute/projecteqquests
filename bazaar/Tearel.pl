@@ -78,7 +78,7 @@ sub EVENT_SAY {
       
       # Execute transport when a specific location is selected
       if (exists($flat_data->{$location})) {
-        my $zone = quest::GetZoneID($flat_data->{$location}[0]);
+        my $zone = $flat_data->{$location}[0];
         my $x = $flat_data->{$location}[1];
         my $y = $flat_data->{$location}[2];
         my $z = $flat_data->{$location}[3];

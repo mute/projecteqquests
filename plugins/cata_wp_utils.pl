@@ -44,51 +44,51 @@ sub set_default_attunement {
     
     my %default_attunements = (
         1 => [
-            ["North Qeynos", [2, 392.0, 165.0, 2.75, 310], 'A'],
-            ["West Freeport", [9, -396, -283, -23, 500], 'A'],
+            ["North Qeynos", ['qeynos2', 392.0, 165.0, 2.75, 310], 'A'],
+            ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
         ],
         2 => [
-            ["Halas", [29, 0, 26, 3.75, 256], 'A'],
+            ["Halas", ['halas', 0, 26, 3.75, 256], 'A'],
         ],
         3 => [
-            ["Erudin", [26, -240.0, -1216.0, 52.0, 510.0], 'O'],
-            ["Paineel", [75, 553, 746, -118.20, 0], 'O'],
+            ["Erudin", ['erudnext', -240.0, -1216.0, 52.0, 510.0], 'O'],
+            ["Paineel", ['paineel', 553, 746, -118.20, 0], 'O'],
         ],
         4 => [
-            ["The Greater Faydark (Kelethin)", [54, -175, -50, 77.72, 87], 'F'],
+            ["The Greater Faydark (Kelethin)", ['gfaydark', -175, -50, 77.72, 87], 'F'],
         ],
         5 => [
-            ["Northern Felwithe", [61, -626, 240, -10.25, 330], 'F'],
+            ["Northern Felwithe", ['felwithea', -626, 240, -10.25, 330], 'F'],
         ],
         6 => [
-            ["Neriak - Commons", [41, -922, -50 -32.22, 128], 'A'],
+            ["Neriak - Commons", ['neriakb', -922, -50 -32.22, 128], 'A'],
         ],
         7 => [
-            ["The Greater Faydark (Kelethin)", [54, -175, -50, 77.72, 87], 'F'],
-            ["North Qeynos", [2, 392.0, 165.0, 2.75, 310], 'A'],
-            ["West Freeport", [9, -396, -283, -23, 500], 'A'],
+            ["The Greater Faydark (Kelethin)", ['gfaydark', -175, -50, 77.72, 87], 'F'],
+            ["North Qeynos", ['qeynos2', 392.0, 165.0, 2.75, 310], 'A'],
+            ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
         ],
         8 => [
-            ["South Kaladim", [60, 197, 90, 3.75, 492], 'F'],
+            ["South Kaladim", ['kaladima', 197, 90, 3.75, 492], 'F'],
         ],
         9 => [
-            ["Grobb", [52, -200, 223, 3.75, 414], 'A'],
+            ["Grobb", ['grobb', -200, 223, 3.75, 414], 'A'],
         ],
         10 => [
-            ["Oggok", [49, 513, 465, 3.75, 205], 'A'],
+            ["Oggok", ['oggok', 513, 465, 3.75, 205], 'A'],
         ],
         11 => [
-            ["Rivervale", [19, -140, -10, 3.75, 220], 'A'],
+            ["Rivervale", ['rivervale', -140, -10, 3.75, 220], 'A'],
         ],
         12 => [
-            ["Ak'Anon", [55, -761, 1279, -24.25, 182.25], 'F'], 
+            ["Ak'Anon", ['akanon', -761, 1279, -24.25, 182.25], 'F'], 
         ],
         128 => [
-            ["Cabilis East", [106, -136, 969, 4.68, 271], 'K'], 
+            ["Cabilis East", ['cabeast', -136, 969, 4.68, 271], 'K'], 
         ],
         330 => [
-            ["North Qeynos", [2, 392.0, 165.0, 2.75, 310], 'A'],
-            ["West Freeport", [9, -396, -283, -23, 500], 'A'],
+            ["North Qeynos", ['qeynos2', 392.0, 165.0, 2.75, 310], 'A'],
+            ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
         ],
         # TODO - FINISH FOR VAH SHIR       
     );

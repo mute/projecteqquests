@@ -57,7 +57,7 @@ sub RewardItems {
         if ($classRewards{$class}->{items}[$index] >= 80000 && $classRewards{$class}->{items}[$index] <= 89999) {
           $classRewards{$class}->{items}[$index] = $classRewards{$class}->{items}[$index] - 80000 + 2000000;
         } elsif ($classRewards{$class}->{items}[$index] >= 800000 && $classRewards{$class}->{items}[$index] <= 899999) {
-          $classRewards{$class}->{items}[$index] = $classRewards{$class}->{items}[$index] - 80000 + 2000000;
+          $classRewards{$class}->{items}[$index] = $classRewards{$class}->{items}[$index] - 800000 + 2000000;
         }
       }
     }

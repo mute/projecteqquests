@@ -29,8 +29,13 @@ sub EVENT_CONNECT {
 	}
 
     if (!$client->GetBucket("First-Login")) {
-        plugin::WelcomePopUp();
         $client->SetBucket("First-Login", 1);
+
+        my $name = $client->GetCleanName();
+        my $full_class_name = plugin::GetPrettyClassString($client);
+
+        plugin::WorldAnnounce("$charname ($full_class_name) has logged in for the first time.");
+        plugin::WelcomePopUp();        
     }
 
     if (!plugin::check_hasitem($client, 18471) && !$client->GetBucket('newbieRewardBits')) {

@@ -97,15 +97,14 @@ sub AddClass {
         $client->AddExtraClass($class_id);
         quest::ding();
 
+        my $name = $client->GetCleanName();
         my $class_name = quest::getclassname($class_id);
         my $full_class_name = GetPrettyClassString();        
 
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
         GrantClassesAA();
 
-        if ($class_id & 29696 && !plugin::check_hasitem($client, 199999)) {
-            $client->SummonItem(199999); # Pet Bag
-        }
+        plugin::WorldAnnounce("$name has become a $full_class_string.");
 
         if ($class_id == 8) {
             quest::permaclass(8);

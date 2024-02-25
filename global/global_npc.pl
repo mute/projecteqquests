@@ -91,10 +91,10 @@ sub EVENT_SAY {
 }
 
 
-sub EVENT_TICK {
+sub EVENT_TICK {    
+    CHECK_CHARM_STATUS();   
     if ($npc->IsPet() && $npc->GetOwner()->IsClient()) { 
         UPDATE_PET_BAG($npc);
-        CHECK_CHARM_STATUS();   
     }
 }
 
@@ -300,7 +300,7 @@ sub GET_BAG_CONTENTS {
 
 sub CHECK_CHARM_STATUS
 {
-    if ($npc->Charmed() and not plugin::REV($npc, "is_charmed")) {     
+    if ($npc->Charmed() && !plugin::REV($npc, "is_charmed")) {     
         my @lootlist = $npc->GetLootList();
         my @inventory;
         foreach my $item_id (@lootlist) {
@@ -311,7 +311,7 @@ sub CHECK_CHARM_STATUS
         my $data = @inventory ? join(",", @inventory) : "EMPTY";
         plugin::SEV($npc, "is_charmed", $data);
 
-    } elsif (not $npc->Charmed() and plugin::REV($npc, "is_charmed")) {
+    } elsif (!$npc->Charmed() && plugin::REV($npc, "is_charmed")) {
         
         my $data = plugin::REV($npc, "is_charmed");
         my @inventory = split(",", $data);

@@ -76,20 +76,21 @@ sub EVENT_ZONE {
     my $ReturnY = $client->GetBucket("Return-Y");
     my $ReturnZ = $client->GetBucket("Return-Z");
     my $ReturnH = $client->GetBucket("Return-H");
-    my $ReturnZone = $client->GetBucket("Return-Zone");   
+    my $ReturnZone = $client->GetBucket("Return-Zone");
+
+    if ($target_zone_id != 151) {
+        $client->DeleteBucket("Return-X");
+        $client->DeleteBucket("Return-Y");
+        $client->DeleteBucket("Return-Z");
+        $client->DeleteBucket("Return-H");
+        $client->DeleteBucket("Return-Zone");
+    } 
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151 && $target_zone_id == 152) {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             return int($ReturnZone);
         } else {
-            if ($from_zone_id != $ReturnZone) {
-                $client->DeleteBucket("Return-X");
-                $client->DeleteBucket("Return-Y");
-                $client->DeleteBucket("Return-Z");
-                $client->DeleteBucket("Return-H");
-                $client->DeleteBucket("Return-Zone");
-            }
             if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
 
                 my $BindX = $client->GetBindX();
@@ -102,7 +103,7 @@ sub EVENT_ZONE {
                 return int($BindZone);
             }
         }
-    }
+    }           
 }
 
 sub EVENT_COMBINE_VALIDATE {

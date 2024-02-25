@@ -9,6 +9,6 @@ sub EVENT_SPELL_EFFECT_CLIENT {
         $client->SetBucket("Return-H", $client->GetHeading());
         $client->SetBucket("Return-Zone", $zoneid);
     } else {
-        return 0;
+        return 1;
     }
 }

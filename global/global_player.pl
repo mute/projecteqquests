@@ -81,7 +81,7 @@ sub EVENT_ZONE {
     quest::debug("WTF? $ReturnX, $ReturnY, $ReturnZ, $ReturnH, $ReturnZone");
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
-        if ($from_zone_id == 151) {
+        if ($from_zone_id == 151 && $target_zone_id == 152) {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             quest::debug("$ReturnZone");
             return int($ReturnZone);

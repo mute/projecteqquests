@@ -8,13 +8,5 @@ sub EVENT_SPELL_EFFECT_CLIENT {
         $client->SetBucket("Return-Z", $client->GetZ());
         $client->SetBucket("Return-H", $client->GetHeading());
         $client->SetBucket("Return-Zone", $zoneid);
-    } else {
-        return 1;
-    }
-}
-
-sub EVENT_CAST_BEGIN {
-    if ($zoneid == 151) {
-        return 1;
     }
 }

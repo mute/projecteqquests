@@ -80,7 +80,7 @@ sub EVENT_ZONE {
 
     $client->SetBucket("DEBUG", "t:$target_zone_id");
 
-    if ($target_zone_id != 151) {
+    if (int($target_zone_id) != 151) {
         $client->DeleteBucket("Return-X");
         $client->DeleteBucket("Return-Y");
         $client->DeleteBucket("Return-Z");

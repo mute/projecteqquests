@@ -76,14 +76,11 @@ sub EVENT_ZONE {
     my $ReturnY = $client->GetBucket("Return-Y");
     my $ReturnZ = $client->GetBucket("Return-Z");
     my $ReturnH = $client->GetBucket("Return-H");
-    my $ReturnZone = $client->GetBucket("Return-Zone");
-    
-    quest::debug("WTF? $ReturnX, $ReturnY, $ReturnZ, $ReturnH, $ReturnZone");
+    my $ReturnZone = $client->GetBucket("Return-Zone");   
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151 && $target_zone_id == 152) {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
-            quest::debug("$ReturnZone");
             return int($ReturnZone);
         } else {
             if ($from_zone_id != $ReturnZone) {
@@ -94,7 +91,6 @@ sub EVENT_ZONE {
                 $client->DeleteBucket("Return-Zone");
             }
             if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
-                $client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 
                 my $BindX = $client->GetBindX();
                 my $BindY = $client->GetBindY();

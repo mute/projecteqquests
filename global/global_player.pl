@@ -78,8 +78,6 @@ sub EVENT_ZONE {
     my $ReturnH = $client->GetBucket("Return-H");
     my $ReturnZone = $client->GetBucket("Return-Zone");
 
-   
-
     if (int($target_zone_id) != 151) {
         $client->DeleteBucket("Return-X");
         $client->DeleteBucket("Return-Y");
@@ -89,11 +87,12 @@ sub EVENT_ZONE {
     } 
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
+        $client->SetBucket("DEBUG", "Layer 1");
         if ($from_zone_id == 151 && $target_zone_id == 152) {
-             $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
+            $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             return int($ReturnZone);
-        } else {
+        } else {            
             if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
 
                 my $BindX = $client->GetBindX();

@@ -86,11 +86,11 @@ sub EVENT_ZONE {
         $client->DeleteBucket("Return-Zone");
     } 
 
-    if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
+    if ($ReturnX && $ReturnY && $ReturnZ && $ReturnZone) {
         $client->SetBucket("DEBUG", "Layer 1");
         if ($from_zone_id == 151 && $target_zone_id == 152) {
             $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
-            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
+            $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, ($ReturnH || 0));
             return int($ReturnZone);
         } else {            
             if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {

@@ -96,14 +96,20 @@ sub EVENT_ZONE {
     }     
 
     if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
-        my $BindX = $client->GetBindX();
-        my $BindY = $client->GetBindY();
-        my $BindZ = $client->GetBindZ();
-        my $BindH = $client->GetBindHeading();
-        my $BindZone = $client->GetBindZoneID();
 
-        $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
-        return int($BindZone);
+        if ($from_zone_id == 151 && $target_zone_id == 152) {
+            my $BindX = $client->GetBindX();
+            my $BindY = $client->GetBindY();
+            my $BindZ = $client->GetBindZ();
+            my $BindH = $client->GetBindHeading();
+            my $BindZone = $client->GetBindZoneID();
+
+            $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
+            return int($BindZone);
+        } else {
+            $client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
+            return int(151);
+        }
     }    
 }
 

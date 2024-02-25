@@ -118,10 +118,6 @@ sub EVENT_ITEM
     }
 }
 
-sub EVENT_DEATH {
-    CHECK_CHARM_STATUS(); 
-}
-
 sub UPDATE_PET_BAG {    
     #quest::debug("--Syncronizing Pet Inventory--");
     my $owner = $npc->GetOwner()->CastToClient();

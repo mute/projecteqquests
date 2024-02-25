@@ -98,11 +98,7 @@ sub EVENT_TICK {
     }
 }
 
-sub EVENT_COMBAT {
-    CHECK_CHARM_STATUS();
-}
-
-sub EVENT_AGGRO {
+sub EVENT_SPELL_FADE {
     CHECK_CHARM_STATUS();
 }
 

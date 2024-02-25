@@ -78,6 +78,8 @@ sub EVENT_ZONE {
     my $ReturnH = $client->GetBucket("Return-H");
     my $ReturnZone = $client->GetBucket("Return-Zone");
 
+    $client->SetBucket("DEBUG", "t:$target_zone_id");
+
     if ($target_zone_id != 151) {
         $client->DeleteBucket("Return-X");
         $client->DeleteBucket("Return-Y");

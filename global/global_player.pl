@@ -92,20 +92,19 @@ sub EVENT_ZONE {
             $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, ($ReturnH || 0));
             return int($ReturnZone);
-        } else {            
-            if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
-
-                my $BindX = $client->GetBindX();
-                my $BindY = $client->GetBindY();
-                my $BindZ = $client->GetBindZ();
-                my $BindH = $client->GetBindHeading();
-                my $BindZone = $client->GetBindZoneID();
-
-                $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
-                return int($BindZone);
-            }
         }
-    }           
+    } else {            
+        if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
+            my $BindX = $client->GetBindX();
+            my $BindY = $client->GetBindY();
+            my $BindZ = $client->GetBindZ();
+            my $BindH = $client->GetBindHeading();
+            my $BindZone = $client->GetBindZoneID();
+
+            $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
+            return int($BindZone);
+        }
+    }
 }
 
 sub EVENT_COMBINE_VALIDATE {

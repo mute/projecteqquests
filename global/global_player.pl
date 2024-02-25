@@ -78,7 +78,7 @@ sub EVENT_ZONE {
     my $ReturnH = $client->GetBucket("Return-H");
     my $ReturnZone = $client->GetBucket("Return-Zone");
 
-    $client->SetBucket("DEBUG", "t:$target_zone_id");
+   
 
     if (int($target_zone_id) != 151) {
         $client->DeleteBucket("Return-X");
@@ -90,6 +90,7 @@ sub EVENT_ZONE {
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnH && $ReturnZone) {
         if ($from_zone_id == 151 && $target_zone_id == 152) {
+             $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             return int($ReturnZone);
         } else {

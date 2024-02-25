@@ -87,16 +87,13 @@ sub EVENT_ZONE {
     } 
 
     if ($ReturnX && $ReturnY && $ReturnZ && $ReturnZone) {
-        $client->SetBucket("DEBUG", "Layer 1");
         if ($from_zone_id == 151 && ($target_zone_id == 152 || $target_zone_id == 150)) {
-            $client->SetBucket("DEBUG", "t:$target_zone_id,r:$ReturnZone");
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, ($ReturnH || 0));
             return int($ReturnZone);
         }
     }     
 
     if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id))) {
-
         if ($from_zone_id == 151 && ($target_zone_id == 152 || $target_zone_id == 150)) {
             my $BindX = $client->GetBindX();
             my $BindY = $client->GetBindY();

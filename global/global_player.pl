@@ -93,7 +93,7 @@ sub EVENT_ZONE {
                 $client->DeleteBucket("Return-H");
                 $client->DeleteBucket("Return-Zone");
             }
-            if (!plugin::is_eligible_for_zone($client, $target_zone_id)) {
+            if (!plugin::is_eligible_for_zone($client, quest::GetZoneShortName($target_zone_id)) {
                 $client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 
                 my $BindX = $client->GetBindX();

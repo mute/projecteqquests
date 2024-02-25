@@ -85,7 +85,7 @@ sub EVENT_ZONE {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             quest::debug("$ReturnZone");
             return int($ReturnZone);
-        } else
+        } else {
             if ($from_zone_id != $ReturnZone) {
                 $client->DeleteBucket("Return-X");
                 $client->DeleteBucket("Return-Y");
@@ -105,6 +105,7 @@ sub EVENT_ZONE {
                 $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
                 return int($BindZone);
             }
+        }
     }
 }
 

@@ -104,7 +104,7 @@ sub AddClass {
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
         GrantClassesAA();
 
-        plugin::WorldAnnounce("$name has become a $full_class_string.");
+        plugin::WorldAnnounce("$name has become a $full_class_name.");
 
         if ($class_id == 8) {
             quest::permaclass(8);

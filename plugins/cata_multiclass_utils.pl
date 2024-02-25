@@ -104,7 +104,11 @@ sub AddClass {
         $client->Message(15, "You have permanently gained access to the $class_name class, and are now a $full_class_name.");
         GrantClassesAA();
 
-        plugin::WorldAnnounce("$name has become a $full_class_name.");
+        if (CheckUniqueClass($client->GetClassesBits())) {
+            plugin::WorldAnnounce("$name has become the FIRST $full_class_name.");
+        } else {
+            plugin::WorldAnnounce("$name has become a $full_class_name.");
+        }        
 
         if ($class_id == 8) {
             quest::permaclass(8);
@@ -112,6 +116,35 @@ sub AddClass {
             quest::permaclass($class_id);
         }
     }    
+}
+
+sub CheckUniqueClass {
+    use DBI;
+    use DBD::mysql;
+    use JSON; 
+
+    my $gestalt_bits = shift;  # Get the function argument
+
+    # Connect to the MySQL database
+    my $dbh = plugin::LoadMysql();
+
+    # Prepare SQL query
+    my $sql = "SELECT COUNT(*) FROM peq.data_buckets WHERE `key` = 'GestaltClasses' AND `value` = ?";
+    my $sth = $dbh->prepare($sql);
+
+    # Execute SQL query with $gestalt_bits as the parameter
+    $sth->execute($gestalt_bits);
+    my ($count) = $sth->fetchrow_array();  # Fetch the count
+
+    $sth->finish();  # Finish the SQL statement handle
+    $dbh->disconnect();  # Disconnect from the database
+
+    # Check if there is more than one data_bucket with the value equal to $gestalt_bits
+    if ($count > 1) {
+        return 0;  # Return false if there are duplicate classes
+    } else {
+        return 1;  # Return true if there is no duplicate
+    }
 }
 
 sub GetPrettyClassString {

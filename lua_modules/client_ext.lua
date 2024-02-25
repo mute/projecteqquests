@@ -237,7 +237,7 @@ function Client:HasItem(itemid, trade)
 		end
 	end
 
-	/*
+	--[[
 	--corpse
 	local bodycount = self:GetCorpseCount();
 	
@@ -257,9 +257,9 @@ function Client:HasItem(itemid, trade)
 				end
 			end
 		end
-	end
-	*/
-	
+	end	
+	]]
+
 	return false;
 end
 

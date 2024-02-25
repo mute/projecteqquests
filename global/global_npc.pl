@@ -98,7 +98,7 @@ sub EVENT_TICK {
     }
 }
 
-sub EVENT_DAMAGE_TAKEN {
+sub EVENT_COMBAT {
     CHECK_CHARM_STATUS();
 }
 

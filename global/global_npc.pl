@@ -98,6 +98,10 @@ sub EVENT_TICK {
     }
 }
 
+sub EVENT_DAMAGE_TAKEN {
+    CHECK_CHARM_STATUS();
+}
+
 sub EVENT_AGGRO {
     CHECK_CHARM_STATUS();
 }

@@ -85,20 +85,27 @@ sub EVENT_ZONE {
             $client->MovePC($ReturnZone, $ReturnX, $ReturnY, $ReturnZ, $ReturnH);
             quest::debug("$ReturnZone");
             return int($ReturnZone);
-        } elsif ($from_zone_id != $ReturnZone) {
-            $client->DeleteBucket("Return-X");
-            $client->DeleteBucket("Return-Y");
-            $client->DeleteBucket("Return-Z");
-            $client->DeleteBucket("Return-H");
-            $client->DeleteBucket("Return-Zone");
-        }
-    }
+        } else
+            if ($from_zone_id != $ReturnZone) {
+                $client->DeleteBucket("Return-X");
+                $client->DeleteBucket("Return-Y");
+                $client->DeleteBucket("Return-Z");
+                $client->DeleteBucket("Return-H");
+                $client->DeleteBucket("Return-Zone");
+            }
+            if (!plugin::is_eligible_for_zone($client, $target_zone_id)) {
+                $client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 
-    if (!plugin::is_eligible_for_zone($client, $target_zone_id)) {
-		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
-		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
-        return int(151);
-	}
+                my $BindX = $client->GetBindX();
+                my $BindY = $client->GetBindY();
+                my $BindZ = $client->GetBindZ();
+                my $BindH = $client->GetBindHeading();
+                my $BindZone = $client->GetBindZoneID();
+
+                $client->MovePC($BindZone, $BindX, $BindY, $BindZ, $BindH); # Bind Point
+                return int($BindZone);
+            }
+    }
 }
 
 sub EVENT_COMBINE_VALIDATE {

@@ -49,6 +49,7 @@ sub set_default_attunement {
         ],
         2 => [
             ["Halas", ['halas', 0, 26, 3.75, 256], 'A'],
+            ["North Qeynos", ['qeynos2', 392.0, 165.0, 2.75, 310], 'A'],
         ],
         3 => [
             ["Erudin", ['erudnext', -240.0, -1216.0, 52.0, 510.0], 'O'],
@@ -62,6 +63,7 @@ sub set_default_attunement {
         ],
         6 => [
             ["Neriak - Commons", ['neriakb', -922, -50 -32.22, 128], 'A'],
+            ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
         ],
         7 => [
             ["The Greater Faydark (Kelethin)", ['gfaydark', -175, -50, 77.72, 87], 'F'],
@@ -70,27 +72,31 @@ sub set_default_attunement {
         ],
         8 => [
             ["South Kaladim", ['kaladima', 197, 90, 3.75, 492], 'F'],
+            ["The Greater Faydark (Kelethin)", ['gfaydark', -175, -50, 77.72, 87], 'F'],
         ],
         9 => [
             ["Grobb", ['grobb', -200, 223, 3.75, 414], 'A'],
+            ["Neriak - Commons", ['neriakb', -922, -50 -32.22, 128], 'A'],
         ],
         10 => [
             ["Oggok", ['oggok', 513, 465, 3.75, 205], 'A'],
+            ["Neriak - Commons", ['neriakb', -922, -50 -32.22, 128], 'A'],
         ],
         11 => [
             ["Rivervale", ['rivervale', -140, -10, 3.75, 220], 'A'],
         ],
         12 => [
-            ["Ak'Anon", ['akanon', -761, 1279, -24.25, 182.25], 'F'], 
+            ["Ak'Anon", ['akanon', -761, 1279, -24.25, 182.25], 'F'],
+            ["South Kaladim", ['kaladima', 197, 90, 3.75, 492], 'F'],
         ],
         128 => [
             ["Cabilis East", ['cabeast', -136, 969, 4.68, 271], 'K'], 
         ],
         330 => [
             ["North Qeynos", ['qeynos2', 392.0, 165.0, 2.75, 310], 'A'],
-            ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
-        ],
-        # TODO - FINISH FOR VAH SHIR       
+            ["The Greater Faydark (Kelethin)", ['gfaydark', -175, -50, 77.72, 87], 'F'],
+            ["Halas", ['halas', 0, 26, 3.75, 256], 'A'],
+        ],   
     );
 
    

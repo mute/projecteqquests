@@ -115,7 +115,7 @@ sub return_items {
 					$items_returned = 1;
 				} else {
 					$return_data{$r} = [$k, $item_data{$r}[1], $item_data{$r}[2]];
-					quest::summonitem($k, 0);
+					quest::summonfixeditem($k, 0);
 					$items_returned = 1;
 				}
 				$rcount--;

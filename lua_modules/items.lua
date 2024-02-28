@@ -19,7 +19,7 @@ function items.check_turn_in(trade, trade_check)
 			local found = false;
 			for j = 1, 4 do
 				local inst = trade_return["item" .. j];			
-				if(inst.valid and trade_check[key] == inst:GetID()) then
+				if(inst.valid and (trade_check[key] % 100000) == inst:GetID()) then
 					trade_return["item" .. j] = ItemInst();
 					found = true;
 					break;

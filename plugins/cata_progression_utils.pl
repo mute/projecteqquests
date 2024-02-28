@@ -152,7 +152,7 @@ my %VALID_STAGES = map { $_ => 1 } qw(RoK SoV SoL PoP GoD OoW DoN);
 
 # Global hash of stage prerequisites
 my %STAGE_PREREQUISITES = (
-    'RoK' => ['Lord Nagafen', 'Lady Vox'],  # Objectives with spaces
+    'RoK' => ['Lord Nagafen', 'Lady Vox', 'Phinigel Autropos'],  # Objectives with spaces
     'SoV' => ['Trakanon', 'Gorenaire', 'Severilous', 'Talendor'],
     'SoL' => ['Lord Yelinak', 'Tukaarak the Warder', 'Nanzata the Warder', 'Ventani the Warder', 'Hraasha the Warder', 'Wuoshi', 'Klandicar', 'Zlandicar'],
     'PoP' => ['Thought Horror Overfiend', 'The Insanity Crawler', 'Greig Veneficus', 'Xerkizh the Creator', 'Emperor Ssraeshza'],

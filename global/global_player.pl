@@ -68,7 +68,11 @@ sub EVENT_CLICKDOOR {
 
 sub EVENT_DISCOVER_ITEM {
     my $name = $client->GetCleanName();
-    plugin::WorldAnnounceItem("$name has discovered: {item}.",$itemid);    
+    
+    # Only announce upgraded items
+    if ($itemid > 999999) {        
+        plugin::WorldAnnounceItem("$name has discovered: {item}.",$itemid);  
+    }  
 }
 
 sub EVENT_ZONE {

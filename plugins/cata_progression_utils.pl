@@ -138,13 +138,13 @@ my %atlas = (
     'bloodfields'    => 'OoW',
     'wallofslaughter'=> 'OoW',
 
-    'thenest'        -> 'DoN',
-    'delvea'         -> 'DoN',
+    'thenest'        => 'DoN',
+    'delvea'         => 'DoN',
     'stillmoona'     => 'DoN',
     'stillmoonb'     => 'DoN',
-    'broodlands'     -> 'DoN',
-    'thundercrest'   -> 'DoN',
-    'delveb'         -> 'DoN',
+    'broodlands'     => 'DoN',
+    'thundercrest'   => 'DoN',
+    'delveb'         => 'DoN',
 );
 
 # Global hash of valid stages

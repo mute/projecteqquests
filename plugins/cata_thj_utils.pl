@@ -97,7 +97,7 @@ sub WorldAnnounceItem {
     $message =~ s/\Q$eqgitem_link\E/$discord_link/g;
 
     # Send the message with the Discord link to Discord
-    #quest::discordsend("ooc", $message);
+    quest::discordsend("ooc", $message);
 }
 
 # Serializer

@@ -5,6 +5,7 @@ sub EVENT_SIGNAL {
 sub EVENT_ENTERZONE { 
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
+    plugin::UpdateCharMaxLevel($client);
 
     plugin::set_default_attunement($client->AccountID(), $client->GetRace());
 
@@ -17,11 +18,7 @@ sub EVENT_ENTERZONE {
 sub EVENT_CONNECT {
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
-
-    if (!$client->GetBucket("CharMaxLevel")) {
-		$client->SetBucket("CharMaxlevel", 51); #By default, on initial log in (first time) we are setting Max Level to 51.
-        plugin::YellowText("Your Level Cap has been set to 51.");
-	}
+    plugin::UpdateCharMaxLevel($client);
 
 	if (!plugin::is_eligible_for_zone($client, $zonesn)) {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
@@ -47,6 +44,7 @@ sub EVENT_CONNECT {
 sub EVENT_LEVEL_UP {
     plugin::CheckWorldWideBuffs($client);
     plugin::CommonCharacterUpdate($client);
+    plugin::UpdateCharMaxLevel($client);
 
     my $new_level = $client->GetLevel();
 

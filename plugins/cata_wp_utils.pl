@@ -62,7 +62,7 @@ sub set_default_attunement {
             ["Northern Felwithe", ['felwithea', -626, 240, -10.25, 330], 'F'],
         ],
         6 => [
-            ["Neriak - Commons", ['neriakb', -498, -30 -8, 128], 'A'],
+            ["Neriak - Commons", ['neriakb', -498, -30, -10, 128], 'A'],
             ["West Freeport", ['freportw', -396, -283, -23, 500], 'A'],
         ],
         7 => [
@@ -76,11 +76,11 @@ sub set_default_attunement {
         ],
         9 => [
             ["Grobb", ['grobb', -200, 223, 3.75, 414], 'A'],
-            ["Neriak - Commons", ['neriakb', -498, -30 -8, 128], 'A'],
+            ["Neriak - Commons", ['neriakb', -498, -30, -10, 128], 'A'],
         ],
         10 => [
             ["Oggok", ['oggok', 513, 465, 3.75, 205], 'A'],
-            ["Neriak - Commons", ['neriakb', -498, -30 -8, 128], 'A'],
+            ["Neriak - Commons", ['neriakb', -498, -30, -10, 128], 'A'],
         ],
         11 => [
             ["Rivervale", ['rivervale', -140, -10, 3.75, 220], 'A'],

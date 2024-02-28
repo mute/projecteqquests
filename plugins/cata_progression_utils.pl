@@ -396,7 +396,7 @@ sub UpdateCharMaxLevel
     }    
 
     if ($updated) {
-        $client->SetBucket("CharMaxlevel", CharMaxLevel)
+        $client->SetBucket("CharMaxlevel", CharMaxLevel);
         plugin::YellowText("Your Level Cap has been set to $CharMaxLevel.");
     }
 }

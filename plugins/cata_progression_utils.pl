@@ -377,22 +377,22 @@ sub UpdateCharMaxLevel
 
     if (!$CharMaxLevel) {
 		$CharMaxLevel = 51;
-        $updated = 1
+        $updated = 1;
 	}
 
     if (is_stage_complete($client, 'RoK') && $CharMaxLevel < 60) {
         $CharMaxLevel = 60;
-        $updated = 1
+        $updated = 1;
     }
 
     if (is_stage_complete($client, 'PoP') && $CharMaxLevel < 65) {
         $CharMaxLevel = 65;
-        $updated = 1
+        $updated = 1;
     }
 
     if (is_stage_complete($client, 'GoD') && $CharMaxLevel < 70) {
         $CharMaxLevel = 70;
-        $updated = 1
+        $updated = 1;
     }    
 
     if ($updated) {

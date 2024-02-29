@@ -226,21 +226,10 @@ sub set_subflag {
     plugin::BlueText("Your memories become more clear, you see the way forward drawing closer.");
 
     # Check if the stage is now complete
-    if (is_stage_complete($client, $stage)) {
-        if ($stage eq 'RoK' && $client->GetBucket("CharMaxLevel") == 51) {
-            $client->SetBucket("CharMaxLevel", 60);
-        }
-
-        if ($stage eq 'PoP' && $client->GetBucket("CharMaxLevel") == 60) {
-            $client->SetBucket("CharMaxLevel", 65);
-        }
-
-        if ($stage eq 'GoD' && $client->GetBucket("CharMaxLevel") == 65) {
-            $client->SetBucket("CharMaxLevel", 70);
-        }
-
+    if (is_stage_complete($client, $stage)) {       
         plugin::YellowText("You have completed a progression stage!");
         plugin::BlueText("Your memories gain sudden, sharp focus. You see the path forward.");
+        UpdateCharMaxLevel($client);
     }
 
     return 1;

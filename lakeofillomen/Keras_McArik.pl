@@ -156,7 +156,7 @@ sub EVENT_ITEM {
   }
   elsif(plugin::check_handin(\%itemcount, 60210 => 1, 60211 => 1)) {
     quest::say("I am so impressed and proud of ye, $name. This had been a long journey, hasn't it? That said, this will be the most important adventure of yer life, for now you are a true berserker and a master of all of yer skills. As I promised, the completion of these trials would not only bring ye the honor of being recognized as a true berserker, but also a weapon only a true berserker can wield -- one that I fashioned myself. Use this weapon in yer travels and may it serve ye well in battle. Be well,$name, the Berserker.");
-    quest::summonfixeditem(868299); # Item: Kerasian Axe of Ire
+    quest::summonfixeditem(2068299); # Item: Kerasian Axe of Ire
 	quest::setglobal("berserk_epic", 1, 5, "F");
   }
 #1.5 turnins 

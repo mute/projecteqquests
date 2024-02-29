@@ -15,7 +15,7 @@ sub soulbinder_say {
 	} elsif ($text=~/your Bind Point/i || $text=~/my Bind Point/i) {
 		quest::say("Off you go!");
 		quest::selfcast(36);
-	} elsif ($text=~/your Bind Point/i || $text=~/my Bind Point/i) {
+	} elsif ($text=~/the Bazaar/i) {
 		quest::say("Off you go!");
 		quest::selfcast(5824);
 	}

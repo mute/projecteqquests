@@ -1,88 +1,67 @@
-# plugin::check_handin($item1 => #required_amount,...);
-# autoreturns extra unused items on success
 sub check_handin {
-	use Scalar::Util qw(looks_like_number);
-	my $client = plugin::val('client');
-	my $copper = plugin::val('copper');
-	my $silver = plugin::val('silver');
-	my $gold = plugin::val('gold');
-	my $platinum = plugin::val('platinum');
-	my $hashref = shift;
+    use Scalar::Util qw(looks_like_number);
+    my $client = plugin::val('client');
+    my $copper = plugin::val('copper');
+    my $silver = plugin::val('silver');
+    my $gold = plugin::val('gold');
+    my $platinum = plugin::val('platinum');
+    my $hashref = shift;
 
-	my $return_copper   = 0;
-	my $return_silver   = 0;
-	my $return_gold     = 0;
-	my $return_platinum = 0;
+    # Initialize return variables for each currency
+    my $return_copper   = 0;
+    my $return_silver   = 0;
+    my $return_gold     = 0;
+    my $return_platinum = 0;
 
-	if ($copper > 0) {
-		$hashref->{"copper"} = $copper;
-	}
-	if ($silver > 0) {
-		$hashref->{"silver"} = $silver;
-	}
-	if ($gold > 0) {
-		$hashref->{"gold"} = $gold;
-	}
-	if ($platinum > 0) {
-		$hashref->{"platinum"} = $platinum;
-	}
+    # Assign currency amounts to hashref if positive
+    foreach my $currency (qw(copper silver gold platinum)) {
+        if (${$currency} > 0) {
+            $hashref->{$currency} = ${$currency};
+        }
+    }
 
-	$client->SetEntityVariable("HANDIN_MONEY", "$copper|$silver|$gold|$platinum");
+    # Record the handed in money
+    $client->SetEntityVariable("HANDIN_MONEY", join('|', $copper, $silver, $gold, $platinum));
 
-	# set money zero values if they don't exist
-	my @money = ("platinum", "gold", "silver", "copper");
-	foreach my $m (@money) {
-		if (!$hashref->{$m}) {
-			$hashref->{$m} = 0;
-		}
-	}
+    # Ensure all currency types are defined in hashref
+    foreach my $money_type (qw(platinum gold silver copper)) {
+        $hashref->{$money_type} ||= 0;
+    }
 
-	# for some reason the source is sending this, we'll clean it up
-	if ($hashref->{0}) {
-		delete $hashref->{0};
-	}
+    # Clean up any erroneous entries
+    delete $hashref->{0};
 
-	if (!$client->EntityVariableExists("HANDIN_ITEMS")) {
-		$client->SetEntityVariable("HANDIN_ITEMS", plugin::GetHandinItemsSerialized("Handin", %$hashref));
-	}
+    # Initialize handin items if not already set
+    unless ($client->EntityVariableExists("HANDIN_ITEMS")) {
+        $client->SetEntityVariable("HANDIN_ITEMS", plugin::GetHandinItemsSerialized("Handin", %$hashref));
+    }
 
-	# -----------------------------
-	# handin formatting examples
-	# -----------------------------
-	# item_id    => required_count eg (1001 => 1)
-	# "copper"   => copper_amount  eg ("copper" => 1234)
-	# "silver"   => silver_amount
-	# "gold"     => gold_amount
-	# "platinum" => platinum_amount
-	# -----------------------------
+    # Define required items
+    my %required = @_;
 
-	# Iterate through each key-value pair in the hash
-	foreach my $key (keys %$hashref) {
-		my $val1 = $hashref->{$key};
-		# Update the value associated with each key to be its modulo 1,000,000
-		$hashref->{$key} = $hashref->{$key} % 1000000;
+    # Check and adjust items based on base ID
+    ITEM_CHECK:
+    foreach my $req (keys %required) {
+        foreach my $item (keys %$hashref) {
+            next unless looks_like_number($item); # Skip non-numeric keys
+            if ($item % 1000000 == $req) { # Check if base ID matches
+                if ($hashref->{$item} >= $required{$req}) {
+                    # Deduct required amount from the item count
+                    $hashref->{$item} -= $required{$req};
+                    # Delete item entry if count drops to zero
+                    delete $hashref->{$item} if $hashref->{$item} == 0;
+                    next ITEM_CHECK; # Move to the next required item
+                }
+            }
+        }
+        # If required item is not found or insufficient, return failure
+        return 0;
+    }
 
-		my $val2 = $hashref->{$key};
-		quest::debug("Adjusting $val1 to $val2")
-	}
-
-	my %required = @_;
-	foreach my $req (keys %required) {
-		if (!defined $hashref->{$req} || $hashref->{$req} != $required{$req}) {
-			return 0;
-		}
-	}
-
-	foreach my $req (keys %required) {
-		if ($required{$req} < $hashref->{$req}) {
-			$hashref->{$req} -= $required{$req};
-		} else {
-			delete $hashref->{$req};
-		}
-	}
-
-	return 1;
+    # If all checks pass, return success
+    return 1;
 }
+
 
 sub return_items {
 	my $hashref = plugin::var('$itemcount');

@@ -373,7 +373,7 @@ sub UpdateCharMaxLevel
 {
     my $client = shift;
     my $update = 0;
-    my $CharMaxLevel = client->GetBucket("CharMaxLevel");
+    my $CharMaxLevel = $client->GetBucket("CharMaxLevel");
 
     if (!$CharMaxLevel) {
 		$CharMaxLevel = 51;

@@ -58,8 +58,12 @@ sub check_handin {
 
 	# Iterate through each key-value pair in the hash
 	foreach my $key (keys %$hashref) {
+		my $val1 = $hashref->{$key};
 		# Update the value associated with each key to be its modulo 1,000,000
 		$hashref->{$key} = $hashref->{$key} % 1000000;
+
+		my $val2 = $hashref->{$key};
+		quest::debug("Adjusting $val1 to $val2")
 	}
 
 	my %required = @_;

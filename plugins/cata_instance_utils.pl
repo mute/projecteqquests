@@ -64,7 +64,7 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        $client->TaskSelector(@task_id);
+        $client->AssignTask($task_id[0]);
         return;
     }
 
@@ -74,7 +74,7 @@ sub HandleSay
     }
 
     if ($text =~ /proceed/i) {
-        $client->MovePCDynamicZone($zone_name); 
+        $client->MovePCDynamicZone('soldungb'); 
     }
 }
 

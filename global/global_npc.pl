@@ -122,7 +122,7 @@ sub EVENT_ITEM
 {
     if ($npc->IsPet() and $npc->GetOwner()->IsClient() and not $npc->Charmed()) {
         plugin::YellowText("You must use a Summoner's Syncrosatchel to equip your pet.");
-        plugin::return_items_silent(\%itemcount);
+        plugin::return_items(\%itemcount);
     }
 }
 

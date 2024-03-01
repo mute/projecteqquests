@@ -26,7 +26,7 @@ sub HandleSay
 
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client, '%')) {
-            if (lugin::HasDynamicZoneAssigned($client, quest::GetZoneLongName($zone_name))) {
+            if (plugin::HasDynamicZoneAssigned($client, quest::GetZoneLongName($zone_name))) {
                 plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");
             } else {
                 plugin::NPCTell("You already have a task assigned to you by another Servant. Finish or abandon it before speaking to me.");

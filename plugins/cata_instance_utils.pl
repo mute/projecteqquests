@@ -55,9 +55,7 @@ sub HandleSay
             } else {
                 $client->SetBucket("instance-data", plugin::SerializeHash(%instance_data), $zone_duration);
             }
-        }
-            return;
-        }
+        }     
     }
 
     if ($text =~ /hail/i) {

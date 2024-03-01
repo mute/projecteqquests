@@ -59,20 +59,18 @@ sub HandleSay
         } 
     }
 
-    if ($text =~ /wish to proceed_challenge/i) {
+    if ($text =~ /wish to proceed_challenge/i) {        
         my $task = $task_id[0];
-
-        $client->AssignTask($task);
-
         my %dz = (
-            "instance"      => { "zone" => $zone_name, "version" => 0 },
+            "instance"      => { "zone" => $zone_name, "version" => 20 },
             "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
             "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
         );
 
-        quest::debug("zone_name: $zone_name, task_id:");
-    
+        $client->AssignTask($task);    
         $client->CreateTaskDynamicZone($task, \%dz); 
+
+        plugin::NPCTell("As you wish. When you and your companions are prepared, come speak to me so that you may [$proceed].");
         return;
     }
 
@@ -82,7 +80,14 @@ sub HandleSay
     }
 
     if ($text =~ /proceed/i) {
-        $client->MovePCDynamicZone('soldungb'); 
+        my @group = $client->GetGroup();
+
+        foreach my $player (@group) {
+            if ($player) {
+                $player->MovePCDynamicZone('soldungb');
+            }
+        }
+         
     }
 }
 

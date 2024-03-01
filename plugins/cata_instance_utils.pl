@@ -31,7 +31,7 @@ sub HandleSay
                 if ($client->IsTaskActive($task)) {
                     my $targ_zn = quest::GetZoneLongName($zone_name);
 
-                    quest::debug($targ_zn);
+                    quest::debug(plugin::HasDynamicZoneAssigned2($client, $zone_name));
                 }
             }
 
@@ -117,8 +117,8 @@ sub HasDynamicZoneAssigned2 {
 
     my $character_id = $client->CharacterID();
 
-    my $query = "SELECT COUNT(*) FROM dynamic_zone_members WHERE character_id = ?";
-    my $sth = $dbh->prepare($query);
+    my $query = "SELECT COUNT(*) FROM dynamic_zone_members, dynamic_zones WHERE dynamic_zones.id = dynamic_zone_members.dynamic_zone_id AND character_id = ? AND NAME = ?";
+    my $sth = $dbh->prepare($query, quest::GetZoneLongName($zone));
     $sth->execute($character_id);
 
     my $count = $sth->fetchrow();

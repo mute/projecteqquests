@@ -24,6 +24,40 @@ sub HandleSay
     my $wish_to_proceed_opportunity = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
     my $proceed                     = quest::saylink("proceed", 1);
 
+    foreach my $task (@task_id) {
+        if ($client->IsTaskActive($task)) {
+
+            quest::debug("taskID: $task");
+
+            my $zone_version = 10;
+            my %dz = (
+                "instance"      => { "zone" => 'soldungb', "version" => 10 },
+                "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+                "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+            );
+
+            $client->CreateTaskDynamicZone($task, \%dz);
+
+            my %instance_data = ("reward"            => $reward, 
+                                 "zone_name"         => $zone_name, 
+                                 "task_id"           => $task, 
+                                 "leader_id"         => $task_leader_id,
+                                 "entered"           => 0);                
+
+            my $group = $client->GetGroup();
+            if($group) {
+                for ($count = 0; $count < $group->GroupCount(); $count++) {
+                    $player = $group->GetMember($count);
+                    if($player) {
+                        $player->SetBucket("instance-data", plugin::SerializeHash(%instance_data), $zone_duration);
+                    }
+                }
+            } else {
+                $client->SetBucket("instance-data", plugin::SerializeHash(%instance_data), $zone_duration);
+            }
+        }     
+    }
+
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
             my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
@@ -64,7 +98,7 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        $client->AssignTask($task_id[0]);
+        $client->TaskSelector(@task_id);
         return;
     }
 

@@ -62,7 +62,7 @@ sub HandleSay
     if ($text =~ /wish to proceed_challenge/i) {        
         my $task = $task_id[0];
         my %dz = (
-            "instance"      => { "zone" => $zone_name, "version" => 0 },
+            "instance"      => { "zone" => $zone_name, "version" => 20 },
             "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
             "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
         );

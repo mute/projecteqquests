@@ -84,7 +84,11 @@ sub HandleSay
 
         foreach my $player (@group) {
             if ($player) {
-                $player->MovePCDynamicZone('soldungb');
+                if (plugin::HasDynamicZoneAssigned($player, quest::GetZoneLongName($zone_name))) {
+                    $player->MovePCDynamicZone($zone_name);
+                } else {
+                    plugin::RedText("$player is not part of your Shared Task.");
+                }
             }
         }
          

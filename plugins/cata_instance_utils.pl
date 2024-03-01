@@ -18,11 +18,11 @@ sub HandleSay
     my ($client, $npc, $zone_name, $reward, $prog_stage, $prog_substage, $flavor_text, @task_id) = @_;
     my $text   = plugin::val('text');
 
-    my $challenges      = quest::saylink("challenges", 1);
-    my $opportunities   = quest::saylink("opportunities", 1);
-    my $wish_to_proceed = quest::saylink("wish to proceed_challenge", 1, "wish to proceed");
-    my $wish_to_proceed = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
-    my $proceed         = quest::saylink("proceed", 1);
+    my $challenges                  = quest::saylink("challenges", 1);
+    my $opportunities               = quest::saylink("opportunities", 1);
+    my $wish_to_proceed_challenge   = quest::saylink("wish to proceed_challenge", 1, "wish to proceed");
+    my $wish_to_proceed_opportunity = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
+    my $proceed                     = quest::saylink("proceed", 1);
 
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
@@ -56,7 +56,6 @@ sub HandleSay
 
     if ($text =~ /opportunities/i) {
         if (!plugin::get_subflag($client, $prog_stage, $prog_substage)) {
-            my $challenge = quest::saylink("challenges", 1);
             plugin::NPCTell("You have not yet completed the [$challenges] in this dungeon. Complete them, and then we may speak of opportunities.");
         } else {
             plugin::NPCTell("$flavor_text Seek the opportunities before you, and be rewarded. Do you [$wish_to_proceed]?");

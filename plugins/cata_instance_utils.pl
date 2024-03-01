@@ -24,6 +24,20 @@ sub HandleSay
     my $wish_to_proceed_opportunity = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
     my $proceed                     = quest::saylink("proceed", 1);
 
+    foreach my $task (@task_id) {
+        if ($client->IsTaskActive($task)) {
+            my $zone_version = 10;
+            my %dz = (
+                "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
+                "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+                "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+            );
+
+            $client->CreateTaskDynamicZone($task_id[0], \%dz);
+            return;
+        }
+    }
+
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
             my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
@@ -64,18 +78,9 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        my $zone_version = 10;
+        
 
         $client->AssignTask($task_id[0]);
-
-        my %dz = (
-            "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
-            "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
-            "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
-        );
-
-        $client->CreateTaskDynamicZone($task_id[0], \%dz);
-        return;
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {

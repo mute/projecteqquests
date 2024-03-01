@@ -16,15 +16,6 @@ sub EVENT_ENTERZONE {
 }
 
 sub EVENT_CONNECT {
-    plugin::CheckWorldWideBuffs($client);
-    plugin::CommonCharacterUpdate($client);
-    plugin::UpdateCharMaxLevel($client);
-
-	if (!plugin::is_eligible_for_zone($client, $zonesn)) {
-		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
-		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
-	}
-
     if (!$client->GetBucket("First-Login")) {
         $client->SetBucket("First-Login", 1);
 

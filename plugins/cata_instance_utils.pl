@@ -91,7 +91,7 @@ sub HandleSay
                 }
             }
         }
-         
+        $client->MovePCDynamicZone($zone_name);         
     }
 }
 

@@ -20,8 +20,8 @@ sub HandleSay
 
     my $challenges      = quest::saylink("challenges", 1);
     my $opportunities   = quest::saylink("opportunities", 1);
-    my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_challenge");
-    my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_opportunity");
+    my $wish_to_proceed = quest::saylink("wish to proceed_challenge", 1, "wish to proceed");
+    my $wish_to_proceed = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
 
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
@@ -48,7 +48,7 @@ sub HandleSay
             plugin::NPCTell("Your power has grown too great for the challenges here to offer any achievement for you. Consider the [$opportunities] here, instead.");
         } else {
             plugin::NPCTell("$flavor_text Seek the challenges before you, and be rewarded. Do you [$wish_to_proceed]?");
-            plugin::YellowText("You must complete all instance objectives in order to recieve the progression flag. You may leave and re-enter the instance. Creatures within
+            plugin::YellowText("You must complete all instance objectives in order to recieve a progression flag. You may leave and re-enter the instance. Creatures within
                                 will not respawn. Once any member of your party enters, you may not add any additional members. Rewards will be calculated based upon the number 
                                 of members in the task when it locks.");
         }

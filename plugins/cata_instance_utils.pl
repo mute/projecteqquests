@@ -63,8 +63,11 @@ sub HandleSay
         my $task = $task_id[0];
 
         $client->AssignTask($task);
+
         my %dz = (
-                "instance"      => { "zone" => 'soldungb', "version" => 0 }
+            "instance"      => { "zone" => $zone_name, "version" => 0 },
+            "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+            "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
         );
 
         quest::debug("zone_name: $zone_name, task_id:");

@@ -26,6 +26,9 @@ sub HandleSay
 
     foreach my $task (@task_id) {
         if ($client->IsTaskActive($task)) {
+
+            quest::debug("taskID: $task");
+
             my $zone_version = 10;
             my %dz = (
                 "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
@@ -33,7 +36,26 @@ sub HandleSay
                 "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
             );
 
-            $client->CreateTaskDynamicZone($task, \%dz);
+            $client->CreateTaskDynamicZone($task, %dz);
+
+            my %instance_data = ("reward"            => $reward, 
+                                 "zone_name"         => $zone_name, 
+                                 "task_id"           => $task, 
+                                 "leader_id"         => $task_leader_id,
+                                 "entered"           => 0);                
+
+            my $group = $client->GetGroup();
+            if($group) {
+                for ($count = 0; $count < $group->GroupCount(); $count++) {
+                    $player = $group->GetMember($count);
+                    if($player) {
+                        $player->SetBucket("instance-data", plugin::SerializeHash(%instance_data), $zone_duration);
+                    }
+                }
+            } else {
+                $client->SetBucket("instance-data", plugin::SerializeHash(%instance_data), $zone_duration);
+            }
+        }
             return;
         }
     }

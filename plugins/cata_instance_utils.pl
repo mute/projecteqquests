@@ -25,10 +25,6 @@ sub HandleSay
     my $proceed                     = quest::saylink("proceed", 1);
 
     if ($text =~ /hail/i) {
-
-        if (quest::sharedtask)
-
-
         if (plugin::HasDynamicZoneAssigned($client, '%')) {
             if (lugin::HasDynamicZoneAssigned($client, quest::GetZoneLongName($zone_name))) {
                 plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");

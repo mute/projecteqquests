@@ -80,6 +80,7 @@ sub HandleSay
 
 sub HandleTaskAccept
 {
+    my $client = plugin::val('$client');
     my %dz = (
                 "instance"      => { "zone" => 'soldungb', "version" => 0 }
     );

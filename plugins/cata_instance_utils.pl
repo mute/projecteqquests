@@ -31,14 +31,10 @@ sub HandleSay
 
             my $zone_version = 10;
             my %dz = (
-                "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
-                "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
-                "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+                "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration }
             );
 
-            quest::debug("$zone_name, $zone_version, $zone_duration, $task, ". \%dz);
-
-            #$client->CreateTaskDynamicZone($task, \%dz);
+            $client->CreateTaskDynamicZone($task, \%dz);
 
             my %instance_data = ("reward"            => $reward, 
                                  "zone_name"         => $zone_name, 

@@ -75,6 +75,8 @@ sub HandleSay
 
     if ($text =~ /wish to proceed_challenge/i) {
         $client->AssignTask($task_id[0]);
+        
+        my $zone_version    = 10;
 
         my %dz = (
                     "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },

@@ -78,13 +78,13 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        
-
         $client->AssignTask($task_id[0]);
+        return;
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {
         $client->AssignTask($task_id[1]);
+        return;
     }
 
     if ($text =~ /proceed/i) {

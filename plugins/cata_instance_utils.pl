@@ -18,12 +18,12 @@ sub HandleSay
     my ($client, $npc, $zone_name, $reward, @task_id, $prog_stage, $prog_substage, $flavor_text) = @_;
     my $text   = plugin::val('text');
 
-    # Challenge is always @
+    my $challenges      = quest::saylink("challenges", 1);
+    my $opportunities   = quest::saylink("opportunities", 1);
+    my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_challenge");
+    my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_opportunity");
 
     if ($text =~ /hail/i) {
-        my $challenges      = quest::saylink("challenges", 1);
-        my $opportunities   = quest::saylink("opportunities", 1);
-
         if (plugin::HasDynamicZoneAssigned($client)) {
             my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
             my $stored_zone_name    = $instance_data{'zone_name'};
@@ -43,10 +43,6 @@ sub HandleSay
 
     if ($text =~ /challenges/i) {
         my $next_stage = plugin::get_next_stage($prog_stage);
-
-        my $opportunities   = quest::saylink("opportunities", 1);
-        my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_challenge");
-
         if (plugin::is_stage_complete($client, $next_stage)) {
             plugin::NPCTell("Your power has grown too great for the challenges here to offer any achievement for you. Consider the [$opportunities] here, instead.");
         } else {
@@ -58,13 +54,9 @@ sub HandleSay
     }
 
     if ($text =~ /opportunities/i) {
-
-        my $challenge       = quest::saylink("challenges", 1);
-        my $wish_to_proceed = quest::saylink("wish to proceed", 1, "wish to proceed_opportunity");
-
         if (!plugin::get_subflag($client, $prog_stage, $prog_substage)) {
             my $challenge = quest::saylink("challenges", 1);
-            plugin::NPCTell("You have not yet completed the [$challenge] in this dungeon. Complete it, and then we may speak of opportunities.");
+            plugin::NPCTell("You have not yet completed the [$challenges] in this dungeon. Complete them, and then we may speak of opportunities.");
         } else {
             plugin::NPCTell("$flavor_text Seek the opportunities before you, and be rewarded. Do you [$wish_to_proceed]?");
             plugin::YellowText("The instance will remain open for seven days. You may leave and re-enter the instance. You may add additional players, up to 6 total at a given time, at any time.");

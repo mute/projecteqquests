@@ -60,14 +60,16 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        $client->AssignTask($task_id[0]);
+        my $task = $task_id[0];
+
+        $client->AssignTask($task);
         my %dz = (
                 "instance"      => { "zone" => 'soldungb', "version" => 0 }
         );
 
-        quest::debug("zone_name: $zone_name");
+        quest::debug("zone_name: $zone_name, task_id:");
     
-        $client->CreateTaskDynamicZone(3, \%dz); 
+        $client->CreateTaskDynamicZone($task, \%dz); 
         return;
     }
 

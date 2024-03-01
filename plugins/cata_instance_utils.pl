@@ -118,8 +118,8 @@ sub HasDynamicZoneAssigned2 {
     my $character_id = $client->CharacterID();
 
     my $query = "SELECT COUNT(*) FROM dynamic_zone_members, dynamic_zones WHERE dynamic_zones.id = dynamic_zone_members.dynamic_zone_id AND character_id = ? AND NAME = ?";
-    my $sth = $dbh->prepare($query, quest::GetZoneLongName($zone));
-    $sth->execute($character_id);
+    my $sth = $dbh->prepare($query);
+    $sth->execute($character_id, quest::GetZoneLongName($zone));
 
     my $count = $sth->fetchrow();
     $sth->finish();

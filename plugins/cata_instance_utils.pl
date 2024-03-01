@@ -36,7 +36,9 @@ sub HandleSay
                 "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
             );
 
-            $client->CreateTaskDynamicZone($task, %dz);
+            quest::debug("$zone_name, $zone_version, $zone_duration, $task, $dz");
+
+            #$client->CreateTaskDynamicZone($task, \%dz);
 
             my %instance_data = ("reward"            => $reward, 
                                  "zone_name"         => $zone_name, 

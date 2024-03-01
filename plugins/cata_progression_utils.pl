@@ -148,7 +148,8 @@ my %atlas = (
 );
 
 # Global hash of valid stages
-my %VALID_STAGES = map { $_ => 1 } qw(RoK SoV SoL PoP GoD OoW DoN);
+my @STAGES = qw(RoK SoV SoL PoP GoD OoW DoN);
+my %VALID_STAGES = map { $_ => 1 } @STAGES;
 
 # Global hash of stage prerequisites
 my %STAGE_PREREQUISITES = (
@@ -184,6 +185,22 @@ sub get_subflag_stage {
 sub subflag_exists {
     my ($search_term) = @_;
     return $DIRECT_LOOKUP{$search_term} // 0; # Returns 1 if present, 0 otherwise
+}
+
+# Subroutine to find the next stage
+sub get_next_stage {
+    my ($current_stage) = @_;
+
+    # Find the index of the current stage
+    my ($index) = grep { $STAGES[$_] eq $current_stage } 0..$#STAGES;
+
+    # If the current stage is not the last one, return the next stage
+    if (defined $index && $index < $#STAGES) {
+        return $STAGES[$index + 1];
+    }
+
+    # Return undefined if the current stage is the last one or not found
+    return;
 }
 
 # Breakpoints for original flagging system:

@@ -33,7 +33,7 @@ sub HandleSay
                 "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
             );
 
-            $client->CreateTaskDynamicZone($task_id[0], \%dz);
+            $client->CreateTaskDynamicZone($task, \%dz);
             return;
         }
     }

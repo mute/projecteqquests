@@ -69,7 +69,7 @@ sub EVENT_SAY {
         # Check if we're in the stage of selecting a location
         if ($continent_data && ref($continent_data) eq 'HASH') {
             $client->Message(257, " ------- Select a Location ------- ");
-            foreach my $key (keys %{$continent_data}) {
+            foreach my $key (sort keys %{$continent_data}) {
                 my $mode_indicator = $is_group_transport ? ":group" : "";
                 $client->Message(257, "-[ " . quest::saylink($key . $mode_indicator, 1, $key));
             }

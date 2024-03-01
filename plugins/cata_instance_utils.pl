@@ -80,7 +80,11 @@ sub HandleSay
 
 sub HandleTaskAccept
 {
-
+    my %dz = (
+                "instance"      => { "zone" => 'soldungb', "version" => 0 }
+    );
+    
+    $client->CreateTaskDynamicZone(3, \%dz); 
 }
 
 sub HasDynamicZoneAssigned {

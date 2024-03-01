@@ -26,14 +26,17 @@ sub HandleSay
 
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
-            my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
-            my $stored_zone_name    = $instance_data{'zone_name'};
 
-            if ($zone_name eq $stored_zone_name) {
-                plugin::NPCTell("The way before you is clear. [$proceed] when you are ready.");                
-            } else {
-                plugin::NPCTell("You have already embarked upon another dangerous quest. Complete it or abandon it, I care not.");
-            }            
+            foreach my $task (@task_id) {
+                if ($client->IsTaskActive($task)) {
+                    my $targ_zn = quest::GetZoneLongName($zone_name);
+
+                    quest::debug($targ_zn);
+                }
+            }
+
+
+           
 
             return;
         } else {
@@ -65,11 +68,13 @@ sub HandleSay
 
     if ($text =~ /wish to proceed_challenge/i) {
         $client->AssignTask($task_id[0]);
-            my %dz = (
+        my %dz = (
                 "instance"      => { "zone" => 'soldungb', "version" => 0 }
-    );
+        );
+
+        quest::debug("zone_name: $zone_name");
     
-    $client->CreateTaskDynamicZone(3, \%dz); 
+        $client->CreateTaskDynamicZone(3, \%dz); 
         return;
     }
 
@@ -90,6 +95,24 @@ sub HandleTaskAccept
 
 sub HasDynamicZoneAssigned {
     my $client  = shift || plugin::val('client');
+    my $dbh     = plugin::LoadMysql();
+
+    my $character_id = $client->CharacterID();
+
+    my $query = "SELECT COUNT(*) FROM dynamic_zone_members WHERE character_id = ?";
+    my $sth = $dbh->prepare($query);
+    $sth->execute($character_id);
+
+    my $count = $sth->fetchrow();
+    $sth->finish();
+    $dbh->disconnect();
+
+    return $count > 0 ? 1 : 0;
+}
+
+sub HasDynamicZoneAssigned2 {
+    my $client  = shift;
+    my $zone    = shift;
     my $dbh     = plugin::LoadMysql();
 
     my $character_id = $client->CharacterID();

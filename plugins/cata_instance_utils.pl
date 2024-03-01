@@ -42,6 +42,7 @@ sub HandleSay
     }
 
     if ($text =~ /challenges/i) {
+        quest::debug($prog_stage);
         my $next_stage = plugin::get_next_stage($prog_stage);
         if (plugin::is_stage_complete($client, $next_stage)) {
             plugin::NPCTell("Your power has grown too great for the challenges here to offer any achievement for you. Consider the [$opportunities] here, instead.");

@@ -23,14 +23,23 @@ sub HandleSay
     my $wish_to_proceed = quest::saylink("wish to proceed_challenge", 1, "wish to proceed");
     my $wish_to_proceed = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
 
+    foreach my $task (@task_id) {
+        if ($client->IsTaskActive($task)) {
+            if (!plugin::HasDynamicZoneAssigned($client)) {
+                my $task_name       = quest::gettaskname($task);
+                my $task_leader_id  = plugin::GetSharedTaskLeader($client);
+            }
+            return;
+        }
+    }
+
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
             my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
             my $stored_zone_name    = $instance_data{'zone_name'};
 
             if ($zone_name eq $stored_zone_name) {
-                plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");
-                
+                plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");                
             } else {
                 plugin::NPCTell("You have already embarked upon another dangerous quest. Complete it or abandon it, I care not.");
             }            
@@ -66,11 +75,25 @@ sub HandleSay
 
     if ($text =~ /wish to proceed_challenge/i) {
         $client->AssignTask($task_id[0]);
+
+        my %dz = (
+                    "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
+                    "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+                    "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+        );
+        
+        $client->CreateTaskDynamicZone($task_id[0], \%dz);
+        $client->MovePCDynamicZone($zone_name);         
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {
         $client->AssignTask($task_id[1]);
     }
+}
+
+sub HandleTaskAccept
+{
+
 }
 
 sub HasDynamicZoneAssigned {

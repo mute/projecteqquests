@@ -55,6 +55,10 @@ sub EVENT_CLICKDOOR {
     }
 }
 
+sub EVENT_TASKACCEPTED {
+    plugin::HandleTaskAccept($task_id, $client);
+}
+
 sub EVENT_DISCOVER_ITEM {
     my $name = $client->GetCleanName();
     

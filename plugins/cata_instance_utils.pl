@@ -15,7 +15,7 @@ my $zone_duration   = 604800;
 #plugin::HandleSay($client, $npc, $zone_name, $reward, @task_id, $prog_stage, $prog_substage, $flavor_text);
 sub HandleSay
 {
-    my ($client, $npc, $zone_name, $reward, @task_id, $prog_stage, $prog_substage, $flavor_text) = @_;
+    my ($client, $npc, $zone_name, $reward, $prog_stage, $prog_substage, $flavor_text, @task_id) = @_;
     my $text   = plugin::val('text');
 
     my $challenges      = quest::saylink("challenges", 1);

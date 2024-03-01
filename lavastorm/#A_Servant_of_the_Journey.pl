@@ -21,5 +21,5 @@ my $reward          = 5;
 my @task_id         = (2,3);
 
 sub EVENT_SAY {
-    plugin::HandleSay($client, $npc, $zone_name, $reward, @task_id, $prog_stage, $prog_substage, $flavor_text);
+    plugin::HandleSay($client, $npc, $zone_name, $reward, $prog_stage, $prog_substage, $flavor_text, @task_id);
 }

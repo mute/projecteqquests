@@ -25,19 +25,16 @@ sub HandleSay
     my $proceed                     = quest::saylink("proceed", 1);
 
     if ($text =~ /hail/i) {
-        if (plugin::HasDynamicZoneAssigned($client)) {
 
-            foreach my $task (@task_id) {
-                if ($client->IsTaskActive($task)) {
-                    my $targ_zn = quest::GetZoneLongName($zone_name);
-
-                    quest::debug(plugin::HasDynamicZoneAssigned2($client, 'permafrost'));
-                }
-            }
+        if (quest::sharedtask)
 
 
-           
-
+        if (plugin::HasDynamicZoneAssigned($client, '%')) {
+            if (lugin::HasDynamicZoneAssigned($client, quest::GetZoneLongName($zone_name))) {
+                plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");
+            } else {
+                plugin::NPCTell("You already have a task assigned to you by another Servant. Finish or abandon it before speaking to me.");
+            }  
             return;
         } else {
             plugin::NPCTell("Hail, Hero. I offer [$challenges] and [$opportunities] alike.");
@@ -94,32 +91,15 @@ sub HandleTaskAccept
 }
 
 sub HasDynamicZoneAssigned {
-    my $client  = shift || plugin::val('client');
-    my $dbh     = plugin::LoadMysql();
-
-    my $character_id = $client->CharacterID();
-
-    my $query = "SELECT COUNT(*) FROM dynamic_zone_members WHERE character_id = ?";
-    my $sth = $dbh->prepare($query);
-    $sth->execute($character_id);
-
-    my $count = $sth->fetchrow();
-    $sth->finish();
-    $dbh->disconnect();
-
-    return $count > 0 ? 1 : 0;
-}
-
-sub HasDynamicZoneAssigned2 {
     my $client  = shift;
     my $zone    = shift;
     my $dbh     = plugin::LoadMysql();
 
     my $character_id = $client->CharacterID();
 
-    my $query = "SELECT COUNT(*) FROM dynamic_zone_members, dynamic_zones WHERE dynamic_zones.id = dynamic_zone_members.dynamic_zone_id AND character_id = ? AND NAME = ?";
+    my $query = "SELECT COUNT(*) FROM dynamic_zone_members, dynamic_zones WHERE dynamic_zones.id = dynamic_zone_members.dynamic_zone_id AND character_id = ? AND name LIKE ?";
     my $sth = $dbh->prepare($query);
-    $sth->execute($character_id, quest::GetZoneLongName($zone));
+    $sth->execute($character_id, $zone);
 
     my $count = $sth->fetchrow();
     $sth->finish();

@@ -22,16 +22,7 @@ sub HandleSay
     my $opportunities   = quest::saylink("opportunities", 1);
     my $wish_to_proceed = quest::saylink("wish to proceed_challenge", 1, "wish to proceed");
     my $wish_to_proceed = quest::saylink("wish to proceed_opportunity", 1, "wish to proceed");
-
-    foreach my $task (@task_id) {
-        if ($client->IsTaskActive($task)) {
-            if (!plugin::HasDynamicZoneAssigned($client)) {
-                my $task_name       = quest::gettaskname($task);
-                my $task_leader_id  = plugin::GetSharedTaskLeader($client);
-            }
-            return;
-        }
-    }
+    my $proceed         = quest::saylink("proceed", 1);
 
     if ($text =~ /hail/i) {
         if (plugin::HasDynamicZoneAssigned($client)) {
@@ -39,7 +30,7 @@ sub HandleSay
             my $stored_zone_name    = $instance_data{'zone_name'};
 
             if ($zone_name eq $stored_zone_name) {
-                plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");                
+                plugin::NPCTell("The way before you is clear. [$proceed] when you are ready.");                
             } else {
                 plugin::NPCTell("You have already embarked upon another dangerous quest. Complete it or abandon it, I care not.");
             }            
@@ -84,12 +75,15 @@ sub HandleSay
                     "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
         );
         
-        $client->CreateTaskDynamicZone($task_id[0], \%dz);
-        $client->MovePCDynamicZone($zone_name);         
+        $client->CreateTaskDynamicZone($task_id[0], \%dz);        
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {
         $client->AssignTask($task_id[1]);
+    }
+
+    if ($text =~ /proceed/i) {
+        $client->MovePCDynamicZone($zone_name); 
     }
 }
 

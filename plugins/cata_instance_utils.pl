@@ -64,9 +64,18 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_challenge/i) {
-        quest::debug("task_id: " . $task_id[0]);
-        $client->AssignTask($task_id[0]);        
-        my $zone_version    = 10; 
+        my $zone_version = 10;
+
+        $client->AssignTask($task_id[0]);
+
+        my %dz = (
+            "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration },
+            "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+            "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+        );
+
+        $client->CreateTaskDynamicZone($task, \%dz);
+        return;
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {

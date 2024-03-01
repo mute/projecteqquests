@@ -31,7 +31,9 @@ sub HandleSay
 
             my $zone_version = 10;
             my %dz = (
-                "instance"      => { "zone" => $zone_name, "version" => $zone_version, "duration" => $zone_duration }
+                "instance"      => { "zone" => 'soldungb', "version" => '10', "duration" => '604800' },
+                "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+                "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
             );
 
             $client->CreateTaskDynamicZone($task, \%dz);

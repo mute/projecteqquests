@@ -21,12 +21,12 @@ sub HandleSay
     # Challenge is always @
 
     if ($text =~ /hail/i) {
+        my $challenges      = quest::saylink("challenges", 1);
+        my $opportunities   = quest::saylink("opportunities", 1);
+
         if (plugin::HasDynamicZoneAssigned($client)) {
             my %instance_data       = plugin::DeserializeHash($client->GetBucket("instance-data"));
             my $stored_zone_name    = $instance_data{'zone_name'};
-
-            my $challenges      = quest::saylink("challenges", 1);
-            my $opportunities   = quest::saylink("opportunities", 1);
 
             if ($zone_name eq $stored_zone_name) {
                 plugin::NPCTell("The way before you is clear. [$Proceed] when you are ready.");

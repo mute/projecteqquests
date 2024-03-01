@@ -11,9 +11,9 @@ sub EVENT_SAY {
     }
   }  
   if($text=~/denizens of this realm/i){
-    quest::say("Hmmm I don’t want to risk sending you into shock or an existential crisis. Just do what 
-               feels natural and try to remember who needs your help and whose demise you must bring about. 
-               Every quest you endeavor will reward you with Rose Colored or Apocryphal items like I have. 
+    quest::say("Hmmm I don’t want to risk sending you into shock or an existential crisis. Why not start by choosing your second and third class paths. 
+               To do this, simply talk with the class trainer whose path you wish to follow.
+               Once you have chosen, feel free to come back to me for items befitting your new choices. 
                You may return to wherever you were when you opened your portal here by simply leaving the bazaar. 
                Conversely, you may return to any place which you have attuned by speaking with Tearel! Good luck $name.");
   }

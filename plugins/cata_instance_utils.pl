@@ -65,6 +65,11 @@ sub HandleSay
 
     if ($text =~ /wish to proceed_challenge/i) {
         $client->AssignTask($task_id[0]);
+            my %dz = (
+                "instance"      => { "zone" => 'soldungb', "version" => 0 }
+    );
+    
+    $client->CreateTaskDynamicZone(3, \%dz); 
         return;
     }
 
@@ -81,11 +86,6 @@ sub HandleSay
 sub HandleTaskAccept
 {
     my $client = plugin::val('$client');
-    my %dz = (
-                "instance"      => { "zone" => 'soldungb', "version" => 0 }
-    );
-    
-    $client->CreateTaskDynamicZone(3, \%dz); 
 }
 
 sub HasDynamicZoneAssigned {

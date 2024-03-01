@@ -31,7 +31,7 @@ sub HandleSay
                 if ($client->IsTaskActive($task)) {
                     my $targ_zn = quest::GetZoneLongName($zone_name);
 
-                    quest::debug(plugin::HasDynamicZoneAssigned2($client, $zone_name));
+                    quest::debug(plugin::HasDynamicZoneAssigned2($client, 'permafrost'));
                 }
             }
 

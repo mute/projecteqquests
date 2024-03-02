@@ -62,7 +62,6 @@ sub check_handin {
     return 1;
 }
 
-
 sub return_items {
 	my $hashref = plugin::var('$itemcount');
 	my $client = plugin::val('$client');

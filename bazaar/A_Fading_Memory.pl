@@ -23,6 +23,7 @@ sub EVENT_ITEM {
     if (plugin::check_handin(\%itemcount, 18471 => 1)) {
       quest::debug("TEST");
       RewardItems($client);
+      quest::givecash(0,6,2,0);
     } else {
         quest::say("I don't need this item, $name. Perhaps you should keep it.");
     }  

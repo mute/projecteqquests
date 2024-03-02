@@ -1,28 +1,10 @@
--- items: 21810, 21820, 21811, 21821, 21812, 21822, 21813, 21823
+-- Removed turn in functions
 function event_say(e)
-	if(e.message:findi("Hail")) then
-		e.self:Say("Greetings " .. e.other:GetName() .. ". If you're looking to sell a black horse, I'll be happy to give you a fair price.  If you've got a different color horse you'd like to sell talk to one of my brothers.");
+	if(e.message:findi("hail")) then
+		e.self:Say("Greetings " .. e.other:GetName() .. ". Aren't horses amazing creatures? I used to dream of riding across Dawnshroud, but I simply can't afford one. I bet you'll be able to one day though! Good luck to you hero!");
 	end
-end
-
-function event_trade(e)
-	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 21810})) then
-	-- 	e.other:SummonItem(21820); -- Item: Bag of Platinum Pieces
-
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 21811})) then
-	-- 	e.other:SummonItem(21821); -- Item: Heavy Bag of Platinum
-
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 21812})) then
-	-- 	e.other:SummonItem(21822); -- Item: Big Bag of Platinum
-
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 21813})) then
-	-- 	e.other:SummonItem(21823); -- Item: Huge Bag of Platinum
-	end
-	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------
--- Converted to .lua using MATLAB converter written by Stryd
--- Find/replace data for .pl --> .lua conversions provided by Speedz, Stryd, Sorvani and Robregen
+-- Too much plat available.
 -------------------------------------------------------------------------------------------------

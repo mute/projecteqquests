@@ -14,7 +14,9 @@ sub EVENT_ENTERZONE {
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
 
-    plugin::HandleEnterZone(); #Instance handling - cata_instance_utils.pl
+    if ($instanceversion == 20) {
+        $client->LockSharedTask('true');
+    }
 }
 
 sub EVENT_CONNECT {

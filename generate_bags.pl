@@ -49,7 +49,7 @@ sub duplicate_and_modify_items {
 
             $row{id} += 1000000 * $multiplier;  # Assuming 'ID' is the correct case
             $row{Name} = $original_row->{Name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Adjusted for case sensitivity
-            $row{bagwr} = max($row{BagWR}, $multiplier == 1 ? 80 : 100);  # Adjusted for case sensitivity
+            $row{bagwr} = max($row{bagwr}, $multiplier == 1 ? 80 : 100);  # Adjusted for case sensitivity
             $row{bagslots} += 5 * $multiplier;  # Adjusted for case sensitivity
 
             my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);

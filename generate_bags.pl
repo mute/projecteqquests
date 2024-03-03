@@ -17,6 +17,7 @@ sub LoadMysql {
     }
     close($fh);
 
+    my $json = new JSON();
     my $config = $json->decode($content);
 
     my $db   = $config->{"server"}{"database"}{"db"};

@@ -68,9 +68,14 @@ sub EVENT_TASK_COMPLETE {
     quest::debug("donecount " . $donecount);
     quest::debug("activity_id " . $activity_id);
     quest::debug("task_id " . $task_id);
-
     
     plugin::HandleTaskComplete($task_id);
+}
+
+sub EVENT_TASKACCEPTED {
+    quest::debug("task_id " . $task_id);
+
+    plugin::HandleTaskAccept($task_id);
 }
 
 sub EVENT_ZONE {

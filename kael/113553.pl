@@ -8,8 +8,9 @@ sub EVENT_SPAWN {
 }
 
 sub EVENT_PROXIMITY_SAY {
-  if($text=~/dain/i) {
+  if($text=~/dain/i && !$npc->GetBucket("Kael_Throne")) {
     quest::spawn2(113440,0,0,1126.4,-840.6,-118.3,125.2); #Doldigun, non-loot version
+    $npc->SetBucket("Kael_Throne", 1, "10m");
   }
 }
 

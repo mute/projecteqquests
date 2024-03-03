@@ -47,20 +47,24 @@ sub duplicate_and_modify_items {
     my $dbh = LoadMysql();
     die "Failed to connect to database." unless $dbh;
 
-    # Get all column names except 'id'
+   # Get all column names except 'id'
     my $sth = $dbh->prepare("SHOW COLUMNS FROM items");
     $sth->execute();
     my @columns;
     while (my $ref = $sth->fetchrow_hashref()) {
-        push @columns, $ref->{'Field'} unless $ref->{'Field'} eq 'id';
+        # Encapsulate column names in backticks to handle reserved words
+        push @columns, "`" . $ref->{'Field'} . "`" unless $ref->{'Field'} eq 'id';
     }
     my $columns_list = join ", ", @columns;  # Create a string of column names
 
-    # Now, perform the query and insert the modified rows
+    # Modify the query and insertion process accordingly
     $sth = $dbh->prepare("SELECT id, $columns_list FROM items WHERE bagslots >= 8 AND bagwr >= 50");
     $sth->execute();
-    
-    my $insert_sth = $dbh->prepare("INSERT INTO items (id, $columns_list) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"); # Adjust placeholders as per column count
+
+    # The number of placeholders should match the number of columns
+    # Since 'id' is excluded, add one placeholder for it at the beginning
+    my $placeholders = join ", ", ("?") x (scalar @columns + 1);  # +1 for 'id'
+    my $insert_sth = $dbh->prepare("INSERT INTO items ($columns_list) VALUES ($placeholders)");
 
     while (my $ref = $sth->fetchrow_hashref()) {
         foreach my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'

@@ -13,6 +13,8 @@ sub EVENT_ENTERZONE {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
+
+    plugin::HandleEnterZone(); #Instance handling - cata_instance_utils.pl
 }
 
 sub EVENT_CONNECT {

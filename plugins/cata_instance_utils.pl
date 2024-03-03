@@ -62,7 +62,7 @@ sub HandleSay
     if ($text =~ /wish to proceed_challenge/i) {        
         my $task = $task_id[0];
         my %dz = (
-            "instance"      => { "zone" => $zone_name, "version" => 10 },
+            "instance"      => { "zone" => $zone_name, "version" => 20 },
             "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
             "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
         );
@@ -93,10 +93,6 @@ sub HandleSay
     }
 
     if ($text =~ /proceed/i) {
-
-        my $expedition = $client->GetExpedition()->GetZoneVersion();
-        quest::debug(" Expedition $expedition");
-
         my $group = $client->GetGroup();
         if($group)
         {
@@ -117,6 +113,15 @@ sub HandleSay
 sub HandleTaskAccept
 {
     my $client = plugin::val('$client');
+}
+
+sub HandleEnterZone
+{
+    my $client = plugin::val('$client');
+
+    if ($instanceversion == 20) {
+        $client->LockSharedTask('true');
+    }
 }
 
 sub HasDynamicZoneAssigned {

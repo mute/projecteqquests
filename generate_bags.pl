@@ -1,40 +1,33 @@
 #!/usr/bin/perl
+use strict;
 use warnings;
 use DBI;
 use POSIX;
 use List::Util qw(max);
 
+# Ensure that 'strict' is used to enforce good programming practices.
+
 sub LoadMysql {
-        use DBI;
-        use DBD::mysql;
-        use JSON;
+    # Standard use declarations are needed only once at the beginning.
+    my $content;
+    open(my $fh, '<', "../eqemu_config.json") or die "Unable to open config file: $!";
+    {
+        local $/;
+        $content = <$fh>;
+    }
+    close($fh);
 
-        my $json = new JSON();
+    my $json = JSON->new();
+    my $config = $json->decode($content);
 
-        #::: Load Config
-        my $content;
-        open(my $fh, '<', "../eqemu_config.json") or die; {
-                local $/;
-                $content = <$fh>;
-        }
-        close($fh);
+    my $db   = $config->{"server"}{"database"}{"db"};
+    my $host = $config->{"server"}{"database"}{"host"};
+    my $user = $config->{"server"}{"database"}{"username"};
+    my $pass = $config->{"server"}{"database"}{"password"};
+    my $dsn = "dbi:mysql:$db:$host:3306";
 
-        #::: Decode
-        $config = $json->decode($content);
-
-        #::: Set MySQL Connection vars
-        $db   = $config->{"server"}{"database"}{"db"};
-        $host = $config->{"server"}{"database"}{"host"};
-        $user = $config->{"server"}{"database"}{"username"};
-        $pass = $config->{"server"}{"database"}{"password"};
-
-        #::: Map DSN
-        $dsn = "dbi:mysql:$db:$host:3306";
-
-        #::: Connect and return
-        $connect = DBI->connect($dsn, $user, $pass);
-
-        return $connect;
+    my $connect = DBI->connect($dsn, $user, $pass, {RaiseError => 1, AutoCommit => 1}) or die "Could not connect to database: $DBI::errstr";
+    return $connect;
 }
 
 sub ceil_to_nearest_5 {
@@ -46,41 +39,31 @@ sub duplicate_and_modify_items {
     my $dbh = LoadMysql();
     die "Failed to connect to database." unless $dbh;
 
-    my $sth = $dbh->prepare("SELECT * FROM items WHERE bagslots >= 8 AND bagwr >= 50");
+    my $sth = $dbh->prepare("SELECT * FROM items WHERE BagSlots >= 8 AND BagWR >= 50");  # Adjusted for case sensitivity
     $sth->execute() or die $DBI::errstr;
 
     while (my $original_row = $sth->fetchrow_hashref()) {
-        # Create two new versions: Latent and Awakened
         foreach my $multiplier (1, 2) {
-            # Make a deep copy of the original row
-            my %row = %$original_row;  # This ensures original data is not altered
+            my %row = %$original_row;  # Deep copy to ensure the original data is not altered.
 
-            # Adjust ID and name for each version
-            $row{id} += 1000000 * $multiplier;  # Ensure this matches your actual ID column name case
-            $row{name} = $original_row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Ensure this matches your actual name column case
+            $row{ID} += 1000000 * $multiplier;  # Assuming 'ID' is the correct case
+            $row{Name} = $original_row->{Name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Adjusted for case sensitivity
+            $row{BagWR} = max($row{BagWR}, $multiplier == 1 ? 80 : 100);  # Adjusted for case sensitivity
+            $row{BagSlots} += 5 * $multiplier;  # Adjusted for case sensitivity
 
-            # Other modifications
-            $row{bagwr} = max($row{bagwr}, $multiplier == 1 ? 80 : 100);  # Ensure this matches your actual bagwr column name case
-            $row{bagslots} += 5 * $multiplier;  # Ensure this matches your actual bagslots column name case
-
-            # Create an INSERT statement dynamically
             my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);
             my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);
-            my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
+            my $sql = "REPLACE INTO items ($columns) VALUES ($values)";  # Keeping REPLACE as per your requirement
 
-            print "Creating: $row{id} ($row{name})\n";  # Ensure these match your actual column name cases
-            # Insert the new row into the table
-            my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $DBI::errstr;
-            $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
-        }       
+            print "Creating: $row{ID} ($row{Name})\n";  # Adjusted for case sensitivity
+            my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: $DBI::errstr";
+            $isth->execute() or die "Failed to execute insert: $DBI::errstr";
+        }
     }
-
 
     $sth->finish();
     $dbh->disconnect();
 }
 
 
-
-# Call the function to start the process
 duplicate_and_modify_items();

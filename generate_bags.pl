@@ -50,33 +50,31 @@ sub duplicate_and_modify_items {
     $sth->execute() or die $DBI::errstr;
 
     while (my $original_row = $sth->fetchrow_hashref()) {
-        #if ($original_row->{slots} > 0 and $original_row->{classes} > 0) {
+        # Create two new versions: Latent and Awakened
+        foreach my $multiplier (1, 2) {
+            # Make a deep copy of the original row
+            my %row = %$original_row;  # This ensures original data is not altered
 
-            # Create two new versions: Latent and Awakened
-            foreach my $multiplier (1, 2) {
-                # Make a deep copy of the original row
-                my %row = %$original_row;  # This ensures original data is not altered
+            # Adjust ID and name for each version
+            $row{id} += 1000000 * $multiplier;  # Ensure this matches your actual ID column name case
+            $row{name} = $original_row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Ensure this matches your actual name column case
 
-                # Adjust ID and name for each version
-                $row{id} += 1000000 * $multiplier;
-                $row{name} = $original_row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
+            # Other modifications
+            $row{bagwr} = max($row{bagwr}, $multiplier == 1 ? 80 : 100);  # Ensure this matches your actual bagwr column name case
+            $row{bagslots} += 5 * $multiplier;  # Ensure this matches your actual bagslots column name case
 
-                # Other modifications
-                $row{bagwr} = max($row{bagwr}, $multiplier == 1 ? 80 : 100);
-                $row{bagslots} += 5 * $multiplier;
+            # Create an INSERT statement dynamically
+            my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);
+            my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);
+            my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
 
-                # Create an INSERT statement dynamically
-                my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);
-                my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);
-                my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
-
-                print "Creating: $row{id} ($row{name})\n";
-                # Insert the new row into the table
-                my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $DBI::errstr;
-                $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
-            }
-       # }
+            print "Creating: $row{id} ($row{name})\n";  # Ensure these match your actual column name cases
+            # Insert the new row into the table
+            my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $DBI::errstr;
+            $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
+        }       
     }
+
 
     $sth->finish();
     $dbh->disconnect();

@@ -40,7 +40,7 @@ sub duplicate_and_modify_items {
     my $dbh = LoadMysql();
     die "Failed to connect to database." unless $dbh;
 
-    my $sth = $dbh->prepare("SELECT * FROM items WHERE BagSlots >= 8 AND BagWR >= 50");  # Adjusted for case sensitivity
+    my $sth = $dbh->prepare("SELECT * FROM items WHERE bagslots >= 8 AND bagwr >= 50 AND id <= 999999");  # Adjusted for case sensitivity
     $sth->execute() or die $DBI::errstr;
 
     while (my $original_row = $sth->fetchrow_hashref()) {

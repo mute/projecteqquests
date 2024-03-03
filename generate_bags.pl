@@ -49,28 +49,42 @@ sub duplicate_and_modify_items {
     my $sth = $dbh->prepare("SELECT * FROM items WHERE bagslots >= 8 AND bagwr >= 50");
     $sth->execute() or die $DBI::errstr;
 
+
+
     while (my $row = $sth->fetchrow_hashref()) {
-        for my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'
-            # Modify specific fields
-            $row->{id} += 1000000 * $multiplier;
-            $row->{name} = $row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Ensure 'name' matches your column's case
-            $row->{bagslots} += 5 * $multiplier;
-            $row->{bagwr} = max($row->{bagwr}, ($multiplier == 1 ? 80 : 100));
+        if ($row->{slots} > 0 and $row->{classes} > 0) {
 
-            # Ensure all keys are lowercase to prevent duplicates due to case sensitivity
-            my %lower_case_row = map { lc($_) => $row->{$_} } keys %$row;
+            # No need to check for all_zero as we are not using @keys fields for modification
 
-            # Create an INSERT statement dynamically
-            my $columns = join(",", map { $dbh->quote_identifier($_) } keys %lower_case_row);
-            my $values  = join(",", map { $dbh->quote($lower_case_row{$_}) } keys %lower_case_row);
-            my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
+            # Iterating twice for Latent and Awakened versions
+            for my $multiplier (1, 2) {
+                # Adjust ID for each tier
+                $row->{id} = $row->{id} + (1000000 * $tier);
 
-            print "Creating: $lower_case_row{id} ($lower_case_row{name})\n";
-            # Insert the new row into the table
-            my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $dbh->errstr;
-            $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
+                # Modify the name based on multiplier
+                $row->{name} = $row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
+
+                # Other modifications remain the same...
+                $row->{bagwr} = max($row->{bagwr}, $multiplier == 1 ? 80 : 100);
+                $row->{bagslots} = $row->{bagslots} + 5 * $multiplier;
+
+                # Create an INSERT statement dynamically
+                my $columns = join(",", map { $dbh->quote_identifier($_) } keys %$row);
+                my $values  = join(",", map { $dbh->quote($row->{$_}) } keys %$row);
+                my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
+
+                print "Creating: $row->{id} ($row->{name})\n";
+                # Insert the new row into the table
+                my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $dbh->errstr;
+                $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
+            }
+
+            # Resetting the ID and Name for the next tier or item
+            $row->{id} -= (2000000 * $tier);  # Assuming original ID was incremented twice
+            $row->{name} =~ s/ \(Latent\)| \(Awakened\)//;  # Removing modifiers for the next iteration
         }
     }
+
 
 
     $sth->finish();

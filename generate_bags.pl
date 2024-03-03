@@ -50,7 +50,7 @@ sub duplicate_and_modify_items {
     $sth->execute() or die $DBI::errstr;
 
     while (my $original_row = $sth->fetchrow_hashref()) {
-        if ($original_row->{slots} > 0 and $original_row->{classes} > 0) {
+        #if ($original_row->{slots} > 0 and $original_row->{classes} > 0) {
 
             # Create two new versions: Latent and Awakened
             foreach my $multiplier (1, 2) {
@@ -75,7 +75,7 @@ sub duplicate_and_modify_items {
                 my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $DBI::errstr;
                 $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
             }
-        }
+       # }
     }
 
     $sth->finish();

@@ -59,7 +59,7 @@ sub duplicate_and_modify_items {
             # Iterating twice for Latent and Awakened versions
             for my $multiplier (1, 2) {
                 # Adjust ID for each tier
-                $row->{id} = $row->{id} + (1000000 * $tier);
+                $row->{id} = $row->{id} + (1000000 * $multiplier);
 
                 # Modify the name based on multiplier
                 $row->{name} = $row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
@@ -78,14 +78,8 @@ sub duplicate_and_modify_items {
                 my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $dbh->errstr;
                 $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
             }
-
-            # Resetting the ID and Name for the next tier or item
-            $row->{id} -= (2000000 * $tier);  # Assuming original ID was incremented twice
-            $row->{name} =~ s/ \(Latent\)| \(Awakened\)//;  # Removing modifiers for the next iteration
         }
     }
-
-
 
     $sth->finish();
     $dbh->disconnect();

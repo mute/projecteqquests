@@ -18,7 +18,7 @@ my $zone_name       = 'kedge';
 my $prog_stage      = 'RoK';
 my $prog_substage   = 'Phinigel Autropos';
 my $reward          = 5;
-my @task_id         = (5,6);
+my @task_id         = (7, 8);
 
 sub EVENT_SAY {
     plugin::HandleSay($client, $npc, $zone_name, $reward, $prog_stage, $prog_substage, $flavor_text, @task_id);

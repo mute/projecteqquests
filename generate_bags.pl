@@ -56,7 +56,7 @@ sub duplicate_and_modify_items {
             my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);
             my $sql = "REPLACE INTO items ($columns) VALUES ($values)";  # Keeping REPLACE as per your requirement
 
-            print "Creating: $row{ID} ($row{Name})\n";  # Adjusted for case sensitivity
+            print "Creating: $row{id} ($row{Name})\n";  # Adjusted for case sensitivity
             my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: $DBI::errstr";
             $isth->execute() or die "Failed to execute insert: $DBI::errstr";
         }

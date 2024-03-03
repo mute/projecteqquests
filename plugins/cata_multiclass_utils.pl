@@ -105,7 +105,9 @@ sub AddClass {
         GrantClassesAA();
 
         if (CheckUniqueClass($client->GetClassesBitmask())) {
-            plugin::WorldAnnounce("$name has become the FIRST $full_class_name.");
+            my $class_bits          = $client->GetClassesBitmask();
+            quest::set_data("class-$class_bits", $class_bits);
+            plugin::WorldAnnounce("$name has become the FIRST $full_class_name.");            
         } else {
             plugin::WorldAnnounce("$name has become a $full_class_name.");
         }        
@@ -119,33 +121,18 @@ sub AddClass {
 }
 
 sub CheckUniqueClass {
-    use DBI;
-    use DBD::mysql;
-    use JSON; 
+    my $client              = plugin::val('$client');
+    my $class_bits          = $client->GetClassesBitmask();
+    my $class_bit_bucket    = quest::get_data("class-$class_bits");    
 
-    my $gestalt_bits = shift;  # Get the function argument
-
-    # Connect to the MySQL database
-    my $dbh = plugin::LoadMysql();
-
-    # Prepare SQL query
-    my $sql = "SELECT COUNT(*) FROM peq.data_buckets WHERE `key` = 'GestaltClasses' AND `value` = ?";
-    my $sth = $dbh->prepare($sql);
-
-    # Execute SQL query with $gestalt_bits as the parameter
-    $sth->execute($gestalt_bits);
-    my ($count) = $sth->fetchrow_array();  # Fetch the count
-
-    $sth->finish();  # Finish the SQL statement handle
-    $dbh->disconnect();  # Disconnect from the database
-
-    # Check if there is more than one data_bucket with the value equal to $gestalt_bits
-    if ($count > 1) {
-        return 0;  # Return false if there are duplicate classes
+    if ($class_bit_bucket) {
+        return 0;
     } else {
-        return 1;  # Return true if there is no duplicate
+        return 1;
     }
 }
+
+
 
 sub GetPrettyClassString {
     my $client = shift || plugin::val('$client');  # Ensure $client is available

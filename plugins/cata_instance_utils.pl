@@ -85,15 +85,16 @@ sub HandleSay
         $client->AssignTask($task);    
         $client->CreateTaskDynamicZone($task, \%dz); 
 
+        my $expedition = $client->GetExpedition()->GetZoneVersion();
+        quest::debug(" Expedition $expedition");
+
         plugin::NPCTell("As you wish. When you and your companions are prepared, come speak to me so that you may [$proceed].");
         return;
     }
 
     if ($text =~ /proceed/i) {
 
-        my $expedition = $client->GetExpedition()->GetZoneVersion();
 
-        quest::debug("$expedition");
 
         my $group = $client->GetGroup();
         if($group)

@@ -42,50 +42,34 @@ sub ceil_to_nearest_5 {
     return ceil($value / 5) * 5;
 }
 
-# Main subroutine to duplicate and modify items
 sub duplicate_and_modify_items {
     my $dbh = LoadMysql();
     die "Failed to connect to database." unless $dbh;
 
-   # Get all column names except 'id'
-    my $sth = $dbh->prepare("SHOW COLUMNS FROM items");
-    $sth->execute();
-    my @columns;
-    while (my $ref = $sth->fetchrow_hashref()) {
-        # Encapsulate column names in backticks to handle reserved words
-        push @columns, "`" . $ref->{'Field'} . "`" unless $ref->{'Field'} eq 'id';
+    my $sth = $dbh->prepare("SELECT * FROM items WHERE bagslots >= 8 AND bagwr >= 50");
+    $sth->execute() or die $DBI::errstr;
+
+    while (my $row = $sth->fetchrow_hashref()) {
+        for my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'
+            # Modify specific fields
+            $row->{id} += 1000000 * $multiplier;
+            $row->{name} .= ($multiplier == 1 ? " (Latent)" : " (Awakened)");
+            $row->{bagslots} += 5 * $multiplier;  # Adjust as needed
+            $row->{bagwr} = max($row->{bagwr}, $multiplier == 1 ? 80 : 100);  # Ensure minimum bagwr
+
+            # Create an INSERT statement dynamically
+            my $columns = join(",", map { $dbh->quote_identifier($_) } keys %$row);
+            my $values  = join(",", map { $dbh->quote($row->{$_}) } keys %$row);
+            my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
+
+            print "Creating: $row->{id} ($row->{name})\n";  # Note: Perl hash keys are case-sensitive, ensure correct casing
+            # Insert the new row into the table
+            my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $dbh->errstr;
+            $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
+        }
     }
-    my $columns_list = join ", ", @columns;  # Create a string of column names
-
-    # Modify the query and insertion process accordingly
-    $sth = $dbh->prepare("SELECT id, $columns_list FROM items WHERE bagslots >= 8 AND bagwr >= 50");
-    $sth->execute();
-
-# Prepare the insert statement
-my $placeholders = join ", ", ("?") x (scalar @columns + 1);  # +1 for 'id'
-my $insert_sql = "REPLACE INTO items ($columns_list) VALUES ($placeholders)";
-print "SQL Query: $insert_sql\n";  # Debugging: print SQL query
-my $insert_sth = $dbh->prepare($insert_sql);
-
-while (my $ref = $sth->fetchrow_hashref()) {
-    foreach my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'
-        my %new_row = %$ref;
-        $new_row{'id'} = $ref->{'id'} + 1000000 * $multiplier;
-        $new_row{'name'} = $ref->{'name'} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
-        $new_row{'bagwr'} = max($ref->{'bagwr'}, $multiplier == 1 ? 80 : 100);
-        $new_row{'bagslots'} = $ref->{'bagslots'} + 5 * $multiplier;
-
-        # Debugging: Print the values being inserted
-        print "Inserting values for multiplier $multiplier: ", join(", ", $new_row{'id'}, map { $new_row{$_} // 'undef' } @columns), "\n";
-
-        # Execute with new values
-        $insert_sth->execute($new_row{'id'}, map { $new_row{$_} // 'undef' } @columns) or print "Failed to execute: " . $DBI::errstr . "\n";
-    }
-}
-
 
     $sth->finish();
-    $insert_sth->finish();
     $dbh->disconnect();
 }
 

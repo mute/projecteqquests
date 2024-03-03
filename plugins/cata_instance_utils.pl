@@ -119,9 +119,7 @@ sub HandleEnterZone
 {
     my $client = plugin::val('$client');
 
-    if ($instanceversion == 20) {
-        $client->LockSharedTask('true');
-    }
+
 }
 
 sub HasDynamicZoneAssigned {

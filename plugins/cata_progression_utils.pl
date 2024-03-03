@@ -233,20 +233,24 @@ sub set_subflag {
     # Deserialize the current account progress into a hash
     my %account_progress = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
 
-    # Update the flag
-    $account_progress{$objective} = $value;
+    # Check if the objective value has changed
+    if (!exists $account_progress{$objective} || $account_progress{$objective} != $value) {
+        # Update the flag since the value has changed
+        $account_progress{$objective} = $value;
 
-    # Serialize and save the updated account progress
-    quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
+        # Serialize and save the updated account progress
+        quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
 
-    plugin::YellowText("You have gained a progression flag!");
-    plugin::BlueText("Your memories become more clear, you see the way forward drawing closer.");
+        # Send messages only if there was a change
+        plugin::YellowText("You have gained a progression flag!");
+        plugin::BlueText("Your memories become more clear, you see the way forward drawing closer.");
 
-    # Check if the stage is now complete
-    if (is_stage_complete($client, $stage)) {       
-        plugin::YellowText("You have completed a progression stage!");
-        plugin::BlueText("Your memories gain sudden, sharp focus. You see the path forward.");
-        UpdateCharMaxLevel($client);
+        # Check if the stage is now complete
+        if (is_stage_complete($client, $stage)) {       
+            plugin::YellowText("You have completed a progression stage!");
+            plugin::BlueText("Your memories gain sudden, sharp focus. You see the path forward.");
+            UpdateCharMaxLevel($client);
+        }
     }
 
     return 1;

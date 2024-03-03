@@ -68,7 +68,7 @@ sub HandleSay
         );
 
         $client->AssignTask($task);    
-        $client->CreateTaskDynamicZone($task, \%dz); 
+        $client->CreateTaskDynamicZone($task, \%dz);    
 
         plugin::NPCTell("As you wish. When you and your companions are prepared, come speak to me so that you may [$proceed].");
         return;
@@ -84,9 +84,6 @@ sub HandleSay
 
         $client->AssignTask($task);    
         $client->CreateTaskDynamicZone($task, \%dz); 
-
-        my $expedition = $client->GetExpedition()->GetZoneVersion();
-        quest::debug(" Expedition $expedition");
 
         plugin::NPCTell("As you wish. When you and your companions are prepared, come speak to me so that you may [$proceed].");
         return;
@@ -113,13 +110,6 @@ sub HandleSay
 sub HandleTaskAccept
 {
     my $client = plugin::val('$client');
-}
-
-sub HandleEnterZone
-{
-    my $client = plugin::val('$client');
-
-
 }
 
 sub HasDynamicZoneAssigned {

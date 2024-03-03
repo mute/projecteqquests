@@ -55,10 +55,6 @@ sub EVENT_CLICKDOOR {
     }
 }
 
-sub EVENT_TASKACCEPTED {
-    plugin::HandleTaskAccept($task_id, $client);
-}
-
 sub EVENT_DISCOVER_ITEM {
     my $name = $client->GetCleanName();
     
@@ -66,6 +62,15 @@ sub EVENT_DISCOVER_ITEM {
     if ($itemid > 999999) {        
         plugin::WorldAnnounceItem("$name has discovered: {item}.",$itemid);  
     }  
+}
+
+sub EVENT_TASK_COMPLETE {
+    quest::debug("donecount " . $donecount);
+    quest::debug("activity_id " . $activity_id);
+    quest::debug("task_id " . $task_id);
+
+    
+    plugin::HandleTaskComplete($task_id);
 }
 
 sub EVENT_ZONE {

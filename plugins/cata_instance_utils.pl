@@ -114,8 +114,14 @@ sub HandleTaskAccept
 
 sub HandleTaskComplete
 {
-    my $client  = plugin::val('$client');
-    my $task_id = shift;
+    my $client      = plugin::val('$client');
+    my $task_id     = shift;
+    my $task_name   = quest::gettaskname($task_id);
+    my $challenge   = IsChallengeTask($task_id);
+
+    if ($challenge) {
+        plugin::set_subflag($client, plugin::get_subflag_stage($challenge), $challenge);
+    } 
 }
 
 sub HasDynamicZoneAssigned {
@@ -134,4 +140,33 @@ sub HasDynamicZoneAssigned {
     $dbh->disconnect();
 
     return $count > 0 ? 1 : 0;
+}
+
+# Returns 1 if the task_id is an 'opportunity' task
+sub IsOpportunityTask {
+    my $task_id = shift;    
+    
+    my @opportunity_tasks = (
+        4, # Nagafen's Lair
+    );    
+   
+    if (grep { $_ == $task_id } @opportunity_tasks) {
+        return 1;  
+    } else {
+        return 0;  
+    }
+}
+
+# Returns the reward value of a challenge task-Id
+sub IsChallengeTask {
+    my $task_id = shift;
+
+    my %challenge_tasks = (
+        3 => 'Lord Nagafen',
+    );
+
+    if (exists $challenge_tasks{$task_id}) {
+        return $challenge_tasks{$task_id};  
+    }
+    return 0;
 }

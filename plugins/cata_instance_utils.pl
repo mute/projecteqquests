@@ -107,10 +107,28 @@ sub HandleSay
     }
 }
 
-sub HandleTaskAccept
-{
-    my $client = plugin::val('$client');
-    quest::debug($client->GetCleanName() . " has joined the task.");
+sub HandleTaskAccept {
+    my $client     = plugin::val('$client');
+    my $task_id    = shift;
+    my $task_name  = quest::gettaskname($task_id);
+    my $challenge  = IsChallengeTask($task_id);
+
+    if ($challenge) {
+        my $ineligible  = 0;
+        my $dbh         = plugin::LoadMysql(); 
+
+        my $query = "SELECT min_level, max_level FROM tasks WHERE id = ?";
+        my $sth = $dbh->prepare($query);
+        $sth->execute($task_id);
+
+        my ($min_level, $max_level) = $sth->fetchrow_array();
+        $sth->finish();
+        $dbh->disconnect();
+
+        if ($client->GetLevel() > $max_level || $client->GetLevel() < $min_level) {
+            $client->EndSharedTask(1);
+        }        
+    }        
 }
 
 sub HandleTaskComplete

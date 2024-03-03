@@ -110,6 +110,7 @@ sub HandleSay
 sub HandleTaskAccept
 {
     my $client = plugin::val('$client');
+    quest::debug($client->GetCleanName() . " has joined the task.");
 }
 
 sub HandleTaskComplete

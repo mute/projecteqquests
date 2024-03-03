@@ -6,7 +6,7 @@ sub EVENT_SAY {
    elsif ($text=~/shard/i) {
       quest::say("Searching for that blasted emerald shard, are you? That thing has done nothing but bring me bad luck!! I would gladly give it to you if you would do a [small favor] for me.");
    }
-   elsif ($text=~/small favor/i) {
+   elsif ($text=~/small favor/i && !$npc->GetBucket("Slaythe")) {
       if ($faction <= 4) {
          quest::say("I have been tracked here by a bounty hunter named Slaythe. I have heard reports of his presence beyond the Great Wall. Please seek him out and bring me some body part of his as proof of his passing. Do this and the emerald shard is yours.");
          
@@ -14,6 +14,7 @@ sub EVENT_SAY {
          
          if (!$mob) {
             quest::spawn2(33146, 0, 0, 893.00, 664.00, -34.73, 0); # Spawn Slaythe
+            $npc->SetBucket("Slaythe", 1, "10m");
          }
       }
       elsif ($faction <= 5) {

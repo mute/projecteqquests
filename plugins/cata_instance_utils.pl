@@ -94,7 +94,8 @@ sub HandleSay
 
     if ($text =~ /proceed/i) {
 
-
+        my $expedition = $client->GetExpedition()->GetZoneVersion();
+        quest::debug(" Expedition $expedition");
 
         my $group = $client->GetGroup();
         if($group)

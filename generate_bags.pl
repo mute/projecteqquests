@@ -46,10 +46,10 @@ sub duplicate_and_modify_items {
         foreach my $multiplier (1, 2) {
             my %row = %$original_row;  # Deep copy to ensure the original data is not altered.
 
-            $row{ID} += 1000000 * $multiplier;  # Assuming 'ID' is the correct case
+            $row{id} += 1000000 * $multiplier;  # Assuming 'ID' is the correct case
             $row{Name} = $original_row->{Name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");  # Adjusted for case sensitivity
-            $row{BagWR} = max($row{BagWR}, $multiplier == 1 ? 80 : 100);  # Adjusted for case sensitivity
-            $row{BagSlots} += 5 * $multiplier;  # Adjusted for case sensitivity
+            $row{bagwr} = max($row{BagWR}, $multiplier == 1 ? 80 : 100);  # Adjusted for case sensitivity
+            $row{bagslots} += 5 * $multiplier;  # Adjusted for case sensitivity
 
             my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);
             my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);

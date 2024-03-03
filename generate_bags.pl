@@ -61,22 +61,28 @@ sub duplicate_and_modify_items {
     $sth = $dbh->prepare("SELECT id, $columns_list FROM items WHERE bagslots >= 8 AND bagwr >= 50");
     $sth->execute();
 
-    # The number of placeholders should match the number of columns
-    # Since 'id' is excluded, add one placeholder for it at the beginning
-    my $placeholders = join ", ", ("?") x (scalar @columns + 1);  # +1 for 'id'
-    my $insert_sth = $dbh->prepare("INSERT INTO items ($columns_list) VALUES ($placeholders)");
+# Prepare the insert statement
+my $placeholders = join ", ", ("?") x (scalar @columns + 1);  # +1 for 'id'
+my $insert_sql = "REPLACE INTO items ($columns_list) VALUES ($placeholders)";
+print "SQL Query: $insert_sql\n";  # Debugging: print SQL query
+my $insert_sth = $dbh->prepare($insert_sql);
 
-    while (my $ref = $sth->fetchrow_hashref()) {
-        foreach my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'
-            my %new_row = %$ref;
-            $new_row{'id'} = $ref->{'id'} + 1000000 * $multiplier;
-            $new_row{'name'} = $ref->{'name'} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
-            $new_row{'bagwr'} = max($ref->{'bagwr'}, $multiplier == 1 ? 80 : 100);
-            $new_row{'bagslots'} = $ref->{'bagslots'} + 5 * $multiplier;
+while (my $ref = $sth->fetchrow_hashref()) {
+    foreach my $multiplier (1, 2) {  # For 'Latent' and 'Awakened'
+        my %new_row = %$ref;
+        $new_row{'id'} = $ref->{'id'} + 1000000 * $multiplier;
+        $new_row{'name'} = $ref->{'name'} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
+        $new_row{'bagwr'} = max($ref->{'bagwr'}, $multiplier == 1 ? 80 : 100);
+        $new_row{'bagslots'} = $ref->{'bagslots'} + 5 * $multiplier;
 
-            $insert_sth->execute($new_row{'id'}, map { $new_row{$_} } @columns);  # Execute with new values
-        }
+        # Debugging: Print the values being inserted
+        print "Inserting values for multiplier $multiplier: ", join(", ", $new_row{'id'}, map { $new_row{$_} // 'undef' } @columns), "\n";
+
+        # Execute with new values
+        $insert_sth->execute($new_row{'id'}, map { $new_row{$_} // 'undef' } @columns) or print "Failed to execute: " . $DBI::errstr . "\n";
     }
+}
+
 
     $sth->finish();
     $insert_sth->finish();

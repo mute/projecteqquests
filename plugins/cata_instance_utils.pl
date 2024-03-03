@@ -1,4 +1,4 @@
-my $zone_duration   = 604800;
+my $zone_duration   = 86400;
 
 # Design:
 # This NPC will offer two instances for this zone; <Zone>: Challenge and <Zone>: Opportunity (names tbd)
@@ -55,7 +55,7 @@ sub HandleSay
             plugin::NPCTell("You have not yet completed the [$challenges] in this dungeon. Complete them, and then we may speak of opportunities.");
         } else {
             plugin::NPCTell("$flavor_text Seek the opportunities before you, and be rewarded. Do you [$wish_to_proceed_opportunity]?");
-            plugin::YellowText("The instance will remain open for seven days. You may leave and re-enter the instance. You may add additional players, up to 6 total at a given time, at any time.");
+            plugin::YellowText("The instance will remain open for one day. You may leave and re-enter the instance. You may add additional players, up to 6 total at a given time, at any time.");
         } 
     }
 
@@ -75,7 +75,17 @@ sub HandleSay
     }
 
     if ($text =~ /wish to proceed_opportunity/i) {
-        $client->AssignTask($task_id[1]);
+        my $task = $task_id[1];
+        my %dz = (
+            "instance"      => { "zone" => $zone_name, "version" => 0 },
+            "compass"       => { "zone" => plugin::val('zonesn'), "x" => $npc->GetX(), "y" => $npc->GetY(), "z" => $npc->GetZ() },
+            "safereturn"    => { "zone" => plugin::val('zonesn'), "x" => $client->GetX(), "y" => $client->GetY(), "z" => $client->GetZ(), "h" => $client->GetHeading() }
+        );
+
+        $client->AssignTask($task);    
+        $client->CreateTaskDynamicZone($task, \%dz); 
+
+        plugin::NPCTell("As you wish. When you and your companions are prepared, come speak to me so that you may [$proceed].");
         return;
     }
 

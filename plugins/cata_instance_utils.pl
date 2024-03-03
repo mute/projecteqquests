@@ -131,10 +131,11 @@ sub HandleTaskAccept {
 
             $group = $client->GetGroup();
             if($group) {
-            for ($count = 0; $count < $group->GroupCount(); $count++) {
-                $player = $group->GetMember($count);
-                if($player) {
-                    plugin::RedText("Your Challenge has ended due to an ineligible player joining the Shared Task.");
+                for ($count = 0; $count < $group->GroupCount(); $count++) {
+                    $player = $group->GetMember($count);
+                    if($player) {
+                        plugin::RedText("Your Challenge has ended due to an ineligible player joining the Shared Task.");
+                    }
                 }
             }
         }        

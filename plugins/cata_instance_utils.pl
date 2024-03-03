@@ -127,6 +127,16 @@ sub HandleTaskAccept {
 
         if ($client->GetLevel() > $max_level || $client->GetLevel() < $min_level) {
             $client->EndSharedTask(1);
+            plugin::RedText("You are not eligible to participate in this Challenge.");           
+
+            $group = $client->GetGroup();
+            if($group) {
+            for ($count = 0; $count < $group->GroupCount(); $count++) {
+                $player = $group->GetMember($count);
+                if($player) {
+                    plugin::RedText("Your Challenge has ended due to an ineligible player joining the Shared Task.");
+                }
+            }
         }        
     }        
 }

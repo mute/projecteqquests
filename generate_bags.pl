@@ -49,33 +49,30 @@ sub duplicate_and_modify_items {
     my $sth = $dbh->prepare("SELECT * FROM items WHERE bagslots >= 8 AND bagwr >= 50");
     $sth->execute() or die $DBI::errstr;
 
-    while (my $row = $sth->fetchrow_hashref()) {
-        if ($row->{slots} > 0 and $row->{classes} > 0) {
+    while (my $original_row = $sth->fetchrow_hashref()) {
+        if ($original_row->{slots} > 0 and $original_row->{classes} > 0) {
 
-            # Preserve the original name before modification
-            my $original_name = $row->{name};
+            # Create two new versions: Latent and Awakened
+            foreach my $multiplier (1, 2) {
+                # Make a deep copy of the original row
+                my %row = %$original_row;  # This ensures original data is not altered
 
-            # Iterating twice for Latent and Awakened versions
-            for my $multiplier (1, 2) {
-                # Adjust ID for each tier
-                my $new_id = $row->{id} + (1000000 * $multiplier);  # Create a new variable for modified id
-
-                # Modify the name based on multiplier, using the original name
-                my $new_name = $original_name . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
+                # Adjust ID and name for each version
+                $row{id} += 1000000 * $multiplier;
+                $row{name} = $original_row->{name} . ($multiplier == 1 ? " (Latent)" : " (Awakened)");
 
                 # Other modifications
-                my $new_bagwr = max($row->{bagwr}, $multiplier == 1 ? 80 : 100);
-                my $new_bagslots = $row->{bagslots} + 5 * $multiplier;
+                $row{bagwr} = max($row{bagwr}, $multiplier == 1 ? 80 : 100);
+                $row{bagslots} += 5 * $multiplier;
 
                 # Create an INSERT statement dynamically
-                my $columns = join(",", map { $dbh->quote_identifier($_) } keys %$row);
-                # Ensure to use new variables for ID and Name while keeping others from $row
-                my $values = join(",", map { $_ eq 'id' ? $dbh->quote($new_id) : ($_ eq 'name' ? $dbh->quote($new_name) : $dbh->quote($row->{$_})) } keys %$row);
+                my $columns = join(",", map { $dbh->quote_identifier($_) } keys %row);
+                my $values  = join(",", map { $dbh->quote($row{$_}) } keys %row);
                 my $sql = "REPLACE INTO items ($columns) VALUES ($values)";
 
-                print "Creating: $new_id ($new_name)\n";
+                print "Creating: $row{id} ($row{name})\n";
                 # Insert the new row into the table
-                my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $dbh->errstr;
+                my $isth = $dbh->prepare($sql) or die "Failed to prepare insert: " . $DBI::errstr;
                 $isth->execute() or die "Failed to execute insert: " . $DBI::errstr;
             }
         }
@@ -84,6 +81,7 @@ sub duplicate_and_modify_items {
     $sth->finish();
     $dbh->disconnect();
 }
+
 
 
 # Call the function to start the process

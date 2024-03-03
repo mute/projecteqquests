@@ -112,6 +112,12 @@ sub HandleTaskAccept
     my $client = plugin::val('$client');
 }
 
+sub HandleTaskComplete
+{
+    my $client  = plugin::val('$client');
+    my $task_id = shift;
+}
+
 sub HasDynamicZoneAssigned {
     my $client  = shift;
     my $zone    = shift;

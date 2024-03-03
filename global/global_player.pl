@@ -13,10 +13,6 @@ sub EVENT_ENTERZONE {
 		$client->Message(4, "Your vision blurs. You lose conciousness and wake up in a familiar place.");
 		$client->MovePC(151, 185, -835, 4, 390); # Bazaar Safe Location.
 	}
-
-    if ($instanceversion == 20) {
-        $client->LockSharedTask('true');
-    }
 }
 
 sub EVENT_CONNECT {

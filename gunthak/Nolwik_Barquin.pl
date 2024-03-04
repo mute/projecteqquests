@@ -5,7 +5,7 @@
 
 sub EVENT_SAY { 
 	if ($text=~/Hail/i){
-		if ($class eq "Druid"){
+		if (plugin::HasClass("Druid")){
 			quest::say("The salty air grows stale in this place. As if the essence of Tunare and Karana have been shut out by the dark tide of Broken Skull. The wind of Karana grows wild and restless, and the water of the mother turns black as it touches the tainted stone of Innoruuk. Were it not for my [promise] to Xanuusus I would not be here.");
 		}
 		else{

@@ -43,10 +43,10 @@ sub EVENT_ITEM {
       quest::faction(1016,1); #dranik loyalists
       quest::faction(1013,-3); #overlord mata muram
       quest::exp(100000);
-      if ($class eq "Warrior" || $class eq "Paladin" || $class eq "Shadowknight" || $class eq "Monk" || $class eq "Bard" || $class eq "Rogue" || $class eq "Ranger" || $class eq "Beastlord" || $class eq "Berserker") {
+      if (plugin::HasClass("Warrior") || plugin::HasClass("Paladin") || plugin::HasClass("Shadowknight") || plugin::HasClass("Monk") || plugin::HasClass("Bard") || plugin::HasClass("Rogue") || plugin::HasClass("Ranger") || plugin::HasClass("Beastlord") || plugin::HasClass("Berserker")) {
         quest::summonitem(71145); #Gilded Earring of Travels
       }
-      if ($class eq "Cleric" || $class eq "Druid" || $class eq "Shaman" || $class eq "Magician" || $class eq "Enchanter" || $class eq "Wizard" || $class eq "Necromancer") {
+      if (plugin::HasClass("Cleric") || plugin::HasClass("Druid") || plugin::HasClass("Shaman") || plugin::HasClass("Magician") || plugin::HasClass("Enchanter") || plugin::HasClass("Wizard") || plugin::HasClass("Necromancer")) {
         quest::summonitem(71146); #Beaded Earring of Travels
       }
     }
@@ -55,10 +55,10 @@ sub EVENT_ITEM {
       quest::faction(1016,1); #dranik loyalists
       quest::faction(1013,-3); #overlord mata muram
       quest::exp(100000);
-      if($class eq "Warrior" || $class eq "Paladin" || $class eq "Shadowknight" || $class eq "Monk" || $class eq "Bard" || $class eq "Rogue" || $class eq "Ranger" || $class eq "Beastlord" || $class eq "Berserker") {
+      if(plugin::HasClass("Warrior") || plugin::HasClass("Paladin") || plugin::HasClass("Shadowknight") || plugin::HasClass("Monk") || plugin::HasClass("Bard") || plugin::HasClass("Rogue") || plugin::HasClass("Ranger") || plugin::HasClass("Beastlord") || plugin::HasClass("Berserker")) {
         quest::summonitem(71143); #Dragorn Engraved Platinum Ring
       }
-      if($class eq "Cleric" || $class eq "Druid" || $class eq "Shaman" || $class eq "Magician" || $class eq "Enchanter" || $class eq "Wizard" || $class eq "Necromancer") {
+      if(plugin::HasClass("Cleric") || plugin::HasClass("Druid") || plugin::HasClass("Shaman") || plugin::HasClass("Magician") || plugin::HasClass("Enchanter") || plugin::HasClass("Wizard") || plugin::HasClass("Necromancer")) {
         quest::summonitem(71144); #Dragorn Runed Platinum Ring
       }
     }

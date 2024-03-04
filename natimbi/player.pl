@@ -17,7 +17,7 @@ sub EVENT_ENTERZONE {
 }
 
 sub EVENT_LOOT {
-  if ($class eq "Druid" && $looted_id == 62889) {  #Energized Noc Blood
+  if (plugin::HasClass("Druid") && $looted_id == 62889) {  #Energized Noc Blood
 	if (defined($qglobals{druid_epic}) && ($qglobals{druid_epic} > 5)) {
 	  if (!defined($qglobals{druid_chest_natimbi})) {
 			quest::setglobal("druid_chest_natimbi", "1", 5, "F"); 

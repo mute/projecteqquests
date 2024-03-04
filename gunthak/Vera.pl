@@ -5,7 +5,7 @@
 
 sub EVENT_SAY { 
 	if ($text=~/Hail/i){
-		if ($class eq "Magician") {
+		if (plugin::HasClass("Magician")) {
   		quest::say("Why hello there. It's quite a sunny day out here upon the rocks of Broken Skull, wouldn't you agree? It's nowhere near as hot as the temple of Solusek Ro, though. The breeze here is quite refreshing. To be honest, though, I already miss home and wish to return back as soon as I can. These pirates are quite dirty and smelly, but I must complete my [mission] before I return home.");
   	}
   	else {

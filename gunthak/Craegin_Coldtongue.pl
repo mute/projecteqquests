@@ -4,7 +4,7 @@
 # items: 59032, 59033, 59010, 59034, 59009
 
 sub EVENT_SAY {
-  if ($class eq "Beastlord") {
+  if (plugin::HasClass("Beastlord")) {
     if ($text=~/hail/i) {
       quest::emote("glances at you with eyes of energy. He peers across your armor and then finally seems to come to a decision and points to the ground. He kneels down and then begins to draw something in the dirt. You see the outline of a wolf begin to take shape. You then see a humanoid figure standing next to the animal. He draws a circle around them, presumably to show that they are connected somehow. Craegin looks up at you and points to the wolf and then at you. You think he is asking if you are a Beastlord. His gaze pierces your eyes waiting for an answer.");
     }

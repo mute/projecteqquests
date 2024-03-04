@@ -18,7 +18,7 @@ sub SpawnTempest {
 
 sub EVENT_SAY {
    if ($text=~/Hail/i){
-      if ($class eq "Ranger"){
+      if (plugin::HasClass("Ranger")){
          quest::say("Greeting. What brings you to this forsaken rock? I have been sent here by the council of Surefall Glade to gather information about this Island. This place seethes with anger and hatred, and even the familiar [winds] of Karana blow with a cold bite. So far the creatures have all proved very hostile, even to a follow of Karana. I suspect that the curse of Innoruuk has caused them be very aggressive towards all outsiders. I have been able to gather some information on a new race of [insect] though.");
       }
       else{

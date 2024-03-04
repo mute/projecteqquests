@@ -119,12 +119,12 @@ sub EVENT_ITEM {
     if(plugin::check_handin(\%itemcount, 77767 => 3, 77768 => 1)) {
         quest::emote("takes the sickly blood and spreads it across the enchanted scroll. It blends and swims horribly over it. When it settles, the priest hands it to you.");
         quest::say("You may now travel further into Discord, true power awaits!");
-        if($class eq "Wizard") {
+        if(plugin::HasClass("Wizard")) {
             quest::summonitem(77654); # Item: Spell: Slaughter Gate
             quest::summonitem(77655); # Item: Spell: Translocate: Slaughter
             quest::summonitem(77656); # Item: Spell: Slaughter Portal
         }
-        if($class eq "Druid") {
+        if(plugin::HasClass("Druid")) {
             quest::summonitem(77657); # Item: Spell: Circle of Slaughter
             quest::summonitem(77658); # Item: Spell: Ring of Slaughter
         }

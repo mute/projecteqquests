@@ -1,6 +1,6 @@
 sub EVENT_SAY {
   if ($text=~/hail/i) {
-    if ($class eq "Berserker") { #Berserker Epic
+    if (plugin::HasClass("Berserker")) { #Berserker Epic
       quest::say("Ah, I see you follow the arts of the berserker."); #Text made up
     }
     else {

@@ -5,7 +5,7 @@
 
 sub EVENT_SAY { 
 	if ($text=~/Hail/i){
-		if ($class eq "Enchanter"){
+		if (plugin::HasClass("Enchanter")){
 			quest::say("Salutations! It is nice to see one such as you in these parts; I do get lonely for some intelligent conversation around here once in awhile. The majority of the time however, I am much too preoccupied [researching]. There are so many interesting things to discover in a new area!");
 		}
 		else{

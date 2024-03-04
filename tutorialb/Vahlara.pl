@@ -13,16 +13,16 @@ sub EVENT_SPAWN {
 sub EVENT_SAY {
   if ($text=~/hail/i) {
     if (quest::istaskactivityactive(1448, 2)) {
-      if ($class eq "Berserker" || $class eq "Rogue" || $class eq "Shaman" || $class eq "Ranger") {
+      if (plugin::HasClass("Berserker") || plugin::HasClass("Rogue") || plugin::HasClass("Shaman") || plugin::HasClass("Ranger")) {
         quest::summonitem(67111); # Item: Gloomingdeep Kobold Chain Sleeves
       }
-      elsif ($class eq "Enchanter" || $class eq "Necromancer" || $class eq "Wizard" || $class eq "Magician") {
+      elsif (plugin::HasClass("Enchanter") || plugin::HasClass("Necromancer") || plugin::HasClass("Wizard") || plugin::HasClass("Magician")) {
         quest::summonitem(67125); # Item: Gloomingdeep Kobold Cloth Sleeves
       }
-      elsif ($class eq "Warrior" || $class eq "Bard" || $class eq "Shadowknight" || $class eq "Paladin" || $class eq "Cleric") {
+      elsif (plugin::HasClass("Warrior") || plugin::HasClass("Bard") || plugin::HasClass("Shadowknight") || plugin::HasClass("Paladin") || plugin::HasClass("Cleric")) {
         quest::summonitem(67104); # Item: Gloomingdeep Kobold Plate Vambraces
       }
-      elsif ($class eq "Druid" || $class eq "Monk" || $class eq "Beastlord") {
+      elsif (plugin::HasClass("Druid") || plugin::HasClass("Monk") || plugin::HasClass("Beastlord")) {
         quest::summonitem(67118); # Item: Gloomingdeep Kobold Leather Sleeves
       }
     }

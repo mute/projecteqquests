@@ -42,7 +42,7 @@ sub EVENT_ITEM
 			quest::faction(1013, -20);#Overlord Mata Muram
 			quest::exp(10000);
 			#Reward depends on class
-			if (($class eq "Wizard") || ($class eq "Enchanter") || ($class eq "Magician") || ($class eq "Necromancer") || ($class eq "Cleric") || ($class eq "Druid") || ($class eq "Shaman")) {
+			if ((plugin::HasClass("Wizard")) || (plugin::HasClass("Enchanter")) || (plugin::HasClass("Magician")) || (plugin::HasClass("Necromancer")) || (plugin::HasClass("Cleric")) || (plugin::HasClass("Druid")) || (plugin::HasClass("Shaman"))) {
 				quest::summonitem(71153);#Ancient Ivory Figurine
 			}
 			else {
@@ -56,7 +56,7 @@ sub EVENT_ITEM
 			quest::faction(1013, -20);#Overlord Mata Muram
 			quest::exp(10000);
 			#Reward depends on class
-			if (($class eq "Wizard") || ($class eq "Enchanter") || ($class eq "Magician") || ($class eq "Necromancer") || ($class eq "Cleric") || ($class eq "Druid") || ($class eq "Shaman")) {
+			if ((plugin::HasClass("Wizard")) || (plugin::HasClass("Enchanter")) || (plugin::HasClass("Magician")) || (plugin::HasClass("Necromancer")) || (plugin::HasClass("Cleric")) || (plugin::HasClass("Druid")) || (plugin::HasClass("Shaman"))) {
 				quest::summonitem(71148);#Muramite Glyphed Ring
 			}
 			else {
@@ -70,7 +70,7 @@ sub EVENT_ITEM
 			quest::faction(1013, -20);#Overlord Mata Muram
 			quest::exp(10000);
 			#Reward depends on class
-			if (($class eq "Wizard") || ($class eq "Enchanter") || ($class eq "Magician") || ($class eq "Necromancer") || ($class eq "Cleric") || ($class eq "Druid") || ($class eq "Shaman")) {
+			if ((plugin::HasClass("Wizard")) || (plugin::HasClass("Enchanter")) || (plugin::HasClass("Magician")) || (plugin::HasClass("Necromancer")) || (plugin::HasClass("Cleric")) || (plugin::HasClass("Druid")) || (plugin::HasClass("Shaman"))) {
 				quest::summonitem(71150);#Diamond Earring of the Victor
 			}
 			else {

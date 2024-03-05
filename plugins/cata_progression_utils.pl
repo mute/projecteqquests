@@ -51,6 +51,7 @@ my %atlas = (
     'dulak'          => 'SoV',
     'hatesfury'      => 'SoV',
     'torgiran'       => 'SoV',
+    'veksar'         => 'SoV', # Out of Era
 
     'acrylia'        => 'SoL',
     'akheva'         => 'SoL',
@@ -137,6 +138,7 @@ my %atlas = (
     'riftseekers'    => 'OoW',
     'bloodfields'    => 'OoW',
     'wallofslaughter'=> 'OoW',
+    ''
 
     'thenest'        => 'DoN',
     'delvea'         => 'DoN',
@@ -158,6 +160,8 @@ my %STAGE_PREREQUISITES = (
     'SoL' => ['Lord Yelinak', 'Tukaarak the Warder', 'Nanzata the Warder', 'Ventani the Warder', 'Hraasha the Warder', 'Wuoshi', 'Klandicar', 'Zlandicar'],
     'PoP' => ['Thought Horror Overfiend', 'The Insanity Crawler', 'Greig Veneficus', 'Xerkizh the Creator', 'Emperor Ssraeshza'],
     'GoD' => ['Quarm'],
+    'OoW' => ['Disabled'],
+    'DoN' => ['Disabled'],
     # ... and so on for each stage
 );
 

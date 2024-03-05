@@ -138,7 +138,6 @@ my %atlas = (
     'riftseekers'    => 'OoW',
     'bloodfields'    => 'OoW',
     'wallofslaughter'=> 'OoW',
-    ''
 
     'thenest'        => 'DoN',
     'delvea'         => 'DoN',

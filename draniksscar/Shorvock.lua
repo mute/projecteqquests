@@ -34,20 +34,20 @@ end
 function event_trade(e)
 	local class = e.other:Class();
 	local item_lib = require("items");
-	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (class == "Berserker" or class == "Rogue" or class == "Shaman" or class == "Ranger" or e.other:GetGM())) then -- require warmly and plate
+	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (e.other:HasClass("Berserker") or e.other:HasClass("Rogue") or e.other:HasClass("Shaman") or e.other:HasClass("Ranger") or e.other:GetGM())) then -- require warmly and plate
 		
 		if(item_lib.check_turn_in(e.trade, {item1 = 51446,item2 = 51460,item3 = 51460})) then -- chain hand rewards 
 			e.self:Say("Well met, ".. e.other:GetCleanName() ..". You may have well disrupted the Muramite chain of command long enough to afford me a chance to go looking for my surviving brothers. The Muramites are on the watch for me, but now they will be scrambling for word from their master. To thank you for your efforts, here are the chain gloves I have promised you."); --need live parse
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70849,100000); -- (70849); # Item: Ragebound Chain Mittens
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70800,100000); -- (70800); # Item: Darkraider's Gloves
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70807,100000); -- (70807); # Item: Spiritkin Mittens
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70765,100000); -- (70765); # Item: Sunrider's Gloves
 				end
         
@@ -55,87 +55,87 @@ function event_trade(e)
 
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51445,item2 = 51459,item3 = 51459})) then -- chain wrist rewards 
 			e.self:Say("The Blood Standard of Dranik! So it was not destroyed! Well done, ".. e.other:GetCleanName() ..". I make sure this banner remains in the hands of those still loyal to the old ways. May it fly over the free armies of Kuua once again. Here is the wristguard I have promised. May they serve you well in your future battles against the Muramites!");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70848,100000); -- (70848); # Item: Ragebound Chain Wristband
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70799,100000); -- (70799); # Item: Darkraider's Wristguard
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70806,100000); -- (70806); # Item: Spiritkin Bracer
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70764,100000); -- (70764); # Item: Sunrider's Wristguard
 				end
         
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51444,item2 = 51458,item3 = 51458})) then -- chain arms rewards 
 			e.self:Say("A map of Old Kuua! How this map makes me long for the old days, back when we were a free race! My thanks, ".. e.other:GetCleanName() ..". This map may help relearn the new landscape in the context of the old. Here is a set of ornate arm guards as your reward.");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70847,100000); -- (70847); # Item: Ragebound Chain Sleeves
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70798,100000); -- (70798); # Item: Darkraider's Sleeves
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70805,100000); -- (70805); # Item: Spiritkin Sleeves
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70763,100000); -- (70763); # Item: Sunrider's Sleeves
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51440,item2 = 51454,item3 = 51454})) then -- chain head rewards 
 			e.self:Say("Well met, ".. e.other:GetCleanName() ..". Hopefully this book will contain some valuable information on the nature of Discord. To survive on my own, I must first understand the poison affecting the land. As promised, here is the helm as your reward for such a dangerous mission.");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70846,100000); -- (70846); # Item: Ragebound Chain Cap
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70797,100000); -- (70797); # Item: Darkraider's Coif
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70804,100000); -- (70804); # Item: Spiritkin Cap
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70762,100000); -- (70762); # Item: Sunrider's Hat
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51441,item2 = 51455,item3 = 51455,item4 = 51455})) then -- chain chest rewards
 			e.self:Say("This is the scepter of Noble Pravel the Diviner! I recognize the markings! I can tell by the way the light has faded that he no longer draws breath. Though this is terrible news, I'm grateful at least you have recovered it from the Muramites. I'll try to smuggle this back to those still loyal to Dranik. Thanks you,".. e.other:GetCleanName() ..". As promised, here is my chain vest. It has grown too cumbersome for me to carry in my wanderings.'");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70851,100000); -- (70851); # Item: Ragebound Chain Chestguard
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70802,100000); -- (70802); # Item: Darkraider's Vest
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70809,100000); -- (70809); # Item: Spiritkin Tunic
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70767,100000); -- (70767); # Item: Sunrider's Vest
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51442,item2 = 51456,item3 = 51456,item4 = 51456})) then -- chain leg rewards 
 			e.self:Say("Hmm, I shudder to think what names I will find scribed on this rock, but I thank you for your work none the less. Hopefully, this list can be used to stir some more dissention among the dragorn that have sworn loyalty to Mata Muram for the time being. Here are the chain boots I have promised. May they serve you well, ".. e.other:GetCleanName() ..".");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70852,100000); -- (70852); # Item: Ragebound Chain Legguards
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70803,100000); -- (70803); # Item: Darkraider's Pants
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70810,100000); -- (70810); # Item: Spiritkin Leggings
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70768,100000); -- (70768); # Item: Sunrider's Pants
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51443,item2 = 51457,item3 = 51457})) then -- chain feet rewards 
 			e.self:Say("So, the embers do exist! Excellent work, ".. e.other:GetCleanName() ..". I plan to hold this ember in the forge when crafting in the future. This will ensure that the ember's heat is used to forge armor for the enemies of the Muramites. Poetic justice, don't you think? For your efforts, here are the boots as promised!");
-				if class == "Berserker" or e.other:GetGM() then
+				if e.other:HasClass("Berserker") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70850,100000); -- (70850); # Item: Ragebound Chain Boots
 				end
-				if class == "Rogue" or e.other:GetGM() then
+				if e.other:HasClass("Rogue") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70801,100000); -- (70801); # Item: Darkraider's Boots
 				end
-				if class == "Shaman" or e.other:GetGM() then
+				if e.other:HasClass("Shaman") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70808,100000); -- (70808); # Item: Spiritkin Slippers
 				end
-				if class == "Ranger" or e.other:GetGM() then
+				if e.other:HasClass("Ranger") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70766,100000); -- (70766); # Item: Sunrider's Boots
 				end
 		

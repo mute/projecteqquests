@@ -35,127 +35,127 @@ end
 function event_trade(e)
 	local class = e.other:Class();
 	local item_lib = require("items");
-	if (e.other:GetFaction(e.self) <= 1 or e.other:GetGM() and (class == "Warrior" or class == "Paladin" or class == "Shadow Knight" or class == "Bard" or class == "Cleric" or e.other:GetGM())) then -- require ally and plate
+	if (e.other:GetFaction(e.self) <= 1 or e.other:GetGM() and (e.other:HasClass("Warrior") or e.other:HasClass("Paladin") or class == "Shadow Knight" or e.other:HasClass("Bard") or e.other:HasClass("Cleric") or e.other:GetGM())) then -- require ally and plate
 
 		if(item_lib.check_turn_in(e.trade, {item1 = 51475,item2 = 51482,item3 = 51482})) then -- plate helm rewards
 			e.self:Say("reaches out hungrily for the food sacks and the walking stick. 'Yes, this is Patorav's. I would recognize it anywhere. You can see just by looking at the metal that it hides some source of power. Why its appearance alone... how the metal looks as if it is reflecting moving storm clouds... fascinating. I most graciously thank you for this and the sacks of food. I had nearly finished this plate helm for a customer of mine, but I have heard he met a valiant end at the wall. Wear it honorably as he would have.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70853,100000); -- Item: (70853); # Item: Gladiator's Plate Helm of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70867,100000); -- Item: (70867); # Item: Dawnseeker's Coif of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70881,100000); -- Item: (70881); # Item: Duskbringer's Plate Helm of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70902,100000); -- Item: (70902); # Item: Farseeker's Plate Helm of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70860,100000); -- Item: (70860); # Item: Faithbringer's Cap of Conviction
 				end
 
 
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51479,item2 = 51486,item3 = 51486})) then -- plate ARMS rewards 
 			e.self:Say("takes the items from you before handing you your armplates."); --made up need live parse
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70854,100000); -- Item: (70854); # Item: Gladiator's Plate Sleeves of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70868,100000); -- Item: (70868); # Item: Dawnseeker's Sleeves of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70882,100000); -- Item: (70882); # Item: Duskbringer's Plate Armguards of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70903,100000); -- Item: (70903); # Item: Farseeker's Plate Armbands of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70861,100000); -- Item: (70861); # Item: Faithbringer's Armguards of Conviction
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51480,item2 = 51487,item3 = 51487})) then -- plate bracer rewards
 			e.self:Say("widens his eyes as you hand him the riftseeker heart. As you hand it to him, his eyes fix on the small pulsing light within the center of the gem. 'Yes, I am sure I can make good use of this. You have done well. And these pieces of ore will help replenish my supply. For your hard work, here is the plate bracer I spoke of earlier.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70855,100000); -- Item: (70855); # Item: Gladiator's Plate Bracer of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70869,100000); -- Item: (70869); # Item: Dawnseeker's Wristguard of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70883,100000); -- Item: (70883); # Item: Duskbringer's Plate Wristguard of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70904,100000); -- Item: (70904); # Item: Farseeker's Plate Wristguard of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70862,100000); -- Item: (70862); # Item: Faithbringer's Wristband of Conviction
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51481,item2 = 51488,item3 = 51488})) then -- plate glove rewards 
 			e.self:Say("holds the axe up and begins to take a few mighty swings through the air in front of him. 'Yes, the axe of the fierce one himself. It will be a shame to remove some of these enchantments, but I am sure I can put them to better use for my people. I will use the two crystals you have just given me to safely remove some of the charms within the axe and put them in some of my newer designs. Here are the plate gloves I spoke of earlier.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70856,100000); -- Item: (70856); # Item: Gladiator's Plate Gloves of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70870,100000); -- Item: (70870); # Item: Dawnseeker's Mitts of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70884,100000); -- Item: (70884); # Item: Duskbringer's Plate Gloves of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70905,100000); -- Item: (70905); # Item: Farseeker's Plate Gloves of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70863,100000); -- Item: (70863); # Item: Faithbringer's Gloves of Conviction
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51476,item2 = 51483,item3 = 51483,item4 = 51483})) then -- plate chest rewards 
 			e.self:Say("Ah, yes, this is the vest I saw Jayruk wear so often when times were brighter. No one knows what happened to him, but this vest confirms my greatest fear -- that he met with an untimely end. I thank you for returning this to me so I may pay my respects to my greatest friend. Here is the breastplate I spoke of earlier. I was crafting this for myself, but in times such as these, it is better that it serve a true fighter such as yourself than a mere smith pretending to be one.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70858,100000); -- Item: (70858); # Item: Gladiator's Plate Chestguard of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70872,100000); -- Item: (70872); # Item: Dawnseeker's Chestpiece of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70886,100000); -- Item:(70886); # Item: Duskbringer's Plate Chestguard of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70907,100000); -- Item: (70907); # Item: Farseeker's Plate Chestguard of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70865,100000); -- Item: (70865); # Item: Faithbringer's Breastplate of Conviction
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51477,item2 = 51484,item3 = 51484,item4 = 51484})) then -- plate leg rewards 
 			e.self:Emote("smiles and nods approvingly as you hand him the medal and tails. 'Yes this is the amulet that fiendish Muramite wore. And you managed to slay the discordlings as well? Good. Now at least I may rest easier knowing that the fiends will trouble my people no more. Here are the leggings I spoke of earlier. I crafted them using a new technique I developed after my mentor's passing. Now I feel they are ready to be tested on the field of battle. I am certain they will give you much service.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70859,100000); -- Item: (70859); # Item: Gladiator's Plate Legguards of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70873,100000); -- Item: (70873); # Item: Dawnseeker's Leggings of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70887,100000); -- Item: (70887); # Item: Duskbringer's Plate Legguards of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70908,100000); -- Item: (70908); # Item: Farseeker's Plate Legguards of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70866,100000); -- Item: (70866); # Item: Faithbringer's Leggings of Conviction
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51478,item2 = 51485,item3 = 51485})) then -- plate boots rewards
 			e.self:Say("Ah, the medal and two rings I spoke of.  You have done a fine job of accomplishing the task I laid out before you.  I will give both the medal and the rings to Ethask's brood... the medal so they will know that their loved one's killer has been slain and the rings so they may celebrate his victories.  In honor of my friend, Ethask, I have crafted these boots.  Wear them with the same courage and honor he displayed.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70857,100000); -- Item: (70857); # Item: Gladiator's Plate Boots of War
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70871,100000); -- Item: (70871); # Item: Dawnseeker's Boots of the Defender
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70885,100000); -- Item: (70885); # Item: Duskbringer's Plate Boots of the Hateful
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70906,100000); -- Item: (70906); # Item: Farseeker's Plate Boots of Harmony
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70864,100000); -- Item: (70864); # Item: Faithbringer's Boots of Conviction
 				end
 

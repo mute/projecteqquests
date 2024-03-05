@@ -146,7 +146,7 @@ function event_trade(e)
 local class = e.other:Class();
 local item_lib = require("items");
 if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite rune
-	if class == "Beastlord" then
+	if e.other:HasClass("Beastlord") then
 		if not e.other:HasSpellScribed(5526) then
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77255,100000); -- Item: spell: Healing of Mikkily
@@ -157,7 +157,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Bard" then --Luvwen's Aria of Serenity, Vulka's Chant of Disease, Bellow of Chaos
+	elseif e.other:HasClass("Bard") then --Luvwen's Aria of Serenity, Vulka's Chant of Disease, Bellow of Chaos
 		if not e.other:HasSpellScribed(5370) then --Luvwen's Aria of Serenity
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77111,100000); -- Item: spell: Luvwen's Aria of Serenity
@@ -171,7 +171,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Berserker" then --Axe of the Destroyer, Unpredictable Rage Discipline
+	elseif e.other:HasClass("Berserker") then --Axe of the Destroyer, Unpredictable Rage Discipline
 		if not e.other:HasDisciplineLearned(6172) then  --Axe of the Destroyer
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77300,100000); -- Item: tome: Axe of the Destroyer
@@ -182,7 +182,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Cleric" then --Pious Remedy, Confidence, Ward of Valiance, Shock of Wonder, Sun Cloak, Symbol of Balikor, Revulsion of Death
+	elseif e.other:HasClass("Cleric") then --Pious Remedy, Confidence, Ward of Valiance, Shock of Wonder, Sun Cloak, Symbol of Balikor, Revulsion of Death
 		if not e.other:HasSpellScribed(5251) then --Pious Remedy
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77002,100000); -- Item: spell: Pious Remedy
@@ -208,7 +208,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Druid" then --Earth Shiver, Tempest Wind, Oaken Vigor, Stormwatch, Instinctual Terror
+	elseif e.other:HasClass("Druid") then --Earth Shiver, Tempest Wind, Oaken Vigor, Stormwatch, Instinctual Terror
 		if not e.other:HasSpellScribed(5346) then --Earth Shiver
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77088,100000); -- Item: spell: Earth Shiver
@@ -228,7 +228,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Enchanter" then --Ethereal Rune, Salik's Animation, Mystic Shield, Cloud of Indifference, Synapsis Spasm
+	elseif e.other:HasClass("Enchanter") then --Ethereal Rune, Salik's Animation, Mystic Shield, Cloud of Indifference, Synapsis Spasm
 		if not e.other:HasSpellScribed(5500) then --Ethereal Rune
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77234,100000); -- Item: spell: Ethereal Rune
@@ -248,7 +248,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Magician" then --{Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}, Child of Wind, Fireskin, Bolt of Jerikor, Summon: Fireblade, Elemental Aura
+	elseif e.other:HasClass("Magician") then --{Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}, Child of Wind, Fireskin, Bolt of Jerikor, Summon: Fireblade, Elemental Aura
 		if not e.other:HasSpellScribed(5464) or not e.other:HasSpellScribed(5468) or not e.other:HasSpellScribed(5469) or not e.other:HasSpellScribed(5470) or not e.other:HasSpellScribed(5471) or not e.other:HasSpellScribed(5475) then --{Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77200,100000); -- Item: spell: {Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}
@@ -276,7 +276,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		--66 - Dreamwalk Discipline
 		--67 - (none)
 		--68 - Counterforce Discipline
@@ -289,7 +289,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Necromancer" then --Shadow Guard, Acikin, Chaos Plague, Eidolon Howl
+	elseif e.other:HasClass("Necromancer") then --Shadow Guard, Acikin, Chaos Plague, Eidolon Howl
 		if not e.other:HasSpellScribed(5421) then --Shadow Guard
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77158,100000); -- Item: spell: Shadow Guard
@@ -307,7 +307,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Paladin" then --Force of Piety, Touch of Piety, Direction
+	elseif e.other:HasClass("Paladin") then --Force of Piety, Touch of Piety, Direction
 		if not e.other:HasSpellScribed(5284) then --Force of Piety
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77031,100000); -- Item: spell: Force of Piety
@@ -322,7 +322,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Ranger" then --Displace Summoned, Shield of Briar, Nature Veil
+	elseif e.other:HasClass("Ranger") then --Displace Summoned, Shield of Briar, Nature Veil
 		if not e.other:HasSpellScribed(5301) then --Displace Summoned
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77048,100000); -- Item: spell: Displace Summoned
@@ -337,7 +337,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Rogue" then --Imperceptible Discipline
+	elseif e.other:HasClass("Rogue") then --Imperceptible Discipline
 		if not e.other:HasDisciplineLearned(6198) then  --Imperceptible Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77294,100000); -- Item: tome: Imperceptible Discipline
@@ -360,7 +360,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Shaman" then --Spirit of Sense, Yoppa's Spear of Venom, Spirit of Perseverance, Putrid Decay, Crippling Spasm
+	elseif e.other:HasClass("Shaman") then --Spirit of Sense, Yoppa's Spear of Venom, Spirit of Perseverance, Putrid Decay, Crippling Spasm
 		if not e.other:HasSpellScribed(5390) then --Spirit of Sense
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77129,100000); -- Item: spell: Spirit of Sense
@@ -380,7 +380,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Warrior" then
+	elseif e.other:HasClass("Warrior") then
 		if not e.other:HasDisciplineLearned(6191) then  --Aura of Runes Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77287,100000); -- Item: tome: Aura of Runes Discipline
@@ -388,7 +388,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
-	elseif class == "Wizard" then --Icebane, Ether Shield, Tears of the Sun, Spark of Fire
+	elseif e.other:HasClass("Wizard") then --Icebane, Ether Shield, Tears of the Sun, Spark of Fire
 		if not e.other:HasSpellScribed(5442) then --Icebane
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77178,100000); -- Item: spell: Icebane
@@ -407,7 +407,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramite rune
-	if class == "Beastlord" then
+	if e.other:HasClass("Beastlord") then
 		if not e.other:HasSpellScribed(5528) then --muada's mending
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77257,100000); -- Item: spell: muada's mending
@@ -421,7 +421,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Bard" then --Zuriki's Song of Shenanigans, Vulka's Chant of Frost, Luvwen's Lullaby, Cantata of Life, Angstlich's Wail of Panic
+	elseif e.other:HasClass("Bard") then --Zuriki's Song of Shenanigans, Vulka's Chant of Frost, Luvwen's Lullaby, Cantata of Life, Angstlich's Wail of Panic
 		if not e.other:HasSpellScribed(5375) then --Zuriki's Song of Shenanigans
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77116,100000); -- Item: spell: Zuriki's Song of Shenanigans
@@ -441,7 +441,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Berserker" then
+	elseif e.other:HasClass("Berserker") then
 		if not e.other:HasDisciplineLearned(6169) then  --Crippling Strike
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77297,100000); -- Item: tome: Crippling Strike
@@ -450,7 +450,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Cleric" then --Reproach, Panoply of Vie, Sermon of Reproach, Pious Elixir, Blessing of Devotion, Conviction
+	elseif e.other:HasClass("Cleric") then --Reproach, Panoply of Vie, Sermon of Reproach, Pious Elixir, Blessing of Devotion, Conviction
 		if not e.other:HasSpellScribed(5260) then --Reproach
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77011,100000); -- Item: spell: Reproach
@@ -473,7 +473,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Druid" then --Nettle Shield, Nature's Serenity, Glacier Breath, Lion's Strength, Sun's Corona, Immolation of the Sun
+	elseif e.other:HasClass("Druid") then --Nettle Shield, Nature's Serenity, Glacier Breath, Lion's Strength, Sun's Corona, Immolation of the Sun
 		if not e.other:HasSpellScribed(5358) then --Nettle Shield
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77100,100000); -- Item: spell: Nettle Shield
@@ -496,7 +496,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Enchanter" then --Felicity, Speed of Salik, Placate, Rune of Salik, Anxiety Attack
+	elseif e.other:HasClass("Enchanter") then --Felicity, Speed of Salik, Placate, Rune of Salik, Anxiety Attack
 		if not e.other:HasSpellScribed(5503) then --Felicity
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77236,100000); -- Item: spell: Felicity
@@ -516,7 +516,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Magician" then --Summon Dagger of the Deep, Rain of Jerikor, Child of Water, Summon Crystal Belt, Summon Staff of the North Wind, Summon Sphere of Air
+	elseif e.other:HasClass("Magician") then --Summon Dagger of the Deep, Rain of Jerikor, Child of Water, Summon Crystal Belt, Summon Staff of the North Wind, Summon Sphere of Air
 		if not e.other:HasSpellScribed(5477) then --Summon Dagger of the Deep
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77213,100000); -- Item: spell: Summon Dagger of the Deep
@@ -539,9 +539,9 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		--nothing
-	elseif class == "Necromancer" then --Soulspike, Lost Soul, Dark Nightmare, Glyph of Darkness, Grip of Mori, Unholy Howl
+	elseif e.other:HasClass("Necromancer") then --Soulspike, Lost Soul, Dark Nightmare, Glyph of Darkness, Grip of Mori, Unholy Howl
 		if not e.other:HasSpellScribed(5419) then --Soulspike
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77156,100000); -- Item: spell: Soulspike
@@ -565,7 +565,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Paladin" then --Spurn Undead, Symbol of Jeron, Crusader's Purity, Silvered Fury
+	elseif e.other:HasClass("Paladin") then --Spurn Undead, Symbol of Jeron, Crusader's Purity, Silvered Fury
 		if not e.other:HasSpellScribed(5286) then --Spurn Undead
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77033,100000); -- Item: spell: Spurn Undead
@@ -583,7 +583,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Ranger" then --Locust Swarm, Guard of the Earth, Sylvan Water, Strength of the Hunter
+	elseif e.other:HasClass("Ranger") then --Locust Swarm, Guard of the Earth, Sylvan Water, Strength of the Hunter
 		if not e.other:HasSpellScribed(5303) then --Locust Swarm
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77050,100000); -- Item: spell: Locust Swarm
@@ -601,7 +601,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Rogue" then
+	elseif e.other:HasClass("Rogue") then
 		--nothing
 	elseif class == "Shadow Knight" then --Shroud of Discord, Terror of Discord, Touch of Inruku, Inruku's Bite, Shadow Howl
 		if not e.other:HasSpellScribed(5327) then --Shroud of Discord
@@ -624,7 +624,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Shaman" then --Farrel's Companion, Breath of Wunshi, Spirit of Might, Ancestral Bulwark, Spirit Veil
+	elseif e.other:HasClass("Shaman") then --Farrel's Companion, Breath of Wunshi, Spirit of Might, Ancestral Bulwark, Spirit Veil
 		if not e.other:HasSpellScribed(5389) then --Farrel's Companion
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77128,100000); -- Item: spell: Farrel's Companion
@@ -644,9 +644,9 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
-	elseif class == "Warrior" then
+	elseif e.other:HasClass("Warrior") then
 		--nothing
-	elseif class == "Wizard" then --Circle of Fire, Lightningbane, Phase Walk
+	elseif e.other:HasClass("Wizard") then --Circle of Fire, Lightningbane, Phase Walk
 		if not e.other:HasSpellScribed(5455) then --Circle of Fire
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77191,100000); -- Item: spell: Circle of Fire
@@ -662,7 +662,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
-	if class == "Beastlord" then --Growl of the Beast, Spirit of Alladnu, Spirit of Irionu
+	if e.other:HasClass("Beastlord") then --Growl of the Beast, Spirit of Alladnu, Spirit of Irionu
 		if not e.other:HasSpellScribed(5533) then --growl of the beast
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77261,100000); -- Item: spell: growl of the beast
@@ -676,7 +676,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Bard" then --Vulka's Chant of Poison, War March of Muram, Yelhun's Mystic Call, Dirge of Metala
+	elseif e.other:HasClass("Bard") then --Vulka's Chant of Poison, War March of Muram, Yelhun's Mystic Call, Dirge of Metala
 		if not e.other:HasSpellScribed(5378) then --Vulka's Chant of Poison
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77119,100000); -- Item: spell: Vulka's Chant of Poison
@@ -693,7 +693,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Berserker" then --Mind Strike, Unflinching Will
+	elseif e.other:HasClass("Berserker") then --Mind Strike, Unflinching Will
 		if not e.other:HasDisciplineLearned(6170) then  --Mind Strike
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77298,100000); -- Item: tome: Mind Strike
@@ -705,7 +705,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Cleric" then --Sound of Divinity, Hammer of Reproach, Pious Light, Desolate Undead, Unswerving Hammer of Retribution, Deistic Howl
+	elseif e.other:HasClass("Cleric") then --Sound of Divinity, Hammer of Reproach, Pious Light, Desolate Undead, Unswerving Hammer of Retribution, Deistic Howl
 		if not e.other:HasSpellScribed(5266) then --Sound of Divinity
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77015,100000); -- Item: spell: Sound of Divinity
@@ -728,7 +728,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Druid" then --Steeloak Skin, Chlorotrope, Cloak of Nature, Desolate Summoned, Nettlecoat, Wasp Swarm
+	elseif e.other:HasClass("Druid") then --Steeloak Skin, Chlorotrope, Cloak of Nature, Desolate Summoned, Nettlecoat, Wasp Swarm
 		if not e.other:HasSpellScribed(5352) then --Steeloak Skin
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77094,100000); -- Item: spell: Steeloak Skin
@@ -751,7 +751,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Enchanter" then --Clairvoyance, Wall of Alendar, Compel, Psychosis, Circle of Dreams
+	elseif e.other:HasClass("Enchanter") then --Clairvoyance, Wall of Alendar, Compel, Psychosis, Circle of Dreams
 		if not e.other:HasSpellScribed(5513) then --Clairvoyance
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77244,100000); -- Item: spell: Clairvoyance
@@ -771,7 +771,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Magician" then --Phantom Shield, Blade Strike, Summon: Pouch of Jerikor, Child of Fire, Pyrilen Skin
+	elseif e.other:HasClass("Magician") then --Phantom Shield, Blade Strike, Summon: Pouch of Jerikor, Child of Fire, Pyrilen Skin
 		if not e.other:HasSpellScribed(5476) then --Phantom Shield
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77212,100000); -- Item: spell:Phantom Shield
@@ -791,7 +791,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); --  muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		if not e.other:HasDisciplineLearned(6195) then  --Counterforce Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77291,100000); -- Item: tome: Counterforce Discipline
@@ -799,7 +799,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); --  muramite rune
 		end
-	elseif class == "Necromancer" then --Desecrating Darkness, Shadow of Death, Fang of Death, Scent of Midnight
+	elseif e.other:HasClass("Necromancer") then --Desecrating Darkness, Shadow of Death, Fang of Death, Scent of Midnight
 		if not e.other:HasSpellScribed(5430) then --Desecrating Darkness
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77166,100000); -- Item: spell: Desecrating Darkness
@@ -817,7 +817,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Paladin" then --Pious Fury, Jeron's Mark, Serene Command, Light of Piety
+	elseif e.other:HasClass("Paladin") then --Pious Fury, Jeron's Mark, Serene Command, Light of Piety
 		if not e.other:HasSpellScribed(5288) then --Pious Fury
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77035,100000); -- Item: spell: Pious Fury
@@ -835,7 +835,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Ranger" then
+	elseif e.other:HasClass("Ranger") then
 		if not e.other:HasSpellScribed(5310) then --Hunter's Vigor
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77056,100000); -- Item: spell: Hunter's Vigor
@@ -853,7 +853,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Rogue" then --Deadly Aim Discipline
+	elseif e.other:HasClass("Rogue") then --Deadly Aim Discipline
 		if not e.other:HasDisciplineLearned(6196) then  --Deadly Aim Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77292,100000); -- Item: tome: Deadly Aim Discipline
@@ -879,7 +879,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); --  muramite rune
 		end
-	elseif class == "Shaman" then --Talisman of Sense, Yoppa's Rain of Venom, Pained Memory, Spirit of Fortitude, Yoppa's Mending, Wunshi's Focusing
+	elseif e.other:HasClass("Shaman") then --Talisman of Sense, Yoppa's Rain of Venom, Pained Memory, Spirit of Fortitude, Yoppa's Mending, Wunshi's Focusing
 		if not e.other:HasSpellScribed(5399) then --Talisman of Sense
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77138,100000); -- Item: spell:Talisman of Sense
@@ -902,7 +902,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Warrior" then --Savage Onslaught Discipline
+	elseif e.other:HasClass("Warrior") then --Savage Onslaught Discipline
 		if not e.other:HasDisciplineLearned(6192) then  --Savage Onslaught Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77288,100000); -- Item: tome:Savage Onslaught Discipline
@@ -910,7 +910,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59985); -- muramite rune
 		end
-	elseif class == "Wizard" then --Spark of Lightning, Firebane, Spark of Thunder, Ether Skin, Thundaka
+	elseif e.other:HasClass("Wizard") then --Spark of Lightning, Firebane, Spark of Thunder, Ether Skin, Thundaka
 		if not e.other:HasSpellScribed(5452) then --Spark of Lightning
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77188,100000); -- Item: spell: Spark of Lightning
@@ -932,7 +932,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater muramite rune
-	if class == "Beastlord" then --Spiritual Ascendance, Feral Vigor, Glacier Spear, Feral Guard
+	if e.other:HasClass("Beastlord") then --Spiritual Ascendance, Feral Vigor, Glacier Spear, Feral Guard
 		if not e.other:HasSpellScribed(5537) then --Spiritual Ascendance
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77265,100000); -- Item: spell: Spiritual Ascendance
@@ -949,7 +949,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Bard" then --Verse of Vesagran, Chorus of Life, Eriki's Psalm of Power
+	elseif e.other:HasClass("Bard") then --Verse of Vesagran, Chorus of Life, Eriki's Psalm of Power
 		if not e.other:HasSpellScribed(5374) then --Verse of Vesagran
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77115,100000); -- Item: spell: Verse of Vesagran
@@ -964,7 +964,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Berserker" then
+	elseif e.other:HasClass("Berserker") then
 		if not e.other:HasDisciplineLearned(6171) then  --Baffling Strike
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77299,100000); -- Item: tome: Baffling Strike
@@ -972,7 +972,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Cleric" then --Yaulp VII, Mark of the Blameless, Word of Vivification, Aura of Devotion, Calamity
+	elseif e.other:HasClass("Cleric") then --Yaulp VII, Mark of the Blameless, Word of Vivification, Aura of Devotion, Calamity
 		if not e.other:HasSpellScribed(5273) then --Yaulp VII
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77021,100000); -- Item: spell: Yaulp VII
@@ -992,7 +992,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Druid" then --Blessing of Oak, Oaken Guard, Solstice Strike, Vengeance of the Sun
+	elseif e.other:HasClass("Druid") then --Blessing of Oak, Oaken Guard, Solstice Strike, Vengeance of the Sun
 		if not e.other:HasSpellScribed(5353) then --Blessing of Oak
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77095,100000); -- Item: spell: Blessing of Oak
@@ -1010,7 +1010,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Enchanter" then --Euphoria, Arcane Noose, Desolate Deeds, Mayhem, Color Snap, Wake of Felicity
+	elseif e.other:HasClass("Enchanter") then --Euphoria, Arcane Noose, Desolate Deeds, Mayhem, Color Snap, Wake of Felicity
 		if not e.other:HasSpellScribed(5520) then --Euphoria
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77251,100000); -- Item: spell: Euphoria
@@ -1033,7 +1033,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Magician" then --Elemental Fury, Desolate Summoned, Burning Earth, Renewal of Jerikor, Bulwark of Calliav
+	elseif e.other:HasClass("Magician") then --Elemental Fury, Desolate Summoned, Burning Earth, Renewal of Jerikor, Bulwark of Calliav
 		if not e.other:HasSpellScribed(5478) then --Elemental Fury
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77214,100000); -- Item: spell:Elemental Fury
@@ -1053,7 +1053,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		if not e.other:HasDisciplineLearned(6175) then  --Phantom Cry
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77285,100000); -- Item: tome: Phantom Cry
@@ -1061,7 +1061,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Necromancer" then --Pyre of Mori, Bulwark of Calliav, Dark Salve, Dull Pain, Dark Hold
+	elseif e.other:HasClass("Necromancer") then --Pyre of Mori, Bulwark of Calliav, Dark Salve, Dull Pain, Dark Hold
 		if not e.other:HasSpellScribed(5437) then --Pyre of Mori
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77173,100000); -- Item: spell: Pyre of Mori
@@ -1082,7 +1082,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Paladin" then --Bulwark of Piety, Armor of the Champion, Hand of Direction, Pious Cleansing
+	elseif e.other:HasClass("Paladin") then --Bulwark of Piety, Armor of the Champion, Hand of Direction, Pious Cleansing
 		if not e.other:HasSpellScribed(5294) then --Bulwark of Piety
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77041,100000); -- Item: spell: Bulwark of Piety
@@ -1100,7 +1100,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Ranger" then --Hearth Embers, Howl of the Predator, Nature's Denial, Nature's Balance
+	elseif e.other:HasClass("Ranger") then --Hearth Embers, Howl of the Predator, Nature's Denial, Nature's Balance
 		if not e.other:HasSpellScribed(5313) then --Hearth Embers
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77059,100000); -- Item: spell: Hearth Embers
@@ -1118,7 +1118,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Rogue" then --Daggerfall
+	elseif e.other:HasClass("Rogue") then --Daggerfall
 		if not e.other:HasDisciplineLearned(6174) then  --Daggerfall
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77284,100000); -- Item: tome: Daggerfall
@@ -1144,7 +1144,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Shaman" then --Balance of Discord ,Talisman of Fortitude, Pure Spirit, Talisman of Perseverance, Curse of Sisslak, Ice Age.  
+	elseif e.other:HasClass("Shaman") then --Balance of Discord ,Talisman of Fortitude, Pure Spirit, Talisman of Perseverance, Curse of Sisslak, Ice Age.  
 		if not e.other:HasSpellScribed(6827) then --Balance of Discord
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77302,100000); -- Item: spell:Balance of Discord
@@ -1167,7 +1167,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Warrior" then --Bazu Bellow
+	elseif e.other:HasClass("Warrior") then --Bazu Bellow
 		if not e.other:HasDisciplineLearned(6173) then  --Bazu Bellow
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77283,100000); -- Item: tome:Bazu Bellow
@@ -1175,7 +1175,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
-	elseif class == "Wizard" then --Meteor Storm, Spark of Ice, Gelidin Comet, Solist's Frozen Sword, Ether Ward
+	elseif e.other:HasClass("Wizard") then --Meteor Storm, Spark of Ice, Gelidin Comet, Solist's Frozen Sword, Ether Ward
 		if not e.other:HasSpellScribed(5454) then --Meteor Storm
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77190,100000); -- Item: spell: Meteor Storm
@@ -1197,7 +1197,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing muramite rune
-	if class == "Beastlord" then --Sha's Legacy, Spirit of Rashara, Ferocity of Irionu, Festering Malady
+	if e.other:HasClass("Beastlord") then --Sha's Legacy, Spirit of Rashara, Ferocity of Irionu, Festering Malady
 		if not e.other:HasSpellScribed(6828) then --Sha's Legacy
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77303,100000); -- Item: spell: Healing of Mikkily
@@ -1214,7 +1214,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Bard" then --Vulka's Chant of Flame, Vulka's Lullaby, Voice of the Vampire
+	elseif e.other:HasClass("Bard") then --Vulka's Chant of Flame, Vulka's Lullaby, Voice of the Vampire
 		if not e.other:HasSpellScribed(5385) then --Vulka's Chant of Flame
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77125,100000); -- Item: spell: Vulka's Chant of Flame
@@ -1229,7 +1229,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Berserker" then
+	elseif e.other:HasClass("Berserker") then
 		if not e.other:HasDisciplineLearned(6199) then  --Vengeful Flurry Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77295,100000); -- Item: tome: Vengeful Flurry Discipline
@@ -1237,7 +1237,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Cleric" then --Placate, Balikor's Mark, Armor of the Pious, Silent Dictation, Hand of Conviction
+	elseif e.other:HasClass("Cleric") then --Placate, Balikor's Mark, Armor of the Pious, Silent Dictation, Hand of Conviction
 		if not e.other:HasSpellScribed(5274) then --Placate
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77022,100000); -- Item: spell: Placate
@@ -1257,7 +1257,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Druid" then --Circle of Nettles, Glitterfrost, Blessing of Steeloak, Mask of the Wild, Hungry Vines, Nature's Beckon
+	elseif e.other:HasClass("Druid") then --Circle of Nettles, Glitterfrost, Blessing of Steeloak, Mask of the Wild, Hungry Vines, Nature's Beckon
 		if not e.other:HasSpellScribed(5365) then --Legacy of Nettles
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77106,100000); -- Item: spell: Circle of Nettles
@@ -1280,7 +1280,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Enchanter" then --Circle of Alendar, Hastening of Salik, Voice of Clairvoyance, True Name
+	elseif e.other:HasClass("Enchanter") then --Circle of Alendar, Hastening of Salik, Voice of Clairvoyance, True Name
 		if not e.other:HasSpellScribed(5517) then --Circle of Alendar
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77248,100000); -- Item: spell: Circle of Alendar
@@ -1297,7 +1297,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Magician" then --Circle of Fireskin, Child of Earth, Star Scream, Star Strike, Elemental Simulcram
+	elseif e.other:HasClass("Magician") then --Circle of Fireskin, Child of Earth, Star Scream, Star Strike, Elemental Simulcram
 		if not e.other:HasSpellScribed(5488) then --Circle of Fireskin
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77222,100000); -- Item: spell:Circle of Fireskin
@@ -1317,7 +1317,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		if not e.other:HasDisciplineLearned(6194) then  --Rapid Kick Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77290,100000); -- Item: tome: Rapid Kick Discipline
@@ -1325,7 +1325,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Necromancer" then --Desolate Undead, Dark Assassin, Chaos Venom, Dark Possession, Word of Chaos
+	elseif e.other:HasClass("Necromancer") then --Desolate Undead, Dark Assassin, Chaos Venom, Dark Possession, Word of Chaos
 		if not e.other:HasSpellScribed(5440) then --Desolate Undead
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77176,100000); -- Item: spell: Desolate Undead
@@ -1346,7 +1346,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Paladin" then --Brell's Brawny Bulwark, Affirmation, Wave of Piety
+	elseif e.other:HasClass("Paladin") then --Brell's Brawny Bulwark, Affirmation, Wave of Piety
 		if not e.other:HasSpellScribed(5297) then --Brell's Brawny Bulwark
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77044,100000); -- Item: spell: Brell's Brawny Bulwark
@@ -1361,7 +1361,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Ranger" then --Onyx Skin (scroll is Spell: Skin of the Bear), Ward of the Hunter, Call of Lightning
+	elseif e.other:HasClass("Ranger") then --Onyx Skin (scroll is Spell: Skin of the Bear), Ward of the Hunter, Call of Lightning
 		if not e.other:HasSpellScribed(5315) then --Onyx Skin
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77061,100000); -- Item: spell: Onyx Skin
@@ -1377,7 +1377,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Rogue" then --Frenzied Stabbing Discipline
+	elseif e.other:HasClass("Rogue") then --Frenzied Stabbing Discipline
 		if not e.other:HasDisciplineLearned(6197) then  --Frenzied Stabbing Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77293,100000); -- Item: tome: Frenzied Stabbing Discipline
@@ -1400,7 +1400,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Shaman" then --Blood of Yoppa, Spiritual Serenity, Talisman of Wunshi, Champion, Vindictive Spirit, Talisman of Might
+	elseif e.other:HasClass("Shaman") then --Blood of Yoppa, Spiritual Serenity, Talisman of Wunshi, Champion, Vindictive Spirit, Talisman of Might
 		if not e.other:HasSpellScribed(5414) then --Blood of Yoppa
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77151,100000); -- Item: spell:Blood of Yoppa
@@ -1423,7 +1423,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Warrior" then --Shocking Defense Discipline
+	elseif e.other:HasClass("Warrior") then --Shocking Defense Discipline
 		if not e.other:HasDisciplineLearned(6190) then  --Shocking Defense Discipline
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77286,100000); -- Item: Shocking Defense Discipline
@@ -1431,7 +1431,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
-	elseif class == "Wizard" then --Circle of Thunder, Telekara, Gelid Rains, Corona Flare, Bulwark of Calrena
+	elseif e.other:HasClass("Wizard") then --Circle of Thunder, Telekara, Gelid Rains, Corona Flare, Bulwark of Calrena
 		if not e.other:HasSpellScribed(5451) then --Circle of Thunder
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77187,100000); -- Item: spell: Circle of Thunder
@@ -1453,7 +1453,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient muramite rune
-	if class == "Beastlord" then --Savage Ice
+	if e.other:HasClass("Beastlord") then --Savage Ice
 		if not e.other:HasSpellScribed(5543) then
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77270,100000); -- Item: spell:Savage Ice
@@ -1461,7 +1461,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Bard" then
+	elseif e.other:HasClass("Bard") then
 		if not e.other:HasSpellScribed(5388) then --Ancient - Call of Power
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77127,100000); -- Item: spell:Ancient - Call of Power
@@ -1470,8 +1470,8 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Berserker" then
-	elseif class == "Cleric" then --Hallowed Light, Pious Conscience
+	elseif e.other:HasClass("Berserker") then
+	elseif e.other:HasClass("Cleric") then --Hallowed Light, Pious Conscience
 		if not e.other:HasSpellScribed(6140) then --Hallowed Light
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77276,100000); -- Item: spell: Hallowed Light
@@ -1482,7 +1482,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Druid" then --Ancient - Chlorobon, Glacier Frost
+	elseif e.other:HasClass("Druid") then --Ancient - Chlorobon, Glacier Frost
 		if not e.other:HasSpellScribed(6141) then --Ancient - Chlorobon
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77277,100000); -- Item: spell: Ancient - Chlorobon
@@ -1493,7 +1493,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Enchanter" then ----Ancient - Neurosis, Voice of Muram
+	elseif e.other:HasClass("Enchanter") then ----Ancient - Neurosis, Voice of Muram
 		if not e.other:HasSpellScribed(5523) then --Ancient - Neurosis
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77254,100000); -- Item: spell: Ancient - Neurosis
@@ -1504,7 +1504,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Magician" then --Ancient - Nova Strike, Veil of Pyrilonus
+	elseif e.other:HasClass("Magician") then --Ancient - Nova Strike, Veil of Pyrilonus
 		if not e.other:HasSpellScribed(5498) then --Ancient - Nova Strike
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77232,100000); -- Item: spell:Ancient - Nova Strike
@@ -1516,9 +1516,9 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Monk" then
+	elseif e.other:HasClass("Monk") then
 		-- nothing
-	elseif class == "Necromancer" then --Ancient - Touch of Orshalik, Curse of Mori
+	elseif e.other:HasClass("Necromancer") then --Ancient - Touch of Orshalik, Curse of Mori
 		if not e.other:HasSpellScribed(6143) then --Ancient - Touch of Orshalik
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77279,100000); -- Item: spell: Ancient - Touch of Orshalik
@@ -1530,7 +1530,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Paladin" then --Ancient - Force of Jeron
+	elseif e.other:HasClass("Paladin") then --Ancient - Force of Jeron
 		if not e.other:HasSpellScribed(5299) then --Ancient - Force of Jeron
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77046,100000); -- Item: spell: Ancient - Force of Jeron
@@ -1538,7 +1538,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Ranger" then --Ancient - North Wind
+	elseif e.other:HasClass("Ranger") then --Ancient - North Wind
 		if not e.other:HasSpellScribed(5319) then --Ancient - North Wind
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77064,100000); -- Item: spell: Ancient - North Wind
@@ -1546,7 +1546,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Rogue" then
+	elseif e.other:HasClass("Rogue") then
 		--nothing
 	elseif class == "Shadow Knight" then --Bite of Muram
 		if not e.other:HasSpellScribed(5340) then --ancient Bite of Muram
@@ -1556,7 +1556,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Shaman" then --Ancient - Wilslik's Mending, Ancestral Calling
+	elseif e.other:HasClass("Shaman") then --Ancient - Wilslik's Mending, Ancestral Calling
 		if not e.other:HasSpellScribed(6142) then --Ancient - Wilslik's Mending
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77278,100000); -- Item: spell:Ancient - Wilslik's Mending
@@ -1568,9 +1568,9 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
 			e.other:SummonItem(59988); -- ancient muramite rune
 		end
-	elseif class == "Warrior" then
+	elseif e.other:HasClass("Warrior") then
 		--nothing
-	elseif class == "Wizard" then --Ancient - Core Fire, Spear of Gelaqua
+	elseif e.other:HasClass("Wizard") then --Ancient - Core Fire, Spear of Gelaqua
 		if not e.other:HasSpellScribed(5463) then --Ancient - Core Fire
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
 			e.other:QuestReward(e.self,0,0,0,0,77199,100000); -- Item: spell: Ancient - Core Fire

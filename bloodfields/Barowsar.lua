@@ -31,85 +31,85 @@ end
 function event_trade(e)
 	local class = e.other:Class();
 	local item_lib = require("items");
-	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (class == "Monk" or class == "Beastlord" or class == "Druid" or e.other:GetGM())) then -- require warmly and leather
+	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (e.other:HasClass("Monk") or e.other:HasClass("Beastlord") or e.other:HasClass("Druid") or e.other:GetGM())) then -- require warmly and leather
 		
 		if(item_lib.check_turn_in(e.trade, {item1 = 51446,item2 = 51467,item3 = 51467})) then -- leather hand rewards
 			e.self:Say("Well done, ".. e.other:GetCleanName() ..".  I did not think it possible!  Hopefully stealing this item will slow the Muramites and buy those rebels time to plan their next attack.  Please accept this set of leather gloves as a token of my thanks!'");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70786,100000); -- Item: 
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70842,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70779,100000); -- Item: 
 				end
 
 
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51445,item2 = 51466,item3 = 51466})) then -- leather wrist rewards 
 			e.self:Say("The Blood Standard of Dranik! I did not believe it still existed! This will bring hope to the few dragorn who still resist Mata Muram. I only wish I was ready to join them. Thank you. As promised, here is a leather wristguard as a reward.");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70785,100000); -- Item: 
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70841,100000); -- Item:
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70778,100000); -- Item:
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51444,item2 = 51465,item3 = 51465})) then -- leather arms rewards
 			e.self:Say("'Thank you, ".. e.other:GetCleanName() ..".  With these items I should be able to at least envision the beauty of Kuua before the Muramites came.  In return for your efforts, here are the leather armguards I promised.'");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70784,100000); -- Item: 
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70840,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70777,100000); -- Item: 
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51440,item2 = 51461,item3 = 51461})) then -- leather head rewards
 			e.self:Say("'The Duskfall Chronicles!  They still exist!  I feared that the knowledge contained in this book was lost forever.  At least now the lives of those of who came before me shall not be lost in vain.  I just hope some usable knowledge can be extracted from this tome.  Here, take this leather helm as your reward.  May it serve you well on your travels.'");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70783,100000); -- Item: 
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70839,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70776,100000); -- Item: 
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51441,item2 = 51462,item3 = 51462,item4 = 51462})) then -- leather chest rewards 
 			e.self:Say("'Yes, this is it the scepter of my Yumall!  I recognize the markings!  Alas, the glow has left the scepter which means Yumall no longer draws breath.  At least now, we can morn his passing.  Before we were never sure.  As promised, here is my finest work, an ornate leather chest piece.  May it serve you well on your stand against the Muramites!'");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70788,100000); -- Item:
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70844,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70781,100000); -- Item: 
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51442,item2 = 51463,item3 = 51463,item4 = 51463})) then -- leather leg rewards
 			e.self:Say("'So it's true, the embers do exist!  I'm glad this was removed from the hands of the Muramites.  I only hope Dranik is not one day reduced to one of these embers.  As promised, here are the leggings crafted by Master Lenarsk as your reward.'");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70789,100000); -- Item: 
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70845,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70782,100000); -- Item: 
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51443,item2 = 51464,item3 = 51464})) then -- leather feet rewards 
 			e.self:Say("Well done ".. e.other:GetCleanName() ..". I understand the Muramites guard these well. I'll bury this stone so the dragorn of Kuua can move on from the horrors of the past and instead look to the future. As promised, here is a pair of finely crafted leather boots as your reward.");
-				if class == "Monk" or e.other:GetGM() then
+				if e.other:HasClass("Monk") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70787,100000); -- Item:
 				end
-				if class == "Beastlord" or e.other:GetGM() then
+				if e.other:HasClass("Beastlord") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70843,100000); -- Item: 
 				end
-				if class == "Druid" or e.other:GetGM() then
+				if e.other:HasClass("Druid") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70780,100000); -- Item: 
 				end
 		

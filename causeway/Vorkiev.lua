@@ -31,127 +31,127 @@ end
 function event_trade(e)
 	local class = e.other:Class();
 	local item_lib = require("items");
-	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (class == "Warrior" or class == "Paladin" or class == "Shadow Knight" or class == "Bard" or class == "Cleric" or e.other:GetGM())) then -- require warmly and plate
+	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (e.other:HasClass("Warrior") or e.other:HasClass("Paladin") or class == "Shadow Knight" or e.other:HasClass("Bard") or e.other:HasClass("Cleric") or e.other:GetGM())) then -- require warmly and plate
 		
 		if(item_lib.check_turn_in(e.trade, {item1 = 51446,item2 = 51453,item3 = 51453})) then -- plate hand rewards Spire Control Shard, 2x Discordling Message Satchel
 			e.self:Say("Well met, ".. e.other:GetCleanName() ..". You may have well disrupted the Muramite chain of command long enough to afford me a chance to go looking for my surviving brothers. The Muramites are on the watch for me, but now they will be scrambling for word from their master. To thank you for your efforts, here are the plate gloves I have promised you.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70744,100000); -- Item: Armsmaster's Gloves
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70758,100000); -- Item: Oathbound Gauntlets
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70772,100000); -- Item: Heartstiller's Mail Gloves
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70793,100000); -- Item: Traveler's Mail Gloves
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70751,100000); -- Item: Sanctified Gloves
 				end
 
 
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51445,item2 = 51452,item3 = 51452})) then -- plate wrist rewards Dranik Blood Standard , 2x Ashlock Branch
 			e.self:Say("The Blood Standard of Dranik! So it was not destroyed! Well done, ".. e.other:GetCleanName() ..". I make sure this banner remains in the hands of those still loyal to the old ways. May it fly over the free armies of Kuua once again. Here is the wristguard I have promised. May they serve you well in your future battles against the Muramites!");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70743,100000); -- Item: 70743);#Armsmaster's Bracer
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70757,100000); -- Item: (70757);#Oathbound Bracer
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70771,100000); -- Item: (70771);#Heartstiller's Mail Wristguard
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70792,100000); -- Item: (70792);#Traveler's Mail Wristband
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70750,100000); -- Item: (70750);#Sanctified Wristguard
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51444,item2 = 51451,item3 = 51451})) then -- plate arms rewards Map of Old Kuua, 2x Ukun Quill
 			e.self:Say("A map of Old Kuua! How this map makes me long for the old days, back when we were a free race! My thanks, ".. e.other:GetCleanName() ..". This map may help relearn the new landscape in the context of the old. Here is a set of ornate arm guards as your reward.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70742,100000); -- Item: (70742);#Armsmaster's Sleeves
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70756,100000); -- Item: (70756);#Oathbound Armguards
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70770,100000); -- Item: (70770);#Heartstiller's Mail Sleeves
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70791,100000); -- Item: (70791);#Traveler's Mail Sleeves
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70749,100000); -- Item: (70749);#Sanctified Sleeves
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51440,item2 = 51447,item3 = 51447})) then -- plate head rewards Duskfall Chronicles, 2x Bristling Ukun Hide
 			e.self:Say("Well met, ".. e.other:GetCleanName() ..". Hopefully this book will contain some valuable information on the nature of Discord. To survive on my own, I must first understand the poison affecting the land. As promised, here is the helm as your reward for such a dangerous mission.");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70741,100000); -- Item: (70741);#Armsmaster's Helm
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70755,100000); -- Item: (70755);#Oathbound Helm
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70769,100000); -- Item: (70769);#Heartstiller's Mail Helm
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70790,100000); -- Item: (70790);#Traveler's Mail Cap
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70748,100000); -- Item: (70748);#Sanctified Headdress
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51441,item2 = 51448,item3 = 51448,item4 = 51448})) then -- plate chest rewards Dragorn Elder Scepter, 3x Shorn Murkglider Tentacle
 			e.self:Say("This is the scepter of Noble Pravel the Diviner! I recognize the markings! I can tell by the way the light has faded that he no longer draws breath. Though this is terrible news, I'm grateful at least you have recovered it from the Muramites. I'll try to smuggle this back to those still loyal to Dranik. Thanks you,".. e.other:GetCleanName() ..". As promised, here is my chain vest. It has grown too cumbersome for me to carry in my wanderings.'");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70746,100000); -- Item: (70746);#Armsmaster's Breastplate
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70760,100000); -- Item: (70760);#Oathbound Breastplate
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70774,100000); -- Item:(70774);#Heartstiller's Mail Chestguard
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70795,100000); -- Item: (70795);#Traveler's Mail Chestguard
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70753,100000); -- Item: (70753);#Sanctified Chestguard
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51442,item2 = 51449,item3 = 51449,item4 = 51449})) then -- plate leg rewards Dragorn City Ember, 3x Dranik Incense Burner
 			e.self:Say("Hmm, I shudder to think what names I will find scribed on this rock, but I thank you for your work none the less. Hopefully, this list can be used to stir some more dissention among the dragorn that have sworn loyalty to Mata Muram for the time being. Here are the plate boots I have promised. May they serve you well, ".. e.other:GetCleanName() ..".");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70747,100000); -- Item: (70747);#Armsmaster's Leggings
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70761,100000); -- Item: (70761);#Oathbound Legguards
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70775,100000); -- Item: (70775);#Heartstiller's Mail Leggings
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70796,100000); -- Item:(70796);#Traveler's Mail Legguards
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70754,100000); -- Item:(70754);#Sanctified Leggings
 				end
 		elseif(item_lib.check_turn_in(e.trade, {item1 = 51443,item2 = 51450,item3 = 51450})) then -- plate feet rewards Kuuan Traitor Stone, 2x Kyv Bowstring
 			e.self:Say("So, the embers do exist! Excellent work, ".. e.other:GetCleanName() ..". I plan to hold this ember in the forge when crafting in the future. This will ensure that the ember's heat is used to forge armor for the enemies of the Muramites. Poetic justice, don't you think? For your efforts, here are the greaves as promised!");
-				if class == "Warrior" or e.other:GetGM() then
+				if e.other:HasClass("Warrior") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70745,100000); -- Item: (70745);#Armsmaster's Boots
 				end
-				if class == "Paladin" or e.other:GetGM() then
+				if e.other:HasClass("Paladin") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70759,100000); -- Item: (70759);#Oathbound Boots
 				end
 				if class == "Shadow Knight" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70773,100000); -- Item:(70773);#Heartstiller's Mail Boots
 				end
-				if class == "Bard" or e.other:GetGM() then
+				if e.other:HasClass("Bard") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70794,100000); -- Item:(70794);#Traveler's Mail Boot
 				end
-        if class == "Cleric" or e.other:GetGM() then
+        if e.other:HasClass("Cleric") or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70752,100000); -- Item: (70752);#Sanctified Footwear
 				end
 		

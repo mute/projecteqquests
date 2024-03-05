@@ -28,7 +28,7 @@ function event_trade(e)
   local class = e.other:Class();
   local item_lib = require("items");
 
-  if (e.other:GetFaction(e.self) <= 2 and (class == "Warrior" or class == "Paladin" or class == "Shadowknight" or class == "Bard" or class == "Monk" or class == "Beastlord" or class == "Berserker" or class == "Ranger" or class == "Rogue")) then -- require warmly and melee
+  if (e.other:GetFaction(e.self) <= 2 and (e.other:HasClass("Warrior") or e.other:HasClass("Paladin") or e.other:HasClass("Shadowknight") or e.other:HasClass("Bard") or e.other:HasClass("Monk") or e.other:HasClass("Beastlord") or e.other:HasClass("Berserker") or e.other:HasClass("Ranger") or e.other:HasClass("Rogue"))) then -- require warmly and melee
     if (item_lib.check_turn_in(e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
       e.self:Say("Can it be? You've found it! I shall have this pieced together where no Muramite can find it again. It will be an inspiration for the coming generations and a beacon of hope in these times of darkness. Here take this mask. May it help you always to see the light and protect you from the trials of darkness.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71135, 100000); -- (71135); #Glowing Enameled Visor
@@ -40,7 +40,7 @@ function event_trade(e)
       e.other:Faction(1016, 5) --Dranik Loyalists +5
       e.other:Faction(1013, -1) -- Overlord Mata Muram -1
     end
-  elseif (e.other:GetFaction(e.self) <= 2 and (class == "Magician" or class == "Wizard" or class == "Enchanter" or class == "Cleric" or class == "Druid" or class == "Shaman" or class == "Necromancer")) then -- require warmly and caster
+  elseif (e.other:GetFaction(e.self) <= 2 and (e.other:HasClass("Magician") or e.other:HasClass("Wizard") or e.other:HasClass("Enchanter") or e.other:HasClass("Cleric") or e.other:HasClass("Druid") or e.other:HasClass("Shaman") or e.other:HasClass("Necromancer"))) then -- require warmly and caster
     if (item_lib.check_turn_in(e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
       e.self:Say("Can it be? You've found it! I shall have this pieced together where no Muramite can find it again. It will be an inspiration for the coming generations and a beacon of hope in these times of darkness. Here take this mask. May it help you always to see the light and protect you from the trials of darkness.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71136, 100000); -- (71136); #Veil of Woven Light

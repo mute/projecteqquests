@@ -279,6 +279,8 @@ sub GrantClassAA {
     my $new_aa_list     = join(',', @{$class_aa{$PCClass}});    
     my $current_aa_list = quest::get_data($classKey);
 
+    quest::debug("$new_aa_list, $current_aa_list, $classKey");
+
     if ($new_aa_list ne $current_aa_list) {
         quest::set_data($classKey, $new_aa_list);
 

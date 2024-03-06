@@ -275,10 +275,12 @@ sub GrantClassAA {
         16 => [4739, 258, 6607], # Berserker 
     );
 
+    my $classKey        = $client->CharacterID() . $PCClass;
+    my $new_aa_list     = join(',', @{$class_aa{$PCClass}});    
+    my $current_aa_list = quest::get_data($classKey);
 
-    my $classKey = $client->CharacterID() . $PCClass;
-    if (!quest::get_data($classKey)) {
-        quest::set_data($classKey, 1);
+    if ($new_aa_list ne $current_aa_list) {
+        quest::set_data($classKey, $new_aa_list);
 
         foreach my $aa_id (@{$class_aa{$PCClass}}) {
             $client->IncrementAA($aa_id);

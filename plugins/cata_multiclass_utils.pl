@@ -273,21 +273,17 @@ sub GrantClassAA {
         14 => [158, 643, 10551, 580, 581, 582, 734, 8227, 288, 1129, 1130], # Enchanter
         15 => [6984, 734, 8227, 724, 288], # Beastlord
         16 => [4739, 258, 6607], # Berserker 
-    );
+    );    
 
-    my $classKey        = $client->CharacterID() . $PCClass;
-    my $new_aa_list     = join(',', @{$class_aa{$PCClass}});    
-    my $current_aa_list = quest::get_data($classKey);
-
-    quest::debug("$new_aa_list, $current_aa_list, $classKey");
-
-    if ($new_aa_list ne $current_aa_list) {
-        quest::set_data($classKey, $new_aa_list);
-
-        foreach my $aa_id (@{$class_aa{$PCClass}}) {
+    foreach my $aa_id (@{$class_aa{$PCClass}}) {
+        if (!$client->GetAA($aa_id)) {
             $client->IncrementAA($aa_id);
+        } else {
+            my $name = $client->GetCleanName();
+            quest::debug("$name already has aa_id $aa_id");
         }
     }
+    
 }
 
 sub GrantClassesAA {

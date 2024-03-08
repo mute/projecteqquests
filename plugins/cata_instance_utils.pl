@@ -40,23 +40,17 @@ sub HandleSay
     if ($text =~ /challenges/i) {
         quest::debug($prog_stage);
         my $next_stage = plugin::get_next_stage($prog_stage);
-        if (plugin::is_stage_complete($client, $next_stage)) {
-            plugin::NPCTell("Your power has grown too great for the challenges here to offer any achievement for you. Consider the [$opportunities] here, instead.");
-        } else {
+
             plugin::NPCTell("$flavor_text Seek the challenges before you, and be rewarded. Do you [$wish_to_proceed_challenge]?");
             plugin::YellowText("You must complete all instance objectives in order to recieve a progression flag. You may leave and re-enter the instance. Creatures within
                                 will not respawn. Once any member of your party enters, you may not add any additional members. Rewards will be calculated based upon the number 
                                 of members in the task when it locks.");
-        }
+        
     }
 
     if ($text =~ /opportunities/i) {
-        if (!plugin::get_subflag($client, $prog_stage, $prog_substage)) {
-            plugin::NPCTell("You have not yet completed the [$challenges] in this dungeon. Complete them, and then we may speak of opportunities.");
-        } else {
-            plugin::NPCTell("$flavor_text Seek the opportunities before you, and be rewarded. Do you [$wish_to_proceed_opportunity]?");
-            plugin::YellowText("The instance will remain open for one day. You may leave and re-enter the instance. You may add additional players, up to 6 total at a given time, at any time.");
-        } 
+        plugin::NPCTell("$flavor_text Seek the opportunities before you, and be rewarded. Do you [$wish_to_proceed_opportunity]?");
+        plugin::YellowText("The instance will remain open for one day. You may leave and re-enter the instance. You may add additional players, up to 6 total at a given time, at any time.");        
     }
 
     if ($text =~ /wish to proceed_challenge/i) {        
@@ -113,7 +107,7 @@ sub HandleTaskAccept {
     my $task_name  = quest::gettaskname($task_id);
     my $challenge  = IsChallengeTask($task_id);
 
-    if ($challenge) {
+    if (0) {
         my $ineligible  = 0;
         my $dbh         = plugin::LoadMysql(); 
 

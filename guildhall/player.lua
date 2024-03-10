@@ -1,4 +1,19 @@
+function event_connect(e)
+	-- Ensure we catch all methods of entering zone
+	event_enter_zone(e);
+end
+
 function event_enter_zone(e)
+	-- Boot non-guild characters
+	if e.self:IsInAGuild() == false then
+		e.self:MovePC(344, 19, -55, 5, 0); -- Guild Lobby
+	end
+
+	-- Check if in Guild Hall v0
+	if eq.get_zone_instance_version() == 0 then
+		e.self:SendToGuildHall();
+	end
+
 	eq.set_timer("zone_in", 3 * 1000);
 end
 

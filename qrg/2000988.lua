@@ -19,7 +19,7 @@ function Totem_Death()
         granus:SetSpecialAbility(35, 0); --turn on immunity
 
         -- Attack normal speed again
-        eq.modify_npc_stat("attack_delay", "0");
+        eq.modify_npc_stat("attack_delay", "12");
 
         granus:Emote("'s earthen shell cracks and fractures.");
     end
@@ -65,7 +65,7 @@ function event_hp(e)
         e.self:SetSpecialAbility(35, 1); --turn on immunity
 
         -- Attack very slowly
-        e.self:ModifyNPCStat("attack_delay", "9000");
+        e.self:ModifyNPCStat("attack_delay", "48");
 
         -- Start a timer to check for the totems being dead
         eq.set_timer("totem_dead", 1000);

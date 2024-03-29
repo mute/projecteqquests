@@ -29,7 +29,7 @@ end
 
 function event_combat(e)
 	-- On combat end, we need to reset by depopping totems and resetting hp events.
-    if !e.joined then
+    if not e.joined then
         -- Set next_hp_event to 60 again
         eq.set_next_hp_event(60);
 

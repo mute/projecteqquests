@@ -17,7 +17,7 @@ function event_hp(e)
         e.self:Say("The earth surrounds me. I will not cave so easily.");
         e.self:Emote(" hardens as earthen totems rise from the ground.")
         for i = 1, 3 do
-            eq.spawn2(totem_id, 0, 0, totem_locs[i][0], totem_locs[i][1], totem_locs[i][2], 0);
+            eq.spawn2(totem_id, 0, 0, totem_locs[i][1], totem_locs[i][2], totem_locs[i][3], 0);
         end
         eq.set_next_hp_event(10);
     elseif (e.hp_event == 10) then

@@ -10,7 +10,7 @@ local totem_locs = {
 
 function Totem_Death()
     local entity_list = eq.get_entity_list();
-    local granus = entity_list.GetMobNyNpcTypeID(2000988);
+    local granus = entity_list:GetMobByNpcTypeID(2000988);
     if not entity_list:IsMobSpawnedByNpcTypeID(totem_id) then
         -- Stop the timer
         eq.stop_timer("totem_dead");

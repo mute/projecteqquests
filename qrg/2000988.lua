@@ -22,7 +22,7 @@ function Totem_Death()
         eq.modify_npc_stat("attack_delay", "12");
 
         -- Regen normally again
-        e.self:ModifyNPCStat("hp_regen", "1");
+        eq.modify_npc_stat("hp_regen", "1");
 
         granus:Emote("'s earthen shell cracks and fractures.");
     end

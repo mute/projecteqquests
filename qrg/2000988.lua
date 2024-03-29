@@ -44,6 +44,15 @@ function event_combat(e)
         -- Heal to 100
         e.self:Heal();
 
+        -- Remove immunity
+        granus:SetSpecialAbility(35, 0); --turn on immunity
+
+        -- Attack normal speed again
+        eq.modify_npc_stat("attack_delay", "12");
+
+        -- Regen normally again
+        eq.modify_npc_stat("hp_regen", "1");
+
         -- Depop all of the totems
         local npc_list =  eq.get_entity_list():GetNPCList();
         for npc in npc_list.entries do

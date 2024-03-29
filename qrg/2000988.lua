@@ -8,10 +8,13 @@ local totem_locs = {
     [3] = {-535, 53, 41}
 }
 
-function Totem_Death(e)
+function Totem_Death()
     local entity_list = eq.get_entity_list();
     local granus = entity_list.GetMobNyNpcTypeID(2000988);
     if not entity_list:IsMobSpawnedByNpcTypeID(totem_id) then
+        -- Stop the timer
+        eq.stop_timer("totem_dead");
+
         -- Remove immunity
         granus:SetSpecialAbility(35, 0); --turn on immunity
 
@@ -26,8 +29,7 @@ function event_spawn(e)
     -- Granus is rooted and summons
     e.self:SetPseudoRoot(true);
 
-    eq.set_next_hp_event(60)
-    eq.register_npc_event(Event.death_complete, totem_id, Totem_Death);
+    eq.set_next_hp_event(60);
 end
 
 function event_combat(e)
@@ -65,8 +67,17 @@ function event_hp(e)
         -- Attack very slowly
         e.self:ModifyNPCStat("attack_delay", "9000");
 
+        -- Start a timer to check for the totems being dead
+        eq.set_timer("totem_dead", 1000);
+
         eq.set_next_hp_event(10);
     elseif (e.hp_event == 10) then
         e.self:Say("Well done, young one. This is only just the beginning.");
+    end
+end
+
+function event_timer(e)
+    if (e.timer == "totem_dead") then
+        Totem_Death();
     end
 end

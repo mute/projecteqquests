@@ -15,14 +15,17 @@ function Totem_Death(e)
         -- Remove immunity
         granus:SetSpecialAbility(35, 0); --turn on immunity
 
-        -- Remove root
-        granus:SetPseudoRoot(false);
+        -- Attack normal speed again
+        e.self:ModifyNPCStat("attack_delay", "3000");
 
         granus:Emote("'s earthen shell cracks and fractures.");
     end
 end
 
 function event_spawn(e)
+    -- Granus is rooted and summons
+    e.self:SetPseudoRoot(true);
+
     eq.set_next_hp_event(60)
     eq.register_npc_event(Event.death_complete, totem_id, Totem_Death);
 end
@@ -59,8 +62,8 @@ function event_hp(e)
         -- Go immune
         e.self:SetSpecialAbility(35, 1); --turn on immunity
 
-        -- Go rooted
-        e.self:SetPseudoRoot(true);
+        -- Attack very slowly
+        e.self:ModifyNPCStat("attack_delay", "9000");
 
         eq.set_next_hp_event(10);
     elseif (e.hp_event == 10) then

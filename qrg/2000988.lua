@@ -21,6 +21,9 @@ function Totem_Death()
         -- Attack normal speed again
         eq.modify_npc_stat("attack_delay", "12");
 
+        -- Regen normally again
+        e.self:ModifyNPCStat("hp_regen", "1");
+
         granus:Emote("'s earthen shell cracks and fractures.");
     end
 end
@@ -66,6 +69,9 @@ function event_hp(e)
 
         -- Attack very slowly
         e.self:ModifyNPCStat("attack_delay", "48");
+
+        -- Do not regen
+        e.self:ModifyNPCStat("hp_regen", "0");
 
         -- Start a timer to check for the totems being dead
         eq.set_timer("totem_dead", 1000);

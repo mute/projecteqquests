@@ -19,7 +19,7 @@ function Totem_Death()
         granus:SetSpecialAbility(35, 0); --turn on immunity
 
         -- Attack normal speed again
-        granus:ModifyNPCStat("attack_delay", "3000");
+        eq.modify_npc_stat("attack_delay", "0");
 
         granus:Emote("'s earthen shell cracks and fractures.");
     end

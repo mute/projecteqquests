@@ -676,7 +676,7 @@ function event_say(e)
         local link_25_30 = eq.say_link('25-30')
         local link_59_60 = eq.say_link('59-60')
 
-        player:Message(colorTalk, '[' .. link_05_10 .. '] [' .. link_10_15 .. '] [' .. link_15_20 .. '] [' .. link_25_30 .. ']' [' .. link_59_60 .. ']' );
+        player:Message(colorTalk, '[' .. link_05_10 .. '] [' .. link_10_15 .. '] [' .. link_15_20 .. '] [' .. link_25_30 .. '] [' .. link_59_60 .. ']' );
     elseif levelRange then
         local zones = Leveling_Zones[levelRange]
 

@@ -603,6 +603,8 @@ local Allowed_Zones = {
     [4] = { "kurn", 97, 0, 0, -78, 195, 2, 183, 15, 0, "The Mosswood Tower" },
     [5] = { "crushbone", 58, 0, 0, 158, -644, 4, 0, 25, 0, "Crushbone Keep" },
     [6] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
+    [7] = { "kael", 113, 0, 0, -633, -47, 128, 0, 0, 2, "Kael Drakkel" },
+    [8] = { "westwastes", 120, 0, 0, -3499, -4099, -18, 0, 0, 2, "The Western Wastes" },
 }
 
 -- [id] = { "short_name", zoneidnumber, version, maxclients, safe_x, safe_y, safe_z, safe_heading, min_level, expansion,"long_name"}
@@ -620,6 +622,10 @@ local Leveling_Zones = {
     ['25-30'] = {
         [1] = { "crushbone", 58, 0, 0, 158, -644, 4, 0, 25, 0, "Crushbone Keep" },
         [2] = { "moors", 395, 0, 0, 3263, -626, -20, 0, 25, 0, "Sungold Grasslands" },
+    },
+    ['59-60'] = {
+        [1] = { "kael", 113, 0, 0, -633, -47, 128, 0, 0, 2, "Kael Drakkel" },
+        [2] = { "westwastes", 120, 0, 0, -3499, -4099, -18, 0, 0, 2, "The Western Wastes" },
     }
 }
 
